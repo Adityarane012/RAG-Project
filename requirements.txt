@@ -1,0 +1,8 @@
+huggingface_hub
+pinecone
+sentence-transformers
+groq
+requests
+python-dotenv
+pytest
+# UI is still open (Streamlit or Gradio); add the chosen one here.
