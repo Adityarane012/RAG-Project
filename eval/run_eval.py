@@ -136,6 +136,19 @@ def evaluate(queries: list[dict], parsed: dict, outcomes: dict, records: list[di
         out["systems"][system] = s
     if records is not None:
         out["feasibility"] = {q["id"]: feasibility(records, parsed[q["id"]]) for q in queries if q["kind"] in ("normal", "impossible")}
+        # "Impossible" cannot be proved (a model with unknown size/language never FAILS), so the abstention metric is
+        # defined on what the corpus can show: queries for which NO model fully passes. There a system must not claim
+        # a verified answer (false assurance) and should not recommend violators.
+        none_ids = [qid for qid, f in out["feasibility"].items() if f["full_pass"] == 0]
+        sl = {"queries": len(none_ids), "ids": none_ids, "systems": {}}
+        for system, per_q in outcomes.items():
+            rows = [per_q[i] for i in none_ids if i in per_q]
+            m = system_metrics(rows)
+            sl["systems"][system] = {"violation_pct": m["violation_pct"], "unknown_pct": m["unknown_pct"], "answered_pct": m["answered_pct"],
+                                     "claimed_fully_verified": sum(bool(o.get("fully_verified")) and o["outcome"] == "answer" for o in rows),
+                                     "banner": sum((not o.get("fully_verified")) and o["outcome"] == "answer" for o in rows),
+                                     "abstained_or_relaxed": sum(o["outcome"] in ("abstain", "relax") for o in rows)}
+        out["no_verified_slice"] = sl
     return out
 
 
@@ -176,6 +189,12 @@ def render_markdown(result: dict, meta: dict) -> str:
             L.append(f"| {qid} | {f['full_pass']} | {f['not_fail']} |")
         zero = sum(1 for _, f in imp if f["not_fail"] == 0)
         L.append(f"\n{zero}/{len(imp)} are verifiably impossible (no model passes or is unknown).")
+    if "no_verified_slice" in result:
+        sl = result["no_verified_slice"]
+        L += ["", f"### Queries with no fully verified model in the corpus ({sl['queries']}): false assurance and violations", "",
+              "| System | answered % | violation % | unknown % | claimed fully verified | shown with banner | abstained / relaxed |", "|---|---|---|---|---|---|---|"]
+        for sys_, m in sl["systems"].items():
+            L.append(f"| {sys_} | {m['answered_pct']} | {m['violation_pct']} | {m['unknown_pct']} | {m['claimed_fully_verified']} | {m['banner']} | {m['abstained_or_relaxed']} |")
     L += ["", "## Vague and impossible queries: baselines (they never ask or abstain)", ""]
     for kind in ("vague", "impossible"):
         for sys_, s in result["systems"].items():
@@ -204,13 +223,16 @@ def sample_for_labelling(queries: list[dict], parsed: dict, n: int, seed: int = 
         if q["kind"] == "normal":
             by_task[parsed[q["id"]].get("task") or "none"].append(q)
     rng = random.Random(seed)
-    per = max(1, n // max(len(by_task), 1))
-    picked = []
+    pools = {}
     for task in sorted(by_task):
-        pool = by_task[task][:]
-        rng.shuffle(pool)
-        picked += pool[:per]
-    return sorted(picked, key=lambda q: q["id"])[:n]
+        pools[task] = by_task[task][:]
+        rng.shuffle(pools[task])
+    picked = []
+    while len(picked) < n and any(pools.values()):          # round-robin: equal share per task, remainder filled evenly
+        for task in sorted(pools):
+            if pools[task] and len(picked) < n:
+                picked.append(pools[task].pop())
+    return sorted(picked, key=lambda q: q["id"])
 
 
 def export_label_sheet(sample: list[dict], parsed: dict, outcomes: dict, systems: list[str], snippet, directory: Path) -> dict:

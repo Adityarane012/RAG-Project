@@ -74,6 +74,10 @@ def test_evaluate_reports_clarification_abstention_and_flags_queries_with_nothin
              "n_queries": 4, "kinds": {}, "impossible_ids": ["q3"]}
     md = render_markdown(res, meta_)
     assert "| ours |" in md and "| naive |" in md and "verifiably impossible" in md
+    # the abstention metric is defined on queries for which no model in the corpus fully passes (here q3)
+    sl = res["no_verified_slice"]
+    assert sl["ids"] == ["q3"] and sl["systems"]["ours"]["abstained_or_relaxed"] == 1 and sl["systems"]["naive"]["violation_pct"] == 100.0
+    assert "no fully verified model in the corpus" in md
 
 
 def test_label_sheet_is_blind_deduplicated_per_query_and_keyed_separately(tmp_path):
@@ -93,3 +97,13 @@ def test_the_labelling_sample_is_stratified_by_task_reproducible_and_normal_only
     s1, s2 = sample_for_labelling(qs, parsed, 8), sample_for_labelling(qs, parsed, 8)
     assert s1 == s2 and len(s1) == 8 and all(q["kind"] == "normal" for q in s1)
     assert sorted(parsed[q["id"]]["task"] for q in s1) == ["a"] * 4 + ["b"] * 4
+
+
+def test_the_labelling_sample_reaches_the_requested_size_even_when_it_does_not_divide_evenly():
+    # live finding: 40 requested over 6 task buckets produced 31 because the remainder was dropped
+    qs = [{"id": f"q{i:03d}", "query": f"q{i}", "kind": "normal"} for i in range(1, 61)]
+    parsed = {q["id"]: {"task": "abcdef"[int(q["id"][1:]) % 6]} for q in qs}
+    s = sample_for_labelling(qs, parsed, 40)
+    assert len(s) == 40 and len({q["id"] for q in s}) == 40
+    counts = sorted(sum(parsed[q["id"]]["task"] == t for q in s) for t in "abcdef")
+    assert counts[-1] - counts[0] <= 1                    # shares differ by at most one query

@@ -114,7 +114,7 @@ Pinecone rejects `null` metadata, so `build_vectors` drops `None` values.
  "size_word": str | None,       # key of config.yaml size_words_mb
  "commercial": True | None,
  "modifiable": True | None,
- "soft_query": str}             # what the embedding search is run on
+ "soft_query": str}             # the remaining preference; picks explanation evidence. NOT the search text (see §11)
 ```
 
 `clean_constraints` validates the LLM's JSON: anything off-schema becomes `None`/`[]`.
@@ -142,9 +142,9 @@ authoritative check, run on every returned model. A filter must therefore never 
 |---|---|---|---|
 | `extract` | `query`, `overrides` | `constraints`, `intent` | `constraints.update(overrides)`: key *presence* counts, so `{"commercial": None}` clears a constraint |
 | `clarify` | `constraints` | `question`, `clarifications_asked+1`, `outcome=clarify` | ends the run (waits for the user) |
-| `retrieve` | `constraints` | `matches` | `fetch_chunks`: doubles `k` until ≥5 distinct models, `k_max`, or the index is exhausted |
-| `rerank` | `matches`, `soft_query` | `candidates` | `deps.rerank` reorders chunks; `group_by_model` keeps each model's best chunk, top 5 |
-| `verify` | `candidates`, `constraints` | `results`, `closest` | each result: `table`, `overall`, `notes`; stable sort by `rank_key` |
+| `retrieve` | `query`, `constraints` | `matches` | searches with the user's own words; `fetch_chunks` doubles `k` until ≥`verify_pool` (100) distinct models, `k_max`, or the index is exhausted |
+| `rerank` | `matches`, `query` | `candidates` | `deps.rerank` reorders chunks; `group_by_model` keeps each model's best chunk for up to `verify_pool` models |
+| `verify` | `candidates`, `constraints` | `results`, `closest` | every pooled model: `table`, `overall`, `notes`; stable sort by `rank_key`; **then** cut to the top 5 (`top_models`), so a verified model ranked 30th by relevance can beat an unknown ranked 1st |
 | `relax` | `constraints` | `relax_offer`, `relax_count+1`, `outcome=relax` | ends the run |
 | `abstain` | – | `outcome=abstain` | ends the run; UI shows `closest` |
 | `enrich` | viable `results` | `reports` | `adapt.model_report` + templated Try-it snippet |
@@ -187,7 +187,7 @@ The state carries `fully_verified` (false when no result is a full pass) and the
 |---|---|
 | `extract(query) -> constraints` | `llm.extract_constraints`; raises `ValueError` on bad JSON |
 | `fetch(filter, top_k) -> [match]` | each match `{"id", "score", "metadata": {...}}`; `retrieve.pinecone_fetch` builds it |
-| `rerank(soft_query, matches) -> matches` | `rerank.LocalReranker` implements it. **Must return the same match dicts with `score` replaced by the reranker's score**: `group_by_model` ranks by `score` |
+| `rerank(query, matches) -> matches` | `rerank.LocalReranker` / `HostedReranker` implement it. **Must return the same match dicts with `score` replaced by the reranker's score**: `group_by_model` ranks by `score` |
 | `explain(constraints, results) -> [ {model_id, text, ...} ]` | `llm.explain`; output is filtered to candidate ids |
 | `lineage_index` | `adapt.build_lineage_index(snapshot records)` |
 | `card_data(model_id) -> dict \| None` | for `model-index` metrics; optional |
@@ -293,7 +293,14 @@ memory-estimate constants, loop caps. Secrets live only in `.env` (see
 | "Main weight files" (D20) | Top-level files named `model*` / `pytorch_model*` | Nested folders hold alternative copies; other names become *unknown* (honest, but measure how many) |
 | `viable` | `overall ≠ fail` | See §6.4 |
 | Models | Pinned in `config.yaml` (`llm.*`); env vars only override | One place to change, reproducible runs |
-| Reranker default | Local `bge-reranker-v2-m3` | Safe default until the Pinecone plan check (D9) |
+| Reranker default | Pinecone-hosted `bge-reranker-v2-m3` (API version 2024-10, `truncate: END`), cached; local model is the fallback | The plan check passed (D9); the hosted call is free of local weights, which the sandbox cannot download |
+| Search text | The user's own query, for every system; `soft_query` only selects explanation evidence | Live finding: the extractor turned "small Gujarati classifier with a permissive license" into "permissive license" and retrieval returned only license sections |
+| Verification pool | 100 models are verified, then the top 5 are shown (`retrieval.verify_pool`) | Live finding: semantic search cannot see "direction known", so verified `opus-mt-en-hi` never reached the top 5 (D12 says passes outrank unknowns) |
+| Embeddings (D8) | Pinecone-hosted `multilingual-e5-large`, content-hash cached; 29,665 chunks cost about 2.49M tokens | No local weights needed; the cache decouples embedding from upserting |
+| Vector store | `LocalIndex` (exact brute force, Pinecone filter semantics) is the default store (`vector_store.backend: local`) | The sandbox cannot reach the Pinecone data plane; `pinecone` backend is implemented and selected by config |
+| Groq models | `openai/gpt-oss-20b`, fallback `openai/gpt-oss-120b`, `reasoning_effort: low` | `llama-3.1-8b-instant` is not on the account; reasoning tokens otherwise dominate the 8,000 TPM budget |
+| Extraction backstop | Deterministic fill-in for size, rights, single-category task, language names and named permissive licenses (`llm.backstop_constraints`) | The 120b fallback silently dropped constraints; a named permissive license is read as commercial + modifiable (an approximation shown in "We understood") |
+| Chunks | Boilerplate sections dropped; at most 4 chunks per model | Cut chunks per model from 8.7 to 3.2 on the real corpus |
 | Copyleft rights | GPL / CC-BY-SA: `conditional` for both rights | Share-alike applies to derivatives |
 | Direction | Passes only from an `opus-mt-<src>-<tgt>` name, labelled as such | Deterministic and covers a large family; everything else ⚠️ |
 | `base_model` ids | Canonicalised through the Hub API at ingestion | Merge legacy/current ids; assumption to verify on one model |
