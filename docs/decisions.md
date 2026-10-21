@@ -24,14 +24,14 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Prior art:** semantic search over the HF Hub already exists (davanstrien's hub-semantic-search MCP; the *Model Fit Finder* Space), and the Hub UI itself filters by task, language and license string. Our differentiator is **interpreting license rights, guaranteeing hard-constraint satisfaction, and handling unknowns honestly**, measured against both (D19).
 
 ## D2. Core principle: the LLM parses, code verifies
-- **Status:** Proposed
+- **Status:** Accepted (2026-10-21)
 - **Decision:** The LLM only (a) extracts constraints from the query into JSON and (b) writes explanations. All yes/no checks (size, license, language) are done in code, before retrieval (filters) and after (re-verification).
 - **Rationale:** an LLM will recommend a non-commercial or oversized model if its card *sounds* relevant. Deterministic checks make the violation rate measurable and close to zero.
 - **Consequence:** every recommendation shows a per-constraint table: ✅ pass / ❌ fail / ⚠️ unknown.
 - **Extended by D14, D17, D18:** license rights, lineage, memory estimates and size thresholds are all computed in code. Card text can never change a verification result.
 
 ## D3. Three possible results per constraint, plus license mapping
-- **Status:** Proposed
+- **Status:** Accepted (2026-10-21)
 - **Decision:** constraints evaluate to `pass`, `fail`, or `unknown`. Licenses map to commercial use as `yes` / `no` / `conditional` / `unknown` (e.g., Apache-2.0 and MIT → yes; CC-BY-NC → no; Llama-style and OpenRAIL → conditional).
 - **Rationale:** many cards are missing metadata. Guessing produces false claims; dropping those models silently produces false negatives.
 - **Extended by D14:** a second, independent right (`modifiable`) uses the same map.
@@ -64,19 +64,19 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Pinned models (2026-10-21), in `config.yaml`:** Groq `openai/gpt-oss-20b` with `llama-3.1-8b-instant` as a one-shot rate-limit fallback; Ollama `qwen2.5:7b-instruct` (`qwen2.5:3b` on 8 GB laptops). Final only after the 20-query test. Not used: `llama-3.3-70b-versatile` (retirement reports conflict), and `gpt-oss:20b` locally (needs ~16 GB).
 
 ## D8. Embeddings: local `intfloat/multilingual-e5-large`
-- **Status:** Proposed
+- **Status:** Accepted (2026-10-21)
 - **Decision:** embed locally and upload the vectors, instead of using Pinecone's hosted inference.
 - **Rationale:** the estimated corpus (~6k models × 3 chunks × ~300 tokens ≈ 5.4M tokens) exceeds the Starter plan's historical 5M monthly inference tokens (verify the current limit), and we will re-index several times while tuning.
 - **Constraints:** 1024 dimensions, ~507-token input limit, so card sections stay under ~450 tokens. Queries **must** be embedded with the same model.
 - **Bonus:** multilingual, so Hindi/Marathi queries work.
 
 ## D9. Reranking: Pinecone hosted if the plan allows, local fallback
-- **Status:** Proposed
+- **Status:** Accepted (2026-10-21)
 - **Decision:** use Pinecone's integrated reranking if the Starter plan includes it (check with the list-models API); otherwise run `bge-reranker-v2-m3` locally.
 - **Default (2026-10-21):** local `bge-reranker-v2-m3` is the safe default; switch to Pinecone-hosted only if the plan check shows it is available and worthwhile.
 
-## D10. Metadata schema (draft)
-- **Status:** Proposed
+## D10. Metadata schema
+- **Status:** Accepted (2026-10-21)
 - **Fields:**
   - `model_id`, `task`, `section`, `downloads`
   - `languages` (list; empty → unknown) + `multilingual` (bool, from D18's map)
@@ -87,9 +87,15 @@ Companion document: [PROJECT.md](PROJECT.md)
   - `param_count` (number, only written when known), added by D14 for memory estimates
   - `doc_quality` (`full` / `minimal`), added by D20
 - **Rule:** every field that can be missing follows the D12 pattern. Metadata is identical on every chunk of the same model.
+- **Accepted schema includes these additions made during implementation (2026-10-21):**
+  - `language_status` (`known` / `unknown`): Pinecone cannot filter on "list is empty", so the D12 pattern needs an explicit flag for languages too.
+  - `directions` (list such as `"hi-mr"`, only when stated) + `direction_source` (`"model_name"`), for D18 translation direction.
+  - `section` and `text`, per chunk (not per model): `text` is what the explanation step cites (D17).
+  - `multilingual` is also set when a card says "multilingual" without listing languages (then `language_status` is `unknown`).
+  See `docs/architecture.md` §4.1 for the full table.
 
 ## D11. Evaluation design
-- **Status:** Proposed
+- **Status:** Accepted (2026-10-21)
 - **Test set (~120 queries), written before tuning:**
   - ~100 written by the teammate **not** building the pipeline, including ~10 impossible queries and ~15 vague beginner queries (D13)
   - ~20 from classmates who have never seen the system, to reduce author bias
@@ -285,7 +291,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 
 *None.* Q1 → D12 · Q2 → D20 · Q3 (LangGraph) → D15 · Q4 (UI) → D16.
 
-**Still marked Proposed** (confirm as a team before the viva): D2, D3, D8, D9, D10, D11.
+**All decisions are Accepted.** D2, D3, D8, D9, D10 and D11 were accepted on 2026-10-21 (they were Proposed). D9 stays conditional on the Pinecone plan check: the local reranker is the default either way.
 
 ## Verification checklist
 - [ ] Model counts per task (top 1,000 + Indic-tagged); confirm the ~5–8k estimate

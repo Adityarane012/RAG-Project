@@ -5,7 +5,9 @@
 ```bash
 python -m venv .venv && source .venv/bin/activate     # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-cp .env.example .env                                   # then fill it in
+python -m src.check_env --init                         # creates .env from .env.example (never overwrites)
+# open .env and fill in the keys (comments say where to get each one)
+python -m src.check_env                                # reports set/missing; never prints a value
 pytest                                                 # offline, ~3 s
 ```
 

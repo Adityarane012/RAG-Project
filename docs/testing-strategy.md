@@ -39,7 +39,7 @@ tests that touch `llm.complete` monkeypatch `_PROVIDERS` and `CACHE_DIR`.
 
 ## 3. Current coverage
 
-127 offline tests.
+135 offline tests.
 
 | File | Tests | Covers |
 |---|---|---|
@@ -57,6 +57,7 @@ tests that touch `llm.complete` monkeypatch `_PROVIDERS` and `CACHE_DIR`.
 | `test_rerank_replay.py` | 8 | reranker score contract, replay keys, record/replay, missing recording, env modes |
 | `test_app.py` | 6 | degraded start, rendering, language picker, banner, replay mode |
 | `test_metrics.py` | 6 | metric maths, query-file validation, verifiably-impossible, kappa |
+| `test_check_env.py` | 8 | `.env` validation, never prints secrets, init never overwrites, example has no values |
 
 ## 4. Edge-case catalogue
 

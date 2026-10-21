@@ -7,7 +7,7 @@ Status as of **2026-10-21 (day 6 of 14)**. The original schedule in
 
 ## 1. Where we are
 
-### Built and unit-tested offline (127 tests, no network)
+### Built and unit-tested offline (135 tests, no network)
 
 License/rights map · D20 size rule · language normalisation · multilingual-map seed ·
 `verify` (incl. direction, notes, size words) · Pinecone filters · chunk→model grouping ·
@@ -175,6 +175,8 @@ snapshot + `config.yaml` + one command (D21).
 
 ### WP8: Write-up and viva prep · day 12–14 (Oct 27–29) · all
 
+*Deferred:* the report's format and requirements will be settled later; nothing else depends on it.
+
 Results, limitations ([security-and-limitations.md](security-and-limitations.md)), the
 viva Q&A (PROJECT §10). Verify the results reproduce from a clean checkout.
 
@@ -194,8 +196,8 @@ viva Q&A (PROJECT §10). Verify the results reproduce from a clean checkout.
 
 | Day | Date | A: Data | B: Pipeline | C: Eval & UI |
 |---|---|---|---|---|
-| 6 | Oct 21 | WP1 Hub + Pinecone checks | WP1 Groq/Ollama checks; create the Pinecone index | **WP4 start writing queries**; **ask the professor about the report format** |
-| 7 | Oct 22 | WP2 ingest run | WP5 `get_graph` skeleton | WP4; **20-minute team meeting: read D2, D3, D8–D11 and mark them Accepted** |
+| 6 | Oct 21 | WP1 Hub + Pinecone checks | WP1 Groq/Ollama checks; create the Pinecone index | **WP4 start writing queries** |
+| 7 | Oct 22 | WP2 ingest run | WP5 `get_graph` skeleton | WP4 |
 | 8 | Oct 23 | WP2 snapshot, report, Release | WP5 | WP4 done, **committed before any tuning** |
 | 9 | Oct 24 | WP3 index build (`exp-`) | WP5 wire reranker; WP6 naive + keyword flags | UI: editable intent, tooltips |
 | 10 | Oct 25 | WP3 `prod` promote (with B) | WP5 poisoned-card test; WP6 done | WP6 HF Hub baseline by hand (once) |
@@ -223,7 +225,6 @@ Try it, the naive-RAG baseline, the faithfulness check, evaluation.
 - [ ] Poisoned-card test passes
 - [ ] Ollama switch rehearsed
 - [ ] `docs/` matches the code (architecture §11 deviations list reviewed)
-- [ ] Decisions still marked *Proposed* (D2, D3, D8, D9, D10, D11) confirmed by the team (meeting on Oct 22)
-- [ ] Report format confirmed with the professor
+- [x] Decisions D2, D3, D8–D11 accepted (2026-10-21); none left Proposed
 - [ ] Windows teammates: `PYTHONUTF8=1` set, Ollama and Streamlit run
 - [ ] Snapshot attached to a GitHub Release; its sha256 is in `config.yaml`

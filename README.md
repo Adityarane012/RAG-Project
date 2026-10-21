@@ -14,7 +14,8 @@ honest ✅ / ❌ / ⚠️ table for each one.
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env   # then fill in the keys
+python -m src.check_env --init   # creates .env; then fill in the keys it lists
+python -m src.check_env          # verifies the setup without printing any secret
 ```
 
 ## Layout
@@ -44,7 +45,7 @@ cp .env.example .env   # then fill in the keys
 
 ## Status
 
-Built and unit-tested offline (127 tests): license/rights map, size rule, `verify`, Pinecone
+Built and unit-tested offline (135 tests): license/rights map, size rule, `verify`, Pinecone
 filters, grouping, cleaning, chunking, guidance, build-on estimates, prompt-injection delimiters,
 the LangGraph pipeline (with stub dependencies), eval metrics, snapshot and replay, the local
 reranker (with a fake scorer), and the UI renderer.
