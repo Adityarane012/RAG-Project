@@ -15,9 +15,9 @@ are listed as explicit checks.
 | **Graph with stubs** | Routing, loop caps, ranking, that card/LLM text cannot change a verdict | none | `tests/test_graph.py` | every commit |
 | **UI smoke** | `app.py` renders every outcome and degrades when the pipeline is unwired (Streamlit `AppTest`) | none | `tests/test_app.py` | every commit |
 | **Mocked I/O** | Ingestion retry/cache/resume logic with a fake HTTP layer | none | `tests/test_ingest.py` | every commit |
-| **Live checks** | Behaviour of real services we assumed: Pinecone filter semantics, Hub response shape, Groq/Ollama JSON, real tokenizer | yes | manual script, results recorded in `docs/data-notes.md` | WP1, then after any index change |
-| **Evaluation** | System quality vs baselines on the fixed query set | yes | `eval/run_eval.py` | WP7 |
-| **Adversarial** | Prompt-injection resistance (D17) | yes | separate test index | WP5 |
+| **Live checks** | Behaviour of real services we assumed: Pinecone filter semantics, Hub response shape, Groq/Ollama JSON, real tokenizer | yes | manual script, results recorded in `docs/data-notes.md` | Phase 1, then after any index change |
+| **Evaluation** | System quality vs baselines on the fixed query set | yes | `eval/run_eval.py` | Phase 6 |
+| **Adversarial** | Prompt-injection resistance (D17) | yes | separate namespace (`exp-poison`) | Phase 4 (task 4.10) |
 | **Manual / demo** | The demo script, with and without network | yes | [demo-runbook.md](demo-runbook.md) | before the demo |
 
 **Rule of thumb:** if a bug would change a ✅/❌/⚠️, it needs a unit test *and* an entry
@@ -77,7 +77,7 @@ where the code is known to fall short, the row says so.
 | 3 | No license at all | `unknown` for both rights | ✅ |
 | 4 | `cardData.license` is a list or non-string | `unknown`, no exception | 🔲 |
 | 5 | License only in a `license:<id>` tag, not in `cardData` | Tag value is used | 🔲 record-level (✅ helper) |
-| 6 | Rights splits: CC-BY-NC (modify yes / commercial no), CC-BY-ND (commercial yes / modify no), CC-BY-NC-ND (no/no), OpenRAIL/Llama (conditional), GPL (conditional/yes) | Exactly as D3/D14 | ✅ |
+| 6 | Rights splits: CC-BY-NC (modify yes / commercial no), CC-BY-ND (commercial yes / modify no), CC-BY-NC-ND (no/no), OpenRAIL/Llama (conditional), GPL and CC-BY-SA (conditional/conditional) | Exactly as D3/D14 | ✅ |
 | 7 | Language spellings: `hin`, `hi-IN`, `mr_IN`, `eng`, `EN` | Normalised to 2-letter codes, de-duplicated | ✅ |
 | 8 | Card says `multilingual` (alone or with `en`) | `multilingual=true`, `language_status=unknown`, Hindi check ⚠️ (not ❌, not dropped by the filter) | ✅ |
 | 9 | Language input as `str`, `list`, `None`, list with non-strings | Sensible list; empty = unknown | ✅ str/list/None · 🔲 non-strings |
@@ -302,7 +302,7 @@ where the code is known to fall short, the row says so.
 | E-SNP-4 | Canonical ids: cached, non-Hub references never hit the network, failures not cached so a rerun retries | | ✅ |
 | E-SNP-5 | Real data: snapshot size on the Release is a few MB | | 🔎 |
 
-## 5. Live-service check script (WP1)
+## 5. Live-service check script (Phase 1, tasks 1.5 to 1.10)
 
 One throw-away script (not committed to the default test run) should assert, against real services:
 

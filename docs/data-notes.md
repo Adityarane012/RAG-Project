@@ -1,9 +1,9 @@
 # Data notes (live checks and data-quality report)
 
-Fill this in during WP1 and WP2. Everything in the other docs that says "verify" or
+Fill this in during Phase 1 and Phase 2 of the [implementation plan](implementation-plan.md). Everything in the other docs that says "verify" or
 "measure" should end up as a dated line here, with the command that produced it.
 
-## Live checks (WP1)
+## Live checks (Phase 1)
 
 | Date | Check | Result | By |
 |---|---|---|---|
@@ -23,7 +23,7 @@ Fill this in during WP1 and WP2. Everything in the other docs that says "verify"
 | | e5 tokenizer vs `approx_tokens` on 50 Indic cards | | |
 | | Embedding throughput (CPU / Colab GPU) | | |
 
-## Data-quality report (WP2)
+## Data-quality report (Phase 2)
 
 Snapshot date: ____
 

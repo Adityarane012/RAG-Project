@@ -2,7 +2,7 @@
 
 The grading emphasis is a **working demo**. This is the script, the checklists and the
 failure playbook. Items marked **(not built)** need work first; see
-[implementation-plan.md](implementation-plan.md) WP9.
+[implementation-plan.md](implementation-plan.md) Phase 7.
 
 ## 1. Setup the day before
 
@@ -52,7 +52,7 @@ the disclaimer (not legal advice); the prompt-injection defence and its limits (
 | Spinner never ends on first query | Embedding model still loading (cold start) | Wait; this is why §2 warms it |
 | Pinecone timeout / no network | Venue Wi-Fi | Restart with `REPLAY=1` (recorded runs, no network). Say so out loud: it is a replay of a recorded run, not a live computation. Unplanned queries show "No recording" in this mode |
 | Wrong constraint parsed (e.g. size dropped) | LLM extraction miss | Edit the shown intent (once built) or rephrase; mention that the intent line exists to catch exactly this |
-| "Search isn't wired up" | `get_graph()` not wired / import error | Check the terminal; fall back to screenshots |
+| "Search isn't wired up" | `_live_graph()` not wired / import error | Check the terminal; fall back to screenshots |
 | Different results from rehearsal | Index or snapshot changed | Confirm namespace `prod` and `snapshot_date` |
 | Streamlit state looks stale | Old session | Click an example query (it resets the loop); or reload the page |
 

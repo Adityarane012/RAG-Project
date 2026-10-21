@@ -284,9 +284,9 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Decision:** when a card includes `model-index` evaluation results, show them labelled "reported by the author, not verified". They are **never** used as a ranking signal.
 - **Viva line:** "Ranking on self-reported scores would look precise without being precise, so we show them but don't rank by them."
 - **Priority:** Should; first to cut if behind schedule.
+- **Cut (2026-10-21):** first item on the cut list and now cut. `adapt.reported_metrics` exists but is not shown in the UI.
 
 ---
-- **Cut (2026-10-21):** first item on the cut list and now cut. `adapt.reported_metrics` exists but is not shown in the UI.
 
 ## Open questions
 

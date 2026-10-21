@@ -48,7 +48,7 @@ parsed constraints, so one definition of "violation" is applied to every system.
 |---|---|---|
 | **Violation rate @5** | recommended models (top 5/query) with ≥1 ❌ ÷ all recommended | `violation_rate_at_k` |
 | **% unknown @5** | models with no ❌ but ≥1 ⚠️ ÷ all recommended | `unknown_rate_at_k` |
-| **Relevance @5** | graded match to the soft preference (see §5) | manual, ~50 queries |
+| **Relevance @5** | graded match to the soft preference (see §5) | manual, 40 queries by default (D11 says ~50; see the implementation plan, decision 1) |
 | **Abstention accuracy** | on impossible queries, share where the outcome is `abstain` or `relax`. The system abstains only when **every** candidate has a known ❌; a result set of only ⚠️ is shown with the "No model fully verified" banner and is *not* an abstention | `abstention_accuracy` |
 | **Clarification rate** | on vague queries, share where the outcome is `clarify` | `clarification_rate` |
 | **`modifiable` correctness** | shown value equals the license map | `modifiable_correctness` |
@@ -65,7 +65,7 @@ nor a violation (D12).
 |---|---|
 | **Naive RAG** | same index, embeddings, reranker and LLM; **no metadata filters, no verification** (task-only filtering is not allowed either). Built by B as a configuration flag on the pipeline |
 | **Keyword + filters** | BM25 over card text with the same metadata filters as ours. Built by B as a configuration flag |
-| **HF Hub filters** | the Hub's own task / language / license filters plus its search; run **by hand by C, once**, results saved to `eval/baselines/` because the Hub changes |
+| **HF Hub filters** | the Hub's own task / language / license filters plus its search; run **once by C** (scripted through the Hub API's own filters with 5 manual spot-checks in the website; see the implementation plan, decision 2), results saved to `eval/baselines/` because the Hub changes |
 | **Ours** | the full graph |
 
 For baselines, "the query's parsed constraints" come from the same `extract_constraints`
@@ -78,8 +78,8 @@ prompt tuning beyond what ours also received.
 
 ## 5. Manual labelling
 
-**Relevance @5** (~50 queries). Two labellers, **A and C (not B**, who tuned the system); one sheet row per
-(query, model). Budget about 250 judgements each, roughly 2–3 hours. Grade against the *soft preference only* (hard constraints are scored
+**Relevance @5** (40 queries by default; D11 says ~50). Two labellers, **A and C (not B**, who tuned the system); one sheet row per
+(query, model). The unit labelled is the *union* of each query's top-5 across the four systems (about 10 unique query-model pairs per query), so 40 queries is about 400 judgements per labeller, roughly 3.5 hours; 50 queries would be about 5 hours. Grade against the *soft preference only* (hard constraints are scored
 automatically):
 
 | Grade | Meaning |
@@ -108,7 +108,7 @@ only: it adds an LLM judge, which is another component that can fail.
 
 ## 7. Reproducibility (D21)
 
-`eval/run_eval.py` (to be implemented in WP7) must regenerate the results table from
+`eval/run_eval.py` (to be implemented in Phase 5, tasks 5.3 and 5.7) must regenerate the results table from
 **snapshot + `config.yaml` + the query set** with one command, writing
 `eval/results/<snapshot-date>.md`. Record: snapshot date, config hash, git commit,
 LLM provider/model, reranker. Cache LLM responses (already automatic) so a rerun is

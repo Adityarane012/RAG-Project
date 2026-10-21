@@ -58,11 +58,14 @@ metadata to `verify.verify` and `adapt.model_report`.
 | `snapshot.py` | Cut a deterministic, checksummed metadata snapshot; data-quality report | `build`, `load_snapshot`, `data_quality_report` | ingest, clean, normalize |
 | `verify.py` | The only place a ✅/❌/⚠️ is decided; size-word table; ranking key | `verify`, `overall`, `rank_key`, `notes`, `resolve_max_size_mb` | config |
 | `retrieve.py` | Pinecone filter from constraints; k-widening; chunk → model grouping | `build_filter`, `fetch_chunks`, `group_by_model`, `pinecone_fetch` | config, verify |
-| `llm.py` | Provider switch + cache; constraint extraction; delimiters; explanations | `complete`, `extract_constraints`, `clean_constraints`, `wrap_card_section`, `explain` | verify |
+| `llm.py` | Provider switch + cache + per-minute token throttle + retry handling; constraint extraction; delimiters; explanations | `complete`, `TokenBudget`, `extract_constraints`, `clean_constraints`, `wrap_card_section`, `explain` | verify, evidence, tokens |
+| `evidence.py` | Choose and trim the card passages the explanation sees (up to 4 per model, one token budget) | `select_evidence`, `excerpt` | config, tokens |
+| `tokens.py` | Shared token estimator (1.5 × words) | `approx_tokens` | – |
+| `check_env.py` | Create and validate `.env` without printing a secret | `init_env`, `check`, `main` | config |
 | `guide.py` | Beginner layer: intent text, clarifying question, relax offer, Try-it | `describe_intent`, `clarifying_question`, `relaxation_offer`, `try_it_snippet` | verify |
 | `adapt.py` | Rights notes, lineage, memory estimate, reported metrics, per-model report | `model_report`, `memory_estimate`, `lineage`, `reported_metrics` | guide, verify |
 | `graph.py` | LangGraph wiring, routing, loop caps; all I/O injected via `Deps` | `build_graph`, `Deps`, `route_after_*` | adapt, guide, retrieve, verify |
-| `app.py` | Streamlit UI and result renderer | `render_state`, `main` | graph (via `get_graph`) |
+| `app.py` | Streamlit UI and result renderer | `render_state`, `main` | graph (via `_live_graph`, wrapped by `replay`) |
 | `eval/metrics.py` | Automatic metrics shared by every system under test | `violation_rate_at_k`, … | verify, normalize |
 
 Dependency direction is strictly downward: `verify` imports nothing from the pipeline,

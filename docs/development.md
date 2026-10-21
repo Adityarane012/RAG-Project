@@ -27,11 +27,11 @@ code agree. Ollama and Streamlit both run on Windows.
 | `OLLAMA_HOST` | `llm` | defaults to `http://localhost:11434` |
 | `REPLAY`, `RECORD`, `REPLAY_DIR` | `replay` | `REPLAY=1` serves recorded demo runs (wins over `RECORD`); `RECORD=1` saves live runs; dir defaults to `demo/cache` |
 | `PYTHONUTF8` | Python | set to `1` on Windows |
+| `LLM_CACHE_DIR` | `llm` | defaults to `.cache/llm` |
 
 Tuning knobs for the free-tier token limits are in `config.yaml`: `llm.tpm` (per-model per-minute
 budget), `llm.output_reserve_tokens`, `explain.chunks_per_model` and `explain.max_prompt_tokens`.
 After changing a model, check the TPM/TPD your account actually has in the Groq console and update `llm.tpm`.
-| `LLM_CACHE_DIR` | `llm` | defaults to `.cache/llm` |
 
 `.env` is loaded automatically by `src/config.py` (real environment variables win). A missing
 `GROQ_API_KEY` raises a `RuntimeError` that names it.
@@ -90,7 +90,7 @@ Set the namespace in `config.yaml: pinecone.namespace` (do not commit a personal
 | Symptom | Likely cause |
 |---|---|
 | `ModuleNotFoundError: src` | run from the repo root (tests and `python -m src.ingest` rely on it) |
-| Streamlit shows "Search isn't wired up" | `app.get_graph()` is still a stub (WP5) |
+| Streamlit shows "Search isn't wired up" | `app._live_graph()` is still a stub (task 4.2 in the implementation plan) |
 | Every model fails the task check | an override carried a bad task value (E-GRAPH-12) |
 | Hindi models missing from results | check `language_status`/`languages` in the raw record; the card may spell the language unusually |
 | Ingest keeps retrying | Hub rate limit; set `HF_TOKEN`, or rerun later (it resumes) |

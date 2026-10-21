@@ -112,7 +112,7 @@ stays ⚠️ unknown. Deliberate limits: `opus-mt-tc-…` ids are excluded (thei
 language codes), the name must *start* with `opus-mt-`, and a reversed request is still
 ⚠️ (the pattern is one-directional but we don't mark a model ❌ for a direction it doesn't
 advertise). A third-party fine-tune that keeps the name is assumed to keep the direction;
-spot-check a few in WP1.
+spot-check a few in Phase 1 (task 1.5).
 
 ### 4.5 Lineage and parameters (D14)
 
@@ -121,7 +121,7 @@ spot-check a few in WP1.
 omitted when absent. Base-model ids are compared as written, so the same base spelled two
 ways is counted twice unless canonicalised: `ingest.canonicalize` asks the Hub API for each
 `base_model` and stores the id it returns (legacy `xlm-roberta-base` → `FacebookAI/xlm-roberta-base`),
-and `snapshot.build` applies the map. **Assumption to verify on one real model in WP1**: that
+and `snapshot.build` applies the map. **Assumption to verify on one real model in Phase 1 (task 1.5)**: that
 the API returns the current id for a legacy one. Ids that aren't Hub ids (local paths, URLs) map to
 themselves. Check coverage of both in the data-quality report; if
 `base_model` coverage is low, drop lineage from the demo.
@@ -135,7 +135,7 @@ themselves. Check coverage of both in the data-quality report; if
   built from metadata (id, task, languages, base model, tags) so they stay retrievable.
 - Chunking splits on markdown headings, then on paragraphs, then on words, so every chunk
   fits `embedding.max_section_tokens` (450; the e5 limit is ~507).
-- `index.approx_tokens` is a cheap estimate (1.5 × words). Indic scripts may take more
+- `tokens.approx_tokens` (also importable from `index`) is a cheap estimate (1.5 × words). Indic scripts may take more
   tokens per word than that; verify with the real tokenizer (E-IDX-4) and adjust.
 
 ## 6. Indexing
@@ -148,7 +148,7 @@ themselves. Check coverage of both in the data-quality report; if
   rather than upserting over an old one.
 - Changing the embedding model or dimension requires a full re-index.
 
-## 7. Data-quality report (WP2 deliverable)
+## 7. Data-quality report (Phase 2 deliverable, task 2.4)
 
 Produce these counts from the snapshot and keep them in [data-notes.md](data-notes.md):
 
