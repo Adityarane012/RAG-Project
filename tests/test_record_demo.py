@@ -17,7 +17,9 @@ class G:
 def test_plan_file_is_valid_and_every_step_has_a_name_and_query():
     plan = json.loads((Path(__file__).resolve().parent.parent / "demo" / "plan.json").read_text(encoding="utf-8"))
     assert len(plan["steps"]) >= 5 and all(s["name"] and s["query"] for s in plan["steps"])
-    assert any(s.get("clarify_choice") for s in plan["steps"]) and any(s.get("accept_relax") for s in plan["steps"])
+    # the relax follow-up is covered by the recorder test below; on the real corpus it is unreachable (unknown models never fail),
+    # so the plan shows the all-unknown banner for an impossible request instead
+    assert any(s.get("clarify_choice") for s in plan["steps"])
 
 
 def test_records_first_runs_naive_comparisons_and_the_followups_a_presenter_would_click(tmp_path):
