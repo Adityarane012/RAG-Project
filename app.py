@@ -10,7 +10,7 @@ from __future__ import annotations
 import streamlit as st
 
 from src.config import CFG
-from src.guide import EXAMPLE_QUERIES, TOOLTIPS
+from src.guide import EXAMPLE_QUERIES, LANG_NAMES, TOOLTIPS
 from src.verify import ICON
 
 DISCLAIMER = ("Rights are read from each model's *declared* license. This is not legal "
@@ -65,6 +65,10 @@ def render_state(state: dict) -> None:
         for value, label in q["options"].items():
             if st.button(label, key=f"clarify-{value}"):
                 _follow_up({q["field"]: value})
+        if not q["options"]:  # free-form question (translation languages): offer a picker
+            codes = st.multiselect("Languages", list(LANG_NAMES), format_func=LANG_NAMES.get, key="clarify-langs")
+            if st.button("Continue", disabled=len(codes) < 2):
+                _follow_up({"langs": codes})
         return
 
     if outcome in ("relax", "abstain"):

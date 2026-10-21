@@ -37,7 +37,7 @@ def check_task(meta: dict, task: str | None) -> str:
 def check_languages(meta: dict, langs: list[str]) -> str:
     """All requested languages must be supported (e.g. hi AND mr)."""
     have = meta.get("languages") or []
-    if not have:
+    if not have or meta.get("language_status") == "unknown":
         return UNKNOWN
     return PASS if all(lang in have for lang in langs) else FAIL
 

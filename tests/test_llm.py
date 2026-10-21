@@ -68,3 +68,19 @@ def test_responses_are_cached(monkeypatch, tmp_path):
     monkeypatch.setitem(llm._PROVIDERS, "groq", (lambda p, s, m: calls.append(p) or "{}", "GROQ_MODEL"))
     assert llm.complete("hello") == "{}" and llm.complete("hello") == "{}"
     assert len(calls) == 1
+
+
+def test_direction_implies_languages_and_prompt_states_the_unit():
+    out = clean_constraints({"task": "translation", "direction": ["hi", "mr"], "langs": []}, "q")
+    assert out["langs"] == ["hi", "mr"]
+    assert "1 GB = 1000 MB" in llm.EXTRACT_PROMPT
+
+
+def test_cache_keeps_non_ascii_responses_intact(monkeypatch, tmp_path):
+    monkeypatch.setattr(llm, "CACHE_DIR", tmp_path)
+    monkeypatch.setenv("LLM_PROVIDER", "groq")
+    monkeypatch.setenv("GROQ_MODEL", "m")
+    monkeypatch.setitem(llm._PROVIDERS, "groq", (lambda p, s, m: '{"soft_query": "मराठी"}', "GROQ_MODEL"))
+    first = llm.complete("मराठी NER")
+    assert llm.complete("मराठी NER") == first == '{"soft_query": "मराठी"}'
+    assert "मराठी" in next(tmp_path.glob("*.json")).read_text(encoding="utf-8")

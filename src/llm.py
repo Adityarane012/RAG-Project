@@ -26,7 +26,7 @@ for a Hugging Face model. Reply with JSON only, using exactly these keys:
   "task": one of {tasks}, or null
   "langs": list of ISO 639-1 codes, or []
   "direction": [source, target] ISO codes for a translation request that names a direction, else null
-  "max_size_mb": a number ONLY if the user gave an explicit size, else null
+  "max_size_mb": a number in MEGABYTES ONLY if the user gave an explicit size (1 GB = 1000 MB), else null
   "size_word": one of {size_words} if the user used a vague size word, else null. Never invent a number.
   "commercial": true if commercial use is required, else null
   "modifiable": true if the user wants to modify / fine-tune / build on the model, else null
@@ -92,12 +92,13 @@ def complete(prompt: str, system: str = "") -> str:
 
     path = _cache_path(provider, model, system, prompt)
     if path.exists():
-        return json.loads(path.read_text())["response"]
+        return json.loads(path.read_text(encoding="utf-8"))["response"]
 
     response = call(prompt, system, model)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps({"provider": provider, "model": model, "system": system,
-                                "prompt": prompt, "response": response}))
+                                "prompt": prompt, "response": response}, ensure_ascii=False),
+                    encoding="utf-8")
     return response
 
 
@@ -126,10 +127,14 @@ def clean_constraints(data: dict, query: str) -> dict:
     size = data.get("max_size_mb")
     word = data.get("size_word")
     direction = _lang_list(data.get("direction"))
+    direction = direction if len(direction) == 2 else None
+    langs = _lang_list(data.get("langs"))
+    # A stated direction names both languages even if the model left `langs` empty.
+    langs += [x for x in direction or [] if x not in langs]
     return {
         "task": task if task in TASKS else None,
-        "langs": _lang_list(data.get("langs")),
-        "direction": direction if len(direction) == 2 else None,
+        "langs": langs,
+        "direction": direction,
         "max_size_mb": size if isinstance(size, (int, float)) and not isinstance(size, bool) and size > 0 else None,
         "size_word": word.strip().lower() if isinstance(word, str) and word.strip().lower() in SIZE_WORDS_MB else None,
         "commercial": True if data.get("commercial") is True else None,

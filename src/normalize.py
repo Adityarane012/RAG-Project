@@ -120,16 +120,34 @@ def license_from_tags(tags: list[str]) -> str | None:
     return None
 
 
+# Cards write languages in many ways: "hin", "hi-IN", "multilingual". Only forms that
+# are unambiguous for the languages we filter on are aliased; everything else is kept
+# as written, so it can't be mistaken for a different language.
+LANG_ALIASES = {"hin": "hi", "mar": "mr", "ben": "bn", "tam": "ta", "tel": "te", "guj": "gu",
+                "kan": "kn", "mal": "ml", "pan": "pa", "urd": "ur", "eng": "en"}
+MULTILINGUAL_TOKENS = {"multilingual", "multi", "mul"}
+
+
+def declares_multilingual(langs: list[str] | str | None) -> bool:
+    """True if the card says "multilingual" without (necessarily) listing languages."""
+    if isinstance(langs, str):
+        langs = [langs]
+    return any(str(x).strip().lower() in MULTILINGUAL_TOKENS for x in langs or [])
+
+
 def normalize_languages(langs: list[str] | str | None) -> list[str]:
-    """Lower-cased, de-duplicated codes. Empty list means unknown (D12)."""
+    """Lower-cased, de-duplicated 2-letter codes where we can tell. Region subtags are
+    dropped ("hi-IN" -> "hi"), "multilingual" is not a language and is removed (see
+    declares_multilingual). Empty list means unknown (D12)."""
     if not langs:
         return []
     if isinstance(langs, str):
         langs = [langs]
     seen: list[str] = []
     for lang in langs:
-        code = str(lang).strip().lower()
-        if code and code not in seen:
+        code = str(lang).strip().lower().replace("_", "-").split("-")[0]
+        code = LANG_ALIASES.get(code, code)
+        if code and code not in MULTILINGUAL_TOKENS and code not in seen:
             seen.append(code)
     return seen
 
@@ -191,6 +209,9 @@ def normalize_record(raw: dict) -> dict:
 
     languages = normalize_languages(card.get("language"))
     languages, multilingual = apply_multilingual_map(model_id, languages)
+    # A card that just says "multilingual" doesn't tell us which languages: unknown, not "no".
+    declared_multi = declares_multilingual(card.get("language"))
+    multilingual = multilingual or declared_multi
 
     files = [(s.get("rfilename", ""), s.get("size")) for s in raw.get("siblings") or []]
     size = size_mb(files)
@@ -203,7 +224,7 @@ def normalize_record(raw: dict) -> dict:
         "task": raw.get("pipeline_tag"),
         "downloads": int(raw.get("downloads") or 0),
         "languages": languages,
-        "language_status": "known" if languages else "unknown",
+        "language_status": "known" if languages and (not declared_multi or model_id in MULTILINGUAL_MODELS) else "unknown",
         "multilingual": multilingual,
         "size_status": "known" if size is not None else "unknown",
         "commercial": commercial,

@@ -5,8 +5,9 @@ Constraint-verified RAG for finding Hugging Face models. Ask in natural language
 text") and get back models that **provably** meet the hard constraints, with an
 honest ✅ / ❌ / ⚠️ table for each one.
 
-- **What & how:** [PROJECT.md](PROJECT.md)
-- **Why:** [decisions.md](decisions.md)
+- **Docs index:** [docs/README.md](docs/README.md)
+- **What & how:** [docs/PROJECT.md](docs/PROJECT.md) · **Why:** [docs/decisions.md](docs/decisions.md)
+- **Architecture:** [docs/architecture.md](docs/architecture.md) · **Plan:** [docs/implementation-plan.md](docs/implementation-plan.md) · **Tests & edge cases:** [docs/testing-strategy.md](docs/testing-strategy.md)
 
 ## Setup
 
@@ -19,8 +20,7 @@ cp .env.example .env   # then fill in the keys
 ## Layout
 
 ```
-├── PROJECT.md          # what & how
-├── decisions.md        # why (D1-D24)
+├── docs/               # PROJECT, decisions, architecture, plan, testing, data, evaluation, demo, security, dev
 ├── config.yaml         # embedding model, chunk size, k, size words, loop caps (D21)
 ├── data/               # raw/ (cached API responses) + snapshot-<date>/ (gitignored)
 ├── eval/               # queries.jsonl (not yet written, see eval/README.md), labels/, baselines/, metrics.py, run_eval.py

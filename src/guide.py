@@ -103,7 +103,7 @@ def clarifying_question(c: dict) -> dict | None:
             "question": "What should the model do?",
             "options": dict(TASK_OPTIONS),  # task -> label
         }
-    if c["task"] == "translation" and len(c.get("langs") or []) < 2:
+    if c["task"] == "translation" and len({*(c.get("langs") or []), *(c.get("direction") or [])}) < 2:
         return {
             "field": "langs",
             "question": "Which languages should it translate between?",
@@ -137,7 +137,7 @@ _SAFE_MODEL_ID = re.compile(r"^[\w.\-]+(/[\w.\-]+)?$")
 def try_it_snippet(model_id: str, task: str) -> str:
     """A ~5-line runnable snippet from a fixed template (D13). The id comes from the
     Hub, so it is validated before being placed in code."""
-    if not _SAFE_MODEL_ID.match(model_id):
+    if not _SAFE_MODEL_ID.fullmatch(model_id):
         raise ValueError(f"Refusing to build a snippet for odd model id: {model_id!r}")
     if task == "sentence-similarity":
         # Not a `transformers` pipeline task; these models load with sentence-transformers.

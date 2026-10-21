@@ -84,3 +84,18 @@ def test_normalize_record_unknowns_are_omitted_not_sentinels():
 
 def test_size_is_not_rounded_across_a_threshold():
     assert size_mb([("model.safetensors", 500_040_000)]) > 500
+
+
+def test_language_spellings_are_normalised():
+    assert normalize_languages(["hin", "hi-IN", "mr_IN", "eng", "en-US"]) == ["hi", "mr", "en"]
+    assert normalize_languages(["multilingual", "en"]) == ["en"]   # not a language
+    assert normalize_languages(["zzz"]) == ["zzz"]                 # unknown codes are kept, not guessed
+
+
+def test_card_saying_multilingual_is_unknown_not_a_wrong_no():
+    from src.verify import UNKNOWN, verify
+
+    for card_lang in ("multilingual", ["en", "multilingual"]):
+        m = normalize_record({"id": "x/y", "pipeline_tag": "token-classification", "cardData": {"language": card_lang}})
+        assert m["multilingual"] is True and m["language_status"] == "unknown"
+        assert verify(m, {"langs": ["hi"]})["languages"] == UNKNOWN

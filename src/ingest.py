@@ -57,6 +57,14 @@ def _get(url: str, params: dict | None = None, retries: int = 5) -> requests.Res
     return resp
 
 
+def _write_atomic(path: Path, text: str) -> None:
+    """Write then rename, so a crash never leaves a truncated file that a resumed run
+    would mistake for a finished fetch."""
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(text, encoding="utf-8")
+    tmp.replace(path)
+
+
 def fetch_raw(model_id: str) -> bool:
     """Fetch and cache one model's API response and README. Returns False if it was
     already cached (nothing is re-requested for a model we already have)."""
@@ -67,16 +75,23 @@ def fetch_raw(model_id: str) -> bool:
     if not info_path.exists():
         resp = _get(f"{HUB}/api/models/{model_id}", params={"blobs": "true", "cardData": "true"})
         resp.raise_for_status()
-        info_path.write_text(json.dumps(resp.json()))
+        _write_atomic(info_path, json.dumps(resp.json()))
     if not card_path.exists():
         resp = _get(f"{HUB}/{model_id}/raw/main/README.md")
-        card_path.write_text(resp.text if resp.status_code == 200 else "")  # no card -> empty (minimal doc)
+        _write_atomic(card_path, resp.text if resp.status_code == 200 else "")  # no card -> empty (minimal doc)
     return True
 
 
+def log_failure(model_id: str, error: Exception) -> None:
+    """Record a model we couldn't fetch so a resumed run doesn't hide it (see failed.jsonl)."""
+    RAW_DIR.mkdir(parents=True, exist_ok=True)
+    with open(RAW_DIR / "failed.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps({"model_id": model_id, "error": f"{type(error).__name__}: {error}"}) + "\n")
+
+
 def load_raw(model_id: str) -> tuple[dict, str]:
-    return (json.loads(raw_path(model_id, ".json").read_text()),
-            raw_path(model_id, ".md").read_text())
+    return (json.loads(raw_path(model_id, ".json").read_text(encoding="utf-8")),
+            raw_path(model_id, ".md").read_text(encoding="utf-8"))
 
 
 def main(argv: list[str]) -> None:
@@ -91,7 +106,10 @@ def main(argv: list[str]) -> None:
     if cmd == "fetch":
         fetched = 0
         for i, model_id in enumerate(sorted(all_ids), 1):
-            fetched += fetch_raw(model_id)
+            try:
+                fetched += fetch_raw(model_id)
+            except requests.RequestException as e:  # deleted, private or erroring: skip, don't loop forever
+                log_failure(model_id, e)
             if i % 100 == 0:
                 print(f"  {i}/{len(all_ids)} ({fetched} new)")
 

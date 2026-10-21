@@ -40,3 +40,19 @@ def test_result_rendering_shows_table_notes_and_panels():
     assert not at.exception
     assert [e.label for e in at.expander] == ["Try it", "Build on it"]
     assert any("multilingual" in c.value for c in at.caption)
+
+
+def render_clarify_langs():
+    from app import render_state
+
+    render_state({"intent": "We understood: you want a model.", "outcome": "clarify",
+                  "question": {"field": "langs", "question": "Which languages should it translate between?", "options": {}}})
+
+
+def test_free_form_question_gets_a_language_picker():
+    at = AppTest.from_function(render_clarify_langs, default_timeout=30).run()
+    assert not at.exception
+    assert at.multiselect(key="clarify-langs") is not None
+    assert at.button[0].disabled  # needs two languages before Continue
+    at.multiselect(key="clarify-langs").set_value(["hi", "mr"]).run()
+    assert not at.button[0].disabled

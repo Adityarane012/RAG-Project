@@ -39,7 +39,7 @@ def test_try_it_snippets_are_valid_python_for_every_task(task):
     assert ("sentence_transformers" in code) == (task == "sentence-similarity")
 
 
-@pytest.mark.parametrize("bad", ['x"; import os #', "a b", "a/b/c", "", "a/\nb"])
+@pytest.mark.parametrize("bad", ['x"; import os #', "a b", "a/b/c", "", "a/\nb", "org/m\n", "org/m\r\n"])
 def test_try_it_rejects_ids_that_could_inject_code(bad):
     with pytest.raises(ValueError):
         try_it_snippet(bad, "translation")
@@ -48,3 +48,7 @@ def test_try_it_rejects_ids_that_could_inject_code(bad):
 def test_one_guide_per_task_and_example_queries():
     assert set(TASK_GUIDES) == set(TASKS)
     assert 4 <= len(EXAMPLE_QUERIES) <= 5
+
+
+def test_direction_alone_is_enough_for_translation():
+    assert clarifying_question({"task": "translation", "langs": [], "direction": ["hi", "mr"]}) is None
