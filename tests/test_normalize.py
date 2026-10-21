@@ -125,7 +125,8 @@ def test_every_multilingual_entry_cites_a_source_and_none_is_silently_checked():
     for model_id, entry in MULTILINGUAL_MODELS.items():
         assert entry.source.strip(), f"{model_id} has no source"
         assert entry.languages, model_id
-        assert entry.checked is False  # flip to True only after comparing against the source
+        # flip to True only after comparing against the source, and say so (and when) in the source note
+        assert entry.checked is False or "compared" in entry.source
 
 
 def test_direction_comes_only_from_the_opus_mt_naming_pattern():

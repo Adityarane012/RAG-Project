@@ -100,7 +100,12 @@ class MultilingualEntry:
 _XLMR_SOURCE = "XLM-R paper (Conneau et al., 2020), language list; and the model card"
 _WHISPER_SOURCE = "Whisper paper (Radford et al., 2022) and the model card, supported-language list"
 
+_QWEN_ASR_SOURCE = ("Qwen3-ASR model card, 'Supported Languages' table (30 languages); the only Indic-ten language "
+                    "listed is Hindi (compared 2026-10-21)")
+
 MULTILINGUAL_MODELS: dict[str, MultilingualEntry] = {
+    **{name: MultilingualEntry(("en", "hi"), _QWEN_ASR_SOURCE, checked=True)
+       for name in ("Qwen/Qwen3-ASR-0.6B", "Qwen/Qwen3-ASR-1.7B")},
     **{
         name: MultilingualEntry(("en", *INDIC_LANGS), _XLMR_SOURCE)
         for name in (
