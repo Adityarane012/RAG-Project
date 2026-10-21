@@ -2,7 +2,7 @@
  "meta": {
   "tag": "v2",
   "date": "2026-10-21",
-  "git": "152cfcb",
+  "git": "6d98cac",
   "config_sha": "9b94abbbe378c8f2749a3b3d75f8370db3a75f6d16946b1ac82da362cd420755",
   "llm": "openai/gpt-oss-20b (reasoning_effort=low)",
   "store": "local",
@@ -1360,7 +1360,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.463
+    "latency_s": 0.38
    },
    "q002": {
     "outcome": "answer",
@@ -1437,7 +1437,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.263
+    "latency_s": 0.25
    },
    "q003": {
     "outcome": "answer",
@@ -1540,7 +1540,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.255
+    "latency_s": 0.242
    },
    "q004": {
     "outcome": "answer",
@@ -1622,7 +1622,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.317
+    "latency_s": 0.308
    },
    "q005": {
     "outcome": "answer",
@@ -1702,7 +1702,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.408
+    "latency_s": 0.296
    },
    "q006": {
     "outcome": "answer",
@@ -1784,7 +1784,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.315
+    "latency_s": 0.341
    },
    "q007": {
     "outcome": "answer",
@@ -1879,7 +1879,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.252
+    "latency_s": 0.251
    },
    "q008": {
     "outcome": "answer",
@@ -1959,7 +1959,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.216
+    "latency_s": 0.214
    },
    "q009": {
     "outcome": "answer",
@@ -2039,7 +2039,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.424
+    "latency_s": 0.371
    },
    "q010": {
     "outcome": "answer",
@@ -2149,7 +2149,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.378
+    "latency_s": 0.277
    },
    "q011": {
     "outcome": "answer",
@@ -2251,7 +2251,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.352
+    "latency_s": 0.385
    },
    "q012": {
     "outcome": "answer",
@@ -2356,7 +2356,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.236
+    "latency_s": 0.29
    },
    "q013": {
     "outcome": "answer",
@@ -2431,7 +2431,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.256
+    "latency_s": 0.301
    },
    "q014": {
     "outcome": "answer",
@@ -2515,7 +2515,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.241
+    "latency_s": 0.255
    },
    "q015": {
     "outcome": "answer",
@@ -2592,7 +2592,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.262
+    "latency_s": 0.242
    },
    "q016": {
     "outcome": "answer",
@@ -2677,7 +2677,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.242
+    "latency_s": 0.23
    },
    "q017": {
     "outcome": "answer",
@@ -2762,7 +2762,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.208
+    "latency_s": 0.207
    },
    "q018": {
     "outcome": "answer",
@@ -2871,7 +2871,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.241
+    "latency_s": 0.361
    },
    "q019": {
     "outcome": "answer",
@@ -2956,7 +2956,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.198
+    "latency_s": 0.205
    },
    "q020": {
     "outcome": "answer",
@@ -3062,7 +3062,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.204
+    "latency_s": 0.223
    },
    "q021": {
     "outcome": "answer",
@@ -3152,7 +3152,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.279
+    "latency_s": 0.291
    },
    "q022": {
     "outcome": "answer",
@@ -3261,7 +3261,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.225
+    "latency_s": 0.314
    },
    "q023": {
     "outcome": "answer",
@@ -3341,7 +3341,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.29
+    "latency_s": 0.256
    },
    "q024": {
     "outcome": "clarify",
@@ -3350,7 +3350,7 @@
     "question": "langs",
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.003
+    "latency_s": 0.002
    },
    "q025": {
     "outcome": "answer",
@@ -3465,7 +3465,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.221
+    "latency_s": 0.29
    },
    "q026": {
     "outcome": "answer",
@@ -3550,7 +3550,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.234
+    "latency_s": 0.313
    },
    "q027": {
     "outcome": "answer",
@@ -3653,7 +3653,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.193
+    "latency_s": 0.225
    },
    "q028": {
     "outcome": "answer",
@@ -3756,7 +3756,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.206
+    "latency_s": 0.264
    },
    "q029": {
     "outcome": "answer",
@@ -3836,7 +3836,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.315
+    "latency_s": 0.323
    },
    "q030": {
     "outcome": "answer",
@@ -3923,7 +3923,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.304
+    "latency_s": 0.243
    },
    "q031": {
     "outcome": "answer",
@@ -4020,7 +4020,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.197
+    "latency_s": 0.262
    },
    "q032": {
     "outcome": "answer",
@@ -4107,7 +4107,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.2
+    "latency_s": 0.166
    },
    "q033": {
     "outcome": "answer",
@@ -4199,7 +4199,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.161
+    "latency_s": 0.207
    },
    "q034": {
     "outcome": "answer",
@@ -4284,7 +4284,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.18
+    "latency_s": 0.161
    },
    "q035": {
     "outcome": "answer",
@@ -4364,7 +4364,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.181
+    "latency_s": 0.169
    },
    "q036": {
     "outcome": "answer",
@@ -4441,7 +4441,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.156
+    "latency_s": 0.167
    },
    "q037": {
     "outcome": "answer",
@@ -4521,7 +4521,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.188
+    "latency_s": 0.163
    },
    "q038": {
     "outcome": "answer",
@@ -4608,7 +4608,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.216
+    "latency_s": 0.207
    },
    "q039": {
     "outcome": "answer",
@@ -4684,7 +4684,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.241
+    "latency_s": 0.246
    },
    "q040": {
     "outcome": "answer",
@@ -4780,7 +4780,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.196
+    "latency_s": 0.238
    },
    "q041": {
     "outcome": "answer",
@@ -4867,7 +4867,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.179
+    "latency_s": 0.198
    },
    "q042": {
     "outcome": "answer",
@@ -4947,7 +4947,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.18
+    "latency_s": 0.178
    },
    "q043": {
     "outcome": "answer",
@@ -5057,7 +5057,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.175
+    "latency_s": 0.172
    },
    "q044": {
     "outcome": "answer",
@@ -5142,7 +5142,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.193
+    "latency_s": 0.171
    },
    "q045": {
     "outcome": "clarify",
@@ -5151,7 +5151,7 @@
     "question": "task",
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.003
+    "latency_s": 0.002
    },
    "q046": {
     "outcome": "answer",
@@ -5260,7 +5260,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.167
+    "latency_s": 0.19
    },
    "q047": {
     "outcome": "answer",
@@ -5344,7 +5344,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.161
+    "latency_s": 0.164
    },
    "q048": {
     "outcome": "answer",
@@ -5434,7 +5434,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.184
+    "latency_s": 0.167
    },
    "q049": {
     "outcome": "answer",
@@ -5504,7 +5504,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.238
+    "latency_s": 0.164
    },
    "q050": {
     "outcome": "answer",
@@ -5591,7 +5591,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.207
+    "latency_s": 0.17
    },
    "q051": {
     "outcome": "answer",
@@ -5669,7 +5669,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.163
+    "latency_s": 0.217
    },
    "q052": {
     "outcome": "answer",
@@ -5772,7 +5772,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.197
+    "latency_s": 0.173
    },
    "q053": {
     "outcome": "answer",
@@ -5879,7 +5879,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.195
+    "latency_s": 0.228
    },
    "q054": {
     "outcome": "answer",
@@ -5968,7 +5968,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.189
+    "latency_s": 0.2
    },
    "q055": {
     "outcome": "answer",
@@ -6078,7 +6078,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.185
+    "latency_s": 0.165
    },
    "q056": {
     "outcome": "answer",
@@ -6176,7 +6176,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.272
+    "latency_s": 0.194
    },
    "q057": {
     "outcome": "answer",
@@ -6268,7 +6268,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.146
+    "latency_s": 0.153
    },
    "q058": {
     "outcome": "answer",
@@ -6349,7 +6349,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.247
+    "latency_s": 0.158
    },
    "q059": {
     "outcome": "answer",
@@ -6424,7 +6424,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.133
+    "latency_s": 0.109
    },
    "q060": {
     "outcome": "answer",
@@ -6501,7 +6501,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.209
+    "latency_s": 0.164
    },
    "q061": {
     "outcome": "answer",
@@ -6577,7 +6577,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.196
+    "latency_s": 0.208
    },
    "q062": {
     "outcome": "answer",
@@ -6676,7 +6676,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.214
+    "latency_s": 0.174
    },
    "q063": {
     "outcome": "answer",
@@ -6762,7 +6762,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.174
+    "latency_s": 0.239
    },
    "q064": {
     "outcome": "answer",
@@ -6852,7 +6852,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.181
+    "latency_s": 0.253
    },
    "q065": {
     "outcome": "answer",
@@ -6943,7 +6943,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.208
+    "latency_s": 0.159
    },
    "q066": {
     "outcome": "answer",
@@ -7038,7 +7038,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.22
+    "latency_s": 0.311
    },
    "q067": {
     "outcome": "answer",
@@ -7131,7 +7131,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.177
+    "latency_s": 0.171
    },
    "q068": {
     "outcome": "answer",
@@ -7227,7 +7227,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.162
+    "latency_s": 0.275
    },
    "q069": {
     "outcome": "answer",
@@ -7323,7 +7323,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.192
+    "latency_s": 0.202
    },
    "q070": {
     "outcome": "answer",
@@ -7427,7 +7427,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.215
+    "latency_s": 0.253
    },
    "q071": {
     "outcome": "answer",
@@ -7502,7 +7502,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.231
+    "latency_s": 0.23
    },
    "q072": {
     "outcome": "answer",
@@ -7596,7 +7596,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.331
+    "latency_s": 0.185
    },
    "q073": {
     "outcome": "answer",
@@ -7667,7 +7667,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.158
+    "latency_s": 0.182
    },
    "q074": {
     "outcome": "answer",
@@ -7748,7 +7748,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.174
+    "latency_s": 0.287
    },
    "q075": {
     "outcome": "answer",
@@ -7853,7 +7853,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.145
+    "latency_s": 0.219
    },
    "q076": {
     "outcome": "clarify",
@@ -7862,7 +7862,7 @@
     "question": "task",
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.003
+    "latency_s": 0.002
    },
    "q077": {
     "outcome": "clarify",
@@ -7871,7 +7871,7 @@
     "question": "task",
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.003
+    "latency_s": 0.002
    },
    "q078": {
     "outcome": "clarify",
@@ -7907,7 +7907,7 @@
     "question": "task",
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.003
+    "latency_s": 0.002
    },
    "q082": {
     "outcome": "clarify",
@@ -7925,7 +7925,7 @@
     "question": "task",
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.003
+    "latency_s": 0.002
    },
    "q084": {
     "outcome": "clarify",
@@ -7952,7 +7952,7 @@
     "question": "task",
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.003
+    "latency_s": 0.002
    },
    "q087": {
     "outcome": "clarify",
@@ -7988,7 +7988,7 @@
     "question": "task",
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.003
+    "latency_s": 0.002
    },
    "q091": {
     "outcome": "answer",
@@ -8088,7 +8088,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.216
+    "latency_s": 0.302
    },
    "q092": {
     "outcome": "answer",
@@ -8175,7 +8175,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.202
+    "latency_s": 0.241
    },
    "q093": {
     "outcome": "answer",
@@ -8300,7 +8300,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.296
+    "latency_s": 0.239
    },
    "q094": {
     "outcome": "answer",
@@ -8402,7 +8402,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.193
+    "latency_s": 0.195
    },
    "q095": {
     "outcome": "answer",
@@ -8514,7 +8514,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.226
+    "latency_s": 0.184
    },
    "q096": {
     "outcome": "answer",
@@ -8609,7 +8609,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.227
+    "latency_s": 0.362
    },
    "q097": {
     "outcome": "answer",
@@ -8719,7 +8719,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.107
+    "latency_s": 0.11
    },
    "q098": {
     "outcome": "answer",
@@ -8820,7 +8820,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.273
+    "latency_s": 0.206
    },
    "q099": {
     "outcome": "answer",
@@ -8914,7 +8914,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.344
+    "latency_s": 0.233
    },
    "q100": {
     "outcome": "answer",
@@ -9019,7 +9019,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.156
+    "latency_s": 0.196
    }
   },
   "naive": {
@@ -9103,7 +9103,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.227
+    "latency_s": 0.222
    },
    "q002": {
     "outcome": "answer",
@@ -9182,7 +9182,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.732
+    "latency_s": 0.11
    },
    "q003": {
     "outcome": "answer",
@@ -9257,7 +9257,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.057
+    "latency_s": 0.68
    },
    "q004": {
     "outcome": "answer",
@@ -9338,7 +9338,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.052
+    "latency_s": 0.057
    },
    "q005": {
     "outcome": "answer",
@@ -9418,7 +9418,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.058
+    "latency_s": 0.067
    },
    "q006": {
     "outcome": "answer",
@@ -9500,7 +9500,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.051
+    "latency_s": 0.053
    },
    "q007": {
     "outcome": "answer",
@@ -9582,7 +9582,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.655
+    "latency_s": 0.65
    },
    "q008": {
     "outcome": "answer",
@@ -9654,7 +9654,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.051
+    "latency_s": 0.055
    },
    "q009": {
     "outcome": "answer",
@@ -9734,7 +9734,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.064
+    "latency_s": 0.122
    },
    "q010": {
     "outcome": "answer",
@@ -9811,7 +9811,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.663
+    "latency_s": 0.714
    },
    "q011": {
     "outcome": "answer",
@@ -9891,7 +9891,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.154
+    "latency_s": 0.075
    },
    "q012": {
     "outcome": "answer",
@@ -9990,7 +9990,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.053
+    "latency_s": 0.066
    },
    "q013": {
     "outcome": "answer",
@@ -10065,7 +10065,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.107
+    "latency_s": 0.06
    },
    "q014": {
     "outcome": "answer",
@@ -10149,7 +10149,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.594
+    "latency_s": 0.56
    },
    "q015": {
     "outcome": "answer",
@@ -10226,7 +10226,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.047
+    "latency_s": 0.052
    },
    "q016": {
     "outcome": "answer",
@@ -10316,7 +10316,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.055
+    "latency_s": 0.053
    },
    "q017": {
     "outcome": "answer",
@@ -10401,7 +10401,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.056
+    "latency_s": 0.609
    },
    "q018": {
     "outcome": "answer",
@@ -10485,7 +10485,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.603
+    "latency_s": 0.064
    },
    "q019": {
     "outcome": "answer",
@@ -10576,7 +10576,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.1
+    "latency_s": 0.055
    },
    "q020": {
     "outcome": "answer",
@@ -10660,7 +10660,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.05
+    "latency_s": 0.056
    },
    "q021": {
     "outcome": "answer",
@@ -10750,7 +10750,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.079
+    "latency_s": 0.507
    },
    "q022": {
     "outcome": "answer",
@@ -10840,7 +10840,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.401
+    "latency_s": 0.053
    },
    "q023": {
     "outcome": "answer",
@@ -10920,7 +10920,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.291
+    "latency_s": 0.146
    },
    "q024": {
     "outcome": "answer",
@@ -10999,7 +10999,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.05
+    "latency_s": 0.54
    },
    "q025": {
     "outcome": "answer",
@@ -11084,7 +11084,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.06
+    "latency_s": 0.224
    },
    "q026": {
     "outcome": "answer",
@@ -11169,7 +11169,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.364
+    "latency_s": 0.05
    },
    "q027": {
     "outcome": "answer",
@@ -11259,7 +11259,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.061
+    "latency_s": 0.062
    },
    "q028": {
     "outcome": "answer",
@@ -11341,7 +11341,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.056
+    "latency_s": 0.642
    },
    "q029": {
     "outcome": "answer",
@@ -11422,7 +11422,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.215
+    "latency_s": 0.058
    },
    "q030": {
     "outcome": "answer",
@@ -11502,7 +11502,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.422
+    "latency_s": 0.062
    },
    "q031": {
     "outcome": "answer",
@@ -11586,7 +11586,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.138
+    "latency_s": 0.523
    },
    "q032": {
     "outcome": "answer",
@@ -11689,7 +11689,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.053
+    "latency_s": 0.156
    },
    "q033": {
     "outcome": "answer",
@@ -11768,7 +11768,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.05
+    "latency_s": 0.19
    },
    "q034": {
     "outcome": "answer",
@@ -11839,7 +11839,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.564
+    "latency_s": 0.553
    },
    "q035": {
     "outcome": "answer",
@@ -11914,7 +11914,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.168
+    "latency_s": 0.126
    },
    "q036": {
     "outcome": "answer",
@@ -12002,7 +12002,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.051
+    "latency_s": 0.048
    },
    "q037": {
     "outcome": "answer",
@@ -12175,7 +12175,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.436
+    "latency_s": 0.048
    },
    "q039": {
     "outcome": "answer",
@@ -12251,7 +12251,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.19
+    "latency_s": 0.066
    },
    "q040": {
     "outcome": "answer",
@@ -12332,7 +12332,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.052
+    "latency_s": 0.059
    },
    "q041": {
     "outcome": "answer",
@@ -12404,7 +12404,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.067
+    "latency_s": 0.053
    },
    "q042": {
     "outcome": "answer",
@@ -12505,7 +12505,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.454
+    "latency_s": 0.552
    },
    "q043": {
     "outcome": "answer",
@@ -12587,7 +12587,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.112
+    "latency_s": 0.051
    },
    "q044": {
     "outcome": "answer",
@@ -12667,7 +12667,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.058
+    "latency_s": 0.049
    },
    "q045": {
     "outcome": "answer",
@@ -12757,7 +12757,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.065
+    "latency_s": 0.051
    },
    "q046": {
     "outcome": "answer",
@@ -12845,7 +12845,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.662
+    "latency_s": 0.052
    },
    "q047": {
     "outcome": "answer",
@@ -12930,7 +12930,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.049
+    "latency_s": 0.513
    },
    "q048": {
     "outcome": "answer",
@@ -13006,7 +13006,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.056
+    "latency_s": 0.067
    },
    "q049": {
     "outcome": "answer",
@@ -13078,7 +13078,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.071
+    "latency_s": 0.054
    },
    "q050": {
     "outcome": "answer",
@@ -13165,7 +13165,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.066
+    "latency_s": 0.167
    },
    "q051": {
     "outcome": "answer",
@@ -13242,7 +13242,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.546
+    "latency_s": 0.516
    },
    "q052": {
     "outcome": "answer",
@@ -13313,7 +13313,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.068
+    "latency_s": 0.056
    },
    "q053": {
     "outcome": "answer",
@@ -13396,7 +13396,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.053
+    "latency_s": 0.081
    },
    "q054": {
     "outcome": "answer",
@@ -13474,7 +13474,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.053
+    "latency_s": 0.058
    },
    "q055": {
     "outcome": "answer",
@@ -13557,7 +13557,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.053
+    "latency_s": 0.082
    },
    "q056": {
     "outcome": "answer",
@@ -13642,7 +13642,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.56
+    "latency_s": 0.643
    },
    "q057": {
     "outcome": "answer",
@@ -13729,7 +13729,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.051
+    "latency_s": 0.05
    },
    "q058": {
     "outcome": "answer",
@@ -13812,7 +13812,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.06
+    "latency_s": 0.044
    },
    "q059": {
     "outcome": "answer",
@@ -13962,7 +13962,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.059
+    "latency_s": 0.051
    },
    "q061": {
     "outcome": "answer",
@@ -14039,7 +14039,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.535
+    "latency_s": 0.62
    },
    "q062": {
     "outcome": "answer",
@@ -14114,7 +14114,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.063
+    "latency_s": 0.044
    },
    "q063": {
     "outcome": "answer",
@@ -14193,7 +14193,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.054
+    "latency_s": 0.074
    },
    "q064": {
     "outcome": "answer",
@@ -14270,7 +14270,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.589
+    "latency_s": 0.55
    },
    "q065": {
     "outcome": "answer",
@@ -14342,7 +14342,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.049
+    "latency_s": 0.088
    },
    "q066": {
     "outcome": "answer",
@@ -14422,7 +14422,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.063
+    "latency_s": 0.058
    },
    "q067": {
     "outcome": "answer",
@@ -14503,7 +14503,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.053
+    "latency_s": 0.05
    },
    "q068": {
     "outcome": "answer",
@@ -14580,7 +14580,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.547
+    "latency_s": 0.639
    },
    "q069": {
     "outcome": "answer",
@@ -14656,7 +14656,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.051
+    "latency_s": 0.07
    },
    "q070": {
     "outcome": "answer",
@@ -14816,7 +14816,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.062
+    "latency_s": 0.593
    },
    "q072": {
     "outcome": "answer",
@@ -14894,7 +14894,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.593
+    "latency_s": 0.081
    },
    "q073": {
     "outcome": "answer",
@@ -14965,7 +14965,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.047
+    "latency_s": 0.058
    },
    "q074": {
     "outcome": "answer",
@@ -15053,7 +15053,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.051
+    "latency_s": 0.066
    },
    "q075": {
     "outcome": "answer",
@@ -15158,7 +15158,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.052
+    "latency_s": 0.603
    },
    "q076": {
     "outcome": "answer",
@@ -15223,7 +15223,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.056
+    "latency_s": 0.057
    },
    "q077": {
     "outcome": "answer",
@@ -15290,7 +15290,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.621
+    "latency_s": 0.057
    },
    "q078": {
     "outcome": "answer",
@@ -15361,7 +15361,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.061
+    "latency_s": 0.111
    },
    "q079": {
     "outcome": "answer",
@@ -15426,7 +15426,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.054
+    "latency_s": 0.05
    },
    "q080": {
     "outcome": "answer",
@@ -15499,7 +15499,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.06
+    "latency_s": 0.057
    },
    "q081": {
     "outcome": "answer",
@@ -15567,7 +15567,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.054
+    "latency_s": 0.558
    },
    "q082": {
     "outcome": "answer",
@@ -15699,7 +15699,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.623
+    "latency_s": 0.057
    },
    "q084": {
     "outcome": "answer",
@@ -15772,7 +15772,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.055
+    "latency_s": 0.057
    },
    "q085": {
     "outcome": "answer",
@@ -15837,7 +15837,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.056
+    "latency_s": 0.055
    },
    "q086": {
     "outcome": "answer",
@@ -15937,7 +15937,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.073
+    "latency_s": 0.054
    },
    "q087": {
     "outcome": "answer",
@@ -16009,7 +16009,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.557
+    "latency_s": 0.058
    },
    "q088": {
     "outcome": "answer",
@@ -16083,7 +16083,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.119
+    "latency_s": 0.518
    },
    "q089": {
     "outcome": "answer",
@@ -16153,7 +16153,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.053
+    "latency_s": 0.101
    },
    "q090": {
     "outcome": "answer",
@@ -16198,7 +16198,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.052
+    "latency_s": 0.05
    },
    "q091": {
     "outcome": "answer",
@@ -16284,7 +16284,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.048
+    "latency_s": 0.057
    },
    "q092": {
     "outcome": "answer",
@@ -16368,7 +16368,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.48
+    "latency_s": 0.052
    },
    "q093": {
     "outcome": "answer",
@@ -16487,7 +16487,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.051
+    "latency_s": 0.548
    },
    "q094": {
     "outcome": "answer",
@@ -16567,7 +16567,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.065
+    "latency_s": 0.057
    },
    "q095": {
     "outcome": "answer",
@@ -16649,7 +16649,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.561
+    "latency_s": 0.053
    },
    "q096": {
     "outcome": "answer",
@@ -16736,7 +16736,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.049
+    "latency_s": 0.056
    },
    "q097": {
     "outcome": "answer",
@@ -16833,7 +16833,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.05
+    "latency_s": 0.498
    },
    "q098": {
     "outcome": "answer",
@@ -16928,7 +16928,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.061
+    "latency_s": 0.049
    },
    "q099": {
     "outcome": "answer",
@@ -17022,7 +17022,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.506
+    "latency_s": 0.052
    },
    "q100": {
     "outcome": "answer",
@@ -17093,7 +17093,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.05
+    "latency_s": 0.062
    }
   },
   "keyword": {
@@ -17178,7 +17178,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.116
+    "latency_s": 0.121
    },
    "q002": {
     "outcome": "answer",
@@ -17261,7 +17261,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.042
+    "latency_s": 0.062
    },
    "q003": {
     "outcome": "answer",
@@ -17352,7 +17352,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.022
+    "latency_s": 0.017
    },
    "q004": {
     "outcome": "answer",
@@ -17432,7 +17432,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.02
+    "latency_s": 0.023
    },
    "q005": {
     "outcome": "answer",
@@ -17512,7 +17512,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.089
+    "latency_s": 0.079
    },
    "q006": {
     "outcome": "answer",
@@ -17552,7 +17552,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.002
+    "latency_s": 0.003
    },
    "q007": {
     "outcome": "answer",
@@ -17644,7 +17644,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.083
+    "latency_s": 0.054
    },
    "q008": {
     "outcome": "answer",
@@ -17733,7 +17733,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.034
+    "latency_s": 0.031
    },
    "q009": {
     "outcome": "answer",
@@ -17813,7 +17813,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.423
+    "latency_s": 0.447
    },
    "q010": {
     "outcome": "answer",
@@ -17894,7 +17894,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.043
+    "latency_s": 0.053
    },
    "q011": {
     "outcome": "answer",
@@ -18003,7 +18003,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.03
+    "latency_s": 0.056
    },
    "q012": {
     "outcome": "answer",
@@ -18108,7 +18108,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.036
+    "latency_s": 0.063
    },
    "q013": {
     "outcome": "answer",
@@ -18183,7 +18183,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.017
+    "latency_s": 0.018
    },
    "q014": {
     "outcome": "answer",
@@ -18260,7 +18260,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.039
+    "latency_s": 0.049
    },
    "q015": {
     "outcome": "answer",
@@ -18337,7 +18337,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.056
+    "latency_s": 0.055
    },
    "q016": {
     "outcome": "answer",
@@ -18423,7 +18423,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.057
+    "latency_s": 0.054
    },
    "q017": {
     "outcome": "answer",
@@ -18509,7 +18509,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.048
+    "latency_s": 0.038
    },
    "q018": {
     "outcome": "answer",
@@ -18618,7 +18618,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.026
+    "latency_s": 0.049
    },
    "q019": {
     "outcome": "answer",
@@ -18643,7 +18643,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.002
+    "latency_s": 0.003
    },
    "q020": {
     "outcome": "answer",
@@ -18751,7 +18751,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.067
+    "latency_s": 0.051
    },
    "q021": {
     "outcome": "answer",
@@ -18842,7 +18842,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.073
+    "latency_s": 0.046
    },
    "q022": {
     "outcome": "answer",
@@ -18950,7 +18950,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.029
+    "latency_s": 0.03
    },
    "q023": {
     "outcome": "answer",
@@ -19036,7 +19036,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.061
+    "latency_s": 0.062
    },
    "q024": {
     "outcome": "answer",
@@ -19132,7 +19132,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.105
+    "latency_s": 0.069
    },
    "q025": {
     "outcome": "answer",
@@ -19241,7 +19241,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.045
+    "latency_s": 0.057
    },
    "q026": {
     "outcome": "answer",
@@ -19331,7 +19331,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.087
+    "latency_s": 0.103
    },
    "q027": {
     "outcome": "answer",
@@ -19429,7 +19429,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.05
+    "latency_s": 0.03
    },
    "q028": {
     "outcome": "answer",
@@ -19529,7 +19529,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.04
+    "latency_s": 0.036
    },
    "q029": {
     "outcome": "answer",
@@ -19615,7 +19615,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.069
+    "latency_s": 0.066
    },
    "q030": {
     "outcome": "answer",
@@ -19714,7 +19714,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.03
+    "latency_s": 0.028
    },
    "q031": {
     "outcome": "answer",
@@ -19809,7 +19809,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.077
+    "latency_s": 0.076
    },
    "q032": {
     "outcome": "answer",
@@ -19977,7 +19977,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.033
+    "latency_s": 0.036
    },
    "q034": {
     "outcome": "answer",
@@ -20057,7 +20057,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.009
+    "latency_s": 0.011
    },
    "q035": {
     "outcome": "answer",
@@ -20308,7 +20308,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.033
+    "latency_s": 0.029
    },
    "q038": {
     "outcome": "answer",
@@ -20394,7 +20394,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.018
+    "latency_s": 0.024
    },
    "q039": {
     "outcome": "answer",
@@ -20475,7 +20475,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.046
+    "latency_s": 0.065
    },
    "q040": {
     "outcome": "answer",
@@ -20563,7 +20563,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.042
+    "latency_s": 0.053
    },
    "q041": {
     "outcome": "answer",
@@ -20650,7 +20650,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.062
+    "latency_s": 0.036
    },
    "q042": {
     "outcome": "answer",
@@ -20724,7 +20724,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.035
+    "latency_s": 0.031
    },
    "q043": {
     "outcome": "answer",
@@ -20816,7 +20816,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.013
+    "latency_s": 0.011
    },
    "q044": {
     "outcome": "answer",
@@ -20901,7 +20901,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.048
+    "latency_s": 0.039
    },
    "q045": {
     "outcome": "answer",
@@ -20991,7 +20991,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.074
+    "latency_s": 0.05
    },
    "q046": {
     "outcome": "answer",
@@ -21077,7 +21077,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.129
+    "latency_s": 0.078
    },
    "q047": {
     "outcome": "answer",
@@ -21145,7 +21145,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.006
+    "latency_s": 0.005
    },
    "q048": {
     "outcome": "answer",
@@ -21233,7 +21233,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.057
+    "latency_s": 0.038
    },
    "q049": {
     "outcome": "answer",
@@ -21338,7 +21338,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.008
+    "latency_s": 0.005
    },
    "q050": {
     "outcome": "answer",
@@ -21433,7 +21433,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.046
+    "latency_s": 0.029
    },
    "q051": {
     "outcome": "answer",
@@ -21500,7 +21500,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.036
+    "latency_s": 0.037
    },
    "q052": {
     "outcome": "answer",
@@ -21576,7 +21576,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.016
+    "latency_s": 0.013
    },
    "q053": {
     "outcome": "answer",
@@ -21730,7 +21730,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.048
+    "latency_s": 0.071
    },
    "q055": {
     "outcome": "answer",
@@ -21882,7 +21882,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.04
+    "latency_s": 0.075
    },
    "q057": {
     "outcome": "answer",
@@ -22052,7 +22052,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.08
+    "latency_s": 0.051
    },
    "q059": {
     "outcome": "answer",
@@ -22143,7 +22143,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.028
+    "latency_s": 0.026
    },
    "q060": {
     "outcome": "answer",
@@ -22209,7 +22209,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.075
+    "latency_s": 0.059
    },
    "q061": {
     "outcome": "answer",
@@ -22285,7 +22285,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.069
+    "latency_s": 0.066
    },
    "q062": {
     "outcome": "answer",
@@ -22381,7 +22381,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.069
+    "latency_s": 0.053
    },
    "q063": {
     "outcome": "answer",
@@ -22458,7 +22458,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.075
+    "latency_s": 0.074
    },
    "q064": {
     "outcome": "answer",
@@ -22548,7 +22548,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.042
+    "latency_s": 0.039
    },
    "q065": {
     "outcome": "answer",
@@ -22608,7 +22608,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.029
+    "latency_s": 0.027
    },
    "q066": {
     "outcome": "answer",
@@ -22678,7 +22678,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.05
+    "latency_s": 0.033
    },
    "q067": {
     "outcome": "answer",
@@ -22759,7 +22759,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.033
+    "latency_s": 0.028
    },
    "q068": {
     "outcome": "answer",
@@ -22842,7 +22842,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.086
+    "latency_s": 0.064
    },
    "q069": {
     "outcome": "answer",
@@ -22938,7 +22938,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.036
+    "latency_s": 0.057
    },
    "q070": {
     "outcome": "answer",
@@ -23117,7 +23117,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.055
+    "latency_s": 0.057
    },
    "q072": {
     "outcome": "answer",
@@ -23182,7 +23182,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.051
+    "latency_s": 0.046
    },
    "q073": {
     "outcome": "answer",
@@ -23245,7 +23245,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.032
+    "latency_s": 0.03
    },
    "q074": {
     "outcome": "answer",
@@ -23326,7 +23326,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.042
+    "latency_s": 0.081
    },
    "q075": {
     "outcome": "answer",
@@ -23393,7 +23393,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.046
+    "latency_s": 0.051
    },
    "q076": {
     "outcome": "answer",
@@ -23528,7 +23528,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.026
+    "latency_s": 0.032
    },
    "q078": {
     "outcome": "answer",
@@ -23597,7 +23597,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.068
+    "latency_s": 0.1
    },
    "q079": {
     "outcome": "answer",
@@ -23664,7 +23664,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.053
+    "latency_s": 0.051
    },
    "q080": {
     "outcome": "answer",
@@ -23754,7 +23754,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.051
+    "latency_s": 0.081
    },
    "q081": {
     "outcome": "answer",
@@ -23834,7 +23834,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.035
+    "latency_s": 0.056
    },
    "q082": {
     "outcome": "answer",
@@ -23897,7 +23897,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.068
+    "latency_s": 0.08
    },
    "q083": {
     "outcome": "answer",
@@ -23966,7 +23966,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.038
+    "latency_s": 0.049
    },
    "q084": {
     "outcome": "answer",
@@ -24039,7 +24039,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.037
+    "latency_s": 0.036
    },
    "q085": {
     "outcome": "answer",
@@ -24118,7 +24118,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.051
+    "latency_s": 0.046
    },
    "q086": {
     "outcome": "answer",
@@ -24187,7 +24187,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.064
+    "latency_s": 0.043
    },
    "q087": {
     "outcome": "answer",
@@ -24258,7 +24258,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.076
+    "latency_s": 0.096
    },
    "q088": {
     "outcome": "answer",
@@ -24330,7 +24330,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.075
+    "latency_s": 0.042
    },
    "q089": {
     "outcome": "answer",
@@ -24405,7 +24405,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.05
+    "latency_s": 0.039
    },
    "q090": {
     "outcome": "answer",
@@ -24460,7 +24460,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.032
+    "latency_s": 0.044
    },
    "q091": {
     "outcome": "answer",
@@ -24551,7 +24551,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.015
+    "latency_s": 0.021
    },
    "q092": {
     "outcome": "answer",
@@ -24647,7 +24647,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.088
+    "latency_s": 0.06
    },
    "q093": {
     "outcome": "answer",
@@ -24736,7 +24736,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.081
+    "latency_s": 0.08
    },
    "q094": {
     "outcome": "answer",
@@ -24825,7 +24825,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.051
+    "latency_s": 0.068
    },
    "q095": {
     "outcome": "answer",
@@ -24904,7 +24904,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.062
+    "latency_s": 0.061
    },
    "q096": {
     "outcome": "answer",
@@ -24992,7 +24992,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.023
+    "latency_s": 0.024
    },
    "q097": {
     "outcome": "answer",
@@ -25090,7 +25090,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.016
+    "latency_s": 0.014
    },
    "q098": {
     "outcome": "answer",
@@ -25189,7 +25189,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.071
+    "latency_s": 0.058
    },
    "q099": {
     "outcome": "answer",
@@ -25280,7 +25280,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.044
+    "latency_s": 0.075
    },
    "q100": {
     "outcome": "answer",
@@ -25367,7 +25367,7 @@
     "question": null,
     "offer": null,
     "explain_error": null,
-    "latency_s": 0.058
+    "latency_s": 0.042
    }
   },
   "hf_basic": {
@@ -25476,7 +25476,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.496
+    "latency_s": 0.488
    },
    "q002": {
     "outcome": "answer",
@@ -25583,7 +25583,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.093
+    "latency_s": 0.091
    },
    "q003": {
     "outcome": "answer",
@@ -25690,7 +25690,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.111
+    "latency_s": 0.084
    },
    "q004": {
     "outcome": "answer",
@@ -25802,7 +25802,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.088
+    "latency_s": 0.089
    },
    "q005": {
     "outcome": "answer",
@@ -25914,7 +25914,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.088
+    "latency_s": 0.084
    },
    "q006": {
     "outcome": "answer",
@@ -26026,7 +26026,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.091
+    "latency_s": 0.089
    },
    "q007": {
     "outcome": "answer",
@@ -26138,7 +26138,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.102
+    "latency_s": 0.081
    },
    "q008": {
     "outcome": "answer",
@@ -26240,7 +26240,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.096
+    "latency_s": 0.133
    },
    "q009": {
     "outcome": "answer",
@@ -26352,7 +26352,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.087
+    "latency_s": 0.089
    },
    "q010": {
     "outcome": "answer",
@@ -26673,7 +26673,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.09
+    "latency_s": 0.082
    },
    "q013": {
     "outcome": "answer",
@@ -26775,7 +26775,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.089
+    "latency_s": 0.085
    },
    "q014": {
     "outcome": "answer",
@@ -26875,7 +26875,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.124
+    "latency_s": 0.091
    },
    "q015": {
     "outcome": "answer",
@@ -26982,7 +26982,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.091
+    "latency_s": 0.084
    },
    "q016": {
     "outcome": "answer",
@@ -27094,7 +27094,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.089
+    "latency_s": 0.081
    },
    "q017": {
     "outcome": "answer",
@@ -27206,7 +27206,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.084
+    "latency_s": 0.091
    },
    "q018": {
     "outcome": "answer",
@@ -27318,7 +27318,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.085
+    "latency_s": 0.08
    },
    "q019": {
     "outcome": "answer",
@@ -27430,7 +27430,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.086
+    "latency_s": 0.094
    },
    "q020": {
     "outcome": "answer",
@@ -27542,7 +27542,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.09
+    "latency_s": 0.086
    },
    "q021": {
     "outcome": "answer",
@@ -27659,7 +27659,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.086
+    "latency_s": 0.096
    },
    "q022": {
     "outcome": "answer",
@@ -27776,7 +27776,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.084
+    "latency_s": 0.097
    },
    "q023": {
     "outcome": "answer",
@@ -27883,7 +27883,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.089
+    "latency_s": 0.083
    },
    "q024": {
     "outcome": "answer",
@@ -27965,7 +27965,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.093
+    "latency_s": 0.12
    },
    "q025": {
     "outcome": "answer",
@@ -28077,7 +28077,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.088
+    "latency_s": 0.085
    },
    "q026": {
     "outcome": "answer",
@@ -28189,7 +28189,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.083
+    "latency_s": 0.089
    },
    "q027": {
     "outcome": "answer",
@@ -28287,7 +28287,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.088
+    "latency_s": 0.084
    },
    "q028": {
     "outcome": "answer",
@@ -28385,7 +28385,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.091
+    "latency_s": 0.1
    },
    "q029": {
     "outcome": "answer",
@@ -28492,7 +28492,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.086
+    "latency_s": 0.089
    },
    "q030": {
     "outcome": "answer",
@@ -28599,7 +28599,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.082
+    "latency_s": 0.09
    },
    "q031": {
     "outcome": "answer",
@@ -28711,7 +28711,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.112
+    "latency_s": 0.113
    },
    "q032": {
     "outcome": "answer",
@@ -28818,7 +28818,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.124
+    "latency_s": 0.109
    },
    "q033": {
     "outcome": "answer",
@@ -28920,7 +28920,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.112
+    "latency_s": 0.12
    },
    "q034": {
     "outcome": "answer",
@@ -29022,7 +29022,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.129
+    "latency_s": 0.109
    },
    "q035": {
     "outcome": "answer",
@@ -29129,7 +29129,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.116
+    "latency_s": 0.136
    },
    "q036": {
     "outcome": "answer",
@@ -29202,7 +29202,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.113
+    "latency_s": 0.099
    },
    "q037": {
     "outcome": "answer",
@@ -29304,7 +29304,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.115
+    "latency_s": 0.139
    },
    "q038": {
     "outcome": "answer",
@@ -29421,7 +29421,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.108
+    "latency_s": 0.105
    },
    "q039": {
     "outcome": "answer",
@@ -29523,7 +29523,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.111
+    "latency_s": 0.116
    },
    "q040": {
     "outcome": "answer",
@@ -29635,7 +29635,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.118
+    "latency_s": 0.123
    },
    "q041": {
     "outcome": "answer",
@@ -29815,7 +29815,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.104
+    "latency_s": 0.168
    },
    "q043": {
     "outcome": "answer",
@@ -29922,7 +29922,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.107
+    "latency_s": 0.132
    },
    "q044": {
     "outcome": "answer",
@@ -30024,7 +30024,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.113
+    "latency_s": 0.116
    },
    "q045": {
     "outcome": "answer",
@@ -30083,7 +30083,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.079
+    "latency_s": 0.091
    },
    "q046": {
     "outcome": "answer",
@@ -30195,7 +30195,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.082
+    "latency_s": 0.081
    },
    "q047": {
     "outcome": "answer",
@@ -30302,7 +30302,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.085
+    "latency_s": 0.333
    },
    "q048": {
     "outcome": "answer",
@@ -30409,7 +30409,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.081
+    "latency_s": 0.086
    },
    "q049": {
     "outcome": "answer",
@@ -30511,7 +30511,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.084
+    "latency_s": 0.13
    },
    "q050": {
     "outcome": "answer",
@@ -30623,7 +30623,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.098
+    "latency_s": 0.093
    },
    "q051": {
     "outcome": "answer",
@@ -30704,7 +30704,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.101
+    "latency_s": 0.09
    },
    "q052": {
     "outcome": "answer",
@@ -30811,7 +30811,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.083
+    "latency_s": 0.079
    },
    "q053": {
     "outcome": "answer",
@@ -30918,7 +30918,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.083
+    "latency_s": 0.085
    },
    "q054": {
     "outcome": "answer",
@@ -31020,7 +31020,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.081
+    "latency_s": 0.08
    },
    "q055": {
     "outcome": "answer",
@@ -31234,7 +31234,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.084
+    "latency_s": 0.094
    },
    "q057": {
     "outcome": "answer",
@@ -31297,7 +31297,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.092
+    "latency_s": 0.094
    },
    "q058": {
     "outcome": "answer",
@@ -31409,7 +31409,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.107
+    "latency_s": 0.086
    },
    "q059": {
     "outcome": "answer",
@@ -31495,7 +31495,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.117
+    "latency_s": 0.085
    },
    "q060": {
     "outcome": "answer",
@@ -31597,7 +31597,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.112
+    "latency_s": 0.079
    },
    "q061": {
     "outcome": "answer",
@@ -31704,7 +31704,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.133
+    "latency_s": 0.12
    },
    "q062": {
     "outcome": "answer",
@@ -31806,7 +31806,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.129
+    "latency_s": 0.109
    },
    "q063": {
     "outcome": "answer",
@@ -31913,7 +31913,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.145
+    "latency_s": 0.123
    },
    "q064": {
     "outcome": "answer",
@@ -32020,7 +32020,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.415
+    "latency_s": 0.152
    },
    "q065": {
     "outcome": "answer",
@@ -32122,7 +32122,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.134
+    "latency_s": 0.131
    },
    "q066": {
     "outcome": "answer",
@@ -32336,7 +32336,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.154
+    "latency_s": 0.118
    },
    "q068": {
     "outcome": "answer",
@@ -32443,7 +32443,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.151
+    "latency_s": 0.112
    },
    "q069": {
     "outcome": "answer",
@@ -32550,7 +32550,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.135
+    "latency_s": 0.116
    },
    "q070": {
     "outcome": "answer",
@@ -32657,7 +32657,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.128
+    "latency_s": 0.148
    },
    "q071": {
     "outcome": "answer",
@@ -32743,7 +32743,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.128
+    "latency_s": 0.118
    },
    "q072": {
     "outcome": "answer",
@@ -32850,7 +32850,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.132
+    "latency_s": 0.131
    },
    "q073": {
     "outcome": "answer",
@@ -32952,7 +32952,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.129
+    "latency_s": 0.115
    },
    "q074": {
     "outcome": "answer",
@@ -33038,7 +33038,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.125
+    "latency_s": 0.131
    },
    "q075": {
     "outcome": "answer",
@@ -33110,7 +33110,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.115
+    "latency_s": 0.112
    },
    "q076": {
     "outcome": "answer",
@@ -33207,7 +33207,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.148
+    "latency_s": 0.123
    },
    "q077": {
     "outcome": "answer",
@@ -33304,7 +33304,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.137
+    "latency_s": 0.115
    },
    "q078": {
     "outcome": "answer",
@@ -33406,7 +33406,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.119
+    "latency_s": 0.112
    },
    "q079": {
     "outcome": "answer",
@@ -33503,7 +33503,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.136
+    "latency_s": 0.113
    },
    "q080": {
     "outcome": "answer",
@@ -33562,7 +33562,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.099
+    "latency_s": 0.083
    },
    "q081": {
     "outcome": "answer",
@@ -33631,7 +33631,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.098
+    "latency_s": 0.084
    },
    "q082": {
     "outcome": "answer",
@@ -33728,7 +33728,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.114
+    "latency_s": 0.112
    },
    "q083": {
     "outcome": "answer",
@@ -33825,7 +33825,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.133
+    "latency_s": 0.107
    },
    "q084": {
     "outcome": "answer",
@@ -33922,7 +33922,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.128
+    "latency_s": 0.114
    },
    "q085": {
     "outcome": "answer",
@@ -34019,7 +34019,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.137
+    "latency_s": 0.124
    },
    "q086": {
     "outcome": "answer",
@@ -34088,7 +34088,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.097
+    "latency_s": 0.088
    },
    "q087": {
     "outcome": "answer",
@@ -34190,7 +34190,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.146
+    "latency_s": 0.125
    },
    "q088": {
     "outcome": "answer",
@@ -34292,7 +34292,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.141
+    "latency_s": 0.106
    },
    "q089": {
     "outcome": "answer",
@@ -34389,7 +34389,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.145
+    "latency_s": 0.113
    },
    "q090": {
     "outcome": "answer",
@@ -34448,7 +34448,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.1
+    "latency_s": 0.085
    },
    "q091": {
     "outcome": "answer",
@@ -34555,7 +34555,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.334
+    "latency_s": 0.084
    },
    "q092": {
     "outcome": "answer",
@@ -34667,7 +34667,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.113
+    "latency_s": 0.097
    },
    "q093": {
     "outcome": "answer",
@@ -34789,7 +34789,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.106
+    "latency_s": 0.083
    },
    "q094": {
     "outcome": "answer",
@@ -34896,7 +34896,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.131
+    "latency_s": 0.146
    },
    "q095": {
     "outcome": "answer",
@@ -35008,7 +35008,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.135
+    "latency_s": 0.105
    },
    "q096": {
     "outcome": "answer",
@@ -35120,7 +35120,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.344
+    "latency_s": 0.084
    },
    "q097": {
     "outcome": "answer",
@@ -35227,7 +35227,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.337
+    "latency_s": 0.081
    },
    "q098": {
     "outcome": "answer",
@@ -35349,7 +35349,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.112
+    "latency_s": 0.082
    },
    "q099": {
     "outcome": "answer",
@@ -35451,7 +35451,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.114
+    "latency_s": 0.079
    },
    "q100": {
     "outcome": "answer",
@@ -35553,7 +35553,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.327
+    "latency_s": 0.085
    }
   },
   "hf_licensed": {
@@ -35662,7 +35662,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.097
+    "latency_s": 0.09
    },
    "q002": {
     "outcome": "answer",
@@ -35769,7 +35769,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.088
+    "latency_s": 0.093
    },
    "q003": {
     "outcome": "answer",
@@ -35876,7 +35876,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.092
+    "latency_s": 0.108
    },
    "q004": {
     "outcome": "answer",
@@ -35981,7 +35981,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.084
+    "latency_s": 0.091
    },
    "q005": {
     "outcome": "answer",
@@ -36086,7 +36086,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.105
+    "latency_s": 0.087
    },
    "q006": {
     "outcome": "answer",
@@ -36198,7 +36198,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.09
+    "latency_s": 0.091
    },
    "q007": {
     "outcome": "answer",
@@ -36310,7 +36310,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.089
+    "latency_s": 0.093
    },
    "q008": {
     "outcome": "answer",
@@ -36412,7 +36412,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.096
+    "latency_s": 0.083
    },
    "q009": {
     "outcome": "answer",
@@ -36517,7 +36517,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.092
+    "latency_s": 0.156
    },
    "q010": {
     "outcome": "answer",
@@ -36624,7 +36624,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.088
+    "latency_s": 0.09
    },
    "q011": {
     "outcome": "answer",
@@ -36729,7 +36729,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.107
+    "latency_s": 0.106
    },
    "q012": {
     "outcome": "answer",
@@ -36831,7 +36831,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.087
+    "latency_s": 0.084
    },
    "q013": {
     "outcome": "answer",
@@ -36933,7 +36933,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.107
+    "latency_s": 0.086
    },
    "q014": {
     "outcome": "answer",
@@ -37033,7 +37033,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.095
+    "latency_s": 0.1
    },
    "q015": {
     "outcome": "answer",
@@ -37140,7 +37140,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.091
+    "latency_s": 0.083
    },
    "q016": {
     "outcome": "answer",
@@ -37246,7 +37246,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.09
+    "latency_s": 0.087
    },
    "q017": {
     "outcome": "answer",
@@ -37358,7 +37358,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.086
+    "latency_s": 0.101
    },
    "q018": {
     "outcome": "answer",
@@ -37470,7 +37470,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.09
+    "latency_s": 0.083
    },
    "q019": {
     "outcome": "answer",
@@ -37582,7 +37582,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.088
+    "latency_s": 0.085
    },
    "q020": {
     "outcome": "answer",
@@ -37694,7 +37694,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.089
+    "latency_s": 0.086
    },
    "q021": {
     "outcome": "answer",
@@ -37811,7 +37811,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.086
+    "latency_s": 0.089
    },
    "q022": {
     "outcome": "answer",
@@ -37928,7 +37928,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.091
+    "latency_s": 0.136
    },
    "q023": {
     "outcome": "answer",
@@ -38035,7 +38035,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.087
+    "latency_s": 0.078
    },
    "q024": {
     "outcome": "answer",
@@ -38223,7 +38223,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.088
+    "latency_s": 0.086
    },
    "q026": {
     "outcome": "answer",
@@ -38335,7 +38335,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.096
+    "latency_s": 0.088
    },
    "q027": {
     "outcome": "answer",
@@ -38433,7 +38433,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.086
+    "latency_s": 0.085
    },
    "q028": {
     "outcome": "answer",
@@ -38523,7 +38523,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.088
+    "latency_s": 0.085
    },
    "q029": {
     "outcome": "answer",
@@ -38630,7 +38630,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.091
+    "latency_s": 0.087
    },
    "q030": {
     "outcome": "answer",
@@ -38737,7 +38737,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.087
+    "latency_s": 0.106
    },
    "q031": {
     "outcome": "answer",
@@ -38849,7 +38849,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.093
+    "latency_s": 0.094
    },
    "q032": {
     "outcome": "answer",
@@ -38956,7 +38956,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.104
+    "latency_s": 0.106
    },
    "q033": {
     "outcome": "answer",
@@ -39058,7 +39058,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.108
+    "latency_s": 0.106
    },
    "q034": {
     "outcome": "answer",
@@ -39160,7 +39160,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.122
+    "latency_s": 0.106
    },
    "q035": {
     "outcome": "answer",
@@ -39267,7 +39267,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.091
+    "latency_s": 0.095
    },
    "q036": {
     "outcome": "answer",
@@ -39340,7 +39340,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.102
+    "latency_s": 0.096
    },
    "q037": {
     "outcome": "answer",
@@ -39442,7 +39442,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.114
+    "latency_s": 0.121
    },
    "q038": {
     "outcome": "answer",
@@ -39559,7 +39559,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.094
+    "latency_s": 0.089
    },
    "q039": {
     "outcome": "answer",
@@ -39661,7 +39661,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.126
+    "latency_s": 0.118
    },
    "q040": {
     "outcome": "answer",
@@ -39773,7 +39773,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.087
+    "latency_s": 0.085
    },
    "q041": {
     "outcome": "answer",
@@ -39875,7 +39875,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.105
+    "latency_s": 0.108
    },
    "q042": {
     "outcome": "answer",
@@ -39959,7 +39959,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.096
+    "latency_s": 0.099
    },
    "q043": {
     "outcome": "answer",
@@ -40066,7 +40066,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.124
+    "latency_s": 0.153
    },
    "q044": {
     "outcome": "answer",
@@ -40168,7 +40168,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.117
+    "latency_s": 0.129
    },
    "q045": {
     "outcome": "answer",
@@ -40332,7 +40332,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.086
+    "latency_s": 0.097
    },
    "q047": {
     "outcome": "answer",
@@ -40439,7 +40439,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.08
+    "latency_s": 0.081
    },
    "q048": {
     "outcome": "answer",
@@ -40539,7 +40539,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.082
+    "latency_s": 0.08
    },
    "q049": {
     "outcome": "answer",
@@ -40641,7 +40641,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.088
+    "latency_s": 0.085
    },
    "q050": {
     "outcome": "answer",
@@ -40746,7 +40746,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.093
+    "latency_s": 0.088
    },
    "q051": {
     "outcome": "answer",
@@ -40827,7 +40827,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.095
+    "latency_s": 0.089
    },
    "q052": {
     "outcome": "answer",
@@ -40934,7 +40934,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.082
+    "latency_s": 0.087
    },
    "q053": {
     "outcome": "answer",
@@ -41041,7 +41041,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.079
+    "latency_s": 0.076
    },
    "q054": {
     "outcome": "answer",
@@ -41143,7 +41143,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.083
+    "latency_s": 0.081
    },
    "q055": {
     "outcome": "answer",
@@ -41250,7 +41250,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.084
+    "latency_s": 0.083
    },
    "q056": {
     "outcome": "answer",
@@ -41415,7 +41415,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.095
+    "latency_s": 0.129
    },
    "q058": {
     "outcome": "answer",
@@ -41520,7 +41520,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.129
+    "latency_s": 0.077
    },
    "q059": {
     "outcome": "answer",
@@ -41592,7 +41592,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.119
+    "latency_s": 0.108
    },
    "q060": {
     "outcome": "answer",
@@ -41694,7 +41694,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.098
+    "latency_s": 0.081
    },
    "q061": {
     "outcome": "answer",
@@ -41801,7 +41801,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.373
+    "latency_s": 0.098
    },
    "q062": {
     "outcome": "answer",
@@ -41903,7 +41903,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.138
+    "latency_s": 0.115
    },
    "q063": {
     "outcome": "answer",
@@ -42010,7 +42010,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.132
+    "latency_s": 0.118
    },
    "q064": {
     "outcome": "answer",
@@ -42117,7 +42117,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.149
+    "latency_s": 0.104
    },
    "q065": {
     "outcome": "answer",
@@ -42219,7 +42219,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.13
+    "latency_s": 0.133
    },
    "q066": {
     "outcome": "answer",
@@ -42331,7 +42331,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.123
+    "latency_s": 0.105
    },
    "q067": {
     "outcome": "answer",
@@ -42433,7 +42433,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.144
+    "latency_s": 0.135
    },
    "q068": {
     "outcome": "answer",
@@ -42540,7 +42540,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.126
+    "latency_s": 0.114
    },
    "q069": {
     "outcome": "answer",
@@ -42647,7 +42647,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.159
+    "latency_s": 0.128
    },
    "q070": {
     "outcome": "answer",
@@ -42754,7 +42754,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.132
+    "latency_s": 0.111
    },
    "q071": {
     "outcome": "answer",
@@ -42840,7 +42840,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.125
+    "latency_s": 0.102
    },
    "q072": {
     "outcome": "answer",
@@ -42947,7 +42947,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.127
+    "latency_s": 0.108
    },
    "q073": {
     "outcome": "answer",
@@ -43049,7 +43049,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.127
+    "latency_s": 0.126
    },
    "q074": {
     "outcome": "answer",
@@ -43135,7 +43135,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.128
+    "latency_s": 0.104
    },
    "q075": {
     "outcome": "answer",
@@ -43216,7 +43216,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.12
+    "latency_s": 0.094
    },
    "q076": {
     "outcome": "answer",
@@ -43313,7 +43313,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.142
+    "latency_s": 0.128
    },
    "q077": {
     "outcome": "answer",
@@ -43410,7 +43410,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.127
+    "latency_s": 0.119
    },
    "q078": {
     "outcome": "answer",
@@ -43512,7 +43512,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.108
+    "latency_s": 0.102
    },
    "q079": {
     "outcome": "answer",
@@ -43609,7 +43609,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.172
+    "latency_s": 0.156
    },
    "q080": {
     "outcome": "answer",
@@ -43668,7 +43668,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.103
+    "latency_s": 0.095
    },
    "q081": {
     "outcome": "answer",
@@ -43737,7 +43737,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.106
+    "latency_s": 0.085
    },
    "q082": {
     "outcome": "answer",
@@ -43834,7 +43834,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.159
+    "latency_s": 0.138
    },
    "q083": {
     "outcome": "answer",
@@ -43931,7 +43931,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.135
+    "latency_s": 0.105
    },
    "q084": {
     "outcome": "answer",
@@ -44028,7 +44028,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.139
+    "latency_s": 0.114
    },
    "q085": {
     "outcome": "answer",
@@ -44125,7 +44125,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.153
+    "latency_s": 0.112
    },
    "q086": {
     "outcome": "answer",
@@ -44194,7 +44194,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.119
+    "latency_s": 0.13
    },
    "q087": {
     "outcome": "answer",
@@ -44296,7 +44296,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.133
+    "latency_s": 0.128
    },
    "q088": {
     "outcome": "answer",
@@ -44398,7 +44398,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.125
+    "latency_s": 0.103
    },
    "q089": {
     "outcome": "answer",
@@ -44495,7 +44495,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.126
+    "latency_s": 0.114
    },
    "q090": {
     "outcome": "answer",
@@ -44554,7 +44554,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.112
+    "latency_s": 0.091
    },
    "q091": {
     "outcome": "answer",
@@ -44661,7 +44661,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.121
+    "latency_s": 0.092
    },
    "q092": {
     "outcome": "answer",
@@ -44766,7 +44766,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.111
+    "latency_s": 0.085
    },
    "q093": {
     "outcome": "answer",
@@ -44888,7 +44888,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.106
+    "latency_s": 0.09
    },
    "q094": {
     "outcome": "answer",
@@ -44995,7 +44995,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.149
+    "latency_s": 0.12
    },
    "q095": {
     "outcome": "answer",
@@ -45107,7 +45107,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.102
+    "latency_s": 0.087
    },
    "q096": {
     "outcome": "answer",
@@ -45219,7 +45219,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.097
+    "latency_s": 0.09
    },
    "q097": {
     "outcome": "answer",
@@ -45326,7 +45326,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.103
+    "latency_s": 0.081
    },
    "q098": {
     "outcome": "answer",
@@ -45448,7 +45448,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.106
+    "latency_s": 0.08
    },
    "q099": {
     "outcome": "answer",
@@ -45550,7 +45550,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.098
+    "latency_s": 0.085
    },
    "q100": {
     "outcome": "answer",
@@ -45652,7 +45652,7 @@
      }
     ],
     "unresolved": 0,
-    "latency_s": 0.093
+    "latency_s": 0.083
    }
   }
  },
@@ -45674,8 +45674,8 @@
       "size": 0.0,
       "task": 0.0
      },
-     "latency_median_s": 0.21,
-     "latency_p95_s": 0.38,
+     "latency_median_s": 0.22,
+     "latency_p95_s": 0.36,
      "by_task": {
       "automatic-speech-recognition": {
        "queries": 15,
@@ -45691,8 +45691,8 @@
         "size": 0.0,
         "task": 0.0
        },
-       "latency_median_s": 0.26,
-       "latency_p95_s": 0.46
+       "latency_median_s": 0.29,
+       "latency_p95_s": 0.39
       },
       "none": {
        "queries": 1,
@@ -45719,8 +45719,8 @@
         "size": 0.0,
         "task": 0.0
        },
-       "latency_median_s": 0.19,
-       "latency_p95_s": 0.33
+       "latency_median_s": 0.22,
+       "latency_p95_s": 0.31
       },
       "text-classification": {
        "queries": 14,
@@ -45736,8 +45736,8 @@
         "size": 0.0,
         "task": 0.0
        },
-       "latency_median_s": 0.18,
-       "latency_p95_s": 0.24
+       "latency_median_s": 0.17,
+       "latency_p95_s": 0.26
       },
       "token-classification": {
        "queries": 15,
@@ -45753,8 +45753,8 @@
         "size": 0.0,
         "task": 0.0
        },
-       "latency_median_s": 0.19,
-       "latency_p95_s": 0.27
+       "latency_median_s": 0.17,
+       "latency_p95_s": 0.23
       },
       "translation": {
        "queries": 15,
@@ -45771,8 +45771,8 @@
         "size": 0.0,
         "task": 0.0
        },
-       "latency_median_s": 0.23,
-       "latency_p95_s": 0.32
+       "latency_median_s": 0.26,
+       "latency_p95_s": 0.36
       }
      },
      "by_language_group": {
@@ -45791,8 +45791,8 @@
         "size": 0.0,
         "task": 0.0
        },
-       "latency_median_s": 0.21,
-       "latency_p95_s": 0.38
+       "latency_median_s": 0.22,
+       "latency_p95_s": 0.34
       },
       "non_indic": {
        "queries": 14,
@@ -45809,8 +45809,8 @@
         "size": 0.0,
         "task": 0.0
        },
-       "latency_median_s": 0.17,
-       "latency_p95_s": 0.35
+       "latency_median_s": 0.22,
+       "latency_p95_s": 0.39
       }
      }
     },
@@ -45841,7 +45841,7 @@
       "task": 0.0
      },
      "latency_median_s": 0.22,
-     "latency_p95_s": 0.34
+     "latency_p95_s": 0.36
     },
     "outcomes": {
      "normal": {
@@ -45876,8 +45876,8 @@
       "size": 50.4,
       "task": 24.1
      },
-     "latency_median_s": 0.06,
-     "latency_p95_s": 0.66,
+     "latency_median_s": 0.07,
+     "latency_p95_s": 0.64,
      "by_task": {
       "automatic-speech-recognition": {
        "queries": 15,
@@ -45893,8 +45893,8 @@
         "size": 37.1,
         "task": 6.7
        },
-       "latency_median_s": 0.06,
-       "latency_p95_s": 0.73
+       "latency_median_s": 0.07,
+       "latency_p95_s": 0.71
       },
       "none": {
        "queries": 1,
@@ -45904,8 +45904,8 @@
        "unknown_pct": 0.0,
        "fully_verified_pct": 100.0,
        "violation_by_constraint_pct": {},
-       "latency_median_s": 0.07,
-       "latency_p95_s": 0.07
+       "latency_median_s": 0.05,
+       "latency_p95_s": 0.05
       },
       "sentence-similarity": {
        "queries": 15,
@@ -45921,8 +45921,8 @@
         "size": 60.0,
         "task": 32.0
        },
-       "latency_median_s": 0.06,
-       "latency_p95_s": 0.59
+       "latency_median_s": 0.07,
+       "latency_p95_s": 0.64
       },
       "text-classification": {
        "queries": 14,
@@ -45938,8 +45938,8 @@
         "size": 50.0,
         "task": 31.4
        },
-       "latency_median_s": 0.09,
-       "latency_p95_s": 0.56
+       "latency_median_s": 0.06,
+       "latency_p95_s": 0.55
       },
       "token-classification": {
        "queries": 15,
@@ -45956,7 +45956,7 @@
         "task": 33.3
        },
        "latency_median_s": 0.06,
-       "latency_p95_s": 0.66
+       "latency_p95_s": 0.64
       },
       "translation": {
        "queries": 15,
@@ -45973,8 +45973,8 @@
         "size": 48.0,
         "task": 17.3
        },
-       "latency_median_s": 0.08,
-       "latency_p95_s": 0.6
+       "latency_median_s": 0.06,
+       "latency_p95_s": 0.64
       }
      },
      "by_language_group": {
@@ -45993,8 +45993,8 @@
         "size": 49.1,
         "task": 25.9
        },
-       "latency_median_s": 0.06,
-       "latency_p95_s": 0.66
+       "latency_median_s": 0.07,
+       "latency_p95_s": 0.64
       },
       "non_indic": {
        "queries": 14,
@@ -46011,8 +46011,8 @@
         "size": 56.0,
         "task": 15.4
        },
-       "latency_median_s": 0.06,
-       "latency_p95_s": 0.59
+       "latency_median_s": 0.3,
+       "latency_p95_s": 0.64
       }
      }
     },
@@ -46030,7 +46030,7 @@
       "size": 30.0
      },
      "latency_median_s": 0.06,
-     "latency_p95_s": 0.62
+     "latency_p95_s": 0.56
     },
     "impossible": {
      "queries": 10,
@@ -46048,7 +46048,7 @@
       "task": 28.0
      },
      "latency_median_s": 0.06,
-     "latency_p95_s": 0.56
+     "latency_p95_s": 0.55
     },
     "outcomes": {
      "normal": {
@@ -46078,8 +46078,8 @@
       "size": 0.0,
       "task": 0.0
      },
-     "latency_median_s": 0.04,
-     "latency_p95_s": 0.1,
+     "latency_median_s": 0.05,
+     "latency_p95_s": 0.08,
      "by_task": {
       "automatic-speech-recognition": {
        "queries": 15,
@@ -46095,8 +46095,8 @@
         "size": 0.0,
         "task": 0.0
        },
-       "latency_median_s": 0.04,
-       "latency_p95_s": 0.42
+       "latency_median_s": 0.05,
+       "latency_p95_s": 0.45
       },
       "none": {
        "queries": 1,
@@ -46106,8 +46106,8 @@
        "unknown_pct": 0.0,
        "fully_verified_pct": 100.0,
        "violation_by_constraint_pct": {},
-       "latency_median_s": 0.07,
-       "latency_p95_s": 0.07
+       "latency_median_s": 0.05,
+       "latency_p95_s": 0.05
       },
       "sentence-similarity": {
        "queries": 15,
@@ -46124,7 +46124,7 @@
         "task": 0.0
        },
        "latency_median_s": 0.05,
-       "latency_p95_s": 0.09
+       "latency_p95_s": 0.08
       },
       "text-classification": {
        "queries": 14,
@@ -46158,7 +46158,7 @@
         "task": 0.0
        },
        "latency_median_s": 0.04,
-       "latency_p95_s": 0.13
+       "latency_p95_s": 0.08
       },
       "translation": {
        "queries": 15,
@@ -46195,8 +46195,8 @@
         "size": 0.0,
         "task": 0.0
        },
-       "latency_median_s": 0.04,
-       "latency_p95_s": 0.09
+       "latency_median_s": 0.05,
+       "latency_p95_s": 0.08
       },
       "non_indic": {
        "queries": 14,
@@ -46214,7 +46214,7 @@
         "task": 0.0
        },
        "latency_median_s": 0.04,
-       "latency_p95_s": 0.1
+       "latency_p95_s": 0.08
       }
      }
     },
@@ -46232,7 +46232,7 @@
       "size": 0.0
      },
      "latency_median_s": 0.05,
-     "latency_p95_s": 0.08
+     "latency_p95_s": 0.1
     },
     "impossible": {
      "queries": 10,
@@ -46249,8 +46249,8 @@
       "size": 0.0,
       "task": 0.0
      },
-     "latency_median_s": 0.05,
-     "latency_p95_s": 0.09
+     "latency_median_s": 0.06,
+     "latency_p95_s": 0.08
     },
     "outcomes": {
      "normal": {
@@ -46298,7 +46298,7 @@
         "task": 0.0
        },
        "latency_median_s": 0.09,
-       "latency_p95_s": 0.5
+       "latency_p95_s": 0.49
       },
       "none": {
        "queries": 1,
@@ -46308,8 +46308,8 @@
        "unknown_pct": 0.0,
        "fully_verified_pct": 100.0,
        "violation_by_constraint_pct": {},
-       "latency_median_s": 0.08,
-       "latency_p95_s": 0.08
+       "latency_median_s": 0.09,
+       "latency_p95_s": 0.09
       },
       "sentence-similarity": {
        "queries": 15,
@@ -46325,8 +46325,8 @@
         "size": 60.0,
         "task": 0.0
        },
-       "latency_median_s": 0.13,
-       "latency_p95_s": 0.41
+       "latency_median_s": 0.12,
+       "latency_p95_s": 0.15
       },
       "text-classification": {
        "queries": 14,
@@ -46342,8 +46342,8 @@
         "size": 76.7,
         "task": 0.0
        },
-       "latency_median_s": 0.11,
-       "latency_p95_s": 0.13
+       "latency_median_s": 0.12,
+       "latency_p95_s": 0.17
       },
       "token-classification": {
        "queries": 15,
@@ -46360,7 +46360,7 @@
         "task": 0.0
        },
        "latency_median_s": 0.09,
-       "latency_p95_s": 0.12
+       "latency_p95_s": 0.33
       },
       "translation": {
        "queries": 15,
@@ -46378,7 +46378,7 @@
         "task": 0.0
        },
        "latency_median_s": 0.09,
-       "latency_p95_s": 0.09
+       "latency_p95_s": 0.12
       }
      },
      "by_language_group": {
@@ -46397,7 +46397,7 @@
         "size": 80.0,
         "task": 0.0
        },
-       "latency_median_s": 0.1,
+       "latency_median_s": 0.09,
        "latency_p95_s": 0.15
       },
       "non_indic": {
@@ -46416,7 +46416,7 @@
         "task": 0.0
        },
        "latency_median_s": 0.1,
-       "latency_p95_s": 0.13
+       "latency_p95_s": 0.17
       }
      }
     },
@@ -46433,8 +46433,8 @@
       "modifiable": 0.0,
       "size": 40.0
      },
-     "latency_median_s": 0.13,
-     "latency_p95_s": 0.15
+     "latency_median_s": 0.11,
+     "latency_p95_s": 0.12
     },
     "impossible": {
      "queries": 10,
@@ -46451,8 +46451,8 @@
       "size": 100.0,
       "task": 0.0
      },
-     "latency_median_s": 0.13,
-     "latency_p95_s": 0.34
+     "latency_median_s": 0.08,
+     "latency_p95_s": 0.15
     },
     "outcomes": {
      "normal": {
@@ -46482,7 +46482,7 @@
       "size": 71.9,
       "task": 0.0
      },
-     "latency_median_s": 0.1,
+     "latency_median_s": 0.09,
      "latency_p95_s": 0.14,
      "by_task": {
       "automatic-speech-recognition": {
@@ -46500,7 +46500,7 @@
         "task": 0.0
        },
        "latency_median_s": 0.09,
-       "latency_p95_s": 0.11
+       "latency_p95_s": 0.16
       },
       "none": {
        "queries": 1,
@@ -46527,8 +46527,8 @@
         "size": 60.0,
         "task": 0.0
        },
-       "latency_median_s": 0.13,
-       "latency_p95_s": 0.37
+       "latency_median_s": 0.11,
+       "latency_p95_s": 0.14
       },
       "text-classification": {
        "queries": 14,
@@ -46544,8 +46544,8 @@
         "size": 76.7,
         "task": 0.0
        },
-       "latency_median_s": 0.1,
-       "latency_p95_s": 0.13
+       "latency_median_s": 0.11,
+       "latency_p95_s": 0.15
       },
       "token-classification": {
        "queries": 15,
@@ -46561,7 +46561,7 @@
         "size": 72.0,
         "task": 0.0
        },
-       "latency_median_s": 0.09,
+       "latency_median_s": 0.08,
        "latency_p95_s": 0.13
       },
       "translation": {
@@ -46580,7 +46580,7 @@
         "task": 0.0
        },
        "latency_median_s": 0.09,
-       "latency_p95_s": 0.1
+       "latency_p95_s": 0.14
       }
      },
      "by_language_group": {
@@ -46635,8 +46635,8 @@
       "modifiable": 0.0,
       "size": 40.0
      },
-     "latency_median_s": 0.13,
-     "latency_p95_s": 0.17
+     "latency_median_s": 0.11,
+     "latency_p95_s": 0.16
     },
     "impossible": {
      "queries": 10,
@@ -46653,8 +46653,8 @@
       "size": 85.0,
       "task": 0.0
      },
-     "latency_median_s": 0.1,
-     "latency_p95_s": 0.15
+     "latency_median_s": 0.09,
+     "latency_p95_s": 0.12
     },
     "outcomes": {
      "normal": {

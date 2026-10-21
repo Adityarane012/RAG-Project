@@ -1,6 +1,6 @@
 # Evaluation results (v2)
 
-- date 2026-10-21 · git `152cfcb` · config sha256 `9b94abbbe378` · LLM `openai/gpt-oss-20b (reasoning_effort=low)` · vector store `local` · embeddings `pinecone:intfloat/multilingual-e5-large` · reranker `pinecone`
+- date 2026-10-21 · git `6d98cac` · config sha256 `9b94abbbe378` · LLM `openai/gpt-oss-20b (reasoning_effort=low)` · vector store `local` · embeddings `pinecone:intfloat/multilingual-e5-large` · reranker `pinecone`
 - queries: 100 ({'normal': 75, 'vague': 15, 'impossible': 10}); single author, written before any retrieval experiment (D11 deviation)
 - queries whose parsed constraints are empty (violation is trivially 0 for them): 3
 
@@ -8,11 +8,11 @@
 
 | System | Answered % | Recs | Violation % | Unknown % | Fully verified % | Median s | p95 s |
 |---|---|---|---|---|---|---|---|
-| ours | 97.3 | 365 | 0.0 | 16.7 | 83.3 | 0.21 | 0.38 |
-| naive | 100.0 | 375 | 50.4 | 20.5 | 29.1 | 0.06 | 0.66 |
-| keyword | 100.0 | 368 | 0.0 | 62.0 | 38.0 | 0.04 | 0.1 |
+| ours | 97.3 | 365 | 0.0 | 16.7 | 83.3 | 0.22 | 0.36 |
+| naive | 100.0 | 375 | 50.4 | 20.5 | 29.1 | 0.07 | 0.64 |
+| keyword | 100.0 | 368 | 0.0 | 62.0 | 38.0 | 0.05 | 0.08 |
 | hf_basic | 100.0 | 375 | 32.8 | 13.6 | 53.6 | 0.1 | 0.15 |
-| hf_licensed | 100.0 | 375 | 25.9 | 14.7 | 59.5 | 0.1 | 0.14 |
+| hf_licensed | 100.0 | 375 | 25.9 | 14.7 | 59.5 | 0.09 | 0.14 |
 
 ### Violations by constraint (% of recommended models failing that constraint)
 
