@@ -254,6 +254,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Secrets:** API keys in a `.env` file excluded from git.
 - **Shared index:** Pinecone namespaces `prod` (demo data, changed only deliberately) and `exp-<name>` for each person's experiments.
 - **Demo environment:** cache the LLM responses and record the final state of every planned demo query so it can be replayed (see the correction below); keep Ollama installed on the demo laptop; show the data snapshot date in the UI.
+- **Token budgets (2026-10-21):** the free Groq tier limits tokens per minute (8,000 for `gpt-oss-20b`) more tightly than requests, so explanation prompts are budgeted (up to 4 trimmed passages per model, 5,000 tokens) and every call reserves its tokens in a per-model sliding window; see `docs/architecture.md` §7.0.
 - **Demo wording corrected (2026-10-21):** the demo does **not** work offline: retrieval needs Pinecone and query embedding. What we provide is **replay of recorded runs**: each planned demo query's final state is recorded once with live services (`RECORD=1`) and served later with no network (`REPLAY=1`). Live search still needs the network; the LLM cache and the Ollama fallback cover only the LLM.
 - **Keys and snapshot (2026-10-21):** each member uses their own free Groq and read-only HF keys; one person creates the Pinecone index and shares the key privately, and everyone else writes only to their own `exp-<name>` namespace. The normalized snapshot is attached to a GitHub Release and its date and sha256 are recorded in `config.yaml`; the raw API cache stays local.
 

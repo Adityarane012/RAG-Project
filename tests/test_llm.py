@@ -22,7 +22,7 @@ def test_clean_constraints_keeps_valid_values():
 
 
 def test_extract_constraints_rejects_non_json(monkeypatch):
-    monkeypatch.setattr(llm, "complete", lambda prompt, system="": "not json")
+    monkeypatch.setattr(llm, "complete", lambda prompt, system="", **kw: "not json")
     with pytest.raises(ValueError):
         llm.extract_constraints("anything")
 

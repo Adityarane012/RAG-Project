@@ -114,6 +114,17 @@ only: it adds an LLM judge, which is another component that can fail.
 LLM provider/model, reranker. Cache LLM responses (already automatic) so a rerun is
 deterministic.
 
+## 7b. Staying inside the free-tier limits
+
+Groq's free tier for `gpt-oss-20b` is 8,000 tokens/minute and 200,000/day (about 30 fully
+explained queries a day, see [architecture.md §7.0](architecture.md#70-staying-inside-free-tier-token-limits)).
+So: (1) the automatic metrics (violation, unknown, abstention, clarification) need **no
+explanations**; run them with `Deps.explain = None`, which costs ~1K tokens a query (about 120K for
+the whole set, one day). (2) Generate explanations only for the ~30–50 answers that are hand-checked
+for faithfulness, over two days or on Ollama. (3) Shard long runs across teammates' own accounts
+(limits are per organization, not per key). (4) The response cache means a rerun costs nothing, so
+**never change a prompt or model mid-evaluation** without accepting a full re-run.
+
 ## 8. Results table template
 
 | System | Violation @5 | Unknown @5 | Relevance @5 | Abstention | Clarification | Median latency |

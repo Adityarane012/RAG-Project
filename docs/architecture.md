@@ -193,7 +193,7 @@ Nothing in `graph.py` touches the network, so the whole graph runs in tests with
 
 ## 7. LLM layer
 
-- **One interface, two providers.** `complete(prompt, system)` dispatches on
+- **One interface, two providers.** `complete(prompt, system, reserve)` dispatches on
   `LLM_PROVIDER` (`groq` | `ollama`). Switching is an environment variable (D7).
 - **Cache.** Every response is stored in `.cache/llm/<sha256>.json`, keyed by
   `(provider, model, system, prompt)`. Temperature is 0. The cache makes runs
@@ -204,6 +204,30 @@ Nothing in `graph.py` touches the network, so the whole graph runs in tests with
   `<card_section model_id=… section=…>`, HTML-escapes the attributes, and neutralises any
   literal `<card_section` / `</card_section` in the text (case- and whitespace-tolerant).
   The system prompt tells the model never to follow instructions inside the tags.
+
+### 7.0 Staying inside free-tier token limits
+
+The binding limit on the free Groq tier is tokens per minute (8,000 for `gpt-oss-20b`) and per
+day (200,000), not requests. Four mechanisms keep a query inside it:
+
+| Mechanism | Where | What it does |
+|---|---|---|
+| **Evidence budget** | `evidence.select_evidence`, `config.yaml: explain.*` | Sends up to **4 passages per model** (best chunk of each distinct section first), each trimmed to its share of a 5,000-token prompt by keeping the sentences that overlap the request, in original order. Short passages keep their full length and their unused budget goes to long ones. If many models make 4 passages too thin, the lowest-ranked passages of the fullest model are dropped before any passage falls under 80 tokens |
+| **Token throttle** | `llm.TokenBudget`, `llm.tpm` | A sliding 60-second window per model. Each call reserves `prompt + reserve` tokens and waits if the window is full, so an extraction call and an explanation call in the same minute can't together exceed the limit. Models not listed are not throttled |
+| **Retry hint** | `llm.complete` | On a rate limit: wait the server's `retry-after` if ≤ 30 s and retry the same model once; otherwise (or if that fails) try the fallback model once. A daily-limit hint of an hour goes straight to the fallback instead of sleeping |
+| **Explanations optional** | `Deps.explain = None` | Skips the explain node entirely; the verified table, reports and `fully_verified` are unchanged. Use it for evaluation runs |
+
+Measured on the code (5 models, 450-token chunks, estimated tokens): the worst case that used
+to send ~18,300 prompt tokens now sends ~4,200 with 4 passages per model. One query's two calls
+count ~830 (extraction) + 6,500 (explanation: 5,000 prompt + 1,500 reserved reply) ≈ 7,300 of 8,000.
+At roughly 6,600 tokens per fully-explained query (the reply size is a guess) the daily limit
+allows about **30 explained queries per day** on `gpt-oss-20b`: plan the evaluation around that
+(explain only the ~30–50 answers that are hand-checked; use Ollama for bulk runs).
+
+Token counts use `tokens.approx_tokens` (1.5 × words). It over-counts English but may
+**under-count Devanagari**, so the 5,000 budget keeps ~3,000 of headroom; verify with the real
+tokenizer (E-IDX-4). Ollama gets an explicit `num_ctx` (8,192); its default window is small and
+truncates long prompts silently.
 
 ### 7.1 Recording and replay (D21)
 

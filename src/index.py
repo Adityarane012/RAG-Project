@@ -11,6 +11,7 @@ import re
 from src.clean import clean_card, doc_quality, fallback_chunk
 from src.config import CFG
 from src.normalize import normalize_record
+from src.tokens import approx_tokens  # noqa: F401  (re-exported: tests and callers import it from here)
 
 EMBED_MODEL = CFG["embedding"]["model"]
 EMBED_DIM = CFG["embedding"]["dim"]
@@ -35,13 +36,6 @@ def embed_passages(model, texts: list[str]) -> list[list[float]]:
 
 def embed_query(model, text: str) -> list[float]:
     return model.encode(QUERY_PREFIX + text, normalize_embeddings=True).tolist()
-
-
-def approx_tokens(text: str) -> int:
-    """Cheap token estimate (no tokenizer needed). Multilingual/Indic text splits into
-    more tokens per word than English, so this is deliberately pessimistic; swap in the
-    real tokenizer's count if sections still overflow."""
-    return int(len(text.split()) * 1.5) + 1
 
 
 def _split_long(text: str, max_tokens: int) -> list[str]:

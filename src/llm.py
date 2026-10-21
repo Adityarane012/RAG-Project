@@ -13,9 +13,13 @@ import html
 import json
 import os
 import re
+import time
+from collections import deque
 from pathlib import Path
 
 from src.config import CFG
+from src.evidence import select_evidence
+from src.tokens import approx_tokens
 from src.verify import SIZE_WORDS_MB
 
 CACHE_DIR = Path(os.getenv("LLM_CACHE_DIR", ".cache/llm"))
@@ -81,7 +85,8 @@ def _call_ollama(prompt: str, system: str, model: str) -> str:
     resp = requests.post(
         f"{host}/api/generate",
         json={"model": model, "prompt": prompt, "system": system, "format": "json",
-              "stream": False, "options": {"temperature": 0}},
+              "stream": False,
+              "options": {"temperature": 0, "num_ctx": CFG["llm"]["ollama_num_ctx"]}},
         timeout=120,
     )
     resp.raise_for_status()
@@ -100,12 +105,61 @@ def _is_rate_limit(error: Exception) -> bool:
     return type(error).__name__ == "RateLimitError" or getattr(error, "status_code", None) == 429
 
 
-def complete(prompt: str, system: str = "") -> str:
+def _retry_after(error: Exception) -> float | None:
+    """Seconds the server asked us to wait (the `retry-after` header), if it sent one."""
+    headers = getattr(getattr(error, "response", None), "headers", None)
+    try:
+        value = headers.get("retry-after") if headers is not None else None
+        return float(value) if value is not None else None
+    except (TypeError, ValueError, AttributeError):
+        return None
+
+
+class TokenBudget:
+    """Sliding 60-second window over tokens sent to one model. `acquire` blocks (sleeps)
+    until the call fits, so two calls in the same minute can't exceed the provider's
+    tokens-per-minute limit. Clock and sleep are injectable for tests."""
+
+    def __init__(self, tpm: int, clock=time.monotonic, sleep=time.sleep):
+        self.tpm, self._clock, self._sleep = tpm, clock, sleep
+        self._events: deque[tuple[float, int]] = deque()
+
+    def acquire(self, tokens: int) -> float:
+        """Reserve `tokens`; returns the seconds waited. A request bigger than the whole
+        budget waits for an empty window and uses all of it (the provider may still reject it)."""
+        if self.tpm <= 0:
+            return 0.0
+        tokens, waited = min(tokens, self.tpm), 0.0
+        while True:
+            now = self._clock()
+            while self._events and now - self._events[0][0] >= 60:
+                self._events.popleft()
+            if sum(t for _, t in self._events) + tokens <= self.tpm:
+                self._events.append((now, tokens))
+                return waited
+            pause = max(0.05, self._events[0][0] + 60 - now)
+            self._sleep(pause)
+            waited += pause
+
+
+_sleep = time.sleep
+_budgets: dict[str, TokenBudget] = {}
+
+
+def _budget_for(model: str) -> TokenBudget:
+    if model not in _budgets:
+        _budgets[model] = TokenBudget(CFG["llm"].get("tpm", {}).get(model, 0))
+    return _budgets[model]
+
+
+def complete(prompt: str, system: str = "", reserve: int | None = None) -> str:
     """Raw completion from the configured provider, cached by (provider, model, system, prompt).
 
-    The model is the env override if set, else the one pinned in config.yaml. On a Groq
-    rate-limit error the pinned fallback model is tried once; the file in the cache
-    records which model actually answered.
+    The model is the env override if set, else the one pinned in config.yaml. Each call first
+    reserves its estimated tokens in that model's per-minute budget (waiting if needed). On a
+    rate-limit error: if the server's `retry-after` is short, wait and retry the same model once;
+    otherwise (or if that fails too) try the Groq fallback model once. The cache file records
+    which model actually answered.
     """
     provider = os.getenv("LLM_PROVIDER", "groq")
     call, model_var, cfg_key = _PROVIDERS[provider]
@@ -115,15 +169,35 @@ def complete(prompt: str, system: str = "") -> str:
     if path.exists():
         return json.loads(path.read_text(encoding="utf-8"))["response"]
 
-    used = model
+    reserve = CFG["llm"]["output_reserve_tokens"] if reserve is None else reserve
+    estimate = approx_tokens(system) + approx_tokens(prompt) + reserve
+
+    def attempt(m: str) -> str:
+        _budget_for(m).acquire(estimate)
+        return call(prompt, system, m)
+
+    used, error = model, None
     try:
-        response = call(prompt, system, model)
+        response = attempt(model)
     except Exception as e:
-        fallback = CFG["llm"].get("groq_fallback_model") if provider == "groq" else None
-        if not (_is_rate_limit(e) and fallback and fallback != model):
+        if not _is_rate_limit(e):
             raise
-        used = fallback
-        response = call(prompt, system, fallback)
+        error = e
+    if error is not None:
+        wait = _retry_after(error)
+        if wait is not None and wait <= CFG["llm"]["max_wait_seconds"]:
+            _sleep(wait)
+            try:
+                response, error = attempt(model), None
+            except Exception as e:
+                if not _is_rate_limit(e):
+                    raise
+                error = e
+    if error is not None:
+        fallback = CFG["llm"].get("groq_fallback_model") if provider == "groq" else None
+        if not fallback or fallback == model:
+            raise error
+        used, response = fallback, attempt(fallback)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps({"provider": provider, "model": used, "requested_model": model,
                                 "system": system, "prompt": prompt, "response": response},
@@ -180,7 +254,7 @@ def extract_constraints(query: str) -> dict:
         size_words=", ".join(f'"{w}"' for w in SIZE_WORDS_MB),
         query=query,
     )
-    return clean_constraints(_parse_json(complete(prompt)), query)
+    return clean_constraints(_parse_json(complete(prompt, reserve=CFG["llm"]["extract_output_reserve_tokens"])), query)
 
 
 # --- explanations over untrusted card text (D17) -----------------------------------
@@ -211,14 +285,17 @@ def filter_citations(explanations: list[dict], candidate_ids: set[str]) -> list[
 def explain(constraints: dict, candidates: list[dict]) -> list[dict]:
     """Cited explanations for the verified candidates.
 
-    Each candidate is {"model_id", "chunks": [{"metadata": {"section", "text"}}]}.
-    The output is untrusted too: only text, and only for models we passed in.
+    Each candidate is {"model_id", "chunks": [{"score", "metadata": {"section", "text"}}]}.
+    Only a budgeted selection of passages is sent (evidence.select_evidence): up to
+    `explain.chunks_per_model` per model, trimmed to fit `explain.max_prompt_tokens`, so the
+    prompt fits the free tier's tokens-per-minute limit. The output is untrusted too: only
+    text, and only for models we passed in.
     """
-    blocks = []
-    for c in candidates:
-        for chunk in c.get("chunks", []):
-            md = chunk["metadata"]
-            blocks.append(wrap_card_section(c["model_id"], md.get("section", ""), md.get("text", "")))
+    evidence = select_evidence(candidates, constraints.get("soft_query") or "")
+    blocks = [wrap_card_section(e["model_id"], p["section"], p["text"])
+              for e in evidence for p in e["passages"]]
+    if not blocks:
+        return []
     prompt = (
         f"User request: {constraints.get('soft_query', '')}\n\n"
         "Explain, per model, how its card relates to the request.\n\n" + "\n\n".join(blocks)

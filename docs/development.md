@@ -27,6 +27,10 @@ code agree. Ollama and Streamlit both run on Windows.
 | `OLLAMA_HOST` | `llm` | defaults to `http://localhost:11434` |
 | `REPLAY`, `RECORD`, `REPLAY_DIR` | `replay` | `REPLAY=1` serves recorded demo runs (wins over `RECORD`); `RECORD=1` saves live runs; dir defaults to `demo/cache` |
 | `PYTHONUTF8` | Python | set to `1` on Windows |
+
+Tuning knobs for the free-tier token limits are in `config.yaml`: `llm.tpm` (per-model per-minute
+budget), `llm.output_reserve_tokens`, `explain.chunks_per_model` and `explain.max_prompt_tokens`.
+After changing a model, check the TPM/TPD your account actually has in the Groq console and update `llm.tpm`.
 | `LLM_CACHE_DIR` | `llm` | defaults to `.cache/llm` |
 
 `.env` is loaded automatically by `src/config.py` (real environment variables win). A missing

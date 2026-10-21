@@ -39,7 +39,7 @@ tests that touch `llm.complete` monkeypatch `_PROVIDERS` and `CACHE_DIR`.
 
 ## 3. Current coverage
 
-135 offline tests.
+157 offline tests.
 
 | File | Tests | Covers |
 |---|---|---|
@@ -57,6 +57,8 @@ tests that touch `llm.complete` monkeypatch `_PROVIDERS` and `CACHE_DIR`.
 | `test_rerank_replay.py` | 8 | reranker score contract, replay keys, record/replay, missing recording, env modes |
 | `test_app.py` | 6 | degraded start, rendering, language picker, banner, replay mode |
 | `test_metrics.py` | 6 | metric maths, query-file validation, verifiably-impossible, kappa |
+| `test_evidence.py` | 11 | passage selection (distinct sections, 4 per model), budget fit in the 18K-token worst case, excerpting, Devanagari, degenerate inputs, no LLM call without evidence |
+| `test_throttle.py` | 10 | sliding-window budget, a normal query's two calls fit 8K, retry-after wait / fallback / give up, Ollama `num_ctx`, pinned budgets |
 | `test_check_env.py` | 8 | `.env` validation, never prints secrets, init never overwrites, example has no values |
 
 ## 4. Edge-case catalogue
@@ -144,6 +146,10 @@ where the code is known to fall short, the row says so.
 | 15 | Groq rate limit | One retry on `llm.groq_fallback_model`; the cache records which model answered; a second limit or any other error propagates | ✅ |
 | 16 | Model selection | `config.yaml` pins the model; `GROQ_MODEL` / `OLLAMA_MODEL` override it | ✅ |
 | 17 | Task hints in the extraction prompt ("embeddings" → `sentence-similarity`) | Present in the prompt; accuracy measured live | ✅ prompt · 🔎 accuracy |
+| 18 | Per-minute token budget | A call that would exceed it waits for the window; two calls of one normal query don't wait; a second query in the same minute does | ✅ |
+| 19 | `retry-after` hint | ≤ 30 s: wait and retry the same model once; longer: straight to the fallback, never sleeping for an hour; still limited: fallback then raise; garbage values ignored | ✅ |
+| 20 | Ollama context | `num_ctx` is set and larger than the explanation prompt budget | ✅ |
+| 21 | Real Groq: does the budget match what the account actually allows (TPM/TPD shown in the console)? Do 429 responses carry `retry-after`? Does a `gpt-oss` reply's reasoning use more than the 1,500 reserved? | Adjust `llm.tpm` / reserves | 🔎 |
 
 ### 4.5 Cleaning: `clean.py` (E-CLN)
 
@@ -262,7 +268,23 @@ where the code is known to fall short, the row says so.
 | 6 | Impossible query where some model is only ⚠️ | `verifiably_impossible` is False: such a query measures missing data and must be rewritten | ✅ |
 | 7 | Cohen's kappa: perfect, systematic disagreement, one label only, ordinal weights, unequal lengths | 1.0; -1.0; defined; 0-vs-2 hurts more than 1-vs-2; `ValueError` | ✅ |
 
-### 4.13 Reranker, replay, snapshot (E-RER, E-RPL, E-SNP)
+### 4.13 Evidence selection (E-EVD)
+
+| ID | Case | Expected | Status |
+|---|---|---|---|
+| E-EVD-1 | 5 models × 8 full chunks (was ~18K tokens) | 4 passages each; whole prompt ≤ `explain.max_prompt_tokens`, and ≤ 8,000 − reply reserve | ✅ |
+| E-EVD-2 | Evidence per model | ≈ two full chunks' worth, spread across four passages | ✅ |
+| E-EVD-3 | Passages from distinct sections, best first; then the remaining best | | ✅ |
+| E-EVD-4 | Tight budget (many models) | Fewer passages, none below the minimum, every model keeps one | ✅ |
+| E-EVD-5 | Short chunks stay whole; their unused budget goes to long chunks | | ✅ |
+| E-EVD-6 | Excerpt keeps request-matching sentences in original order with `[...]`; fitting text untouched; deterministic; one enormous sentence is cut | | ✅ |
+| E-EVD-7 | Devanagari: danda sentence split, whole-word matching (not `\w`, which splits at vowel signs) | | ✅ |
+| E-EVD-8 | No candidates / no chunks / blank chunk / missing score | No crash; no LLM call when there is nothing to read | ✅ |
+| E-EVD-9 | Excerpting must not defeat the delimiter escaping | One open and one close tag per passage, even with `</card_section>` in the text | ✅ |
+| E-EVD-10 | A chunk crafted to match the request wins excerpt space | Cannot change a verdict (D2); it only decides what the LLM reads | ✅ by design |
+| E-EVD-11 | Indic text under the real tokenizer | Prompt stays under the model's context; the estimate under-counts | 🔎 |
+
+### 4.14 Reranker, replay, snapshot (E-RER, E-RPL, E-SNP)
 
 | ID | Case | Expected | Status |
 |---|---|---|---|

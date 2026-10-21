@@ -145,3 +145,11 @@ def test_translation_direction_from_model_name_passes_other_models_stay_unknown(
     assert "direction from model name" in by_id["Helsinki-NLP/opus-mt-hi-mr"]["notes"]
     assert by_id["org/multi"]["table"]["direction"] == "unknown"
     assert s["results"][0]["model_id"] == "Helsinki-NLP/opus-mt-hi-mr"      # the verified one ranks first
+
+
+def test_explanations_can_be_switched_off_without_touching_the_verified_answer():
+    deps = Deps(extract=lambda q: dict(FULL), fetch=lambda f, k: [chunk("good/m", 0.5)][:k],
+                rerank=lambda q, m: m, explain=None)
+    s = build_graph(deps).invoke({"query": "q"})
+    assert s["outcome"] == "answer" and s["explanations"] == [] and s["explain_error"] is None
+    assert s["results"][0]["overall"] == "pass" and s["fully_verified"] is True

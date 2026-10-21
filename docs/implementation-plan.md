@@ -7,7 +7,7 @@ Status as of **2026-10-21 (day 6 of 14)**. The original schedule in
 
 ## 1. Where we are
 
-### Built and unit-tested offline (135 tests, no network)
+### Built and unit-tested offline (157 tests, no network)
 
 License/rights map · D20 size rule · language normalisation · multilingual-map seed ·
 `verify` (incl. direction, notes, size words) · Pinecone filters · chunk→model grouping ·
@@ -16,7 +16,8 @@ D17 delimiters + citation filter · LLM validation + cache · LangGraph pipeline
 eval metrics (incl. verifiably-impossible check, Cohen's kappa) · resumable ingest (mocked HTTP) ·
 canonical base-model ids · deterministic checksummed snapshot + data-quality report ·
 opus-mt direction parsing · local reranker (fake scorer) · record/replay of graph runs ·
-Groq→fallback model on rate limit · Streamlit renderer incl. the "not fully verified" banner.
+Groq→fallback model on rate limit · per-minute token throttle and retry-after handling ·
+budgeted explanation evidence (4 passages per model) · explanations switchable off · Streamlit renderer incl. the "not fully verified" banner.
 
 ### Not built, or never run against a live service
 

@@ -32,6 +32,8 @@ python -m src.check_env          # verifies the setup without printing any secre
 │   ├── index.py        # chunking, local embeddings, Pinecone upsert
 │   ├── llm.py          # extract_constraints(), explain(), provider switch, cache, D17 delimiters
 │   ├── retrieve.py     # Pinecone filters (D12), chunk -> model grouping (D18)
+│   ├── evidence.py     # which card passages the explanation sees, trimmed to a token budget
+│   ├── tokens.py       # shared token estimator
 │   ├── rerank.py       # local bge-reranker-v2-m3 (D9)
 │   ├── replay.py       # record / replay demo runs (REPLAY=1, RECORD=1)
 │   ├── snapshot.py     # deterministic metadata snapshot + data-quality report
@@ -45,7 +47,7 @@ python -m src.check_env          # verifies the setup without printing any secre
 
 ## Status
 
-Built and unit-tested offline (135 tests): license/rights map, size rule, `verify`, Pinecone
+Built and unit-tested offline (157 tests): license/rights map, size rule, `verify`, Pinecone
 filters, grouping, cleaning, chunking, guidance, build-on estimates, prompt-injection delimiters,
 the LangGraph pipeline (with stub dependencies), eval metrics, snapshot and replay, the local
 reranker (with a fake scorer), and the UI renderer.

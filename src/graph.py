@@ -60,7 +60,7 @@ class Deps:
     extract: Callable[[str], dict]                  # llm.extract_constraints
     fetch: Callable[[dict, int], list]              # (filter, top_k) -> chunk matches
     rerank: Callable[[str, list], list]             # (soft_query, matches) -> matches, reordered
-    explain: Callable[[dict, list], list]           # llm.explain
+    explain: Callable[[dict, list], list] | None    # llm.explain; None skips explanations (evaluation, rate limits)
     lineage_index: dict = field(default_factory=dict)
     card_data: Callable[[str], dict | None] = lambda model_id: None
 
@@ -130,7 +130,7 @@ def build_graph(deps: Deps):
     def explain(state: State) -> State:
         shown = [r for r in state["results"] if viable(r)]
         try:
-            explanations, error = deps.explain(state["constraints"], shown), None
+            explanations, error = (deps.explain(state["constraints"], shown) if deps.explain else []), None
         except Exception as e:  # LLM down or bad JSON: the verified table must still render
             explanations, error = [], f"{type(e).__name__}: {e}"
         return {"outcome": "answer", "explanations": explanations, "explain_error": error,
