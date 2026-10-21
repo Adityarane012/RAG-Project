@@ -1,11 +1,11 @@
-from src.verify import FAIL, PASS, UNKNOWN, overall, rank_key, verify
+from src.verify import FAIL, PASS, UNKNOWN, notes, overall, rank_key, resolve_max_size_mb, verify
 
 C = {"task": "token-classification", "langs": ["mr"], "max_size_mb": 500, "commercial": True}
 
 
 def meta(**kw):
     base = {"task": "token-classification", "languages": ["mr"], "size_status": "known",
-            "size_mb": 400, "commercial": "yes"}
+            "size_mb": 400, "commercial": "yes", "modifiable": "yes"}
     base.update(kw)
     return base
 
@@ -14,8 +14,14 @@ def test_all_pass():
     assert overall(verify(meta(), C)) == PASS
 
 
-def test_oversized_fails():
+def test_only_requested_constraints_appear():
+    assert set(verify(meta(), C)) == {"task", "languages", "size", "commercial"}
+    assert verify(meta(commercial="no", size_mb=10_000), {}) == {}
+
+
+def test_oversized_fails_and_boundary_passes():
     assert verify(meta(size_mb=900), C)["size"] == FAIL
+    assert verify(meta(size_mb=500), C)["size"] == PASS
 
 
 def test_missing_size_is_unknown_not_pass_or_fail():
@@ -24,28 +30,46 @@ def test_missing_size_is_unknown_not_pass_or_fail():
     assert verify(m, C)["size"] == UNKNOWN
 
 
-def test_commercial_mapping():
-    assert verify(meta(commercial="no"), C)["commercial"] == FAIL
-    assert verify(meta(commercial="conditional"), C)["commercial"] == UNKNOWN
-    assert verify(meta(commercial="unknown"), C)["commercial"] == UNKNOWN
+def test_rights_mapping():
+    c = {"commercial": True, "modifiable": True}
+    assert verify(meta(commercial="no"), c)["commercial"] == FAIL
+    assert verify(meta(modifiable="no"), c)["modifiable"] == FAIL
+    assert verify(meta(commercial="conditional"), c)["commercial"] == UNKNOWN
+    assert verify(meta(modifiable="unknown"), c)["modifiable"] == UNKNOWN
 
 
 def test_languages_need_all_requested():
-    c = {**C, "langs": ["hi", "mr"]}
+    c = {"langs": ["hi", "mr"]}
     assert verify(meta(languages=["hi"]), c)["languages"] == FAIL
     assert verify(meta(languages=["hi", "mr", "en"]), c)["languages"] == PASS
     assert verify(meta(languages=[]), c)["languages"] == UNKNOWN
 
 
-def test_unconstrained_passes():
-    assert overall(verify(meta(commercial="no", size_mb=10_000), {})) == PASS
+def test_direction_is_never_claimed_from_language_list_and_never_fails():
+    c = {"task": "translation", "langs": ["hi", "mr"], "direction": ["hi", "mr"]}
+    both_tagged = meta(task="translation", languages=["hi", "mr"])
+    assert verify(both_tagged, c)["direction"] == UNKNOWN
+    assert verify({**both_tagged, "directions": ["hi-mr"]}, c)["direction"] == PASS
+    assert verify({**both_tagged, "directions": ["mr-hi"]}, c)["direction"] == UNKNOWN
+
+
+def test_size_words_resolve_via_table_and_explicit_number_wins():
+    assert resolve_max_size_mb(None, "small") == 500
+    assert resolve_max_size_mb(None, "TINY") == 100
+    assert resolve_max_size_mb(None, "medium") == 2000
+    assert resolve_max_size_mb(300, "small") == 300
+    assert resolve_max_size_mb(None, "huge") is None
+    assert verify(meta(size_mb=600), {"size_word": "small"})["size"] == FAIL
+
+
+def test_multilingual_and_minimal_doc_notes_never_change_results():
+    m = meta(multilingual=True, doc_quality="minimal", languages=["hi", "mr"])
+    c = {"langs": ["hi"]}
+    assert verify(m, c)["languages"] == PASS
+    assert notes(m, c) == ["multilingual, not specific to hi", "minimal documentation"]
+    assert notes(meta(), {}) == []
 
 
 def test_ranking_puts_unknowns_below_passes_and_fails_last():
-    results = [
-        verify(meta(commercial="no"), C),
-        verify(meta(commercial="unknown"), C),
-        verify(meta(), C),
-    ]
-    ranked = sorted(results, key=rank_key)
-    assert [overall(r) for r in ranked] == [PASS, UNKNOWN, FAIL]
+    results = [verify(meta(commercial="no"), C), verify(meta(commercial="unknown"), C), verify(meta(), C)]
+    assert [overall(r) for r in sorted(results, key=rank_key)] == [PASS, UNKNOWN, FAIL]

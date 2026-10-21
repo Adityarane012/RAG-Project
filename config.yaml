@@ -1,0 +1,48 @@
+# Single config file (D21). Changing embedding.model means re-indexing everything.
+snapshot_date: null          # set when a data snapshot is cut, e.g. 2026-10-23; shown in the UI
+
+embedding:
+  model: intfloat/multilingual-e5-large
+  dim: 1024
+  max_section_tokens: 450    # model limit is ~507
+
+corpus:                      # D5, D6
+  tasks:
+    - automatic-speech-recognition
+    - translation
+    - text-classification
+    - token-classification
+    - sentence-similarity
+  top_n_per_task: 1000
+  indic_langs: [hi, mr, bn, ta, te, gu, kn, ml, pa, ur]
+
+pinecone:
+  index: hf-model-finder
+  namespace: prod            # experiments use exp-<name> (D21)
+
+retrieval:                   # D18
+  k_chunks: 50
+  k_chunks_max: 400
+  top_models: 5
+  reranker: pinecone         # pinecone | local (bge-reranker-v2-m3), see D9
+
+size_words_mb:               # D18: the LLM maps a word to a key, code supplies the number
+  tiny: 100
+  mobile: 100
+  small: 500
+  lightweight: 500
+  medium: 2000
+
+cleaning:                    # D20
+  min_card_chars: 200        # below this a card counts as doc_quality: minimal
+  max_table_rows: 8
+
+adapt:                       # D14
+  reference_gpu_gb: 16       # free Colab T4
+  bytes_per_param_inference: 2
+  bytes_per_param_full_finetune: 16
+  lora_adapter_fraction: 0.01   # assumption: adapter trains ~1% of parameters
+
+graph:                       # D15
+  max_clarifying_questions: 2
+  max_relax_retries: 1

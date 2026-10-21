@@ -1,43 +1,100 @@
-"""Pull model metadata and cards for the 5 in-scope tasks (D5, D6).
+"""Pull model metadata and cards for the 5 tasks (D5, D6), resumable (D21).
 
-Corpus = top ~1,000 models per task by downloads, plus every model in those
-tasks tagged with an Indic language. Verify the counts on day 1.
+Corpus = top ~1,000 models per task by downloads, plus every model in those tasks
+tagged with an Indic language. Every raw API response is written to data/raw/ and
+never fetched twice, so rate limits and crashes only cost time.
+
+Usage:  python -m src.ingest counts     # day-1 check: models per task, vs. the ~5-8k estimate
+        python -m src.ingest fetch      # fetch (or resume fetching) raw metadata + cards
 """
 
 from __future__ import annotations
 
-from src.normalize import INDIC_LANGS
+import json
+import os
+import sys
+import time
+from pathlib import Path
 
-TASKS = (
-    "automatic-speech-recognition",
-    "translation",
-    "text-classification",
-    "token-classification",
-    "sentence-similarity",
-)
-TOP_N = 1000
+import requests
+
+from src.config import CFG
+
+TASKS = tuple(CFG["corpus"]["tasks"])
+INDIC_LANGS = tuple(CFG["corpus"]["indic_langs"])
+TOP_N = CFG["corpus"]["top_n_per_task"]
+RAW_DIR = Path("data/raw")
+HUB = "https://huggingface.co"
 
 
-def candidate_ids(api) -> set[str]:
-    """Union of top-N per task and all Indic-tagged models per task (D6).
+def candidate_ids(api, tasks=TASKS) -> dict[str, set[str]]:
+    """Per task: top-N by downloads union all Indic-tagged models (D6).
 
-    `api` is a huggingface_hub.HfApi.
+    `api` is a huggingface_hub.HfApi. Returns {task: {model ids}}.
     """
-    ids: set[str] = set()
-    for task in TASKS:
-        for m in api.list_models(pipeline_tag=task, sort="downloads", limit=TOP_N):
-            ids.add(m.id)
+    out: dict[str, set[str]] = {}
+    for task in tasks:
+        ids = {m.id for m in api.list_models(pipeline_tag=task, sort="downloads", limit=TOP_N)}
         for lang in INDIC_LANGS:
-            for m in api.list_models(pipeline_tag=task, language=lang):
-                ids.add(m.id)
-    return ids
+            ids |= {m.id for m in api.list_models(pipeline_tag=task, language=lang)}
+        out[task] = ids
+    return out
 
 
-def main() -> None:
-    # TODO day 1: print per-task counts to confirm the ~5-8k estimate, then fetch
-    # model_info(files_metadata=True) and the README card for each id into data/raw/.
-    raise NotImplementedError
+def raw_path(model_id: str, suffix: str) -> Path:
+    return RAW_DIR / (model_id.replace("/", "__") + suffix)
+
+
+def _get(url: str, params: dict | None = None, retries: int = 5) -> requests.Response:
+    headers = {"Authorization": f"Bearer {os.environ['HF_TOKEN']}"} if os.getenv("HF_TOKEN") else {}
+    for attempt in range(retries):
+        resp = requests.get(url, params=params, headers=headers, timeout=30)
+        if resp.status_code == 429 or resp.status_code >= 500:
+            time.sleep(min(2 ** attempt, 60) * (1 + attempt))
+            continue
+        return resp
+    resp.raise_for_status()
+    return resp
+
+
+def fetch_raw(model_id: str) -> bool:
+    """Fetch and cache one model's API response and README. Returns False if it was
+    already cached (nothing is re-requested for a model we already have)."""
+    info_path, card_path = raw_path(model_id, ".json"), raw_path(model_id, ".md")
+    if info_path.exists() and card_path.exists():
+        return False
+    RAW_DIR.mkdir(parents=True, exist_ok=True)
+    if not info_path.exists():
+        resp = _get(f"{HUB}/api/models/{model_id}", params={"blobs": "true", "cardData": "true"})
+        resp.raise_for_status()
+        info_path.write_text(json.dumps(resp.json()))
+    if not card_path.exists():
+        resp = _get(f"{HUB}/{model_id}/raw/main/README.md")
+        card_path.write_text(resp.text if resp.status_code == 200 else "")  # no card -> empty (minimal doc)
+    return True
+
+
+def load_raw(model_id: str) -> tuple[dict, str]:
+    return (json.loads(raw_path(model_id, ".json").read_text()),
+            raw_path(model_id, ".md").read_text())
+
+
+def main(argv: list[str]) -> None:
+    from huggingface_hub import HfApi
+
+    cmd = argv[0] if argv else "counts"
+    per_task = candidate_ids(HfApi())
+    all_ids = set().union(*per_task.values())
+    for task, ids in per_task.items():
+        print(f"{task:32s} {len(ids):6d}")
+    print(f"{'TOTAL (unique)':32s} {len(all_ids):6d}   (D6 estimate: ~5,000-8,000)")
+    if cmd == "fetch":
+        fetched = 0
+        for i, model_id in enumerate(sorted(all_ids), 1):
+            fetched += fetch_raw(model_id)
+            if i % 100 == 0:
+                print(f"  {i}/{len(all_ids)} ({fetched} new)")
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

@@ -20,19 +20,34 @@ cp .env.example .env   # then fill in the keys
 
 ```
 ├── PROJECT.md          # what & how
-├── decisions.md        # why
-├── data/               # raw + normalized metadata (gitignored)
-├── eval/               # queries.jsonl, labels, results
+├── decisions.md        # why (D1-D24)
+├── config.yaml         # embedding model, chunk size, k, size words, loop caps (D21)
+├── data/               # raw/ (cached API responses) + snapshot-<date>/ (gitignored)
+├── eval/               # queries.jsonl (not yet written, see eval/README.md), labels/, baselines/, metrics.py, run_eval.py
 ├── src/
-│   ├── ingest.py       # pull metadata + cards from the Hub
-│   ├── normalize.py    # size, license map, languages
-│   ├── index.py        # chunk, embed, upsert to Pinecone
-│   ├── llm.py          # extract_constraints(), provider switch, cache
-│   ├── retrieve.py     # Pinecone metadata filters (D12) + search
-│   └── verify.py       # pass / fail / unknown
+│   ├── ingest.py       # resumable fetch of Hub metadata + cards (D21)
+│   ├── clean.py        # card cleaning, doc_quality, metadata fallback chunk (D20)
+│   ├── normalize.py    # size rule, license rights, languages, multilingual map, lineage fields
+│   ├── index.py        # chunking, local embeddings, Pinecone upsert
+│   ├── llm.py          # extract_constraints(), explain(), provider switch, cache, D17 delimiters
+│   ├── retrieve.py     # Pinecone filters (D12), chunk -> model grouping (D18)
+│   ├── verify.py       # pass / fail / unknown, size-word table
+│   ├── guide.py        # intent text, clarifying questions, Try-it templates, tooltips (D13)
+│   ├── adapt.py        # rights notes, lineage, memory estimate, reported metrics (D14, D24)
+│   └── graph.py        # LangGraph pipeline with loop caps (D15)
 ├── tests/
-└── app.py              # UI (Streamlit or Gradio, still open)
+└── app.py              # Streamlit UI (graph state in st.session_state)
 ```
+
+## Status
+
+Built and unit-tested offline: license/rights map, size rule, `verify`, Pinecone filters,
+grouping, cleaning, chunking, guidance, build-on estimates, prompt-injection delimiters,
+the LangGraph pipeline (with stub dependencies), eval metrics, and the UI renderer.
+
+Not yet built or never run against live services: Hub ingestion (`python -m src.ingest counts`
+is the day-1 check), the index build `main()`, `get_graph()` wiring in `app.py`
+(embedder, Pinecone, reranker), check-a-model lookup, baselines, and `eval/queries.jsonl`.
 
 ## Tests
 

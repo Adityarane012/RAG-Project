@@ -5,4 +5,6 @@ groq
 requests
 python-dotenv
 pytest
-# UI is still open (Streamlit or Gradio); add the chosen one here.
+langgraph
+pyyaml
+streamlit
