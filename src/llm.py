@@ -272,6 +272,10 @@ _INJECTION = re.compile(r"\bignore\b|disregard|previous instructions|system prom
 _SIZE = re.compile(r"(\d+(?:[.,]\d+)?)\s*(gb|gib|mb|mib)\b", re.I)
 _RIGHTS_COMMERCIAL = re.compile(r"\bcommercial(?:ly)?\b|\bsell\b|\bpaid product\b|\bin (?:my |our )?product\b", re.I)
 _RIGHTS_MODIFY = re.compile(r"fine-?tun|\bmodif(?:y|iable|ied)\b|\bredistribut|\bbuild on\b|\badapt\b", re.I)
+# "Apache-2.0 license", "MIT licensed", "Apache or MIT licensed", "permissive license", "licensed under BSD".
+# There is no licence-id constraint; a permissive licence means the model may be used commercially and modified,
+# so that is what we search for (an approximation, shown to the user in "We understood").
+_PERMISSIVE = re.compile(r"\b(?:apache|mit|bsd|permissive(?:ly)?)\b\W+(?:\S+\W+){0,3}?licen[sc]|licen[sc]ed?\W+(?:under\W+)?(?:apache|mit|bsd)\b", re.I)
 _TASK_WORDS = {
     "translation": re.compile(r"translat", re.I),
     "automatic-speech-recognition": re.compile(r"speech|transcri|\basr\b|\bvoice\b|\baudio\b", re.I),
@@ -304,6 +308,9 @@ def backstop_constraints(query: str, c: dict) -> dict:
         out["commercial"] = True
     if out["modifiable"] is None and _RIGHTS_MODIFY.search(query):
         out["modifiable"] = True
+    if _PERMISSIVE.search(query):
+        out["commercial"] = out["commercial"] or True
+        out["modifiable"] = out["modifiable"] or True
     if out["task"] is None:
         hits = [t for t, rx in _TASK_WORDS.items() if rx.search(query)]
         if len(hits) == 1:                       # two or more categories: ambiguous, so ask the user instead

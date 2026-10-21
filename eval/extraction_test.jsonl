@@ -18,3 +18,6 @@
 {"id": "x18", "query": "sentence similarity for Odia", "expect": {"task": "sentence-similarity", "langs": ["or"]}}
 {"id": "x19", "query": "Is there a model that can transcribe English meetings?", "expect": {"task": "automatic-speech-recognition", "langs": ["en"]}}
 {"id": "x20", "query": "small model I can modify and sell for Kannada spam detection", "expect": {"task": "text-classification", "langs": ["kn"], "size_word": "small", "commercial": true, "modifiable": true}}
+{"id": "x21", "query": "BSD licensed Punjabi speech recognition", "expect": {"task": "automatic-speech-recognition", "langs": ["pa"], "commercial": true, "modifiable": true}}
+{"id": "x22", "query": "Maithili sentiment classifier", "expect": {"task": "text-classification", "langs": ["mai"]}}
+{"id": "x23", "query": "text classifier for Kannada under a permissive licence", "expect": {"task": "text-classification", "langs": ["kn"], "commercial": true, "modifiable": true}}

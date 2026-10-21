@@ -34,7 +34,7 @@ def test_gold_file_is_well_formed_and_disjoint_from_the_evaluation_queries():
     from pathlib import Path
 
     cases = load_cases(Path(__file__).resolve().parent.parent / "eval" / "extraction_test.jsonl")
-    assert len(cases) == 20 and len({c["id"] for c in cases}) == 20
+    assert len(cases) == 23 and len({c["id"] for c in cases}) == 23
     ev = {json.loads(line)["query"].lower() for line in
           (Path(__file__).resolve().parent.parent / "eval" / "queries.jsonl").read_text(encoding="utf-8").splitlines()}
     assert not [c for c in cases if c["query"].lower() in ev]

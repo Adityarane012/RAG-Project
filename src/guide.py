@@ -30,11 +30,15 @@ LANG_NAMES = {
     "en": "English", "or": "Odia", "as": "Assamese", "fr": "French", "de": "German", "es": "Spanish",
     "ar": "Arabic", "zh": "Chinese", "ja": "Japanese", "ru": "Russian", "pt": "Portuguese",
     "ko": "Korean", "it": "Italian",
+    # Indic and nearby languages that appear as tags in the corpus (data-quality report, 2026-10-21)
+    "sat": "Santali", "mai": "Maithili", "bho": "Bhojpuri", "mni": "Manipuri", "brx": "Bodo", "doi": "Dogri",
+    "kok": "Konkani", "ne": "Nepali", "sd": "Sindhi", "si": "Sinhala", "sa": "Sanskrit", "ks": "Kashmiri",
+    "hne": "Chhattisgarhi", "awa": "Awadhi", "mag": "Magahi",
 }
 # Words people actually type for a language -> code (used by llm.backstop_constraints).
 LANG_BY_NAME = {name.lower(): code for code, name in LANG_NAMES.items()}
 LANG_BY_NAME.update({"bangla": "bn", "panjabi": "pa", "oriya": "or", "हिंदी": "hi", "हिन्दी": "hi", "मराठी": "mr",
-                     "বাংলা": "bn", "தமிழ்": "ta", "తెలుగు": "te"})
+                     "meitei": "mni", "বাংলা": "bn", "தமிழ்": "ta", "తెలుగు": "te"})
 
 # D13: 4-5 example queries on the start screen, one per task.
 EXAMPLE_QUERIES = [
