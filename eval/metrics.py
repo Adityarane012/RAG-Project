@@ -15,7 +15,7 @@ from pathlib import Path
 from src.verify import FAIL, UNKNOWN, overall
 
 QUERY_KINDS = {"normal", "impossible", "vague"}
-QUERY_SOURCES = {"teammate", "classmate"}
+QUERY_SOURCES = {"teammate", "classmate", "author"}   # "author": a single person wrote and built it (disclosed in the write-up)
 
 
 def _rates(tables_per_query: list[list[dict]], k: int) -> tuple[int, int, int]:

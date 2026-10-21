@@ -37,7 +37,8 @@ def candidate_ids(api, tasks=TASKS) -> dict[str, set[str]]:
     for task in tasks:
         ids = {m.id for m in api.list_models(pipeline_tag=task, sort="downloads", limit=TOP_N)}
         for lang in INDIC_LANGS:
-            ids |= {m.id for m in api.list_models(pipeline_tag=task, language=lang)}
+            # language codes are plain Hub tags, so they go through `filter` (list_models has no `language` argument)
+            ids |= {m.id for m in api.list_models(pipeline_tag=task, filter=lang)}
         out[task] = ids
     return out
 

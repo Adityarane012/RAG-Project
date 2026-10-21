@@ -115,6 +115,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 
 - **Ablation:** see D19 for the baselines; all run on the same query set.
 - **Design justification:** at least one tuning choice is backed by a number, e.g. relevance@5 with section chunking vs. fixed-size chunking.
+- **Single-author deviation (2026-10-21):** the project is now one person, so the D11 independence rule cannot hold: the same author wrote the queries and builds the system, and there are no classmate queries. Mitigations: the 100 queries (75 normal, 15 vague, 10 impossible; `source: "author"`) were committed **before any retrieval experiment** (git history is the evidence) and were written from user needs, not from system output; they are frozen; every query later used to debug is listed as seen. This is stated as a limitation in the write-up. Relevance labelling uses one labeller plus a repeat pass for test-retest agreement (see the evaluation plan).
 - **Update 2026-10-21:** (a) *Abstention* means every candidate fails with a known ❌. Impossible test queries must therefore be **verifiably impossible**: every model in the snapshot gets a ❌ (`eval.metrics.verifiably_impossible`), otherwise an abstention miss would measure missing data. (b) Relevance is labelled 0/1/2 by two labellers who do not build the pipeline, with Cohen's kappa reported (quadratic-weighted for the ordinal grades, plus unweighted). (c) Faithfulness is scored by hand on ~30 answers; RAGAS is an optional cross-check only.
 
 ## D12. Missing-value handling in filters

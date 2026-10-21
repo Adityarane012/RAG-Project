@@ -39,6 +39,11 @@ Rules:
   queries; the first group makes violation rate trivially zero and must be reported
   separately (E-MET-3).
 
+**Single-author note (2026-10-21).** The set was written by the person who also builds the system,
+before any retrieval experiment, and committed first (gate G1). It has 100 queries (75 normal, 15
+vague, 10 impossible), not ~120: there are no classmate queries. This is a bias the write-up must
+state; the freeze and the "seen" list are the mitigations, not a cure.
+
 ## 3. Metrics
 
 All computed by re-verifying each system's top-5 with `verify.verify` against the query's

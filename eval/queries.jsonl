@@ -1,0 +1,100 @@
+{"id": "q001", "query": "Hindi speech recognition model small enough to run on a laptop", "kind": "normal", "source": "author"}
+{"id": "q002", "query": "I need a Marathi ASR model I can use commercially", "kind": "normal", "source": "author"}
+{"id": "q003", "query": "Tamil speech-to-text under 500 MB that handles phone call audio", "kind": "normal", "source": "author"}
+{"id": "q004", "query": "Bengali automatic speech recognition, Apache or MIT licensed", "kind": "normal", "source": "author"}
+{"id": "q005", "query": "Telugu transcription model that I can fine-tune and sell", "kind": "normal", "source": "author"}
+{"id": "q006", "query": "हिंदी के लिए छोटा स्पीच रिकग्निशन मॉडल जो व्यावसायिक उपयोग के लिए ठीक हो", "kind": "normal", "source": "author"}
+{"id": "q007", "query": "Speech to text for Gujarati, commercial use allowed, under 1 GB", "kind": "normal", "source": "author"}
+{"id": "q008", "query": "Kannada speech recognition trained on noisy real-world recordings", "kind": "normal", "source": "author"}
+{"id": "q009", "query": "Malayalam ASR model, medium size, usable in a paid product", "kind": "normal", "source": "author"}
+{"id": "q010", "query": "Punjabi voice transcription, tiny model please", "kind": "normal", "source": "author"}
+{"id": "q011", "query": "English speech recognition, small, commercial license, good with accents", "kind": "normal", "source": "author"}
+{"id": "q012", "query": "Multilingual speech recognition that covers Hindi and Tamil", "kind": "normal", "source": "author"}
+{"id": "q013", "query": "Hindi-English code-mixed speech recognition", "kind": "normal", "source": "author"}
+{"id": "q014", "query": "Arabic speech recognition model that allows modification", "kind": "normal", "source": "author"}
+{"id": "q015", "query": "Speech recognition for lectures in Hindi, I want to fine-tune it later", "kind": "normal", "source": "author"}
+{"id": "q016", "query": "Hindi to English translation model, commercial use", "kind": "normal", "source": "author"}
+{"id": "q017", "query": "English to Hindi machine translation under 500 MB", "kind": "normal", "source": "author"}
+{"id": "q018", "query": "Commercial Hindi to Marathi translation", "kind": "normal", "source": "author"}
+{"id": "q019", "query": "मराठी ते इंग्रजी भाषांतर मॉडेल, व्यावसायिक वापरासाठी", "kind": "normal", "source": "author"}
+{"id": "q020", "query": "Translate Tamil to English, small model", "kind": "normal", "source": "author"}
+{"id": "q021", "query": "Bengali to English translation with an Apache-2.0 license", "kind": "normal", "source": "author"}
+{"id": "q022", "query": "English to Telugu translation, lightweight, commercial", "kind": "normal", "source": "author"}
+{"id": "q023", "query": "Urdu to English machine translation model", "kind": "normal", "source": "author"}
+{"id": "q024", "query": "Multilingual translation model covering Indian languages, I can use it in a product", "kind": "normal", "source": "author"}
+{"id": "q025", "query": "English to Gujarati translation under 1 GB", "kind": "normal", "source": "author"}
+{"id": "q026", "query": "Kannada to English translation model that I can modify and redistribute", "kind": "normal", "source": "author"}
+{"id": "q027", "query": "English to French translation, tiny", "kind": "normal", "source": "author"}
+{"id": "q028", "query": "Translation from German to English, commercial friendly license", "kind": "normal", "source": "author"}
+{"id": "q029", "query": "Malayalam to English translation for news articles", "kind": "normal", "source": "author"}
+{"id": "q030", "query": "English to Punjabi translator, not too big", "kind": "normal", "source": "author"}
+{"id": "q031", "query": "Small sentiment model for Hindi I can use in a commercial app", "kind": "normal", "source": "author"}
+{"id": "q032", "query": "मराठी भावना विश्लेषण मॉडेल, ३०० MB पेक्षा लहान", "kind": "normal", "source": "author"}
+{"id": "q033", "query": "Sentiment classifier for noisy Tamil social media text", "kind": "normal", "source": "author"}
+{"id": "q034", "query": "Telugu news topic classification", "kind": "normal", "source": "author"}
+{"id": "q035", "query": "Bengali hate speech detection model I can use commercially", "kind": "normal", "source": "author"}
+{"id": "q036", "query": "Spam detection for English SMS messages, tiny", "kind": "normal", "source": "author"}
+{"id": "q037", "query": "Emotion classification for Hindi tweets", "kind": "normal", "source": "author"}
+{"id": "q038", "query": "Urdu text classification, medium size, permissive license", "kind": "normal", "source": "author"}
+{"id": "q039", "query": "Sentiment analysis for Hinglish (code-mixed Hindi and English)", "kind": "normal", "source": "author"}
+{"id": "q040", "query": "Gujarati text classifier I can fine-tune and sell", "kind": "normal", "source": "author"}
+{"id": "q041", "query": "Kannada sentiment analysis model", "kind": "normal", "source": "author"}
+{"id": "q042", "query": "Toxic comment classifier for English, lightweight, commercial use", "kind": "normal", "source": "author"}
+{"id": "q043", "query": "Malayalam news category classifier under 500 MB", "kind": "normal", "source": "author"}
+{"id": "q044", "query": "Zero-shot text classification that works for Hindi", "kind": "normal", "source": "author"}
+{"id": "q045", "query": "Language identification model for Indian languages", "kind": "normal", "source": "author"}
+{"id": "q046", "query": "Marathi NER model under 500 MB, usable commercially, works well on noisy social-media text", "kind": "normal", "source": "author"}
+{"id": "q047", "query": "हिंदी में नाम पहचानने वाला छोटा मॉडल (NER)", "kind": "normal", "source": "author"}
+{"id": "q048", "query": "Tamil NER model I can fine-tune", "kind": "normal", "source": "author"}
+{"id": "q049", "query": "Bengali part-of-speech tagger", "kind": "normal", "source": "author"}
+{"id": "q050", "query": "Telugu named entity recognition with a permissive license", "kind": "normal", "source": "author"}
+{"id": "q051", "query": "English NER for legal documents", "kind": "normal", "source": "author"}
+{"id": "q052", "query": "Gujarati NER, commercial use", "kind": "normal", "source": "author"}
+{"id": "q053", "query": "Kannada token classification model under 1 GB", "kind": "normal", "source": "author"}
+{"id": "q054", "query": "Malayalam named entity recognition model", "kind": "normal", "source": "author"}
+{"id": "q055", "query": "Urdu NER, lightweight", "kind": "normal", "source": "author"}
+{"id": "q056", "query": "Punjabi NER model that allows modification", "kind": "normal", "source": "author"}
+{"id": "q057", "query": "Multilingual NER covering Indian languages, commercial", "kind": "normal", "source": "author"}
+{"id": "q058", "query": "Hindi POS tagging model, small and commercial friendly", "kind": "normal", "source": "author"}
+{"id": "q059", "query": "Medical entity extraction in English, commercial license", "kind": "normal", "source": "author"}
+{"id": "q060", "query": "Find names of people and places in Marathi news text", "kind": "normal", "source": "author"}
+{"id": "q061", "query": "Hindi ke liye sentence embedding model chahiye jo commercial use mein allowed ho", "kind": "normal", "source": "author"}
+{"id": "q062", "query": "Multilingual sentence embeddings that work for Marathi and English", "kind": "normal", "source": "author"}
+{"id": "q063", "query": "Small embedding model for Bengali, under 500 MB", "kind": "normal", "source": "author"}
+{"id": "q064", "query": "Tamil sentence similarity model I can fine-tune", "kind": "normal", "source": "author"}
+{"id": "q065", "query": "Paraphrase detection for Telugu", "kind": "normal", "source": "author"}
+{"id": "q066", "query": "Sentence transformers for Urdu semantic search, permissive license", "kind": "normal", "source": "author"}
+{"id": "q067", "query": "Cross-lingual sentence embeddings for Hindi-English retrieval", "kind": "normal", "source": "author"}
+{"id": "q068", "query": "Embedding model for Gujarati documents, lightweight", "kind": "normal", "source": "author"}
+{"id": "q069", "query": "Kannada semantic similarity model, medium size", "kind": "normal", "source": "author"}
+{"id": "q070", "query": "Malayalam sentence embeddings with a commercial license", "kind": "normal", "source": "author"}
+{"id": "q071", "query": "English sentence similarity model, tiny, for a mobile search feature", "kind": "normal", "source": "author"}
+{"id": "q072", "query": "Punjabi sentence embeddings I can modify and redistribute", "kind": "normal", "source": "author"}
+{"id": "q073", "query": "Embeddings for clustering Hindi short texts like tweets", "kind": "normal", "source": "author"}
+{"id": "q074", "query": "Semantic search embeddings for legal text in English, commercial", "kind": "normal", "source": "author"}
+{"id": "q075", "query": "A multilingual embedding model I can use commercially", "kind": "normal", "source": "author"}
+{"id": "q076", "query": "I want a Hindi model", "kind": "vague", "source": "author"}
+{"id": "q077", "query": "Something for Tamil", "kind": "vague", "source": "author"}
+{"id": "q078", "query": "Do you have a model for Marathi that I can use at work?", "kind": "vague", "source": "author"}
+{"id": "q079", "query": "A good model for Bengali text", "kind": "vague", "source": "author"}
+{"id": "q080", "query": "I need an AI model for Indian languages", "kind": "vague", "source": "author"}
+{"id": "q081", "query": "Lightweight model please", "kind": "vague", "source": "author"}
+{"id": "q082", "query": "Model for my college project on Telugu", "kind": "vague", "source": "author"}
+{"id": "q083", "query": "What can I use for Urdu?", "kind": "vague", "source": "author"}
+{"id": "q084", "query": "Best Gujarati model", "kind": "vague", "source": "author"}
+{"id": "q085", "query": "I want to build something with Kannada, where do I start", "kind": "vague", "source": "author"}
+{"id": "q086", "query": "Need a model that I can sell commercially", "kind": "vague", "source": "author"}
+{"id": "q087", "query": "Small model for Malayalam", "kind": "vague", "source": "author"}
+{"id": "q088", "query": "Punjabi model that I can fine-tune", "kind": "vague", "source": "author"}
+{"id": "q089", "query": "Something that understands Hindi and English mixed", "kind": "vague", "source": "author"}
+{"id": "q090", "query": "Help me find a model", "kind": "vague", "source": "author"}
+{"id": "q091", "query": "Marathi speech recognition under 10 MB", "kind": "impossible", "source": "author"}
+{"id": "q092", "query": "Telugu NER model under 5 MB that I can use commercially", "kind": "impossible", "source": "author"}
+{"id": "q093", "query": "Hindi to Marathi translation under 20 MB with an Apache-2.0 license", "kind": "impossible", "source": "author"}
+{"id": "q094", "query": "Urdu sentence embedding model under 2 MB", "kind": "impossible", "source": "author"}
+{"id": "q095", "query": "Gujarati sentiment model under 3 MB that I can sell", "kind": "impossible", "source": "author"}
+{"id": "q096", "query": "Punjabi speech recognition under 15 MB, commercial use allowed", "kind": "impossible", "source": "author"}
+{"id": "q097", "query": "Kannada NER under 1 MB", "kind": "impossible", "source": "author"}
+{"id": "q098", "query": "Bengali to English translation under 10 MB I can modify and sell", "kind": "impossible", "source": "author"}
+{"id": "q099", "query": "Santali speech recognition model", "kind": "impossible", "source": "author"}
+{"id": "q100", "query": "Bodo named entity recognition model", "kind": "impossible", "source": "author"}

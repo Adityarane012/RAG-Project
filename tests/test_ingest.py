@@ -72,3 +72,25 @@ def test_devanagari_round_trips_regardless_of_platform_encoding(raw_dir, monkeyp
     ingest.fetch_raw("a/b")
     assert ingest.raw_path("a/b", ".md").read_bytes() == card.encode("utf-8")
     assert ingest.load_raw("a/b")[1] == card
+
+
+def test_candidate_listing_only_uses_arguments_the_real_hub_library_accepts():
+    """A live run once failed on `list_models(language=...)`, which does not exist. Calls are checked
+    against the installed library's real signature so API drift is caught offline."""
+    import inspect
+
+    from huggingface_hub import HfApi
+
+    allowed = set(inspect.signature(HfApi.list_models).parameters)
+    seen = []
+
+    class Rec:
+        def list_models(self, **kw):
+            seen.append(kw)
+            assert set(kw) <= allowed, f"not accepted by huggingface_hub: {set(kw) - allowed}"
+            return []
+
+    ingest.candidate_ids(Rec(), tasks=("translation",))
+    assert any(kw.get("filter") in ingest.INDIC_LANGS for kw in seen)            # Indic via tags
+    assert any(kw.get("sort") == "downloads" and kw.get("limit") == ingest.TOP_N for kw in seen)   # top-N
+    assert all(kw["pipeline_tag"] == "translation" for kw in seen)
