@@ -38,3 +38,35 @@ def test_sparse_card_gets_one_fallback_chunk_and_minimal_flag():
 def test_no_null_metadata_values():
     vecs = build_vectors({"id": "x/y", "siblings": []}, "", fake_embed)  # no pipeline_tag
     assert all(v is not None for v in vecs[0]["metadata"].values())
+
+
+def test_boilerplate_and_empty_sections_are_dropped_and_chunks_capped():
+    from src.index import select_chunks
+
+    chunks = [("overview", "A Marathi NER model trained on news and social media posts. " * 3),
+              ("training hyperparameters", "learning_rate: 2e-05 " * 20),
+              ("model description", "More information needed"),
+              ("citation", "@article{x, title={y}} " * 10),
+              ("intended uses & limitations", "Use it for named entity recognition in Marathi text. " * 3),
+              ("training and evaluation data", "The model was trained on the L3Cube MahaNER corpus. " * 3),
+              ("framework versions", "Transformers 4.30 " * 10),
+              ("usage", "Pass a sentence to the pipeline and read the predicted entities. " * 3),
+              ("extra", "Some other informative paragraph about evaluation results. " * 3)]
+    kept = select_chunks(chunks, max_n=4)
+    assert [s for s, _ in kept] == ["overview", "intended uses & limitations", "training and evaluation data", "usage"]
+    assert len(select_chunks(chunks, max_n=2)) == 2                       # cap, in document order
+    assert select_chunks([("citation", "x" * 200)]) == [] and select_chunks([]) == []
+
+
+def test_every_vector_of_a_card_with_only_boilerplate_falls_back_to_the_metadata_chunk():
+    card = "# Training hyperparameters\n" + "lr 1e-5 and so on and so forth. " * 30 + "\n# Framework versions\n" + "Transformers 4.3 " * 30
+    vecs = build_vectors(RAW, card, fake_embed)
+    assert len(vecs) == 1 and vecs[0]["metadata"]["section"] == "metadata"
+
+
+def test_a_card_with_many_good_sections_yields_at_most_the_configured_number_of_chunks():
+    from src.config import CFG
+
+    card = "".join(f"# Part {i}\n" + f"Informative paragraph number {i} about this model and what it does well. " * 8 + "\n" for i in range(12))
+    vecs = build_vectors(RAW, card, fake_embed)
+    assert len(vecs) == CFG["embedding"]["max_chunks_per_model"]

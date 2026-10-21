@@ -9,18 +9,19 @@ snapshot_url: null           # the GitHub Release asset
 # Final only after the 20-query extraction test (docs/testing-strategy.md section 6).
 llm:
   groq_model: openai/gpt-oss-20b
-  groq_fallback_model: llama-3.1-8b-instant   # tried once on a rate-limit error
+  groq_fallback_model: openai/gpt-oss-120b    # tried once on a rate-limit error (own rate-limit bucket; llama-3.1-8b-instant is not on this account)
+  reasoning_effort: low                       # gpt-oss only. Measured 2026-10-21: ~163 completion tokens vs ~820 at the default, same extraction results
   ollama_model: qwen2.5:7b-instruct           # ~4.7 GB at Q4, needs ~8 GB RAM
   ollama_model_small: qwen2.5:3b              # for 8 GB laptops (set OLLAMA_MODEL to use it)
   ollama_num_ctx: 8192                        # Ollama's default context is small and silently truncates long prompts
   # Per-minute token budgets of the pinned models on the free tier. Calls wait until the last 60 s
   # have room. gpt-oss-20b: Groq docs; llama-3.1-8b-instant: third-party table, confirm in the console.
   # A model not listed here is not throttled. 0 also disables throttling.
-  tpm:
+  tpm:                                        # confirmed from x-ratelimit-limit-tokens on 2026-10-21
     openai/gpt-oss-20b: 8000
-    llama-3.1-8b-instant: 6000
-  output_reserve_tokens: 1500                 # assumed reply size (incl. reasoning) counted against the budget
-  extract_output_reserve_tokens: 600          # extraction replies are small JSON; reserving less lets an explain call follow in the same minute
+    openai/gpt-oss-120b: 8000
+  output_reserve_tokens: 1000                 # assumed reply size (incl. reasoning) counted against the budget; each call is then corrected to the real usage
+  extract_output_reserve_tokens: 300          # extraction replies are small JSON (measured ~160 tokens at low effort)
   max_wait_seconds: 30                        # wait this long on a 'retry-after' hint, else go to the fallback model
 
 # What goes into the explanation prompt (D17). Tokens are estimated with src/tokens.py.
@@ -36,6 +37,28 @@ embedding:
   model: intfloat/multilingual-e5-large
   dim: 1024
   max_section_tokens: 450    # model limit is ~507
+  max_chunks_per_model: 4    # measured 2026-10-21: uncapped, the corpus is ~8.7 chunks/model (~85k chunks, ~6.5M tokens)
+  # Sections that add tokens but no retrieval value (auto-generated Trainer cards, citations, boilerplate).
+  # A chunk is dropped when its heading CONTAINS one of these (case-insensitive).
+  drop_sections:
+    - training hyperparameters
+    - training procedure
+    - training results
+    - framework versions
+    - citation
+    - bibtex
+    - acknowledg
+    - contact
+    - authors
+    - environmental impact
+    - compute infrastructure
+    - hardware
+    - software
+    - glossary
+    - table of contents
+    - model card authors
+    - model card contact
+    - more information
 
 corpus:                      # D5, D6
   tasks:

@@ -58,6 +58,9 @@ def _cache_path(provider: str, model: str, system: str, prompt: str) -> Path:
     return CACHE_DIR / f"{key}.json"
 
 
+_last_usage: dict[str, int] = {}   # model -> total tokens of the most recent call (set by the provider)
+
+
 def _require_env(name: str) -> str:
     value = os.environ.get(name)
     if not value:
@@ -71,10 +74,17 @@ def _call_groq(prompt: str, system: str, model: str) -> str:
     client = Groq(api_key=_require_env("GROQ_API_KEY"))
     messages = ([{"role": "system", "content": system}] if system else []) + [
         {"role": "user", "content": prompt}]
+    kwargs = {}
+    effort = CFG["llm"].get("reasoning_effort")
+    if effort and model.startswith("openai/gpt-oss"):   # reasoning models: hidden thinking tokens dominate the cost
+        kwargs["reasoning_effort"] = effort
     resp = client.chat.completions.create(
         model=model, messages=messages, temperature=0,
-        response_format={"type": "json_object"},
+        response_format={"type": "json_object"}, **kwargs,
     )
+    usage = getattr(resp, "usage", None)
+    if usage is not None and getattr(usage, "total_tokens", None):
+        _last_usage[model] = usage.total_tokens        # lets the throttle replace its estimate with the truth
     return resp.choices[0].message.content
 
 
@@ -122,7 +132,8 @@ class TokenBudget:
 
     def __init__(self, tpm: int, clock=time.monotonic, sleep=time.sleep):
         self.tpm, self._clock, self._sleep = tpm, clock, sleep
-        self._events: deque[tuple[float, int]] = deque()
+        self._events: deque[list] = deque()          # [time, tokens]
+        self.last: list | None = None
 
     def acquire(self, tokens: int) -> float:
         """Reserve `tokens`; returns the seconds waited. A request bigger than the whole
@@ -134,12 +145,18 @@ class TokenBudget:
             now = self._clock()
             while self._events and now - self._events[0][0] >= 60:
                 self._events.popleft()
-            if sum(t for _, t in self._events) + tokens <= self.tpm:
-                self._events.append((now, tokens))
+            if sum(e[1] for e in self._events) + tokens <= self.tpm:
+                self.last = [now, tokens]
+                self._events.append(self.last)
                 return waited
             pause = max(0.05, self._events[0][0] + 60 - now)
             self._sleep(pause)
             waited += pause
+
+    def settle(self, actual: int) -> None:
+        """Replace the estimate of the most recent `acquire` with the tokens the provider really counted."""
+        if self.last is not None and self.tpm > 0:
+            self.last[1] = min(int(actual), self.tpm)
 
 
 _sleep = time.sleep
@@ -173,8 +190,13 @@ def complete(prompt: str, system: str = "", reserve: int | None = None) -> str:
     estimate = approx_tokens(system) + approx_tokens(prompt) + reserve
 
     def attempt(m: str) -> str:
-        _budget_for(m).acquire(estimate)
-        return call(prompt, system, m)
+        budget = _budget_for(m)
+        budget.acquire(estimate)
+        _last_usage.pop(m, None)
+        text = call(prompt, system, m)
+        if m in _last_usage:                       # the provider told us what it really counted
+            budget.settle(_last_usage.pop(m))
+        return text
 
     used, error = model, None
     try:
@@ -246,7 +268,53 @@ def clean_constraints(data: dict, query: str) -> dict:
     }
 
 
-def extract_constraints(query: str) -> dict:
+_INJECTION = re.compile(r"\bignore\b|disregard|previous instructions|system prompt|\binstructions?\b|\bset\b.{0,40}\bto\b\s+(true|false|null)", re.I)
+_SIZE = re.compile(r"(\d+(?:[.,]\d+)?)\s*(gb|gib|mb|mib)\b", re.I)
+_RIGHTS_COMMERCIAL = re.compile(r"\bcommercial(?:ly)?\b|\bsell\b|\bpaid product\b|\bin (?:my |our )?product\b", re.I)
+_RIGHTS_MODIFY = re.compile(r"fine-?tun|\bmodif(?:y|iable|ied)\b|\bredistribut|\bbuild on\b|\badapt\b", re.I)
+_TASK_WORDS = {
+    "translation": re.compile(r"translat", re.I),
+    "automatic-speech-recognition": re.compile(r"speech|transcri|\basr\b|\bvoice\b|\baudio\b", re.I),
+    "token-classification": re.compile(r"\bner\b|named[- ]entit|entity|entities|part[- ]of[- ]speech|\bpos\b|find names", re.I),
+    "text-classification": re.compile(r"sentiment|classif|\bspam\b|toxic|emotion|hate speech|topic", re.I),
+    "sentence-similarity": re.compile(r"embedding|semantic search|sentence similarity|paraphrase|\bsimilarity\b", re.I),
+}
+
+
+def backstop_constraints(query: str, c: dict) -> dict:
+    """Fill in ONLY what the LLM left empty and the request plainly states (D2/D18: facts come from
+    code, parsed from the user's own words). It never overrides the LLM and never runs on
+    instruction-like queries, so a request to "set commercial to false" cannot trick it into a value.
+    Applied to the already-validated constraints; returns a new dict."""
+    from src.guide import LANG_BY_NAME
+
+    out = dict(c)
+    if _INJECTION.search(query):
+        return out
+    if out["max_size_mb"] is None:
+        m = _SIZE.search(query)
+        if m:
+            n = float(m.group(1).replace(",", "."))
+            out["max_size_mb"] = n * 1000 if m.group(2).lower().startswith("g") else n     # 1 GB = 1000 MB
+    if out["max_size_mb"] is None and out["size_word"] is None:
+        found = [w for w in SIZE_WORDS_MB if re.search(rf"\b{w}\b", query, re.I)]
+        if len(found) == 1:
+            out["size_word"] = found[0]
+    if out["commercial"] is None and _RIGHTS_COMMERCIAL.search(query):
+        out["commercial"] = True
+    if out["modifiable"] is None and _RIGHTS_MODIFY.search(query):
+        out["modifiable"] = True
+    if out["task"] is None:
+        hits = [t for t, rx in _TASK_WORDS.items() if rx.search(query)]
+        if len(hits) == 1:                       # two or more categories: ambiguous, so ask the user instead
+            out["task"] = hits[0]
+    words = [w.strip(".,;:!?()\"'") .lower() for w in query.split()]
+    mentioned = [LANG_BY_NAME[w] for w in words if w in LANG_BY_NAME]
+    out["langs"] = out["langs"] + [x for x in dict.fromkeys(mentioned) if x not in out["langs"]]
+    return out
+
+
+def extract_constraints(query: str, backstop: bool = True) -> dict:
     """Natural-language request -> constraints dict. Size words stay words here; code
     turns them into numbers (verify.resolve_max_size_mb)."""
     prompt = EXTRACT_PROMPT.format(
@@ -254,7 +322,8 @@ def extract_constraints(query: str) -> dict:
         size_words=", ".join(f'"{w}"' for w in SIZE_WORDS_MB),
         query=query,
     )
-    return clean_constraints(_parse_json(complete(prompt, reserve=CFG["llm"]["extract_output_reserve_tokens"])), query)
+    cleaned = clean_constraints(_parse_json(complete(prompt, reserve=CFG["llm"]["extract_output_reserve_tokens"])), query)
+    return backstop_constraints(query, cleaned) if backstop else cleaned
 
 
 # --- explanations over untrusted card text (D17) -----------------------------------

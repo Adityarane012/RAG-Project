@@ -73,3 +73,19 @@ def test_multilingual_and_minimal_doc_notes_never_change_results():
 def test_ranking_puts_unknowns_below_passes_and_fails_last():
     results = [verify(meta(commercial="no"), C), verify(meta(commercial="unknown"), C), verify(meta(), C)]
     assert [overall(r) for r in sorted(results, key=rank_key)] == [PASS, UNKNOWN, FAIL]
+
+
+def test_missing_task_metadata_is_unknown_not_a_pass_or_fail():
+    m = meta()
+    del m["task"]
+    assert verify(m, {"task": "translation"})["task"] == UNKNOWN
+
+
+def test_a_zero_size_limit_fails_everything_with_a_known_size():
+    assert verify(meta(size_mb=0.5), {"max_size_mb": 0})["size"] == FAIL
+
+
+def test_equal_scores_keep_the_input_order():
+    results = [verify(meta(), C), verify(meta(), C)]
+    tagged = sorted(zip(["first", "second"], results), key=lambda t: rank_key(t[1]))
+    assert [t[0] for t in tagged] == ["first", "second"]

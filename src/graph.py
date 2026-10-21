@@ -24,6 +24,7 @@ from langgraph.graph import END, START, StateGraph
 
 from src.adapt import model_report
 from src.config import CFG
+from src.llm import clean_constraints
 from src.guide import clarifying_question, describe_intent, relaxation_offer, try_it_snippet
 from src.retrieve import fetch_chunks, group_by_model
 from src.verify import FAIL, PASS, notes, overall, rank_key, verify
@@ -86,8 +87,9 @@ def route_after_verify(state: State) -> str:
 
 def build_graph(deps: Deps):
     def extract(state: State) -> State:
-        constraints = deps.extract(state["query"])
-        constraints.update(state.get("overrides") or {})  # key presence, so None can clear
+        # User edits go through the same validator as the LLM's output: an override is untrusted input too
+        # (a bad task or size would otherwise make every model fail silently). Key presence counts, so None clears.
+        constraints = clean_constraints({**deps.extract(state["query"]), **(state.get("overrides") or {})}, state["query"])
         return {"constraints": constraints, "intent": describe_intent(constraints)}
 
     def clarify(state: State) -> State:

@@ -150,3 +150,73 @@ def test_pinned_budgets_match_the_documented_free_tier():
     assert load_config()["llm"]["tpm"]["openai/gpt-oss-20b"] == 8000
     cfg = load_config()
     assert cfg["explain"]["max_prompt_tokens"] + cfg["llm"]["output_reserve_tokens"] <= 8000
+
+
+def test_settling_replaces_the_estimate_with_the_real_usage():
+    b, c = budget(8000)
+    b.acquire(5000)
+    b.settle(1200)                 # the provider says the call really cost 1,200
+    assert b.acquire(5000) == 0    # so a second 5,000 still fits (6,200 <= 8,000)
+    b.settle(99999)                # never records more than the whole budget
+    assert b.last[1] == 8000
+    b0, _ = budget(0)
+    b0.acquire(10)
+    b0.settle(5)                   # no-op when unthrottled
+
+
+def test_complete_settles_against_the_providers_reported_usage(monkeypatch, tmp_path):
+    c = Clock()
+    bud = TokenBudget(8000, clock=c.now, sleep=c.sleep)
+    monkeypatch.setattr(llm, "_budgets", {"openai/gpt-oss-20b": bud})
+    monkeypatch.setattr(llm, "CACHE_DIR", tmp_path)
+    monkeypatch.setenv("LLM_PROVIDER", "groq")
+    monkeypatch.delenv("GROQ_MODEL", raising=False)
+
+    def call(prompt, system, model):
+        llm._last_usage[model] = 700                      # what _call_groq records from response.usage
+        return "{}"
+
+    monkeypatch.setitem(llm._PROVIDERS, "groq", (call, "GROQ_MODEL", "groq_model"))
+    llm.complete("x " * 4000)                              # estimated ~6,000+ tokens
+    assert bud.last[1] == 700                              # corrected to the truth
+    assert "openai/gpt-oss-20b" not in llm._last_usage     # consumed, not left behind
+
+
+def test_groq_call_sends_low_reasoning_effort_to_gpt_oss_only_and_reports_usage(monkeypatch):
+    import sys
+    import types
+
+    sent = {}
+
+    class Msg:
+        content = "{}"
+
+    class Resp:
+        choices = [types.SimpleNamespace(message=Msg())]
+        usage = types.SimpleNamespace(total_tokens=1234)
+
+    class FakeGroq:
+        def __init__(self, api_key):
+            self.chat = types.SimpleNamespace(completions=types.SimpleNamespace(create=self.create))
+
+        def create(self, **kw):
+            sent.update(kw)
+            return Resp()
+
+    monkeypatch.setitem(sys.modules, "groq", types.SimpleNamespace(Groq=FakeGroq))
+    monkeypatch.setenv("GROQ_API_KEY", "k")
+    assert llm._call_groq("p", "", "openai/gpt-oss-20b") == "{}"
+    assert sent["reasoning_effort"] == llm.CFG["llm"]["reasoning_effort"] == "low"
+    assert sent["response_format"] == {"type": "json_object"} and sent["temperature"] == 0
+    assert llm._last_usage["openai/gpt-oss-20b"] == 1234
+    sent.clear()
+    llm._call_groq("p", "", "qwen/qwen3.8-27b")             # a non-gpt-oss model must not get the parameter
+    assert "reasoning_effort" not in sent
+
+
+def test_fallback_model_is_one_this_account_actually_has():
+    from src.config import load_config
+
+    cfg = load_config()["llm"]
+    assert cfg["groq_fallback_model"] == "openai/gpt-oss-120b"       # llama-3.1-8b-instant is not listed on the account
+    assert cfg["groq_fallback_model"] in cfg["tpm"] and cfg["groq_model"] in cfg["tpm"]

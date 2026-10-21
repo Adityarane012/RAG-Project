@@ -153,3 +153,32 @@ def test_explanations_can_be_switched_off_without_touching_the_verified_answer()
     s = build_graph(deps).invoke({"query": "q"})
     assert s["outcome"] == "answer" and s["explanations"] == [] and s["explain_error"] is None
     assert s["results"][0]["overall"] == "pass" and s["fully_verified"] is True
+
+
+def test_overrides_are_validated_like_llm_output():
+    g, _ = make(FULL, [chunk("a/b", 0.9)])
+    s = g.invoke({"query": "q", "overrides": {"task": "bogus", "max_size_mb": -5, "langs": "mr", "evil": 1, "commercial": "yes"}})
+    c = s["constraints"]
+    assert c["task"] is None and c["max_size_mb"] is None and c["langs"] == [] and "evil" not in c and c["commercial"] is None
+    assert s["outcome"] == "clarify"                    # the invalid task is gone, so the user is asked, not failed silently
+
+
+def test_valid_overrides_still_win_over_the_llm():
+    g, _ = make({**FULL, "task": "translation"}, [chunk("a/b", 0.9)])
+    s = g.invoke({"query": "q", "overrides": {"task": "token-classification", "max_size_mb": 450, "langs": ["MR"]}})
+    c = s["constraints"]
+    assert (c["task"], c["max_size_mb"], c["langs"]) == ("token-classification", 450, ["mr"])
+
+
+def test_a_query_with_nothing_extractable_asks_a_question():
+    g, calls = make({"task": None, "langs": [], "soft_query": "hello"}, [chunk("a/b", 0.9)])
+    s = g.invoke({"query": "hello"})
+    assert s["outcome"] == "clarify" and s["question"]["field"] == "task" and calls["fetch"] == 0
+
+
+def test_a_candidate_without_task_metadata_gets_no_snippet_and_no_crash():
+    odd = chunk("a/b", 0.9)
+    odd["metadata"].pop("task")
+    g, _ = make({"task": None, "langs": ["mr"], "soft_query": "q"}, [odd])
+    s = g.invoke({"query": "q", "clarifications_asked": 2})
+    assert s["outcome"] == "answer" and s["reports"][0]["try_it"] is None

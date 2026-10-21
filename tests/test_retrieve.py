@@ -57,3 +57,21 @@ def test_fetch_stops_when_index_is_exhausted_or_capped():
 
     fetch_chunks(fetch, {}, top_n=5, k=10, k_max=100)
     assert calls == [10]
+
+
+def test_every_constraint_at_once_is_one_flat_and():
+    f = build_filter({"task": "translation", "max_size_mb": 500, "langs": ["hi", "mr"], "commercial": True, "modifiable": True})
+    assert list(f) == ["$and"] and len(f["$and"]) == 6            # task, size, commercial, modifiable, 2 languages
+    assert f["$and"][0] == {"task": {"$eq": "translation"}}
+    assert all(set(c) <= {"task", "$or", "commercial", "modifiable"} for c in f["$and"])   # no nested $and
+
+
+def test_the_language_clause_keeps_multilingual_models_whose_list_lacks_the_code():
+    f = build_filter({"langs": ["hi"]})
+    assert {"multilingual": {"$eq": True}} in f["$or"] and {"language_status": {"$eq": "unknown"}} in f["$or"]
+
+
+def test_equal_scores_are_grouped_deterministically_in_arrival_order():
+    ms = [match("b", 0.5), match("a", 0.5), match("c", 0.5)]
+    assert [m["model_id"] for m in group_by_model(ms, 3)] == ["b", "a", "c"]
+    assert group_by_model(ms, 3) == group_by_model(list(ms), 3)
