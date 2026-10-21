@@ -93,13 +93,29 @@ def test_language_spellings_are_normalised():
     assert normalize_languages(["zzz"]) == ["zzz"]                 # unknown codes are kept, not guessed
 
 
-def test_card_saying_multilingual_is_unknown_not_a_wrong_no():
+def test_card_saying_only_multilingual_is_unknown_not_a_wrong_no():
     from src.verify import UNKNOWN, verify
 
-    for card_lang in ("multilingual", ["en", "multilingual"]):
-        m = normalize_record({"id": "x/y", "pipeline_tag": "token-classification", "cardData": {"language": card_lang}})
-        assert m["multilingual"] is True and m["language_status"] == "unknown"
-        assert verify(m, {"langs": ["hi"]})["languages"] == UNKNOWN
+    m = normalize_record({"id": "x/y", "pipeline_tag": "token-classification", "cardData": {"language": "multilingual"}})
+    assert m["multilingual"] is True and m["language_status"] == "unknown" and m["languages"] == []
+    assert verify(m, {"langs": ["hi"]})["languages"] == UNKNOWN
+
+
+def test_multilingual_card_with_a_list_keeps_it_and_an_unlisted_language_is_unknown_not_fail():
+    from src.verify import FAIL, PASS, UNKNOWN, verify
+
+    m = normalize_record({"id": "x/y", "pipeline_tag": "token-classification",
+                          "cardData": {"language": ["multilingual", "en", "hi"]}})
+    assert m["languages"] == ["en", "hi"] and m["language_status"] == "known" and m["multilingual"] is True
+    assert verify(m, {"langs": ["hi"]})["languages"] == PASS          # listed: a real pass
+    assert verify(m, {"langs": ["mr"]})["languages"] == UNKNOWN       # not listed, but the card says multilingual
+    plain = normalize_record({"id": "x/z", "pipeline_tag": "token-classification", "cardData": {"language": ["en", "hi"]}})
+    assert verify(plain, {"langs": ["mr"]})["languages"] == FAIL      # a non-multilingual list is definitive
+
+
+def test_opus_mt_name_supplies_the_languages_when_the_card_has_none():
+    m = normalize_record({"id": "Helsinki-NLP/opus-mt-hi-mr", "pipeline_tag": "translation", "cardData": {}})
+    assert m["languages"] == ["hi", "mr"] and m["language_status"] == "known" and m["directions"] == ["hi-mr"]
 
 
 def test_every_multilingual_entry_cites_a_source_and_none_is_silently_checked():

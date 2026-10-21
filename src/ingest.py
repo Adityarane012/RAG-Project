@@ -25,6 +25,7 @@ TASKS = tuple(CFG["corpus"]["tasks"])
 INDIC_LANGS = tuple(CFG["corpus"]["indic_langs"])
 TOP_N = CFG["corpus"]["top_n_per_task"]
 RAW_DIR = Path("data/raw")
+WORKERS = 6   # a few parallel requests; the Hub quota (not our speed) is the limit, and _get honours its retry hint
 HUB = "https://huggingface.co"
 
 
@@ -47,12 +48,28 @@ def raw_path(model_id: str, suffix: str) -> Path:
     return RAW_DIR / (model_id.replace("/", "__") + suffix)
 
 
-def _get(url: str, params: dict | None = None, retries: int = 5) -> requests.Response:
+def _retry_wait(resp: requests.Response, attempt: int) -> float:
+    """Seconds to wait after a 429/5xx: the server's own hint if it sent one (`Retry-After`, or the
+    `t=` reset in HF's `RateLimit` header), else exponential back-off. Capped at 5 minutes, the
+    length of the Hub's quota window."""
+    hint = resp.headers.get("retry-after")
+    if hint is None:
+        m = re.search(r"\bt=(\d+)", resp.headers.get("ratelimit", ""))
+        hint = m.group(1) if m else None
+    try:
+        wait = float(hint) if hint is not None else min(2 ** attempt, 60)
+    except ValueError:
+        wait = min(2 ** attempt, 60)
+    return min(max(wait, 1.0), 300.0)
+
+
+def _get(url: str, params: dict | None = None, retries: int = 6) -> requests.Response:
     headers = {"Authorization": f"Bearer {os.environ['HF_TOKEN']}"} if os.getenv("HF_TOKEN") else {}
+    resp = None
     for attempt in range(retries):
         resp = requests.get(url, params=params, headers=headers, timeout=30)
         if resp.status_code == 429 or resp.status_code >= 500:
-            time.sleep(min(2 ** attempt, 60) * (1 + attempt))
+            time.sleep(_retry_wait(resp, attempt))
             continue
         return resp
     resp.raise_for_status()
@@ -79,8 +96,13 @@ def fetch_raw(model_id: str) -> bool:
         resp.raise_for_status()
         _write_atomic(info_path, json.dumps(resp.json()))
     if not card_path.exists():
-        resp = _get(f"{HUB}/{model_id}/raw/main/README.md")
-        _write_atomic(card_path, resp.text if resp.status_code == 200 else "")  # no card -> empty (minimal doc)
+        # `resolve`, not `raw`: `raw` answers 403 for some public repos, and `resolve` has the higher quota.
+        resp = _get(f"{HUB}/{model_id}/resolve/main/README.md")
+        if resp.status_code == 404:
+            _write_atomic(card_path, "")            # genuinely no README -> empty card (minimal doc)
+        else:
+            resp.raise_for_status()                 # 401/403/5xx: do NOT cache as "no card"; log and move on
+            _write_atomic(card_path, resp.text)
     return True
 
 
@@ -148,14 +170,20 @@ def main(argv: list[str]) -> None:
         print(f"{task:32s} {len(ids):6d}")
     print(f"{'TOTAL (unique)':32s} {len(all_ids):6d}   (D6 estimate: ~5,000-8,000)")
     if cmd == "fetch":
-        fetched = 0
-        for i, model_id in enumerate(sorted(all_ids), 1):
-            try:
-                fetched += fetch_raw(model_id)
-            except requests.RequestException as e:  # deleted, private or erroring: skip, don't loop forever
-                log_failure(model_id, e)
-            if i % 100 == 0:
-                print(f"  {i}/{len(all_ids)} ({fetched} new)")
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+
+        fetched = done = 0
+        ids = sorted(all_ids)
+        with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+            futures = {pool.submit(fetch_raw, model_id): model_id for model_id in ids}
+            for fut in as_completed(futures):
+                try:
+                    fetched += fut.result()
+                except requests.RequestException as e:  # deleted, private or erroring: skip, don't loop forever
+                    log_failure(futures[fut], e)
+                done += 1
+                if done % 250 == 0:
+                    print(f"  {done}/{len(ids)} ({fetched} new)", flush=True)
         mapping = canonicalize(base_models_in_raw())
         merged = sum(1 for k, v in mapping.items() if k != v)
         print(f"base models: {len(mapping)} distinct, {merged} resolved to a different canonical id")

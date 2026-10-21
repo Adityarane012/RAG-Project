@@ -29,12 +29,12 @@ def build_filter(constraints: dict) -> dict:
         if constraints.get(right):
             clauses.append({right: {"$in": ["yes", "conditional", "unknown"]}})
 
-    # Multilingual-map models already have their covered languages merged into
-    # `languages` (normalize.py), so a plain membership test keeps them.
+    # Models from the multilingual map already have their covered languages merged into `languages`.
     for lang in constraints.get("langs") or []:
         clauses.append({"$or": [
             {"languages": {"$in": [lang]}},
             {"language_status": {"$eq": "unknown"}},
+            {"multilingual": {"$eq": True}},     # list may be partial; verify decides (pass / unknown)
         ]})
 
     if not clauses:

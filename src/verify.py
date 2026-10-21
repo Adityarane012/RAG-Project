@@ -39,7 +39,10 @@ def check_languages(meta: dict, langs: list[str]) -> str:
     have = meta.get("languages") or []
     if not have or meta.get("language_status") == "unknown":
         return UNKNOWN
-    return PASS if all(lang in have for lang in langs) else FAIL
+    if all(lang in have for lang in langs):
+        return PASS
+    # A multilingual model's list may be partial (the card says "multilingual"), so absence is not proof.
+    return UNKNOWN if meta.get("multilingual") else FAIL
 
 
 def check_direction(meta: dict, direction: list[str]) -> str:

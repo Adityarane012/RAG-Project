@@ -259,9 +259,13 @@ def normalize_record(raw: dict, canonical: dict[str, str] | None = None) -> dict
 
     languages = normalize_languages(card.get("language"))
     languages, multilingual = apply_multilingual_map(model_id, languages)
-    # A card that just says "multilingual" doesn't tell us which languages: unknown, not "no".
-    declared_multi = declares_multilingual(card.get("language"))
-    multilingual = multilingual or declared_multi
+    # "multilingual" is not a language. A card that says only that has no language list (unknown). A card that
+    # lists languages AND says "multilingual" keeps its list, and verify treats a language missing from such a
+    # list as unknown rather than a definite no (the list may be partial).
+    multilingual = multilingual or declares_multilingual(card.get("language"))
+    directions = directions_from_name(model_id)
+    if directions:  # opus-mt-<src>-<tgt> names state both languages even when the card has no language field
+        languages = normalize_languages([*languages, *directions[0].split("-")])
 
     files = [(s.get("rfilename", ""), s.get("size")) for s in raw.get("siblings") or []]
     size = size_mb(files)
@@ -276,7 +280,7 @@ def normalize_record(raw: dict, canonical: dict[str, str] | None = None) -> dict
         "task": raw.get("pipeline_tag"),
         "downloads": int(raw.get("downloads") or 0),
         "languages": languages,
-        "language_status": "known" if languages and (not declared_multi or model_id in MULTILINGUAL_MODELS) else "unknown",
+        "language_status": "known" if languages else "unknown",
         "multilingual": multilingual,
         "size_status": "known" if size is not None else "unknown",
         "commercial": commercial,
@@ -291,7 +295,6 @@ def normalize_record(raw: dict, canonical: dict[str, str] | None = None) -> dict
         meta["param_count"] = params
     if base:
         meta["base_model"] = base
-    directions = directions_from_name(model_id)
     if directions:
         meta["directions"] = directions
         meta["direction_source"] = "model_name"

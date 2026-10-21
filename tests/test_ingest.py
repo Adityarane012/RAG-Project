@@ -94,3 +94,49 @@ def test_candidate_listing_only_uses_arguments_the_real_hub_library_accepts():
     assert any(kw.get("filter") in ingest.INDIC_LANGS for kw in seen)            # Indic via tags
     assert any(kw.get("sort") == "downloads" and kw.get("limit") == ingest.TOP_N for kw in seen)   # top-N
     assert all(kw["pipeline_tag"] == "translation" for kw in seen)
+
+
+class FakeResp:
+    def __init__(self, status, headers=None):
+        self.status_code, self.headers = status, headers or {}
+
+    def raise_for_status(self):
+        raise requests.HTTPError(str(self.status_code))
+
+
+def test_retry_wait_honours_the_server_hint_and_caps_it():
+    assert ingest._retry_wait(FakeResp(429, {"retry-after": "42"}), 0) == 42
+    assert ingest._retry_wait(FakeResp(429, {"ratelimit": '"api";r=0;t=17'}), 0) == 17      # HF's header
+    assert ingest._retry_wait(FakeResp(429, {"retry-after": "99999"}), 0) == 300               # never sleep for hours
+    assert ingest._retry_wait(FakeResp(429, {"retry-after": "soon"}), 3) == 8                  # garbage -> back-off
+    assert ingest._retry_wait(FakeResp(503), 2) == 4 and ingest._retry_wait(FakeResp(503), 20) == 60
+    assert ingest._retry_wait(FakeResp(429, {"retry-after": "0"}), 0) == 1                     # never a busy loop
+
+
+def test_get_sleeps_the_hinted_time_then_succeeds(monkeypatch):
+    seq = [FakeResp(429, {"retry-after": "3"}), FakeResp(200)]
+    slept = []
+    monkeypatch.setattr(ingest.requests, "get", lambda *a, **k: seq.pop(0))
+    monkeypatch.setattr(ingest.time, "sleep", slept.append)
+    assert ingest._get("http://x").status_code == 200 and slept == [3.0]
+
+
+def test_get_gives_up_with_an_error_after_the_retries(monkeypatch):
+    monkeypatch.setattr(ingest.requests, "get", lambda *a, **k: FakeResp(429, {"retry-after": "1"}))
+    monkeypatch.setattr(ingest.time, "sleep", lambda s: None)
+    with pytest.raises(requests.HTTPError):
+        ingest._get("http://x", retries=3)
+
+
+def test_a_forbidden_readme_is_a_logged_failure_not_a_silent_empty_card(raw_dir, monkeypatch):
+    """The raw endpoint answers 403 for some public repos; that must not be cached as 'no README'."""
+    def fake_get(url, params=None, retries=5):
+        if "/api/" in url:
+            return Resp(payload={"id": "a/b"})
+        assert "/resolve/main/README.md" in url, url           # the resolver, not /raw/
+        return Resp(status=403)
+
+    monkeypatch.setattr(ingest, "_get", fake_get)
+    with pytest.raises(requests.HTTPError):
+        ingest.fetch_raw("a/b")
+    assert not ingest.raw_path("a/b", ".md").exists()           # nothing cached: a rerun retries it
