@@ -66,8 +66,15 @@ def _retry_wait(resp: requests.Response, attempt: int) -> float:
 def _get(url: str, params: dict | None = None, retries: int = 6) -> requests.Response:
     headers = {"Authorization": f"Bearer {os.environ['HF_TOKEN']}"} if os.getenv("HF_TOKEN") else {}
     resp = None
+    resp = None
     for attempt in range(retries):
-        resp = requests.get(url, params=params, headers=headers, timeout=30)
+        try:
+            resp = requests.get(url, params=params, headers=headers, timeout=30)
+        except (requests.ConnectionError, requests.Timeout):   # dropped connection / proxy hiccup: transient
+            if attempt == retries - 1:
+                raise
+            time.sleep(min(2 ** attempt, 30))
+            continue
         if resp.status_code == 429 or resp.status_code >= 500:
             time.sleep(_retry_wait(resp, attempt))
             continue

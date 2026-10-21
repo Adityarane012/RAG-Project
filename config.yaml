@@ -37,6 +37,10 @@ embedding:
   model: intfloat/multilingual-e5-large
   dim: 1024
   max_section_tokens: 450    # model limit is ~507
+  backend: pinecone          # pinecone (hosted) | local (sentence-transformers) (hosted multilingual-e5-large, same model).
+                             # Set EMBED_BACKEND to override. Both give the same embedding space, but never mix them in one namespace.
+  hosted_batch: 96           # Pinecone's per-request input limit for this model
+  cache_dir: data/embeddings # vectors cached by content hash: a rebuild into a fresh namespace re-embeds nothing
   max_chunks_per_model: 4    # measured 2026-10-21: uncapped, the corpus is ~8.7 chunks/model (~85k chunks, ~6.5M tokens)
   # Sections that add tokens but no retrieval value (auto-generated Trainer cards, citations, boilerplate).
   # A chunk is dropped when its heading CONTAINS one of these (case-insensitive).
@@ -70,6 +74,10 @@ corpus:                      # D5, D6
   top_n_per_task: 1000
   indic_langs: [hi, mr, bn, ta, te, gu, kn, ml, pa, ur]
 
+vector_store:                # where retrieval reads from. Pinecone is the production store (D4); `local` is an exact
+  backend: local             # in-process stand-in with identical query/filter semantics (src/localindex.py) for when
+  local_dir: data/localindex # Pinecone's data plane is unreachable. Env INDEX_BACKEND overrides. Evaluation output says which was used.
+
 pinecone:
   index: hf-model-finder
   namespace: prod            # experiments use exp-<name> (D21)
@@ -78,7 +86,8 @@ retrieval:                   # D18
   k_chunks: 50
   k_chunks_max: 400
   top_models: 5
-  reranker: local            # local (bge-reranker-v2-m3) is the safe default; pinecone only if the plan check allows it (D9)
+  reranker: pinecone         # pinecone (hosted bge-reranker-v2-m3, works on this plan, tiny monthly quota, cached) | local | none (D9)
+  rerank_cache_dir: data/rerank_cache
   local_reranker_model: BAAI/bge-reranker-v2-m3
 
 size_words_mb:               # D18: the LLM maps a word to a key, code supplies the number

@@ -94,3 +94,84 @@ def test_mode_from_env(monkeypatch):
     assert mode_from_env() == "record"
     monkeypatch.setenv("REPLAY", "1")
     assert mode_from_env() == "replay"       # replay wins: never hit the network by accident
+
+
+# ---- hosted reranker -------------------------------------------------------------------------------------------
+from src.rerank import HostedReranker, RerankQuotaExceeded, load_reranker
+
+
+class RR:
+    def __init__(self, status=200, payload=None, text=""):
+        self.status_code, self._p, self.text = status, payload, text
+
+    def json(self):
+        return self._p
+
+
+def hosted(tmp_path, responses):
+    it, sent = iter(responses), []
+
+    def post(url, json=None, headers=None, timeout=None):
+        sent.append((url, json, headers))
+        return next(it)
+
+    return HostedReranker(api_key="k", cache_dir=tmp_path, post=post, sleep=lambda s: None), sent
+
+
+def rows(*scores):
+    return RR(200, {"data": [{"index": i, "score": s} for i, s in enumerate(scores)], "usage": {"rerank_units": 1}})
+
+
+def m(i, score, text="t"):
+    return {"id": f"m{i}::0", "score": score, "metadata": {"model_id": f"m{i}", "text": text}}
+
+
+def test_hosted_rerank_replaces_scores_sorts_best_first_and_keeps_the_original_score(tmp_path):
+    h, sent = hosted(tmp_path, [rows(0.1, 0.9, 0.5)])
+    ms = [m(0, 0.99, "x"), m(1, 0.50, "y"), m(2, 0.70, "z")]
+    out = h("q", ms)
+    # documents are sent best-by-vector-score first: m0 (0.99), m2 (0.70), m1 (0.50) -> scores 0.1, 0.9, 0.5
+    assert [o["id"] for o in out] == ["m2::0", "m1::0", "m0::0"] and [o["score"] for o in out] == [0.9, 0.5, 0.1]
+    assert out[2]["retrieval_score"] == 0.99
+    url, body, headers = sent[0]
+    assert url.endswith("/rerank") and body["model"] == "bge-reranker-v2-m3" and headers["X-Pinecone-API-Version"] == "2024-10"
+    assert [d["text"] for d in body["documents"]] == ["x", "z", "y"] and ms[0]["score"] == 0.99    # input untouched
+
+
+def test_hosted_rerank_is_cached_so_a_rerun_costs_nothing_and_usage_is_logged(tmp_path):
+    h, sent = hosted(tmp_path, [rows(0.2, 0.8)])
+    ms = [m(0, 0.9), m(1, 0.8)]
+    first = h("q", ms)
+    again = h("q", ms)
+    assert first == again and len(sent) == 1 and h.cache_hits == 1 and h.units_total() == 1
+    h2, sent2 = hosted(tmp_path, [rows(0.3, 0.1)])
+    h2("a different query", ms)
+    assert len(sent2) == 1 and h2.units_total() == 2           # a new query is a new request
+
+
+def test_hosted_rerank_caps_documents_and_keeps_the_rest_below_the_reranked_ones(tmp_path):
+    h, sent = hosted(tmp_path, [rows(0.9, 0.1)])
+    h.max_docs = 2
+    out = h("q", [m(0, 0.9), m(1, 0.8), m(2, 0.7)])
+    assert len(sent[0][1]["documents"]) == 2 and [o["id"] for o in out][:2] == ["m0::0", "m1::0"]
+    assert out[2]["id"] == "m2::0" and out[2]["score"] < out[1]["score"]
+
+
+def test_hosted_rerank_errors_are_clear(tmp_path):
+    h, _ = hosted(tmp_path, [RR(429, text="Monthly rerank quota exceeded")])
+    with pytest.raises(RerankQuotaExceeded):
+        h("q", [m(0, 0.5)])
+    h, _ = hosted(tmp_path / "b", [RR(404, text="not found")])
+    with pytest.raises(RuntimeError, match="HTTP 404"):
+        h("q", [m(0, 0.5)])
+    h, sent = hosted(tmp_path / "c", [RR(503, text=""), rows(0.5)])
+    assert len(h("q", [m(0, 0.5)])) == 1 and len(sent) == 2     # a 503 is retried
+    assert HostedReranker(cache_dir=tmp_path)("q", []) == []
+
+
+def test_load_reranker_selection(monkeypatch):
+    monkeypatch.delenv("RERANKER", raising=False)
+    assert isinstance(load_reranker("pinecone"), HostedReranker) and isinstance(load_reranker("local"), LocalReranker)
+    assert load_reranker("none")("q", [1, 2]) == [1, 2]
+    with pytest.raises(ValueError):
+        load_reranker("cohere")

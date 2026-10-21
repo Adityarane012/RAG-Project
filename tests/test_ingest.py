@@ -140,3 +140,25 @@ def test_a_forbidden_readme_is_a_logged_failure_not_a_silent_empty_card(raw_dir,
     with pytest.raises(requests.HTTPError):
         ingest.fetch_raw("a/b")
     assert not ingest.raw_path("a/b", ".md").exists()           # nothing cached: a rerun retries it
+
+
+def test_get_retries_dropped_connections_then_succeeds_and_finally_raises(monkeypatch):
+    slept = []
+    monkeypatch.setattr(ingest.time, "sleep", slept.append)
+    calls = {"n": 0}
+
+    def flaky(*a, **k):
+        calls["n"] += 1
+        if calls["n"] < 3:
+            raise requests.ConnectionError("proxy hiccup")
+        return FakeResp(200)
+
+    monkeypatch.setattr(ingest.requests, "get", flaky)
+    assert ingest._get("http://x").status_code == 200 and slept == [1, 2]
+
+    def dead(*a, **k):
+        raise requests.Timeout("down")
+
+    monkeypatch.setattr(ingest.requests, "get", dead)
+    with pytest.raises(requests.Timeout):
+        ingest._get("http://x", retries=3)
