@@ -198,7 +198,9 @@ def open_index(namespace: str):
     if store_backend() == "local":
         from src.localindex import LocalIndex
 
-        return LocalIndex.load(CFG["vector_store"]["local_dir"], namespace)
+        import os
+
+        return LocalIndex.load(os.getenv("LOCAL_INDEX_DIR") or CFG["vector_store"]["local_dir"], namespace)
     return connect()
 
 

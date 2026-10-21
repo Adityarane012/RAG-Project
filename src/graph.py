@@ -59,7 +59,7 @@ class State(TypedDict, total=False):
 class Deps:
     """Everything the graph needs from outside."""
     extract: Callable[[str], dict]                  # llm.extract_constraints
-    fetch: Callable[[dict, int], list]              # (filter, top_k) -> chunk matches
+    fetch: Callable[[str, dict, int], list]         # (query text, filter, top_k) -> chunk matches
     rerank: Callable[[str, list], list]             # (soft_query, matches) -> matches, reordered
     explain: Callable[[dict, list], list] | None    # llm.explain; None skips explanations (evaluation, rate limits)
     lineage_index: dict = field(default_factory=dict)
@@ -85,7 +85,24 @@ def route_after_verify(state: State) -> str:
     return "abstain"
 
 
-def build_graph(deps: Deps):
+VARIANTS = ("ours", "naive", "keyword")
+
+
+def build_graph(deps: Deps, variant: str = "ours"):
+    """Compile the pipeline. `variant` selects what the evaluation compares (D19):
+
+    * ours    : the full graph.
+    * naive   : naive RAG. Same index, embeddings, reranker and LLM, but NO metadata filters (not even the
+                task) and NO verification-driven behaviour: no clarifying, relaxing, abstaining, re-ranking
+                by verdict or explanations. Verdict tables are still computed so the harness can judge it
+                with the same rules as every other system.
+    * keyword : like naive, but retrieval is whatever `deps.fetch` does (BM25 + the same metadata filters in
+                the harness) and the reranker is skipped.
+    """
+    if variant not in VARIANTS:
+        raise ValueError(f"variant must be one of {VARIANTS}, got {variant!r}")
+    plain = variant != "ours"
+
     def extract(state: State) -> State:
         # User edits go through the same validator as the LLM's output: an override is untrusted input too
         # (a bad task or size would otherwise make every model fail silently). Key presence counts, so None clears.
@@ -97,10 +114,15 @@ def build_graph(deps: Deps):
                 "clarifications_asked": state.get("clarifications_asked", 0) + 1}
 
     def retrieve(state: State) -> State:
-        return {"matches": fetch_chunks(deps.fetch, state["constraints"])}
+        # naive RAG searches with no filter at all; keyword relies on deps.fetch applying the filter itself
+        text = state["constraints"].get("soft_query") or state["query"]    # every system searches with the same text
+        return {"matches": fetch_chunks(lambda flt, k: deps.fetch(text, flt, k),
+                                        {} if variant == "naive" else state["constraints"])}
 
     def rerank(state: State) -> State:
-        matches = deps.rerank(state["constraints"].get("soft_query") or state["query"], state["matches"])
+        matches = state["matches"]
+        if variant != "keyword":
+            matches = deps.rerank(state["constraints"].get("soft_query") or state["query"], matches)
         return {"candidates": group_by_model(matches, CFG["retrieval"]["top_models"])}
 
     def verify_node(state: State) -> State:
@@ -110,12 +132,16 @@ def build_graph(deps: Deps):
             table = verify(cand["meta"], c)
             results.append({"model_id": cand["model_id"], "meta": cand["meta"], "chunks": cand["chunks"],
                             "table": table, "overall": overall(table), "notes": notes(cand["meta"], c)})
-        results.sort(key=lambda r: rank_key(r["table"]))  # stable: reranker order within a group
+        if not plain:   # the full system ranks passes above unknowns above fails; the baselines keep retrieval order
+            results.sort(key=lambda r: rank_key(r["table"]))  # stable: reranker order within a group
         return {"results": results, "closest": results[:3]}
 
     def relax(state: State) -> State:
         return {"outcome": "relax", "relax_offer": relaxation_offer(state["constraints"]),
                 "relax_count": state.get("relax_count", 0) + 1}
+
+    def finish(state: State) -> State:     # baselines: whatever retrieval returned, unfiltered by verdict
+        return {"outcome": "answer", "fully_verified": any(r["overall"] == PASS for r in state["results"])}
 
     def abstain(state: State) -> State:
         return {"outcome": "abstain"}
@@ -140,16 +166,18 @@ def build_graph(deps: Deps):
 
     g = StateGraph(State)
     for name, fn in (("extract", extract), ("clarify", clarify), ("retrieve", retrieve),
-                     ("rerank", rerank), ("verify", verify_node), ("relax", relax),
+                     ("rerank", rerank), ("verify", verify_node), ("relax", relax), ("finish", finish),
                      ("abstain", abstain), ("enrich", enrich), ("explain", explain)):
         g.add_node(name, fn)
     g.add_edge(START, "extract")
-    g.add_conditional_edges("extract", route_after_extract, {"clarify": "clarify", "retrieve": "retrieve"})
+    g.add_conditional_edges("extract", (lambda st: "retrieve") if plain else route_after_extract,
+                            {"clarify": "clarify", "retrieve": "retrieve"})
     g.add_edge("clarify", END)
     g.add_edge("retrieve", "rerank")
     g.add_edge("rerank", "verify")
-    g.add_conditional_edges("verify", route_after_verify,
-                            {"enrich": "enrich", "relax": "relax", "abstain": "abstain"})
+    g.add_conditional_edges("verify", (lambda st: "finish") if plain else route_after_verify,
+                            {"enrich": "enrich", "relax": "relax", "abstain": "abstain", "finish": "finish"})
+    g.add_edge("finish", END)
     g.add_edge("relax", END)
     g.add_edge("abstain", END)
     g.add_edge("enrich", "explain")

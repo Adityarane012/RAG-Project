@@ -29,10 +29,12 @@ def replay_dir() -> Path:
     return Path(os.getenv("REPLAY_DIR") or CFG["replay"]["dir"])
 
 
-def run_key(graph_input: dict) -> str:
+def run_key(graph_input: dict, variant: str = "ours") -> str:
     canonical = {"query": (graph_input.get("query") or "").strip(),
                  "overrides": graph_input.get("overrides") or {},
                  **{k: graph_input.get(k, 0) for k in CARRIED}}
+    if variant != "ours":                      # the side-by-side view records the baseline separately
+        canonical["variant"] = variant
     blob = json.dumps(canonical, sort_keys=True, ensure_ascii=False)
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:16]
 
@@ -43,12 +45,12 @@ class ReplayGraph:
     mode "replay": serve recordings only; "record": call `graph` and save; "live": passthrough.
     """
 
-    def __init__(self, graph=None, mode: str = "live", directory: Path | None = None):
+    def __init__(self, graph=None, mode: str = "live", directory: Path | None = None, variant: str = "ours"):
         if mode not in ("live", "record", "replay"):
             raise ValueError(f"unknown mode {mode!r}")
         if mode != "replay" and graph is None:
             raise ValueError(f"mode {mode!r} needs a graph")
-        self.graph, self.mode, self.directory = graph, mode, directory
+        self.graph, self.mode, self.directory, self.variant = graph, mode, directory, variant
 
     @property
     def _dir(self) -> Path:
@@ -57,7 +59,7 @@ class ReplayGraph:
     def invoke(self, graph_input: dict) -> dict:
         if self.mode == "live":
             return self.graph.invoke(graph_input)
-        path = self._dir / f"{run_key(graph_input)}.json"
+        path = self._dir / f"{run_key(graph_input, self.variant)}.json"
         if self.mode == "replay":
             if not path.exists():
                 raise MissingRecording(

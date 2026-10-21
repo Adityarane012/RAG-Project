@@ -1,48 +1,61 @@
-"""Streamlit UI (D16): search, check-a-model, constraint table, Try it / Build on it.
+"""Streamlit UI (D16): search with an editable parsed intent, a side-by-side comparison with naive RAG,
+check-a-model, constraint tables, Try it / Build on it, tooltips and the legal disclaimer.
 
-Streamlit reruns this whole script on every click, so the graph state lives in
-st.session_state and heavy objects in st.cache_resource, otherwise the clarifying
-loop would lose its place and the embedding model would reload on every interaction.
+Streamlit reruns this whole script on every click, so the graph state lives in st.session_state and heavy
+objects in st.cache_resource; otherwise the clarifying loop would lose its place and the models would reload
+on every interaction.
 """
 
 from __future__ import annotations
 
+import os
+from pathlib import Path
+
 import streamlit as st
 
+from src.checker import check_model
 from src.config import CFG
-from src.guide import EXAMPLE_QUERIES, LANG_NAMES, TOOLTIPS
+from src.guide import EXAMPLE_QUERIES, LANG_NAMES, TASK_OPTIONS, TOOLTIPS
 from src.replay import MissingRecording, ReplayGraph, mode_from_env
-from src.verify import ICON
+from src.verify import ICON, SIZE_WORDS_MB
 
 DISCLAIMER = ("Rights are read from each model's *declared* license. This is not legal "
               "advice, and a card can be wrong.")
 ROW_LABELS = {"task": "Task", "languages": "Language", "direction": "Direction", "size": "Size",
               "commercial": "Commercial use", "modifiable": "Modifiable"}
+HELP = {"commercial": TOOLTIPS["commercial"], "modifiable": TOOLTIPS["modifiable"], "size": TOOLTIPS["size"]}
+LEGEND = "✅ passes · ❌ fails · ⚠️ unknown (the card or metadata doesn't say; we don't guess)"
 
 
 @st.cache_resource
-def _live_graph():
-    """Build the real LangGraph pipeline once per process.
+def _live_graph(variant: str = "ours"):
+    """The real pipeline for `variant`, built once per process (needs the vector index, keys and models)."""
+    from src.pipeline import build_pipeline
 
-    TODO: wire real deps (local embedder, Pinecone index + namespace, LocalReranker,
-    llm.explain, lineage index from the snapshot) into graph.Deps and return
-    graph.build_graph(deps). Until then the UI renders but cannot search live.
-    """
-    raise NotImplementedError("pipeline deps not wired yet")
+    return build_pipeline(variant)
 
 
-def get_graph() -> ReplayGraph:
-    """The graph, wrapped for recording / replay (D21). REPLAY=1 serves recorded runs and
-    needs no network; RECORD=1 runs live and saves each result for later replay."""
+def get_graph(variant: str = "ours") -> ReplayGraph:
+    """The graph, wrapped for recording / replay (D21). REPLAY=1 serves recorded runs and needs no network;
+    RECORD=1 runs live and saves each result for later replay."""
     mode = mode_from_env()
     if mode == "replay":
-        return ReplayGraph(mode="replay")
-    return ReplayGraph(_live_graph(), mode)
+        return ReplayGraph(mode="replay", variant=variant)
+    return ReplayGraph(_live_graph(variant), mode, variant=variant)
+
+
+@st.cache_resource
+def _records():
+    """Snapshot records for check-a-model (the cached corpus; RAW_DIR overrides the location)."""
+    from src import ingest
+    from src.snapshot import collect_records
+
+    return collect_records(Path(os.getenv("RAW_DIR") or ingest.RAW_DIR))
 
 
 def _follow_up(override: dict) -> None:
-    """The user answered a clarifying question or accepted a relaxation: re-run the
-    same query with that override and the loop counters carried over (D15 caps)."""
+    """The user answered a clarifying question, accepted a relaxation or edited the intent: re-run the same
+    query with that override and the loop counters carried over (D15 caps)."""
     st.session_state["overrides"] = {**st.session_state.get("overrides", {}), **override}
     st.session_state["action"] = "followup"
     st.rerun()
@@ -53,7 +66,8 @@ def _fresh(query: str | None = None) -> None:
     if query is not None:
         st.session_state["query"] = query
     st.session_state["overrides"] = {}
-    st.session_state.pop("state", None)
+    for k in ("state", "naive_state"):
+        st.session_state.pop(k, None)
     st.session_state["action"] = "fresh"
     st.rerun()
 
@@ -65,9 +79,38 @@ def render_table(result: dict) -> None:
         st.caption(f"⚠️ {note}")
 
 
+def render_intent_editor(constraints: dict) -> None:
+    """D13: the parsed request, editable. An extraction miss silently drops a constraint, so the user can see
+    and fix it here; edits are sent back as overrides (validated like the LLM's own output)."""
+    with st.expander("Edit what we understood"):
+        tasks = [None, *TASK_OPTIONS]
+        task = st.selectbox("What should the model do?", tasks, index=tasks.index(constraints.get("task")) if constraints.get("task") in tasks else 0,
+                            format_func=lambda t: "(not specified)" if t is None else TASK_OPTIONS[t], key="edit-task")
+        langs = st.multiselect("Languages", list(LANG_NAMES), default=[c for c in constraints.get("langs") or [] if c in LANG_NAMES],
+                               format_func=LANG_NAMES.get, key="edit-langs")
+        col1, col2 = st.columns(2)
+        size_mb = col1.number_input("Max size (MB, 0 = no limit)", min_value=0.0, value=float(constraints.get("max_size_mb") or 0), step=50.0,
+                                    help=HELP["size"], key="edit-size")
+        words = [None, *SIZE_WORDS_MB]
+        word = col2.selectbox("…or a size word", words, index=words.index(constraints.get("size_word")) if constraints.get("size_word") in words else 0,
+                              format_func=lambda w: "(none)" if w is None else f"{w} (≤ {SIZE_WORDS_MB[w]:g} MB)", key="edit-word")
+        commercial = st.checkbox("Must allow commercial use", value=bool(constraints.get("commercial")), help=HELP["commercial"], key="edit-comm")
+        modifiable = st.checkbox("Must allow modification / fine-tuning", value=bool(constraints.get("modifiable")), help=HELP["modifiable"], key="edit-mod")
+        if st.button("Search again with these", key="edit-go"):
+            _follow_up({"task": task, "langs": langs, "max_size_mb": size_mb or None, "size_word": word,
+                        "commercial": True if commercial else None, "modifiable": True if modifiable else None})
+
+
+def render_plain(state: dict, limit: int = 5) -> None:
+    """A baseline's output: whatever retrieval returned, with every verdict shown (including ❌)."""
+    for r in state.get("results", [])[:limit]:
+        st.markdown(f"**[{r['model_id']}](https://huggingface.co/{r['model_id']})**")
+        render_table(r)
+
+
 def render_state(state: dict) -> None:
     """Render one graph run's output. Handles every outcome."""
-    st.info(state["intent"])  # D13: parsed intent in plain words (editing: TODO)
+    st.info(state["intent"])  # D13: parsed intent in plain words
     outcome = state["outcome"]
 
     if outcome == "clarify":
@@ -100,6 +143,7 @@ def render_state(state: dict) -> None:
         st.warning("No model fully verified: every result below has at least one ⚠️ unknown.")
     if state.get("explain_error"):
         st.warning("Explanations are unavailable right now; the verified table below is unaffected.")
+    st.caption(LEGEND)
     for result in (r for r in state["results"] if r["overall"] != "fail"):
         mid = result["model_id"]
         st.markdown(f"### [{mid}](https://huggingface.co/{mid})")
@@ -112,21 +156,68 @@ def render_state(state: dict) -> None:
                 st.code(report["try_it"] or "", language="python")
                 st.markdown(f"[Open the model page]({report['model_page']})")
             with st.expander("Build on it"):
-                st.markdown(f"**Modifiable:** {report['rights']['modifiable']}")
-                for note in report["rights"]["notes"]:
-                    st.caption(note)
-                lin = report["lineage"]
-                st.write(f"Fine-tune of `{lin['base_model']}`; {lin['other_finetunes']} other fine-tunes "
-                         "in our snapshot." if lin["status"] == "pass" else "⚠️ Lineage unknown.")
-                mem = report["memory"]
-                if mem["status"] == "pass":
-                    for name, m in mem["methods"].items():
-                        st.write(f"{name}: ≥ {m['gb']} GB {ICON[m['fits']]} on a {mem['reference_gpu_gb']} GB GPU")
-                    st.caption("Lower bound; excludes activations.")
-                else:
-                    st.write("⚠️ Parameter count unknown, so no memory estimate.")
-                if report["task_guide"]:
-                    st.markdown(f"[How to fine-tune for this task]({report['task_guide']})")
+                render_build_on(report)
+
+
+def render_build_on(report: dict) -> None:
+    st.markdown(f"**Modifiable:** {report['rights']['modifiable']}", help=HELP["modifiable"])
+    for note in report["rights"]["notes"]:
+        st.caption(note)
+    lin = report["lineage"]
+    st.write(f"Fine-tune of `{lin['base_model']}`; {lin['other_finetunes']} other fine-tunes in our snapshot."
+             if lin["status"] == "pass" else "⚠️ Lineage unknown.")
+    mem = report["memory"]
+    if mem["status"] == "pass":
+        for name, m in mem["methods"].items():
+            st.write(f"{name}: ≥ {m['gb']} GB {ICON[m['fits']]} on a {mem['reference_gpu_gb']} GB GPU")
+        st.caption("Lower bound; excludes activations.")
+    else:
+        st.write("⚠️ Parameter count unknown, so no memory estimate.")
+    if report["task_guide"]:
+        st.markdown(f"[How to fine-tune for this task]({report['task_guide']})")
+
+
+def render_compare(ours: dict, naive: dict) -> None:
+    """D16: the same request through the full system and through naive RAG (no filters, no verification)."""
+    left, right = st.columns(2)
+    with left:
+        st.markdown("#### Ours (filters + verification)")
+        if ours["outcome"] == "answer":
+            shown = [r for r in ours["results"] if r["overall"] != "fail"]
+            render_plain({"results": shown})
+            if not shown:
+                st.caption("Nothing to recommend.")
+        else:
+            st.caption(f"Outcome: {ours['outcome']} (asked a question or offered to relax)")
+    with right:
+        st.markdown("#### Naive RAG (same index, no filters, no checks)")
+        render_plain(naive)
+    n_bad = sum(r["overall"] == "fail" for r in naive.get("results", [])[:5])
+    st.caption(f"Naive RAG recommended {n_bad} model(s) that fail at least one requirement.")
+
+
+def render_check_tab() -> None:
+    st.text_input("Paste a Hugging Face model ID", key="check_id", placeholder="openai/whisper-tiny")
+    with st.expander("Optionally check it against requirements", expanded=False):
+        c1, c2 = st.columns(2)
+        commercial = c1.checkbox("Must allow commercial use", help=HELP["commercial"], key="check-comm")
+        modifiable = c2.checkbox("Must allow modification", help=HELP["modifiable"], key="check-mod")
+        size = st.number_input("Max size (MB, 0 = no limit)", min_value=0.0, step=50.0, help=HELP["size"], key="check-size")
+    if not st.session_state.get("check_id"):
+        return
+    reqs = {"commercial": True if commercial else None, "modifiable": True if modifiable else None, "max_size_mb": size or None}
+    result = check_model(st.session_state["check_id"], _records(), reqs)
+    if not result["found"]:
+        st.warning(result["message"])
+        return
+    st.markdown(f"### [{result['meta']['model_id']}](https://huggingface.co/{result['meta']['model_id']})")
+    st.table(result["facts"])
+    if result["table"]:
+        st.caption(LEGEND)
+        st.table({ROW_LABELS[k]: f"{ICON[v]} {v}" for k, v in result["table"].items()})
+    st.caption(DISCLAIMER)
+    with st.expander("Build on it", expanded=True):
+        render_build_on(result["report"])
 
 
 def main() -> None:
@@ -146,6 +237,8 @@ def main() -> None:
             if st.button(example, key=f"ex-{example}"):
                 _fresh(example)
         query = st.text_input("Describe the model you need", key="query")
+        compare = st.checkbox("Compare with naive RAG", key="compare",
+                              help="Runs the same request with no filters and no verification, to show what the checks change.")
 
         action = st.session_state.pop("action", None)
         if query and st.button("Search"):
@@ -153,25 +246,36 @@ def main() -> None:
         if query and action:
             try:
                 graph = get_graph()
-            except NotImplementedError:
-                st.info("Search isn't wired up yet. See `_live_graph()` in app.py.")
-            else:
+            except Exception as e:  # no index built yet, missing keys, ...: say what is missing instead of a traceback
+                st.error(f"Search is unavailable: {e}")
+                graph = None
+            if graph is not None:
                 carried = {}
                 if action == "followup" and "state" in st.session_state:
                     prev = st.session_state["state"]
                     carried = {k: prev[k] for k in ("clarifications_asked", "relax_count") if k in prev}
+                request = {"query": query, "overrides": st.session_state.get("overrides", {}), **carried}
                 try:
-                    st.session_state["state"] = graph.invoke({
-                        "query": query, "overrides": st.session_state.get("overrides", {}), **carried})
+                    st.session_state["state"] = graph.invoke(request)
+                    if compare:
+                        st.session_state["naive_state"] = get_graph("naive").invoke(request)
                 except MissingRecording as e:
                     st.warning(str(e))
         if "state" in st.session_state:
-            render_state(st.session_state["state"])
+            state = st.session_state["state"]
+            if compare and "naive_state" in st.session_state:
+                st.info(state["intent"])
+                render_compare(state, st.session_state["naive_state"])
+            else:
+                render_state(state)
+            render_intent_editor(state.get("constraints") or {})
 
     with check_tab:
-        st.text_input("Paste a Hugging Face model ID", key="check_id", help=TOOLTIPS["license"])
-        st.info("Check-a-model reuses verify.py and adapt.model_report (D23); the lookup "
-                "against the snapshot isn't wired up yet.")
+        render_check_tab()
+
+    with st.expander("Glossary"):
+        for term, text in TOOLTIPS.items():
+            st.markdown(f"**{term}**: {text}")
 
 
 if __name__ == "__main__":

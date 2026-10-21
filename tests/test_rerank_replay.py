@@ -175,3 +175,18 @@ def test_load_reranker_selection(monkeypatch):
     assert load_reranker("none")("q", [1, 2]) == [1, 2]
     with pytest.raises(ValueError):
         load_reranker("cohere")
+
+
+def test_variants_are_recorded_separately_but_ours_keeps_its_original_key():
+    inp = {"query": "q", "overrides": {}}
+    assert run_key(inp) == run_key(inp, "ours") != run_key(inp, "naive")
+
+
+def test_the_side_by_side_view_replays_each_variant_from_its_own_recording(tmp_path):
+    inp = {"query": "Marathi NER"}
+    for variant, tag in (("ours", "A"), ("naive", "B")):
+        g = FakeGraph()
+        g.invoke = lambda i, tag=tag: {"outcome": "answer", "who": tag}
+        ReplayGraph(g, "record", tmp_path, variant=variant).invoke(inp)
+    assert ReplayGraph(mode="replay", directory=tmp_path, variant="ours").invoke(inp)["who"] == "A"
+    assert ReplayGraph(mode="replay", directory=tmp_path, variant="naive").invoke(inp)["who"] == "B"

@@ -21,7 +21,7 @@ def make(extracted, pool, explain=None):
         calls["extract"] += 1
         return dict(extracted)
 
-    def fetch(flt, k):
+    def fetch(text, flt, k):
         calls["fetch"] += 1
         return pool[:k]
 
@@ -148,7 +148,7 @@ def test_translation_direction_from_model_name_passes_other_models_stay_unknown(
 
 
 def test_explanations_can_be_switched_off_without_touching_the_verified_answer():
-    deps = Deps(extract=lambda q: dict(FULL), fetch=lambda f, k: [chunk("good/m", 0.5)][:k],
+    deps = Deps(extract=lambda q: dict(FULL), fetch=lambda t, f, k: [chunk("good/m", 0.5)][:k],
                 rerank=lambda q, m: m, explain=None)
     s = build_graph(deps).invoke({"query": "q"})
     assert s["outcome"] == "answer" and s["explanations"] == [] and s["explain_error"] is None
@@ -182,3 +182,69 @@ def test_a_candidate_without_task_metadata_gets_no_snippet_and_no_crash():
     g, _ = make({"task": None, "langs": ["mr"], "soft_query": "q"}, [odd])
     s = g.invoke({"query": "q", "clarifications_asked": 2})
     assert s["outcome"] == "answer" and s["reports"][0]["try_it"] is None
+
+
+# ---- baselines are the same graph with switches (D19) ----------------------------------------------------------
+def make_variant(variant, extracted, pool):
+    seen = {"filters": [], "texts": [], "rerank": 0}
+
+    def fetch(text, flt, k):
+        seen["texts"].append(text)
+        seen["filters"].append(flt)
+        return pool[:k]
+
+    def rerank(q, m):
+        seen["rerank"] += 1
+        return m
+
+    deps = Deps(extract=lambda q: dict(extracted), fetch=fetch, rerank=rerank,
+                explain=lambda c, cands: [{"model_id": x["model_id"], "text": "ok"} for x in cands])
+    return build_graph(deps, variant=variant), seen
+
+
+def test_naive_rag_searches_without_any_filter_and_keeps_violating_models_in_retrieval_order():
+    pool = [chunk("bad/license", 0.99, commercial="no"), chunk("big/model", 0.9, size_mb=9000), chunk("good/m", 0.5)]
+    g, seen = make_variant("naive", FULL, pool)
+    s = g.invoke({"query": "q"})
+    assert seen["filters"] == [None] or all(not f for f in seen["filters"])           # build_filter({}) -> no filter
+    assert [r["model_id"] for r in s["results"]] == ["bad/license", "big/model", "good/m"]   # NOT re-ranked by verdict
+    assert [r["overall"] for r in s["results"]] == ["fail", "fail", "pass"]            # but still judged, for the metrics
+    assert s["outcome"] == "answer" and "reports" not in s and "explanations" not in s     # no enrich/explain
+    assert seen["rerank"] == 1
+
+
+def test_naive_and_keyword_never_clarify_relax_or_abstain():
+    for variant in ("naive", "keyword"):
+        g, _ = make_variant(variant, {"task": None, "langs": [], "soft_query": "hello"}, [chunk("a/b", 0.9)])
+        assert g.invoke({"query": "hello"})["outcome"] == "answer"                      # ours would clarify
+        g, _ = make_variant(variant, FULL, [chunk("big/m", 0.9, size_mb=9000)])
+        assert g.invoke({"query": "q"})["outcome"] == "answer"                          # ours would relax
+        g, _ = make_variant(variant, FULL, [])
+        assert g.invoke({"query": "q"})["outcome"] == "answer" and g.invoke({"query": "q"})["results"] == []
+
+
+def test_keyword_variant_keeps_the_filter_and_skips_the_reranker():
+    g, seen = make_variant("keyword", FULL, [chunk("a/b", 0.9)])
+    g.invoke({"query": "q"})
+    assert seen["rerank"] == 0 and seen["filters"][0]                                   # same constraints reach the retriever
+    full, seen_full = make_variant("ours", FULL, [chunk("a/b", 0.9)])
+    full.invoke({"query": "q"})
+    assert seen_full["rerank"] == 1 and seen_full["filters"][0] == seen["filters"][0]  # identical filter to ours
+
+
+def test_ours_is_unchanged_by_the_variant_switch_and_bad_variants_are_rejected():
+    pool = [chunk("bad/license", 0.99, commercial="no"), chunk("good/m", 0.5)]
+    g, _ = make_variant("ours", FULL, pool)
+    s = g.invoke({"query": "q"})
+    assert [r["model_id"] for r in s["results"]] == ["good/m", "bad/license"] and s["reports"] and s["explanations"]
+    with pytest.raises(ValueError):
+        build_graph(Deps(extract=lambda q: {}, fetch=lambda t, f, k: [], rerank=lambda q, m: m, explain=None), variant="bm25")
+
+
+def test_every_system_searches_with_the_same_query_text():
+    texts = {}
+    for variant in ("ours", "naive", "keyword"):
+        g, seen = make_variant(variant, {**FULL, "soft_query": "noisy social media text"}, [chunk("a/b", 0.9)])
+        g.invoke({"query": "a long original request"})
+        texts[variant] = set(seen["texts"])
+    assert texts == {"ours": {"noisy social media text"}, "naive": {"noisy social media text"}, "keyword": {"noisy social media text"}}

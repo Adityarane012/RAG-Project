@@ -93,7 +93,8 @@ def data_quality_report(records: list[dict]) -> dict:
     }
 
 
-def build(raw_dir: Path | None = None, out_dir: Path | None = None, today: str | None = None):
+def collect_records(raw_dir: Path | None = None) -> list[dict]:
+    """Normalised snapshot records for every model in the raw cache (those with both a JSON and a card file)."""
     raw_dir = raw_dir or ingest.RAW_DIR
     canonical_path = raw_dir / "_canonical_ids.json"
     canonical = (json.loads(canonical_path.read_text(encoding="utf-8")) if canonical_path.exists() else None)
@@ -104,6 +105,11 @@ def build(raw_dir: Path | None = None, out_dir: Path | None = None, today: str |
         card_path = path.with_suffix(".md")
         card = card_path.read_text(encoding="utf-8") if card_path.exists() else ""
         records.append(snapshot_record(json.loads(path.read_text(encoding="utf-8")), card, canonical))
+    return records
+
+
+def build(raw_dir: Path | None = None, out_dir: Path | None = None, today: str | None = None):
+    records = collect_records(raw_dir)
     today = today or date.today().isoformat()
     out = (out_dir or Path("data") / f"snapshot-{today}") / "records.jsonl.gz"
     return out, write_snapshot(records, out), today, data_quality_report(records)

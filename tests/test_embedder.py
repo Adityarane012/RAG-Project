@@ -152,3 +152,15 @@ def test_hosted_usage_is_logged_per_shard_and_totalled_across_runs(tmp_path):
     assert CachedEmbedder(Fake(), cache_dir=tmp_path).tokens_total() == 22     # a fresh process still sees the total
     CachedEmbedder(Fake(), cache_dir=tmp_path).passages(["zzz"])                # a backend with no usage adds nothing
     assert CachedEmbedder(Fake(), cache_dir=tmp_path).tokens_total() == 22
+
+
+def test_query_vectors_are_cached_on_disk_and_distinct_from_passage_vectors(tmp_path):
+    fake = Fake()
+    emb = CachedEmbedder(fake, cache_dir=tmp_path)
+    q1 = emb.query("hindi ner")
+    assert q1 == [9.0] * 4 and emb.query("hindi ner") == q1
+    fresh = Fake()
+    fresh.query = lambda t: (_ for _ in ()).throw(AssertionError("must come from the cache"))
+    assert CachedEmbedder(fresh, cache_dir=tmp_path).query("hindi ner") == q1
+    emb.passages(["hindi ner"])                       # same text as a passage is a DIFFERENT vector (e5 prefix)
+    assert emb.passages(["hindi ner"])[0] != q1

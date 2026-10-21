@@ -157,7 +157,15 @@ class CachedEmbedder:
         return [self._mem[k].tolist() for k in keys]
 
     def query(self, text: str) -> list[float]:
-        return self.backend.query(text)
+        """Query vectors are cached too (same store, kind "query"): re-running an evaluation re-embeds nothing."""
+        self._load()
+        key = text_key("query", text)
+        if key not in self._mem:
+            vec = self.backend.query(text)
+            self._mem[key] = np.asarray(vec, dtype=np.float32)
+            self._save_shard([key], [vec])
+            self._log_usage(1)
+        return self._mem[key].tolist()
 
 
 def load_embedder(backend: str | None = None, cached: bool = True):
