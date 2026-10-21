@@ -165,7 +165,8 @@ def build_graph(deps: Deps, variant: str = "ours"):
     def explain(state: State) -> State:
         shown = [r for r in state["results"] if viable(r)]
         try:
-            explanations, error = (deps.explain(state["constraints"], shown) if deps.explain else []), None
+            # the explanation relates each card to what the user asked, in the user's own words (soft_query can lose the topic)
+            explanations, error = (deps.explain({**state["constraints"], "soft_query": state["query"]}, shown) if deps.explain else []), None
         except Exception as e:  # LLM down or bad JSON: the verified table must still render
             explanations, error = [], f"{type(e).__name__}: {e}"
         return {"outcome": "answer", "explanations": explanations, "explain_error": error,

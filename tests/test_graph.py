@@ -267,3 +267,16 @@ def test_every_system_searches_with_the_users_own_words_not_the_extracted_soft_q
         g.invoke({"query": "a long original request"})
         texts[variant] = set(seen["texts"])
     assert texts == {v: {"a long original request"} for v in ("ours", "naive", "keyword")}
+
+
+def test_explanations_are_asked_to_relate_the_cards_to_the_users_own_words():
+    seen = {}
+
+    def explain(constraints, cands):
+        seen["soft"] = constraints["soft_query"]
+        return []
+
+    g, _ = make({**FULL, "soft_query": "permissive license"}, [chunk("a/b", 0.9)], explain=explain)
+    s = g.invoke({"query": "a Marathi NER model with a permissive license"})
+    assert seen["soft"] == "a Marathi NER model with a permissive license"
+    assert s["constraints"]["soft_query"] == "permissive license"          # the parsed intent itself is unchanged

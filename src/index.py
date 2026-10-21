@@ -210,7 +210,13 @@ def connect(create_if_missing: bool = False):
 
     from pinecone import Pinecone, ServerlessSpec
 
-    pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"])
+    # The SDK resolves DNS itself and ignores HTTPS_PROXY unless told; behind a proxy that makes every call fail.
+    opts = {}
+    if os.environ.get("HTTPS_PROXY"):
+        opts["proxy_url"] = os.environ["HTTPS_PROXY"]
+    if os.environ.get("REQUESTS_CA_BUNDLE") or os.environ.get("SSL_CERT_FILE"):
+        opts["ssl_ca_certs"] = os.environ.get("REQUESTS_CA_BUNDLE") or os.environ["SSL_CERT_FILE"]
+    pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"], **opts)
     name = CFG["pinecone"]["index"]
     names = [i["name"] for i in pc.list_indexes()]
     if name not in names:

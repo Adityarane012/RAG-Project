@@ -1,0 +1,116 @@
+{
+ "E-RET-9 size $or keeps unknown-size, drops large": {
+  "ok": true,
+  "returned": [
+   "conditional",
+   "hi_mr",
+   "mr_only",
+   "multi",
+   "nolang",
+   "noncommercial",
+   "nosize",
+   "small"
+  ]
+ },
+ "E-RET-10 $in on a list-valued field matches any element": {
+  "ok": true,
+  "returned": [
+   "hi_mr",
+   "mr_only"
+  ]
+ },
+ "E-RET-11 $and of several $or clauses": {
+  "ok": true,
+  "returned": [
+   "hi_mr",
+   "multi",
+   "nolang"
+  ],
+  "expected": [
+   "hi_mr",
+   "multi",
+   "nolang"
+  ],
+  "filter": {
+   "$and": [
+    {
+     "task": {
+      "$eq": "text-classification"
+     }
+    },
+    {
+     "$or": [
+      {
+       "size_mb": {
+        "$lte": 500
+       }
+      },
+      {
+       "size_status": {
+        "$eq": "unknown"
+       }
+      }
+     ]
+    },
+    {
+     "commercial": {
+      "$in": [
+       "yes",
+       "conditional",
+       "unknown"
+      ]
+     }
+    },
+    {
+     "$or": [
+      {
+       "languages": {
+        "$in": [
+         "hi"
+        ]
+       }
+      },
+      {
+       "language_status": {
+        "$eq": "unknown"
+       }
+      },
+      {
+       "multilingual": {
+        "$eq": true
+       }
+      }
+     ]
+    },
+    {
+     "$or": [
+      {
+       "languages": {
+        "$in": [
+         "mr"
+        ]
+       }
+      },
+      {
+       "language_status": {
+        "$eq": "unknown"
+       }
+      },
+      {
+       "multilingual": {
+        "$eq": true
+       }
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "E-RET-12 namespaces never cross": {
+  "ok": true,
+  "ns_b": [
+   "only_in_b"
+  ]
+ },
+ "all_ok": true
+}
