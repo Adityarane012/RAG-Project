@@ -1,5 +1,17 @@
 # Single config file (D21). Changing embedding.model means re-indexing everything.
-snapshot_date: null          # set when a data snapshot is cut, e.g. 2026-10-23; shown in the UI
+# Data snapshot (D21): normalized metadata, attached to a GitHub Release. The raw API cache
+# stays local. `python -m src.snapshot build` prints the values to paste here.
+snapshot_date: null          # shown in the UI
+snapshot_sha256: null        # checked by src.snapshot.load_snapshot
+snapshot_url: null           # the GitHub Release asset
+
+# LLM models are pinned here (D7); the env vars GROQ_MODEL / OLLAMA_MODEL override them.
+# Final only after the 20-query extraction test (docs/testing-strategy.md section 6).
+llm:
+  groq_model: openai/gpt-oss-20b
+  groq_fallback_model: llama-3.1-8b-instant   # tried once on a rate-limit error
+  ollama_model: qwen2.5:7b-instruct           # ~4.7 GB at Q4, needs ~8 GB RAM
+  ollama_model_small: qwen2.5:3b              # for 8 GB laptops (set OLLAMA_MODEL to use it)
 
 embedding:
   model: intfloat/multilingual-e5-large
@@ -24,7 +36,8 @@ retrieval:                   # D18
   k_chunks: 50
   k_chunks_max: 400
   top_models: 5
-  reranker: pinecone         # pinecone | local (bge-reranker-v2-m3), see D9
+  reranker: local            # local (bge-reranker-v2-m3) is the safe default; pinecone only if the plan check allows it (D9)
+  local_reranker_model: BAAI/bge-reranker-v2-m3
 
 size_words_mb:               # D18: the LLM maps a word to a key, code supplies the number
   tiny: 100
@@ -46,3 +59,6 @@ adapt:                       # D14
 graph:                       # D15
   max_clarifying_questions: 2
   max_relax_retries: 1
+
+replay:                      # recorded demo runs (D21, docs/demo-runbook.md)
+  dir: demo/cache

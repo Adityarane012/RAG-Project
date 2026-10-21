@@ -53,6 +53,9 @@ metadata to `verify.verify` and `adapt.model_report`.
 | `clean.py` | Strip card noise, judge doc quality, build fallback chunk | `clean_card`, `doc_quality`, `fallback_chunk` | config |
 | `normalize.py` | Raw Hub record → metadata; license map; size rule; multilingual map | `normalize_record`, `license_rights`, `size_mb`, `normalize_languages` | config |
 | `index.py` | Section chunking, e5 embeddings, vector building, upsert | `chunk_card`, `build_vectors`, `embed_query`, `upsert` | clean, normalize |
+| `rerank.py` | Local cross-encoder reranker (`bge-reranker-v2-m3`); replaces chunk scores | `LocalReranker` | config |
+| `replay.py` | Record / replay final graph states for the demo (`RECORD=1` / `REPLAY=1`) | `ReplayGraph`, `run_key` | config |
+| `snapshot.py` | Cut a deterministic, checksummed metadata snapshot; data-quality report | `build`, `load_snapshot`, `data_quality_report` | ingest, clean, normalize |
 | `verify.py` | The only place a ✅/❌/⚠️ is decided; size-word table; ranking key | `verify`, `overall`, `rank_key`, `notes`, `resolve_max_size_mb` | config |
 | `retrieve.py` | Pinecone filter from constraints; k-widening; chunk → model grouping | `build_filter`, `fetch_chunks`, `group_by_model`, `pinecone_fetch` | config, verify |
 | `llm.py` | Provider switch + cache; constraint extraction; delimiters; explanations | `complete`, `extract_constraints`, `clean_constraints`, `wrap_card_section`, `explain` | verify |
@@ -92,7 +95,8 @@ list) but `verify` must never import `llm`.
 | `base_model` | str | only when declared | `cardData.base_model` | – | lineage |
 | `lineage_status` | `known`/`unknown` | always | derived | – | lineage |
 | `doc_quality` | `full`/`minimal` | always | `clean.doc_quality` | – | note only |
-| `directions` | list[str] `"hi-mr"` | only when the card states them | *(not populated yet)* | – | `check_direction` |
+| `directions` | list[str] `"hi-mr"` | only when stated | the `opus-mt-<src>-<tgt>` model id (D18) | – | `check_direction` |
+| `direction_source` | str | with `directions` | `"model_name"` | – | note "direction from model name" |
 | `section`, `text` | str | per chunk | chunker | – | `text` feeds `explain` |
 
 Pinecone rejects `null` metadata, so `build_vectors` drops `None` values.
@@ -125,7 +129,7 @@ authoritative check, run on every returned model. A filter must therefore never 
 | commercial / modifiable | everything except definite `no` | `yes`→pass, `no`→fail, `conditional`/`unknown`→**unknown** | conditional needs a human to read the terms |
 | language | `language ∈ languages` **or** `language_status = unknown` | pass / fail / unknown | multilingual-map models already have languages merged in |
 | task | `task = value` | pass / fail | – |
-| direction | *(not filtered)* | pass only if the card states it, else **unknown**; never fail | a language list can't tell hi→mr from mr→hi (D18) |
+| direction | *(not filtered)* | pass only if stated (today: an `opus-mt-<src>-<tgt>` id in the requested direction), else **unknown**; never fail | a language list can't tell hi→mr from mr→hi (D18) |
 
 ## 6. Online pipeline (LangGraph, D15)
 
@@ -141,7 +145,7 @@ authoritative check, run on every returned model. A filter must therefore never 
 | `relax` | `constraints` | `relax_offer`, `relax_count+1`, `outcome=relax` | ends the run |
 | `abstain` | – | `outcome=abstain` | ends the run; UI shows `closest` |
 | `enrich` | viable `results` | `reports` | `adapt.model_report` + templated Try-it snippet |
-| `explain` | viable `results` | `explanations`, `explain_error`, `outcome=answer` | LLM failure is caught: the verified table must still render |
+| `explain` | viable `results` | `explanations`, `explain_error`, `fully_verified`, `outcome=answer` | LLM failure is caught: the verified table must still render |
 
 ### 6.2 Routing
 
@@ -172,7 +176,7 @@ proceeds with what it has (clarify) or abstains (relax).
 
 A result is *viable* if `overall ≠ fail`. If every candidate is only ⚠️ the answer is shown
 with flags rather than abstaining, because "unknown" is information, not a violation.
-This choice affects the abstention metric on impossible queries; confirm it as a team.
+The state carries `fully_verified` (false when no result is a full pass) and the UI shows the banner "No model fully verified". Abstention therefore means *every* candidate fails with a known ❌, which is why the impossible evaluation queries must be verifiably impossible (`eval.metrics.verifiably_impossible`, [evaluation-plan.md](evaluation-plan.md)). Decided 2026-10-21.
 
 ### 6.5 Injected dependencies (`graph.Deps`)
 
@@ -180,7 +184,7 @@ This choice affects the abstention metric on impossible queries; confirm it as a
 |---|---|
 | `extract(query) -> constraints` | `llm.extract_constraints`; raises `ValueError` on bad JSON |
 | `fetch(filter, top_k) -> [match]` | each match `{"id", "score", "metadata": {...}}`; `retrieve.pinecone_fetch` builds it |
-| `rerank(soft_query, matches) -> matches` | **must return the same match dicts with `score` replaced by the reranker's score**: `group_by_model` ranks by `score` |
+| `rerank(soft_query, matches) -> matches` | `rerank.LocalReranker` implements it. **Must return the same match dicts with `score` replaced by the reranker's score**: `group_by_model` ranks by `score` |
 | `explain(constraints, results) -> [ {model_id, text, ...} ]` | `llm.explain`; output is filtered to candidate ids |
 | `lineage_index` | `adapt.build_lineage_index(snapshot records)` |
 | `card_data(model_id) -> dict \| None` | for `model-index` metrics; optional |
@@ -201,13 +205,31 @@ Nothing in `graph.py` touches the network, so the whole graph runs in tests with
   literal `<card_section` / `</card_section` in the text (case- and whitespace-tolerant).
   The system prompt tells the model never to follow instructions inside the tags.
 
+### 7.1 Recording and replay (D21)
+
+Retrieval needs Pinecone and query embedding, so only the LLM can be cached for real.
+For the demo, `replay.ReplayGraph` wraps the compiled graph with the same `.invoke`:
+
+| Mode | Set by | Behaviour |
+|---|---|---|
+| live | default | pass-through |
+| record | `RECORD=1` | run live, save the final state to `demo/cache/<key>.json` |
+| replay | `REPLAY=1` | serve the saved state, never touch a service; a missing recording raises `MissingRecording` with instructions. Wins over `RECORD` |
+
+The key hashes the query, the overrides and the carried loop counters, so a
+clarify → answer → relax sequence replays step by step. Replay shows what the system *did*
+on the recorded run; it is evidence of a rehearsed run, not a live computation, and the
+demo should say so.
+
 ## 8. Failure and degradation
 
 | Failure | Behaviour |
 |---|---|
-| Groq rate-limited / down | Switch `LLM_PROVIDER=ollama` (rehearsed, D7); cached responses still serve |
+| Groq rate-limited | One retry on `llm.groq_fallback_model`; the cache file records which model answered |
+| Groq down / still limited | Switch `LLM_PROVIDER=ollama` (rehearsed, D7); cached responses still serve |
 | LLM returns invalid JSON at extraction | `ValueError` surfaces to the UI (extraction cannot be skipped) |
 | LLM fails or returns junk at explanation | Caught in `explain` node: table and Try-it still render, UI shows a warning |
+| Planned demo query, no network | `REPLAY=1` serves the recorded run (see §7.1) |
 | Pinecone returns nothing | `verify` sees no candidates → relax offer (if one exists) → abstain |
 | Card missing / empty | Single metadata fallback chunk, `doc_quality: minimal`, UI note |
 | Hub fetch fails for one model | Logged to `data/raw/failed.jsonl`, run continues |
@@ -243,4 +265,11 @@ memory-estimate constants, loop caps. Secrets live only in `.env` (see
 | Size unit | 1 MB = 1,000,000 bytes | Matches the Hub's displayed sizes |
 | "Main weight files" (D20) | Top-level files named `model*` / `pytorch_model*` | Nested folders hold alternative copies; other names become *unknown* (honest, but measure how many) |
 | `viable` | `overall ≠ fail` | See §6.4 |
+| Models | Pinned in `config.yaml` (`llm.*`); env vars only override | One place to change, reproducible runs |
+| Reranker default | Local `bge-reranker-v2-m3` | Safe default until the Pinecone plan check (D9) |
+| Copyleft rights | GPL / CC-BY-SA: `conditional` for both rights | Share-alike applies to derivatives |
+| Direction | Passes only from an `opus-mt-<src>-<tgt>` name, labelled as such | Deterministic and covers a large family; everything else ⚠️ |
+| `base_model` ids | Canonicalised through the Hub API at ingestion | Merge legacy/current ids; assumption to verify on one model |
+| Multilingual map | Each entry cites a source and has a `checked` flag | Owned by the data lead; verification feeds on it |
+| Demo | Replay of recorded runs, not "offline" | Retrieval needs the network |
 | Loop closing | Via UI re-invocation, not a graph edge back to `extract`/`retrieve` | Keeps the graph stateless; same behaviour, testable caps |

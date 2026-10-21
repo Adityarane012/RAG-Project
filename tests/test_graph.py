@@ -112,3 +112,36 @@ def test_llm_failure_in_explain_still_returns_the_verified_table():
     s = g.invoke({"query": "q"})
     assert s["outcome"] == "answer" and s["explanations"] == [] and "ValueError" in s["explain_error"]
     assert s["results"][0]["overall"] == "pass"
+
+
+def test_all_unknown_is_shown_with_flags_and_marked_not_fully_verified():
+    pool = [chunk("u/one", 0.9, size_status="unknown"), chunk("u/two", 0.8, size_status="unknown")]
+    for c in pool:
+        c["metadata"].pop("size_mb")
+    g, _ = make(FULL, pool)
+    s = g.invoke({"query": "q"})
+    assert s["outcome"] == "answer" and s["fully_verified"] is False
+    assert [r["overall"] for r in s["results"]] == ["unknown", "unknown"]
+
+
+def test_a_full_pass_means_fully_verified_and_abstain_needs_every_candidate_to_fail():
+    g, _ = make(FULL, [chunk("good/m", 0.9), chunk("u/m", 0.5, size_status="unknown")])
+    assert g.invoke({"query": "q"})["fully_verified"] is True
+    # every candidate has a known ❌ (too big): relax offer first, then abstain once the cap is spent
+    g, _ = make(FULL, [chunk("big/a", 0.9, size_mb=900), chunk("big/b", 0.8, size_mb=700)])
+    assert g.invoke({"query": "q"})["outcome"] == "relax"
+    assert g.invoke({"query": "q", "relax_count": 1})["outcome"] == "abstain"
+
+
+def test_translation_direction_from_model_name_passes_other_models_stay_unknown():
+    named = chunk("Helsinki-NLP/opus-mt-hi-mr", 0.9, task="translation", languages=["hi", "mr"],
+                  directions=["hi-mr"], direction_source="model_name")
+    plain = chunk("org/multi", 0.8, task="translation", languages=["hi", "mr"])
+    c = {"task": "translation", "langs": ["hi", "mr"], "direction": ["hi", "mr"], "soft_query": "q"}
+    g, _ = make(c, [named, plain])
+    s = g.invoke({"query": "q"})
+    by_id = {r["model_id"]: r for r in s["results"]}
+    assert by_id["Helsinki-NLP/opus-mt-hi-mr"]["table"]["direction"] == "pass"
+    assert "direction from model name" in by_id["Helsinki-NLP/opus-mt-hi-mr"]["notes"]
+    assert by_id["org/multi"]["table"]["direction"] == "unknown"
+    assert s["results"][0]["model_id"] == "Helsinki-NLP/opus-mt-hi-mr"      # the verified one ranks first

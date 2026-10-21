@@ -92,6 +92,9 @@ def notes(meta: dict, constraints: dict) -> list[str]:
     if constraints.get("langs") and meta.get("multilingual"):
         wanted = ", ".join(constraints["langs"])
         out.append(f"multilingual, not specific to {wanted}")
+    direction = constraints.get("direction")
+    if direction and meta.get("direction_source") == "model_name" and f"{direction[0]}-{direction[1]}" in (meta.get("directions") or []):
+        out.append("direction from model name")
     if meta.get("doc_quality") == "minimal":
         out.append("minimal documentation")
     return out

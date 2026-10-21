@@ -15,11 +15,16 @@ reproducible). Architecture context: [architecture.md](architecture.md).
 | 5. Chunk | `index.chunk_card` | clean text | `(section, text)` chunks ≤ 450 est. tokens; or one fallback chunk | pure |
 | 6. Embed | `index.embed_passages` | chunk text | 1024-d vectors (`passage: ` prefix) | – |
 | 7. Upsert | `index.upsert` | vectors + metadata | Pinecone namespace | idempotent per id (see orphan caveat below) |
-| 8. Snapshot | *(to build in WP2)* | normalised records | `data/snapshot-<date>/records.jsonl` | – |
+| 7b. Canonical ids | `ingest.canonicalize` | distinct `base_model` values | `data/raw/_canonical_ids.json` (legacy → current id) | yes: cached, failures retried |
+| 8. Snapshot | `snapshot.build` | raw cache + canonical ids | `data/snapshot-<date>/records.jsonl.gz` (sorted, deterministic bytes) + data-quality report | pure |
 
 `data/` is gitignored (large, regenerable). The **snapshot** and `config.yaml` are what the
-results table is reproduced from (D21); share the snapshot out-of-band (drive/release asset)
-and record its date in `config.yaml: snapshot_date`.
+results table is reproduced from (D21). The snapshot holds normalised metadata only (a few MB
+compressed), so it is attached to a **GitHub Release**; `python -m src.snapshot build` prints
+the `snapshot_date` and `snapshot_sha256` to paste into `config.yaml`, and `snapshot_url` points
+at the Release asset. `snapshot.load_snapshot` refuses a file whose checksum doesn't match. The
+**raw cache stays local**: only whoever builds the index needs it. Note that rebuilding the
+index therefore needs a re-fetch; the evaluation reads the snapshot and the `prod` namespace.
 
 ## 2. Sampling (D5, D6)
 
@@ -75,7 +80,7 @@ listed is `("unknown","unknown")`. Summary (the dict is the source of truth):
 | CC-BY-ND | yes | no |
 | CC-BY-NC-ND | no | no |
 | OpenRAIL family, Llama, Gemma | conditional | conditional |
-| GPL/LGPL/AGPL, CC-BY-SA, MPL | conditional | yes |
+| GPL/LGPL/AGPL, CC-BY-SA, MPL (copyleft / share-alike) | conditional | conditional |
 | anything else | unknown | unknown |
 
 `conditional` always surfaces as ⚠️ when the user requires the right. To add a license,
@@ -94,13 +99,31 @@ for common unmapped values. Rights come from the *declared* license: not legal a
   `languages`. *Procedure to add an entry:* open the model card, copy its language list,
   keep only languages we filter on, add the entry with a code comment naming the source.
   Target ~20 entries; the current seed has XLM-R and the Whisper family.
+  **Owner: the data lead (A).** Every entry is a `MultilingualEntry(languages, source, checked)`:
+  `source` must say where the list came from, and `checked` stays `False` until someone has
+  compared the Indic ten against that source (a test enforces the source, not the check).
 
-### 4.4 Lineage and parameters (D14)
+### 4.4 Translation direction (D18)
+
+Only the Helsinki-NLP naming pattern states a direction: `opus-mt-<src>-<tgt>` (also with
+3-letter codes, which are normalised). The model gets `directions: ["src-tgt"]` and
+`direction_source: "model_name"`, and the UI says "direction from model name". Everything else
+stays ⚠️ unknown. Deliberate limits: `opus-mt-tc-…` ids are excluded (their tokens are not
+language codes), the name must *start* with `opus-mt-`, and a reversed request is still
+⚠️ (the pattern is one-directional but we don't mark a model ❌ for a direction it doesn't
+advertise). A third-party fine-tune that keeps the name is assumed to keep the direction;
+spot-check a few in WP1.
+
+### 4.5 Lineage and parameters (D14)
 
 `base_model` is the first declared base (a card may list several, e.g. merges); absent →
 `lineage_status: unknown`. `param_count` comes from the Hub's safetensors metadata and is
 omitted when absent. Base-model ids are compared as written, so the same base spelled two
-ways is counted twice (E-ADP-5). Check coverage of both in the data-quality report; if
+ways is counted twice unless canonicalised: `ingest.canonicalize` asks the Hub API for each
+`base_model` and stores the id it returns (legacy `xlm-roberta-base` → `FacebookAI/xlm-roberta-base`),
+and `snapshot.build` applies the map. **Assumption to verify on one real model in WP1**: that
+the API returns the current id for a legacy one. Ids that aren't Hub ids (local paths, URLs) map to
+themselves. Check coverage of both in the data-quality report; if
 `base_model` coverage is low, drop lineage from the demo.
 
 ## 5. Cleaning and chunking (D20, D8)
@@ -132,7 +155,7 @@ Produce these counts from the snapshot and keep them in [data-notes.md](data-not
 | Measure | Why it matters |
 |---|---|
 | Models per task and total vs the 5–8k estimate | D6 sizing |
-| % `size_status = unknown` | how often the size constraint can only answer ⚠️ |
+| % `size_status = unknown`, **by reason** (`weights_missing_size`, `adapter_only`, `weights_only_in_subfolder`, `gguf_only`, `weights_with_other_name`, `no_weight_files`) | how often the size constraint can only answer ⚠️, and whether the D20 name rule should be widened (`weights_with_other_name` is the one to watch) |
 | % `commercial` / `modifiable` = unknown, and the top-30 license strings not in the map | extend the license map |
 | % `language_status = unknown`; histogram of raw `language` values | extend the spelling aliases |
 | % `multilingual`, and which models | multilingual map coverage |

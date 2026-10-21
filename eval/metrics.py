@@ -76,3 +76,44 @@ def load_queries(path: str | Path) -> list[dict]:
             raise ValueError(f"{path}:{n}: bad query record {q!r}")
         queries.append(q)
     return queries
+
+
+def verifiably_impossible(records: list[dict], constraints: dict) -> bool:
+    """True if EVERY model in the snapshot gets a ❌ (so even a model with unknowns is not
+    a possible answer). Impossible test queries must satisfy this: otherwise an abstention
+    miss would measure missing data, not the system (D11)."""
+    from src.verify import verify
+
+    return all(overall(verify(r, constraints)) == FAIL for r in records)
+
+
+def cohens_kappa(a: list[int], b: list[int], weights: str | None = None) -> float:
+    """Agreement between two labellers on the same items, corrected for chance.
+
+    `weights`: None (nominal), "linear" or "quadratic" (for ordinal grades like 0/1/2,
+    where 0-vs-2 is a worse disagreement than 0-vs-1). Returns 1.0 for perfect
+    agreement; when chance agreement is already perfect (one label only) returns 1.0 if
+    the labellers agree and 0.0 otherwise.
+    """
+    if len(a) != len(b) or not a:
+        raise ValueError("need two equal-length, non-empty label lists")
+    cats = sorted(set(a) | set(b))
+    idx = {c: i for i, c in enumerate(cats)}
+    k, n = len(cats), len(a)
+    obs = [[0.0] * k for _ in range(k)]
+    for x, y in zip(a, b):
+        obs[idx[x]][idx[y]] += 1 / n
+    row = [sum(r) for r in obs]
+    col = [sum(obs[i][j] for i in range(k)) for j in range(k)]
+
+    def w(i: int, j: int) -> float:  # disagreement weight
+        if weights is None:
+            return float(i != j)
+        d = abs(i - j) / (k - 1 if k > 1 else 1)
+        return d if weights == "linear" else d * d
+
+    observed = sum(w(i, j) * obs[i][j] for i in range(k) for j in range(k))
+    expected = sum(w(i, j) * row[i] * col[j] for i in range(k) for j in range(k))
+    if expected == 0:
+        return 1.0 if observed == 0 else 0.0
+    return 1 - observed / expected

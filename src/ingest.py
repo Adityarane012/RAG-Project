@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -89,6 +90,48 @@ def log_failure(model_id: str, error: Exception) -> None:
         f.write(json.dumps({"model_id": model_id, "error": f"{type(error).__name__}: {error}"}) + "\n")
 
 
+CANONICAL_PATH = RAW_DIR / "_canonical_ids.json"
+_HUB_ID = re.compile(r"^[\w.\-]+(/[\w.\-]+)?$")
+
+
+def base_models_in_raw() -> set[str]:
+    """Every distinct `base_model` declared by a cached model (first one if a list)."""
+    from src.normalize import base_model
+
+    found: set[str] = set()
+    for path in RAW_DIR.glob("*.json"):
+        if path.name.startswith("_"):
+            continue
+        base = base_model((json.loads(path.read_text(encoding="utf-8")).get("cardData") or {}))
+        if base:
+            found.add(base)
+    return found
+
+
+def canonicalize(ids: set[str], cache_path: Path | None = None) -> dict[str, str]:
+    """Map each id to the Hub's current canonical id (e.g. legacy `xlm-roberta-base` ->
+    `FacebookAI/xlm-roberta-base`) so lineage counts merge. Uses the `id` the Hub API
+    returns for the repo; ids that don't look like Hub ids, or fail to resolve, map to
+    themselves. Cached, resumable. ASSUMPTION to verify on one real model in WP1: that
+    the API returns the current id for a legacy/redirected one.
+    """
+    cache_path = cache_path or CANONICAL_PATH
+    cache: dict[str, str] = (json.loads(cache_path.read_text(encoding="utf-8"))
+                             if cache_path.exists() else {})
+    for base in sorted(ids - cache.keys()):
+        if not _HUB_ID.match(base):  # a local path, URL or other non-Hub reference
+            cache[base] = base
+            continue
+        try:
+            resp = _get(f"{HUB}/api/models/{base}")
+        except requests.RequestException:
+            continue  # not cached on purpose: a rerun retries it
+        cache[base] = (resp.json().get("id") or base) if resp.status_code == 200 else base
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    _write_atomic(cache_path, json.dumps(cache, indent=1, sort_keys=True, ensure_ascii=False))
+    return cache
+
+
 def load_raw(model_id: str) -> tuple[dict, str]:
     return (json.loads(raw_path(model_id, ".json").read_text(encoding="utf-8")),
             raw_path(model_id, ".md").read_text(encoding="utf-8"))
@@ -112,6 +155,9 @@ def main(argv: list[str]) -> None:
                 log_failure(model_id, e)
             if i % 100 == 0:
                 print(f"  {i}/{len(all_ids)} ({fetched} new)")
+        mapping = canonicalize(base_models_in_raw())
+        merged = sum(1 for k, v in mapping.items() if k != v)
+        print(f"base models: {len(mapping)} distinct, {merged} resolved to a different canonical id")
 
 
 if __name__ == "__main__":

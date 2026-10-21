@@ -63,9 +63,9 @@ def test_explain_end_to_end_with_poisoned_card(monkeypatch):
 def test_responses_are_cached(monkeypatch, tmp_path):
     monkeypatch.setattr(llm, "CACHE_DIR", tmp_path)
     monkeypatch.setenv("LLM_PROVIDER", "groq")
-    monkeypatch.setenv("GROQ_MODEL", "m")
+    monkeypatch.delenv("GROQ_MODEL", raising=False)
     calls = []
-    monkeypatch.setitem(llm._PROVIDERS, "groq", (lambda p, s, m: calls.append(p) or "{}", "GROQ_MODEL"))
+    monkeypatch.setitem(llm._PROVIDERS, "groq", (lambda p, s, m: calls.append(p) or "{}", "GROQ_MODEL", "groq_model"))
     assert llm.complete("hello") == "{}" and llm.complete("hello") == "{}"
     assert len(calls) == 1
 
@@ -79,8 +79,71 @@ def test_direction_implies_languages_and_prompt_states_the_unit():
 def test_cache_keeps_non_ascii_responses_intact(monkeypatch, tmp_path):
     monkeypatch.setattr(llm, "CACHE_DIR", tmp_path)
     monkeypatch.setenv("LLM_PROVIDER", "groq")
-    monkeypatch.setenv("GROQ_MODEL", "m")
-    monkeypatch.setitem(llm._PROVIDERS, "groq", (lambda p, s, m: '{"soft_query": "मराठी"}', "GROQ_MODEL"))
+    monkeypatch.delenv("GROQ_MODEL", raising=False)
+    monkeypatch.setitem(llm._PROVIDERS, "groq", (lambda p, s, m: '{"soft_query": "मराठी"}', "GROQ_MODEL", "groq_model"))
     first = llm.complete("मराठी NER")
     assert llm.complete("मराठी NER") == first == '{"soft_query": "मराठी"}'
     assert "मराठी" in next(tmp_path.glob("*.json")).read_text(encoding="utf-8")
+
+
+class RateLimitError(Exception):  # same class name as groq.RateLimitError
+    pass
+
+
+def _provider(monkeypatch, tmp_path, fn):
+    monkeypatch.setattr(llm, "CACHE_DIR", tmp_path)
+    monkeypatch.setenv("LLM_PROVIDER", "groq")
+    monkeypatch.delenv("GROQ_MODEL", raising=False)
+    monkeypatch.setitem(llm._PROVIDERS, "groq", (fn, "GROQ_MODEL", "groq_model"))
+
+
+def test_models_come_from_config_unless_overridden(monkeypatch, tmp_path):
+    seen = []
+    _provider(monkeypatch, tmp_path, lambda p, s, m: seen.append(m) or "{}")
+    llm.complete("a")
+    monkeypatch.setenv("GROQ_MODEL", "other/model")
+    llm.complete("b")
+    assert seen == [llm.CFG["llm"]["groq_model"], "other/model"]
+    assert llm.CFG["llm"]["groq_model"] == "openai/gpt-oss-20b"
+
+
+def test_rate_limit_falls_back_once_and_records_the_model_used(monkeypatch, tmp_path):
+    calls = []
+
+    def fn(p, s, m):
+        calls.append(m)
+        if m == llm.CFG["llm"]["groq_model"]:
+            raise RateLimitError("429")
+        return '{"ok": true}'
+
+    _provider(monkeypatch, tmp_path, fn)
+    assert llm.complete("q") == '{"ok": true}'
+    assert calls == [llm.CFG["llm"]["groq_model"], llm.CFG["llm"]["groq_fallback_model"]]
+    saved = json.loads(next(tmp_path.glob("*.json")).read_text(encoding="utf-8"))
+    assert saved["model"] == llm.CFG["llm"]["groq_fallback_model"] != saved["requested_model"]
+
+
+def test_other_errors_and_double_rate_limits_are_not_swallowed(monkeypatch, tmp_path):
+    def other(p, s, m):
+        raise ValueError("boom")
+
+    _provider(monkeypatch, tmp_path, other)
+    with pytest.raises(ValueError):
+        llm.complete("q")
+
+    def always_limited(p, s, m):
+        raise RateLimitError("429")
+
+    _provider(monkeypatch, tmp_path, always_limited)
+    with pytest.raises(RateLimitError):
+        llm.complete("q2")
+
+
+def test_missing_api_key_gives_a_clear_error(monkeypatch):
+    monkeypatch.delenv("GROQ_API_KEY", raising=False)
+    with pytest.raises(RuntimeError, match="GROQ_API_KEY is not set"):
+        llm._require_env("GROQ_API_KEY")
+
+
+def test_prompt_maps_embedding_requests_to_sentence_similarity():
+    assert "embeddings" in llm.EXTRACT_PROMPT and "sentence-similarity" in llm.EXTRACT_PROMPT

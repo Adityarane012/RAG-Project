@@ -26,7 +26,7 @@ from src.adapt import model_report
 from src.config import CFG
 from src.guide import clarifying_question, describe_intent, relaxation_offer, try_it_snippet
 from src.retrieve import fetch_chunks, group_by_model
-from src.verify import FAIL, notes, overall, rank_key, verify
+from src.verify import FAIL, PASS, notes, overall, rank_key, verify
 
 MAX_CLARIFY = CFG["graph"]["max_clarifying_questions"]
 MAX_RELAX = CFG["graph"]["max_relax_retries"]
@@ -48,6 +48,7 @@ class State(TypedDict, total=False):
     question: dict | None
     relax_offer: dict | None
     reports: list
+    fully_verified: bool      # False => the answer holds only models with ⚠️; the UI shows a banner
     explanations: list
     explain_error: str | None
     outcome: str              # answer | clarify | relax | abstain
@@ -132,7 +133,8 @@ def build_graph(deps: Deps):
             explanations, error = deps.explain(state["constraints"], shown), None
         except Exception as e:  # LLM down or bad JSON: the verified table must still render
             explanations, error = [], f"{type(e).__name__}: {e}"
-        return {"outcome": "answer", "explanations": explanations, "explain_error": error}
+        return {"outcome": "answer", "explanations": explanations, "explain_error": error,
+                "fully_verified": any(r["overall"] == PASS for r in shown)}
 
     g = StateGraph(State)
     for name, fn in (("extract", extract), ("clarify", clarify), ("retrieve", retrieve),

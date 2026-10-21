@@ -8,7 +8,8 @@ def test_license_rights_map():
     assert license_rights("cc-by-nd-4.0") == ("yes", "no")      # no derivatives
     assert license_rights("cc-by-nc-nd-4.0") == ("no", "no")
     assert license_rights("openrail") == ("conditional", "conditional")
-    assert license_rights("gpl-3.0") == ("conditional", "yes")
+    assert license_rights("gpl-3.0") == ("conditional", "conditional")   # share-alike: both rights need reading
+    assert license_rights("cc-by-sa-4.0") == ("conditional", "conditional")
     assert license_rights("some-custom-license") == ("unknown", "unknown")
     assert license_rights(None) == ("unknown", "unknown")
 
@@ -99,3 +100,57 @@ def test_card_saying_multilingual_is_unknown_not_a_wrong_no():
         m = normalize_record({"id": "x/y", "pipeline_tag": "token-classification", "cardData": {"language": card_lang}})
         assert m["multilingual"] is True and m["language_status"] == "unknown"
         assert verify(m, {"langs": ["hi"]})["languages"] == UNKNOWN
+
+
+def test_every_multilingual_entry_cites_a_source_and_none_is_silently_checked():
+    from src.normalize import MULTILINGUAL_MODELS
+
+    assert MULTILINGUAL_MODELS
+    for model_id, entry in MULTILINGUAL_MODELS.items():
+        assert entry.source.strip(), f"{model_id} has no source"
+        assert entry.languages, model_id
+        assert entry.checked is False  # flip to True only after comparing against the source
+
+
+def test_direction_comes_only_from_the_opus_mt_naming_pattern():
+    from src.normalize import directions_from_name
+
+    assert directions_from_name("Helsinki-NLP/opus-mt-hi-en") == ["hi-en"]
+    assert directions_from_name("Helsinki-NLP/opus-mt-en-mr") == ["en-mr"]
+    assert directions_from_name("someone/opus-mt-en-hi-finetuned") == ["en-hi"]
+    assert directions_from_name("opus-mt-hin-eng") == ["hi-en"]                 # 3-letter codes normalised
+    assert directions_from_name("Helsinki-NLP/opus-mt-tc-big-en-ro") == []      # tc- family: not src-tgt
+    assert directions_from_name("facebook/nllb-200-distilled-600M") == []       # multi-direction: unknown
+    assert directions_from_name("someone/my-opus-mt-hi-en") == []               # name must start with opus-mt-
+    assert directions_from_name("org/opus-mt-hindi-english") == []
+
+
+def test_direction_check_uses_the_name_and_says_so():
+    from src.verify import PASS, UNKNOWN, notes, verify
+
+    m = normalize_record({"id": "Helsinki-NLP/opus-mt-hi-mr", "pipeline_tag": "translation",
+                          "cardData": {"language": ["hi", "mr"]}})
+    assert m["directions"] == ["hi-mr"] and m["direction_source"] == "model_name"
+    fwd = {"task": "translation", "langs": ["hi", "mr"], "direction": ["hi", "mr"]}
+    rev = {**fwd, "direction": ["mr", "hi"]}
+    assert verify(m, fwd)["direction"] == PASS and "direction from model name" in notes(m, fwd)
+    assert verify(m, rev)["direction"] == UNKNOWN and "direction from model name" not in notes(m, rev)
+
+
+def test_canonical_base_model_merges_legacy_ids():
+    raw = {"id": "a/b", "cardData": {"base_model": "xlm-roberta-base"}, "siblings": []}
+    assert normalize_record(raw)["base_model"] == "xlm-roberta-base"
+    merged = normalize_record(raw, {"xlm-roberta-base": "FacebookAI/xlm-roberta-base"})
+    assert merged["base_model"] == "FacebookAI/xlm-roberta-base"
+
+
+def test_why_size_is_unknown():
+    from src.normalize import size_unknown_reason
+
+    assert size_unknown_reason([("model.safetensors", 5)]) is None
+    assert size_unknown_reason([("model.safetensors", None)]) == "weights_missing_size"
+    assert size_unknown_reason([("adapter_model.safetensors", 5)]) == "adapter_only"
+    assert size_unknown_reason([("fp16/model.safetensors", 5)]) == "weights_only_in_subfolder"
+    assert size_unknown_reason([("model-q4.gguf", 5)]) == "gguf_only"
+    assert size_unknown_reason([("best_checkpoint.bin", 5)]) == "weights_with_other_name"
+    assert size_unknown_reason([("README.md", 5)]) == "no_weight_files"

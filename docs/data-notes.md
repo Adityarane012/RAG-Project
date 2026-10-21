@@ -16,6 +16,9 @@ Fill this in during WP1 and WP2. Everything in the other docs that says "verify"
 | | Groq: JSON parse rate / extraction accuracy (20 queries); rate limits | | |
 | | Ollama: same test; latency on a team laptop | | |
 | | NLLB-200 license on its card | | |
+| | Hub returns `FacebookAI/xlm-roberta-base` as the canonical id for `xlm-roberta-base` | | |
+| | `directions_from_name` vs 3 real `opus-mt-*` cards and one fine-tune | | |
+| | Groq `openai/gpt-oss-20b` accepts `response_format=json_object`; fallback model works | | |
 | | The five `TASK_GUIDES` URLs open | | |
 | | e5 tokenizer vs `approx_tokens` on 50 Indic cards | | |
 | | Embedding throughput (CPU / Colab GPU) | | |
@@ -28,7 +31,7 @@ Snapshot date: ____
 |---|---|
 | Models per task | |
 | Total unique | |
-| % size unknown | |
+| % size unknown, and the count per reason | |
 | % commercial unknown / % modifiable unknown | |
 | Top unmapped licenses | |
 | % language unknown; unrecognised language spellings | |

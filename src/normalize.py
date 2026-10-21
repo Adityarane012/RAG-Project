@@ -12,6 +12,9 @@ so an explicit flag is needed to keep unknown-language models (D12).
 
 from __future__ import annotations
 
+import re
+from dataclasses import dataclass
+
 from src.config import CFG
 
 INDIC_LANGS = tuple(CFG["corpus"]["indic_langs"])
@@ -19,7 +22,7 @@ INDIC_LANGS = tuple(CFG["corpus"]["indic_langs"])
 # D3 + D14: license id -> (commercial use, modification rights).
 # Anything not listed is ("unknown", "unknown"); never guess.
 # "conditional" = allowed only under extra terms a human must read: use restrictions
-# that carry over to derivatives (OpenRAIL, Llama-style) or copyleft obligations.
+# that carry over to derivatives (OpenRAIL, Llama-style) or share-alike obligations (GPL, CC-BY-SA).
 # Note CC-BY-NC is modifiable "yes" but the result stays non-commercial (see adapt.rights_notes).
 LICENSE_RIGHTS: dict[str, tuple[str, str]] = {
     # Permissive: use commercially, modify and sell
@@ -61,23 +64,35 @@ LICENSE_RIGHTS: dict[str, tuple[str, str]] = {
     "llama3.2": ("conditional", "conditional"),
     "llama3.3": ("conditional", "conditional"),
     "gemma": ("conditional", "conditional"),
-    # Copyleft: modification allowed, commercial use comes with obligations
-    "cc-by-sa-3.0": ("conditional", "yes"),
-    "cc-by-sa-4.0": ("conditional", "yes"),
-    "gpl": ("conditional", "yes"),
-    "gpl-2.0": ("conditional", "yes"),
-    "gpl-3.0": ("conditional", "yes"),
-    "lgpl-2.1": ("conditional", "yes"),
-    "lgpl-3.0": ("conditional", "yes"),
-    "agpl-3.0": ("conditional", "yes"),
-    "mpl-2.0": ("conditional", "yes"),
+    # Copyleft / share-alike: derivatives allowed but must carry the same terms, and
+    # commercial use comes with obligations. Both rights need a human to read the terms.
+    "cc-by-sa-3.0": ("conditional", "conditional"),
+    "cc-by-sa-4.0": ("conditional", "conditional"),
+    "gpl": ("conditional", "conditional"),
+    "gpl-2.0": ("conditional", "conditional"),
+    "gpl-3.0": ("conditional", "conditional"),
+    "lgpl-2.1": ("conditional", "conditional"),
+    "lgpl-3.0": ("conditional", "conditional"),
+    "agpl-3.0": ("conditional", "conditional"),
+    "mpl-2.0": ("conditional", "conditional"),
 }
 
-# D18: models that cover Indic languages without tagging them. SEED ONLY: add entries
-# (target ~20) only after checking the language list on each model's card.
-MULTILINGUAL_MODELS: dict[str, tuple[str, ...]] = {
+# D18: models that cover Indic languages without tagging them. Owned by the data lead.
+# EVERY entry must cite where its language list came from, and `checked` is flipped to True
+# only after someone has compared the Indic ten against that source. Target ~20 entries.
+@dataclass(frozen=True)
+class MultilingualEntry:
+    languages: tuple[str, ...]
+    source: str
+    checked: bool = False
+
+
+_XLMR_SOURCE = "XLM-R paper (Conneau et al., 2020), language list; and the model card"
+_WHISPER_SOURCE = "Whisper paper (Radford et al., 2022) and the model card, supported-language list"
+
+MULTILINGUAL_MODELS: dict[str, MultilingualEntry] = {
     **{
-        name: ("en", *INDIC_LANGS)
+        name: MultilingualEntry(("en", *INDIC_LANGS), _XLMR_SOURCE)
         for name in (
             "xlm-roberta-base",
             "xlm-roberta-large",
@@ -86,7 +101,7 @@ MULTILINGUAL_MODELS: dict[str, tuple[str, ...]] = {
         )
     },
     **{
-        f"openai/whisper-{size}": ("en", *INDIC_LANGS)
+        f"openai/whisper-{size}": MultilingualEntry(("en", *INDIC_LANGS), _WHISPER_SOURCE)
         for size in ("tiny", "base", "small", "medium", "large", "large-v2", "large-v3")
     },
 }
@@ -154,10 +169,26 @@ def normalize_languages(langs: list[str] | str | None) -> list[str]:
 
 def apply_multilingual_map(model_id: str, languages: list[str]) -> tuple[list[str], bool]:
     """Merge the hand-made multilingual map into the tagged languages (D18)."""
-    covered = MULTILINGUAL_MODELS.get(model_id)
-    if covered is None:
+    entry = MULTILINGUAL_MODELS.get(model_id)
+    if entry is None:
         return languages, False
-    return normalize_languages([*languages, *covered]), True
+    return normalize_languages([*languages, *entry.languages]), True
+
+
+# Direction is stated only by the Helsinki-NLP naming scheme `opus-mt-<src>-<tgt>`, which is
+# one-directional. Anything else stays unknown. `tc-` names (opus-mt-tc-big-…) are excluded
+# because their next tokens are not language codes. Third-party fine-tunes that keep the
+# name are assumed to keep the direction (residual risk; shown to the user as "from model name").
+_OPUS_MT = re.compile(r"(?:^|/)opus-mt-(?!tc-)([a-z]{2,3})-([a-z]{2,3})(?![a-z])")
+
+
+def directions_from_name(model_id: str) -> list[str]:
+    """["src-tgt"] for an opus-mt-<src>-<tgt> model id, else []."""
+    m = _OPUS_MT.search(model_id.lower())
+    if not m:
+        return []
+    src, tgt = (LANG_ALIASES.get(c, c) for c in m.groups())
+    return [f"{src}-{tgt}"]
 
 
 def _is_main_weight(name: str, suffix: str) -> bool:
@@ -196,7 +227,26 @@ def base_model(card_data: dict | None) -> str | None:
     return value.strip() if isinstance(value, str) and value.strip() else None
 
 
-def normalize_record(raw: dict) -> dict:
+def size_unknown_reason(files: list[tuple[str, int | None]]) -> str | None:
+    """Why a model's size is unknown, to decide whether the D20 rule needs widening.
+    None when the size is known."""
+    if size_mb(files) is not None:
+        return None
+    names = [n for n, _ in files]
+    if any(_is_main_weight(n, ".safetensors") or _is_main_weight(n, ".bin") for n in names):
+        return "weights_missing_size"
+    if any(n.rsplit("/", 1)[-1].startswith("adapter_model") for n in names):
+        return "adapter_only"
+    if any("/" in n and n.endswith((".safetensors", ".bin")) for n in names):
+        return "weights_only_in_subfolder"
+    if any(n.endswith(".gguf") for n in names):
+        return "gguf_only"
+    if any(n.endswith((".safetensors", ".bin")) for n in names):
+        return "weights_with_other_name"
+    return "no_weight_files"
+
+
+def normalize_record(raw: dict, canonical: dict[str, str] | None = None) -> dict:
     """Raw Hub API response (`/api/models/<id>?blobs=true&cardData=true`) -> model record.
 
     The record holds the per-model metadata; index.py adds `section` and `text` per
@@ -216,6 +266,8 @@ def normalize_record(raw: dict) -> dict:
     files = [(s.get("rfilename", ""), s.get("size")) for s in raw.get("siblings") or []]
     size = size_mb(files)
     base = base_model(card)
+    if base and canonical:
+        base = canonical.get(base, base)  # legacy ids -> current ids, so lineage counts merge
     license_id = card.get("license") or license_from_tags(tags)
     commercial, modifiable = license_rights(license_id if isinstance(license_id, str) else None)
 
@@ -239,5 +291,9 @@ def normalize_record(raw: dict) -> dict:
         meta["param_count"] = params
     if base:
         meta["base_model"] = base
+    directions = directions_from_name(model_id)
+    if directions:
+        meta["directions"] = directions
+        meta["direction_source"] = "model_name"
     return meta
 

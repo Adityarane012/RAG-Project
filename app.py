@@ -11,6 +11,7 @@ import streamlit as st
 
 from src.config import CFG
 from src.guide import EXAMPLE_QUERIES, LANG_NAMES, TOOLTIPS
+from src.replay import MissingRecording, ReplayGraph, mode_from_env
 from src.verify import ICON
 
 DISCLAIMER = ("Rights are read from each model's *declared* license. This is not legal "
@@ -20,13 +21,23 @@ ROW_LABELS = {"task": "Task", "languages": "Language", "direction": "Direction",
 
 
 @st.cache_resource
-def get_graph():
-    """Build the LangGraph pipeline once per process.
+def _live_graph():
+    """Build the real LangGraph pipeline once per process.
 
-    TODO: wire real deps (local embedder, Pinecone index + namespace, reranker, llm.explain)
-    into graph.Deps. Until then the UI renders but cannot search.
+    TODO: wire real deps (local embedder, Pinecone index + namespace, LocalReranker,
+    llm.explain, lineage index from the snapshot) into graph.Deps and return
+    graph.build_graph(deps). Until then the UI renders but cannot search live.
     """
     raise NotImplementedError("pipeline deps not wired yet")
+
+
+def get_graph() -> ReplayGraph:
+    """The graph, wrapped for recording / replay (D21). REPLAY=1 serves recorded runs and
+    needs no network; RECORD=1 runs live and saves each result for later replay."""
+    mode = mode_from_env()
+    if mode == "replay":
+        return ReplayGraph(mode="replay")
+    return ReplayGraph(_live_graph(), mode)
 
 
 def _follow_up(override: dict) -> None:
@@ -85,6 +96,8 @@ def render_state(state: dict) -> None:
 
     reports = {r["model_id"]: r for r in state.get("reports", [])}
     explanations = {e["model_id"]: e for e in state.get("explanations", [])}
+    if not state.get("fully_verified", True):
+        st.warning("No model fully verified: every result below has at least one ⚠️ unknown.")
     if state.get("explain_error"):
         st.warning("Explanations are unavailable right now; the verified table below is unaffected.")
     for result in (r for r in state["results"] if r["overall"] != "fail"):
@@ -122,6 +135,8 @@ def main() -> None:
     st.caption(DISCLAIMER)
     if CFG.get("snapshot_date"):
         st.caption(f"Data snapshot: {CFG['snapshot_date']}")
+    if mode_from_env() == "replay":
+        st.caption("Replay mode: showing recorded runs, no live services.")
 
     search_tab, check_tab = st.tabs(["Search", "Check a model"])
 
@@ -139,14 +154,17 @@ def main() -> None:
             try:
                 graph = get_graph()
             except NotImplementedError:
-                st.info("Search isn't wired up yet. See `get_graph()` in app.py.")
+                st.info("Search isn't wired up yet. See `_live_graph()` in app.py.")
             else:
                 carried = {}
                 if action == "followup" and "state" in st.session_state:
                     prev = st.session_state["state"]
                     carried = {k: prev[k] for k in ("clarifications_asked", "relax_count") if k in prev}
-                st.session_state["state"] = graph.invoke({
-                    "query": query, "overrides": st.session_state.get("overrides", {}), **carried})
+                try:
+                    st.session_state["state"] = graph.invoke({
+                        "query": query, "overrides": st.session_state.get("overrides", {}), **carried})
+                except MissingRecording as e:
+                    st.warning(str(e))
         if "state" in st.session_state:
             render_state(st.session_state["state"])
 

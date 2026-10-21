@@ -23,7 +23,10 @@ TASKS = tuple(CFG["corpus"]["tasks"])
 
 EXTRACT_PROMPT = """Extract the hard constraints and the soft preference from a request \
 for a Hugging Face model. Reply with JSON only, using exactly these keys:
-  "task": one of {tasks}, or null
+  "task": one of {tasks}, or null. Hints: sentiment/topic/spam -> text-classification;
+          names/entities/NER -> token-classification; speech-to-text/transcription ->
+          automatic-speech-recognition; embeddings/semantic similarity/sentence vectors ->
+          sentence-similarity. If the task is unclear use null; never guess.
   "langs": list of ISO 639-1 codes, or []
   "direction": [source, target] ISO codes for a translation request that names a direction, else null
   "max_size_mb": a number in MEGABYTES ONLY if the user gave an explicit size (1 GB = 1000 MB), else null
@@ -51,10 +54,17 @@ def _cache_path(provider: str, model: str, system: str, prompt: str) -> Path:
     return CACHE_DIR / f"{key}.json"
 
 
+def _require_env(name: str) -> str:
+    value = os.environ.get(name)
+    if not value:
+        raise RuntimeError(f"{name} is not set. Copy .env.example to .env and fill it in.")
+    return value
+
+
 def _call_groq(prompt: str, system: str, model: str) -> str:
     from groq import Groq
 
-    client = Groq(api_key=os.environ["GROQ_API_KEY"])
+    client = Groq(api_key=_require_env("GROQ_API_KEY"))
     messages = ([{"role": "system", "content": system}] if system else []) + [
         {"role": "user", "content": prompt}]
     resp = client.chat.completions.create(
@@ -78,27 +88,46 @@ def _call_ollama(prompt: str, system: str, model: str) -> str:
     return resp.json()["response"]
 
 
+# provider -> (call function, env var that overrides the model, config key with the pinned model)
 _PROVIDERS = {
-    "groq": (_call_groq, "GROQ_MODEL"),
-    "ollama": (_call_ollama, "OLLAMA_MODEL"),
+    "groq": (_call_groq, "GROQ_MODEL", "groq_model"),
+    "ollama": (_call_ollama, "OLLAMA_MODEL", "ollama_model"),
 }
 
 
+def _is_rate_limit(error: Exception) -> bool:
+    """Matches groq.RateLimitError without importing the SDK (and any HTTP 429)."""
+    return type(error).__name__ == "RateLimitError" or getattr(error, "status_code", None) == 429
+
+
 def complete(prompt: str, system: str = "") -> str:
-    """Raw completion from the configured provider, cached by (provider, model, system, prompt)."""
+    """Raw completion from the configured provider, cached by (provider, model, system, prompt).
+
+    The model is the env override if set, else the one pinned in config.yaml. On a Groq
+    rate-limit error the pinned fallback model is tried once; the file in the cache
+    records which model actually answered.
+    """
     provider = os.getenv("LLM_PROVIDER", "groq")
-    call, model_var = _PROVIDERS[provider]
-    model = os.environ[model_var]
+    call, model_var, cfg_key = _PROVIDERS[provider]
+    model = os.getenv(model_var) or CFG["llm"][cfg_key]
 
     path = _cache_path(provider, model, system, prompt)
     if path.exists():
         return json.loads(path.read_text(encoding="utf-8"))["response"]
 
-    response = call(prompt, system, model)
+    used = model
+    try:
+        response = call(prompt, system, model)
+    except Exception as e:
+        fallback = CFG["llm"].get("groq_fallback_model") if provider == "groq" else None
+        if not (_is_rate_limit(e) and fallback and fallback != model):
+            raise
+        used = fallback
+        response = call(prompt, system, fallback)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps({"provider": provider, "model": model, "system": system,
-                                "prompt": prompt, "response": response}, ensure_ascii=False),
-                    encoding="utf-8")
+    path.write_text(json.dumps({"provider": provider, "model": used, "requested_model": model,
+                                "system": system, "prompt": prompt, "response": response},
+                               ensure_ascii=False), encoding="utf-8")
     return response
 
 

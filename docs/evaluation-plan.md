@@ -23,7 +23,7 @@ Implements D11 (metrics) and D19 (baselines). Automatic metrics are in
 | Slice | Count | Author | Notes |
 |---|---|---|---|
 | Normal | ~75 | teammate **not** building the pipeline | spread over the 5 tasks and ≥6 Indic languages; mix of size, rights, language, direction constraints |
-| Impossible | ~10 | same | no model can satisfy all constraints (e.g. Marathi ASR under 10 MB, commercial and modifiable; a CC-BY-ND-only niche); confirmed impossible against the snapshot |
+| Impossible | ~10 | same | **verifiably** impossible: every model in the snapshot gets a known ❌ (e.g. Marathi ASR under 10 MB, commercial and modifiable). Check each with `eval.metrics.verifiably_impossible(records, constraints)`; if a model is only ⚠️ the query measures missing data, so rewrite it |
 | Vague (beginner) | ~15 | same | missing task ("I want a Hindi model"), no constraints, jargon-free phrasing |
 | Classmates | ~20 | classmates who have never seen the system | any kind; reduces author bias |
 
@@ -49,7 +49,7 @@ parsed constraints, so one definition of "violation" is applied to every system.
 | **Violation rate @5** | recommended models (top 5/query) with ≥1 ❌ ÷ all recommended | `violation_rate_at_k` |
 | **% unknown @5** | models with no ❌ but ≥1 ⚠️ ÷ all recommended | `unknown_rate_at_k` |
 | **Relevance @5** | graded match to the soft preference (see §5) | manual, ~50 queries |
-| **Abstention accuracy** | on impossible queries, share where the outcome is `abstain` or `relax` | `abstention_accuracy` |
+| **Abstention accuracy** | on impossible queries, share where the outcome is `abstain` or `relax`. The system abstains only when **every** candidate has a known ❌; a result set of only ⚠️ is shown with the "No model fully verified" banner and is *not* an abstention | `abstention_accuracy` |
 | **Clarification rate** | on vague queries, share where the outcome is `clarify` | `clarification_rate` |
 | **`modifiable` correctness** | shown value equals the license map | `modifiable_correctness` |
 | **Explanation faithfulness** | share of explanation claims supported by the cited card text | manual on ~30 answers, or RAGAS |
@@ -63,9 +63,9 @@ nor a violation (D12).
 
 | System | Definition |
 |---|---|
-| **Naive RAG** | same index, embeddings, reranker and LLM; **no metadata filters, no verification** (task-only filtering is not allowed either) |
-| **Keyword + filters** | BM25 over card text with the same metadata filters as ours |
-| **HF Hub filters** | the Hub's own task / language / license filters plus its search; run **once**, results saved to `eval/baselines/` because the Hub changes |
+| **Naive RAG** | same index, embeddings, reranker and LLM; **no metadata filters, no verification** (task-only filtering is not allowed either). Built by B as a configuration flag on the pipeline |
+| **Keyword + filters** | BM25 over card text with the same metadata filters as ours. Built by B as a configuration flag |
+| **HF Hub filters** | the Hub's own task / language / license filters plus its search; run **by hand by C, once**, results saved to `eval/baselines/` because the Hub changes |
 | **Ours** | the full graph |
 
 For baselines, "the query's parsed constraints" come from the same `extract_constraints`
@@ -78,8 +78,8 @@ prompt tuning beyond what ours also received.
 
 ## 5. Manual labelling
 
-**Relevance @5** (~50 queries). Two labellers where possible; one sheet row per
-(query, model). Grade against the *soft preference only* (hard constraints are scored
+**Relevance @5** (~50 queries). Two labellers, **A and C (not B**, who tuned the system); one sheet row per
+(query, model). Budget about 250 judgements each, roughly 2–3 hours. Grade against the *soft preference only* (hard constraints are scored
 automatically):
 
 | Grade | Meaning |
@@ -89,12 +89,15 @@ automatically):
 | 0 | Does not suit |
 
 Report mean grade@5 and the share of queries with at least one grade-2 model. Label blind
-to which system produced the list (shuffle systems together). Report inter-labeller
-agreement on a shared subset of ~10 queries.
+to which system produced the list (shuffle systems together). Both label the same items;
+report **Cohen's kappa** from `eval.metrics.cohens_kappa`: quadratic-weighted (the usual
+choice for ordinal grades, since 0-vs-2 is worse than 1-vs-2) and unweighted. Disagreements
+are resolved by discussion, and the pre-resolution kappa is the one reported.
 
-**Faithfulness** (~30 answers). For each explanation, split into claims; mark each
+**Faithfulness** (~30 answers), scored **by hand**. For each explanation, split into claims; mark each
 *supported* / *unsupported* / *contradicted* by the cited `card_section`. Report the share
-supported and list the unsupported claims.
+supported and list the unsupported claims. RAGAS faithfulness may be run as a cross-check
+only: it adds an LLM judge, which is another component that can fail.
 
 ## 6. Ablations and design justification
 

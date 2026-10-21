@@ -31,6 +31,9 @@ cp .env.example .env   # then fill in the keys
 │   ├── index.py        # chunking, local embeddings, Pinecone upsert
 │   ├── llm.py          # extract_constraints(), explain(), provider switch, cache, D17 delimiters
 │   ├── retrieve.py     # Pinecone filters (D12), chunk -> model grouping (D18)
+│   ├── rerank.py       # local bge-reranker-v2-m3 (D9)
+│   ├── replay.py       # record / replay demo runs (REPLAY=1, RECORD=1)
+│   ├── snapshot.py     # deterministic metadata snapshot + data-quality report
 │   ├── verify.py       # pass / fail / unknown, size-word table
 │   ├── guide.py        # intent text, clarifying questions, Try-it templates, tooltips (D13)
 │   ├── adapt.py        # rights notes, lineage, memory estimate, reported metrics (D14, D24)
@@ -41,13 +44,15 @@ cp .env.example .env   # then fill in the keys
 
 ## Status
 
-Built and unit-tested offline: license/rights map, size rule, `verify`, Pinecone filters,
-grouping, cleaning, chunking, guidance, build-on estimates, prompt-injection delimiters,
-the LangGraph pipeline (with stub dependencies), eval metrics, and the UI renderer.
+Built and unit-tested offline (127 tests): license/rights map, size rule, `verify`, Pinecone
+filters, grouping, cleaning, chunking, guidance, build-on estimates, prompt-injection delimiters,
+the LangGraph pipeline (with stub dependencies), eval metrics, snapshot and replay, the local
+reranker (with a fake scorer), and the UI renderer.
 
-Not yet built or never run against live services: Hub ingestion (`python -m src.ingest counts`
-is the day-1 check), the index build `main()`, `get_graph()` wiring in `app.py`
-(embedder, Pinecone, reranker), check-a-model lookup, baselines, and `eval/queries.jsonl`.
+Not yet built, or never run against live services: Hub ingestion (`python -m src.ingest counts`
+is the day-1 check), the index build `main()`, `_live_graph()` wiring in `app.py`
+(embedder, Pinecone, reranker), the check-a-model lookup, the baselines flags, and
+`eval/queries.jsonl`. See [docs/implementation-plan.md](docs/implementation-plan.md).
 
 ## Tests
 

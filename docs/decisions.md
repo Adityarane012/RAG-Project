@@ -35,6 +35,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Decision:** constraints evaluate to `pass`, `fail`, or `unknown`. Licenses map to commercial use as `yes` / `no` / `conditional` / `unknown` (e.g., Apache-2.0 and MIT → yes; CC-BY-NC → no; Llama-style and OpenRAIL → conditional).
 - **Rationale:** many cards are missing metadata. Guessing produces false claims; dropping those models silently produces false negatives.
 - **Extended by D14:** a second, independent right (`modifiable`) uses the same map.
+- **Update 2026-10-21:** copyleft / share-alike licenses (GPL, LGPL, AGPL, MPL, CC-BY-SA) map to `conditional` for **both** `commercial` and `modifiable`: derivatives are allowed but must carry the same terms. `conditional` always shows as ⚠️ when the right is required.
 
 ## D4. Vector database: Pinecone
 - **Status:** Accepted (2026-10-16)
@@ -45,6 +46,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **In scope:** `automatic-speech-recognition`, `translation`, `text-classification`, `token-classification`, `sentence-similarity`.
 - **Out of scope:** `text-generation` (largest category, messiest licenses, already the focus of existing tools). Stretch goal only.
 - **Demo roles:** ASR showcases the size constraint (sizes from tens of MB to several GB). Translation showcases the license constraint (NLLB-200 is believed to be CC-BY-NC; **verify**).
+- **Known gap (2026-10-21):** requests for an "embedding model" are mapped to `sentence-similarity`. Many embedding models are tagged `feature-extraction` instead and are not in the corpus. Accepted (that tag is full of base encoders and would swell the corpus); listed under limitations.
 
 ## D6. Corpus sampling: top models plus the Indic long tail
 - **Status:** Accepted (2026-10-16)
@@ -59,6 +61,7 @@ Companion document: [PROJECT.md](PROJECT.md)
   - Every LLM response is cached (protects against rate limits and makes runs reproducible).
   - Run 20 test queries and measure **JSON parse success** and **constraint extraction accuracy** on Groq; confirm Ollama passes the same test as a backup.
   - Demo day: switching to Ollama has been rehearsed in advance.
+- **Pinned models (2026-10-21), in `config.yaml`:** Groq `openai/gpt-oss-20b` with `llama-3.1-8b-instant` as a one-shot rate-limit fallback; Ollama `qwen2.5:7b-instruct` (`qwen2.5:3b` on 8 GB laptops). Final only after the 20-query test. Not used: `llama-3.3-70b-versatile` (retirement reports conflict), and `gpt-oss:20b` locally (needs ~16 GB).
 
 ## D8. Embeddings: local `intfloat/multilingual-e5-large`
 - **Status:** Proposed
@@ -70,6 +73,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 ## D9. Reranking: Pinecone hosted if the plan allows, local fallback
 - **Status:** Proposed
 - **Decision:** use Pinecone's integrated reranking if the Starter plan includes it (check with the list-models API); otherwise run `bge-reranker-v2-m3` locally.
+- **Default (2026-10-21):** local `bge-reranker-v2-m3` is the safe default; switch to Pinecone-hosted only if the plan check shows it is available and worthwhile.
 
 ## D10. Metadata schema (draft)
 - **Status:** Proposed
@@ -105,6 +109,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 
 - **Ablation:** see D19 for the baselines; all run on the same query set.
 - **Design justification:** at least one tuning choice is backed by a number, e.g. relevance@5 with section chunking vs. fixed-size chunking.
+- **Update 2026-10-21:** (a) *Abstention* means every candidate fails with a known ❌. Impossible test queries must therefore be **verifiably impossible**: every model in the snapshot gets a ❌ (`eval.metrics.verifiably_impossible`), otherwise an abstention miss would measure missing data. (b) Relevance is labelled 0/1/2 by two labellers who do not build the pipeline, with Cohen's kappa reported (quadratic-weighted for the ordinal grades, plus unweighted). (c) Faithfulness is scored by hand on ~30 answers; RAGAS is an optional cross-check only.
 
 ## D12. Missing-value handling in filters
 - **Status:** Accepted (2026-10-16)
@@ -158,6 +163,7 @@ Companion document: [PROJECT.md](PROJECT.md)
   - **Official HF task-guide link** for each of the 5 tasks (5 static links) to answer "how do I fine-tune it".
 - **Skip (out of scope):** RAG over fine-tuning tutorials, dataset recommendations, fine-tuning inside the app. Each needs a new corpus or new infrastructure, and none fits the remaining time.
 - **Consistency with D2:** rights, lineage and memory are computed from metadata; the LLM only explains them.
+- **Update 2026-10-21:** GPL / CC-BY-SA are `conditional` for `modifiable` (share-alike), see D3.
 
 ## D15. Orchestration: LangGraph
 - **Status:** Accepted (2026-10-21)
@@ -211,6 +217,8 @@ Companion document: [PROJECT.md](PROJECT.md)
   | "medium" | ≤ 2 GB |
 
   The LLM only maps the word to a table entry; it never invents a number.
+- **Translation direction (updated 2026-10-21):** direction is stated only by the Helsinki-NLP naming pattern `opus-mt-<src>-<tgt>`, parsed deterministically from the model id and shown as "direction from model name". The pattern is one-directional, so a reversed request stays ⚠️. Everything else stays ⚠️ unknown unless the card states it.
+- **Lineage ids (updated 2026-10-21):** `base_model` ids are canonicalised through the Hub API during ingestion (legacy `xlm-roberta-base` → current id) so lineage counts merge. To be verified on one real model.
 
 ## D19. Baselines
 - **Status:** Accepted (2026-10-21)
@@ -239,7 +247,9 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Tests:** unit tests for the license map, `verify.py`, the vague-size table and the multilingual map, since that's where silent errors would corrupt the metrics. The graph is tested through the evaluation.
 - **Secrets:** API keys in a `.env` file excluded from git.
 - **Shared index:** Pinecone namespaces `prod` (demo data, changed only deliberately) and `exp-<name>` for each person's experiments.
-- **Demo environment:** cache the responses for every planned demo query so the demo works offline; keep Ollama installed on the demo laptop; show the data snapshot date in the UI.
+- **Demo environment:** cache the LLM responses and record the final state of every planned demo query so it can be replayed (see the correction below); keep Ollama installed on the demo laptop; show the data snapshot date in the UI.
+- **Demo wording corrected (2026-10-21):** the demo does **not** work offline: retrieval needs Pinecone and query embedding. What we provide is **replay of recorded runs**: each planned demo query's final state is recorded once with live services (`RECORD=1`) and served later with no network (`REPLAY=1`). Live search still needs the network; the LLM cache and the Ollama fallback cover only the LLM.
+- **Keys and snapshot (2026-10-21):** each member uses their own free Groq and read-only HF keys; one person creates the Pinecone index and shares the key privately, and everyone else writes only to their own `exp-<name>` namespace. The normalized snapshot is attached to a GitHub Release and its date and sha256 are recorded in `config.yaml`; the raw API cache stays local.
 
 ## D22. Users, use cases and non-goals
 - **Status:** Accepted (2026-10-21)
@@ -259,6 +269,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Decision:** a second entry point where the user pastes a model ID and gets the same constraint table, rights (`commercial`, `modifiable`), lineage and memory estimate, with no retrieval step.
 - **Why:** serves the compliance reviewer (D22), answers "what else can it do?", and reuses `verify.py` and `adapt.py`, so it costs very little.
 - **Scope:** **Must:** models in our snapshot. **Should:** models outside the snapshot, fetched live from the HF API and normalized with the same code.
+- **Cut (2026-10-21):** the live-fetch *Should* is cut to protect the schedule (see the cut order in PROJECT.md §8). Check-a-model covers models in the snapshot only.
 
 ## D24. Reported metrics shown as unverified
 - **Status:** Accepted (2026-10-21)
@@ -268,6 +279,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Priority:** Should; first to cut if behind schedule.
 
 ---
+- **Cut (2026-10-21):** first item on the cut list and now cut. `adapt.reported_metrics` exists but is not shown in the UI.
 
 ## Open questions
 
