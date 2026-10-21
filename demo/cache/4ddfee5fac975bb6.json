@@ -1,0 +1,2164 @@
+{
+ "input": {
+  "query": "Marathi NER model I can use commercially",
+  "overrides": {}
+ },
+ "state": {
+  "query": "Marathi NER model I can use commercially",
+  "overrides": {},
+  "constraints": {
+   "task": "token-classification",
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Marathi NER model"
+  },
+  "intent": "We understood: you want a model to find names, places and other items in text (NER), for Marathi, usable commercially.",
+  "matches": [
+   {
+    "id": "theharshithh/open-sarika::2",
+    "score": 0.874960899,
+    "metadata": {
+     "base_model": "openai/whisper-large-v3",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 1561,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "gu",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "theharshithh/open-sarika",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 1543490560,
+     "section": "direct use",
+     "size_mb": 6174.112072,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used for:\n1. Transcribing speech in Hindi, Gujarati, and Marathi\n2. Translating speech between these languages\n\nHere's a simple example to get started:"
+    }
+   },
+   {
+    "id": "vaibhav006/indic-ner-muril-naamapadam::0",
+    "score": 0.873594582,
+    "metadata": {
+     "base_model": "google/muril-base-cased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 132,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "pa",
+      "te"
+     ],
+     "lineage_status": "known",
+     "model_id": "vaibhav006/indic-ner-muril-naamapadam",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 236971015,
+     "section": "multilingual indic ner (muril-naamapadam)",
+     "size_mb": 947.90742,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "This model is fine-tuned for NER in **Marathi**, **Punjabi**, and **Telugu**."
+    }
+   },
+   {
+    "id": "gchhablani/wav2vec2-large-xlsr-mr::1",
+    "score": 0.871684551,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 14,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+    }
+   },
+   {
+    "id": "gchhablani/wav2vec2-large-xlsr-mr-2::1",
+    "score": 0.871684551,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 7,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.196247,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+    }
+   },
+   {
+    "id": "clarin-pl/combo-nlp-xlm-roberta-base-marathi-ufal-ud2.17::0",
+    "score": 0.868605375,
+    "metadata": {
+     "commercial": "conditional",
+     "doc_quality": "full",
+     "downloads": 8,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "clarin-pl/combo-nlp-xlm-roberta-base-marathi-ufal-ud2.17",
+     "modifiable": "conditional",
+     "multilingual": false,
+     "section": "model description",
+     "size_mb": 1129.892335,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "This is a Marathi-language model based on combo-nlp, an open-source natural language preprocessing system. It performs:\n\n- sentence segmentation (via combo-seg)\n- tokenisation (via combo-seg)\n- part-of-speech tagging\n- morphological analysis\n- lemmatisation\n- dependency parsing\n\nThe Marathi model uses ``FacebookAI/xlm-roberta-base`` as its base encoder and is trained on UD_Marathi-UFAL (UD v2.17)."
+    }
+   },
+   {
+    "id": "pratikkalamkar/moviecert-teacher-mr::0",
+    "score": 0.867631316,
+    "metadata": {
+     "base_model": "distilbert/distilbert-base-multilingual-cased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 9,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "pratikkalamkar/moviecert-teacher-mr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 135326210,
+     "section": "model description",
+     "size_mb": 541.317368,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This repository contains the Marathi Teacher model developed for the research paper **\"Lightweight and Explainable Neural Models for Multilingual Movie Script Certification.\"**\n\nThe model is fine-tuned from the multilingual DistilBERT architecture to classify full Marathi movie scripts into age-rating categories. It serves as the teacher model in a knowledge distillation framework used to develop lightweight student models for efficient deployment.\n\n- **Developed by:** Pratik N. Kalamkar\n- **Funded by:** Self-funded academic research\n- **Shared by:** Pratik N. Kalamkar\n- **Model type:** Transformer-based sequence classification model (DistilBERT)\n- **Language(s):** Marathi\n- **License:** Apache-2.0\n- **Finetuned from model:** distilbert-base-multilingual-cased\n\n---"
+    }
+   },
+   {
+    "id": "sagorsarker/mbert-bengali-ner::0",
+    "score": 0.867551625,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 121,
+     "language_status": "known",
+     "languages": [
+      "bn"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "sagorsarker/mbert-bengali-ner",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 166771719,
+     "section": "multi-lingual bert bengali name entity recognition",
+     "size_mb": 667.112374,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "`mBERT-Bengali-NER` is a transformer-based Bengali NER model build with bert-base-multilingual-uncased model and Wikiann Datasets."
+    }
+   },
+   {
+    "id": "gchhablani/wav2vec2-large-xlsr-mr-3::1",
+    "score": 0.867043674,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 326,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `text` and `audio_path` fields:"
+    }
+   },
+   {
+    "id": "Kantkamal/Gujarati-BERT-NER::0",
+    "score": 0.86679095,
+    "metadata": {
+     "base_model": "l3cube-pune/gujarati-bert",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 6,
+     "language_status": "known",
+     "languages": [
+      "gu"
+     ],
+     "lineage_status": "known",
+     "model_id": "Kantkamal/Gujarati-BERT-NER",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 236971015,
+     "section": "gujarati-bert-ner 🪔🇮🇳",
+     "size_mb": 947.90742,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "This is a fine-tuned Named Entity Recognition (NER) model for the Gujarati language based on the GujaratiBERT model. It has been trained on the Naamapadam dataset."
+    }
+   },
+   {
+    "id": "tanmaylaud/wav2vec2-large-xlsr-hindi-marathi::1",
+    "score": 0.865918338,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 64,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "tanmaylaud/wav2vec2-large-xlsr-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.237208,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi text and path fields:"
+    }
+   },
+   {
+    "id": "CAMeL-Lab/bert-base-arabic-camelbert-mix-ner::1",
+    "score": 0.864507556,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 10181,
+     "language_status": "known",
+     "languages": [
+      "ar"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "CAMeL-Lab/bert-base-arabic-camelbert-mix-ner",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "intended uses",
+     "size_mb": 436.407625,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use the CAMeLBERT-Mix NER model directly as part of our CAMeL Tools NER component (*recommended*) or as part of the transformers pipeline."
+    }
+   },
+   {
+    "id": "pratikkalamkar/moviecert-teacher-mr::2",
+    "score": 0.863581121,
+    "metadata": {
+     "base_model": "distilbert/distilbert-base-multilingual-cased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 9,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "pratikkalamkar/moviecert-teacher-mr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 135326210,
+     "section": "direct use",
+     "size_mb": 541.317368,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This model is intended for automated classification of Marathi movie scripts into age-rating categories.\n\nPotential applications include:\n\n- Automated movie certification research\n- Movie script analysis\n- Content moderation\n- Academic NLP research\n- Benchmarking multilingual transformer models\n\n---"
+    }
+   },
+   {
+    "id": "Hate-speech-CNERG/marathi-codemixed-abusive-MuRIL::0",
+    "score": 0.863233685,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 31,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "Hate-speech-CNERG/marathi-codemixed-abusive-MuRIL",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_mb": 950.313261,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This model is used to detect **abusive speech** in **Marathi**. It is finetuned on MuRIL model using Marathi abusive speech dataset.\nThe model is trained with learning rates of 2e-5. Training code can be found at this url\n\nLABEL_0 :-> Normal\n\nLABEL_1 :-> Abusive"
+    }
+   },
+   {
+    "id": "sumedh/wav2vec2-large-xlsr-marathi::1",
+    "score": 0.862781644,
+    "metadata": {
+     "base_model": "facebook/wav2vec2-large-xlsr-53",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 380291,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "sumedh/wav2vec2-large-xlsr-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 315508420,
+     "section": "usage",
+     "size_mb": 1262.086232,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly without a language model as follows, given that your dataset has Marathi `actual_text` and `path_in_folder` columns:"
+    }
+   },
+   {
+    "id": "dslim/distilbert-NER::3",
+    "score": 0.862761199,
+    "metadata": {
+     "base_model": "distilbert/distilbert-base-cased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 149553,
+     "language_status": "known",
+     "languages": [
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "dslim/distilbert-NER",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 65197833,
+     "section": "how to use",
+     "size_mb": 260.803668,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "This model can be utilized with the Transformers *pipeline* for NER, similar to the BERT models."
+    }
+   },
+   {
+    "id": "Tejas2000/SpeechRecog::1",
+    "score": 0.862755656,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 17,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "Tejas2000/SpeechRecog",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly without a language model as follows, given that your dataset has Marathi `actual_text` and `path_in_folder` columns:"
+    }
+   },
+   {
+    "id": "Tejas2000/Wav2Vec_Deploy::1",
+    "score": 0.862755656,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 9,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "Tejas2000/Wav2Vec_Deploy",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly without a language model as follows, given that your dataset has Marathi `actual_text` and `path_in_folder` columns:"
+    }
+   },
+   {
+    "id": "EshwarDhande/marathi-toxicity-classifier::0",
+    "score": 0.862455189,
+    "metadata": {
+     "base_model": "google-bert/bert-base-multilingual-uncased",
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 21,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "EshwarDhande/marathi-toxicity-classifier",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "section": "license & usage restrictions",
+     "size_status": "unknown",
+     "task": "text-classification",
+     "text": "This model is **not open-source** and requires explicit permission for use.\nTo obtain a license, please contact: eshwar.dhande@iitgn.ac.in\n\n- ❌ **Commercial use is prohibited without approval.**\n- ❌ **Redistribution and modification are not allowed without permission.**\n- ✅ **Research use may be granted on request.**"
+    }
+   },
+   {
+    "id": "Davlan/bert-base-multilingual-cased-ner-hrl::2",
+    "score": 0.86218214,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 195067,
+     "language_status": "unknown",
+     "languages": [],
+     "lineage_status": "unknown",
+     "model_id": "Davlan/bert-base-multilingual-cased-ner-hrl",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 177270281,
+     "section": "how to use",
+     "size_mb": 709.10662,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "NlpHUST/ner-vietnamese-electra-base::1",
+    "score": 0.86218214,
+    "metadata": {
+     "base_model": "NlpHUST/electra-base-vn",
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 3113,
+     "language_status": "known",
+     "languages": [
+      "vi"
+     ],
+     "lineage_status": "known",
+     "model_id": "NlpHUST/ner-vietnamese-electra-base",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "param_count": 133074185,
+     "section": "how to use",
+     "size_mb": 532.322816,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "Babelscape/wikineural-multilingual-ner::1",
+    "score": 0.86218214,
+    "metadata": {
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 602845,
+     "language_status": "known",
+     "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "it",
+      "nl",
+      "pl",
+      "pt",
+      "ru"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "Babelscape/wikineural-multilingual-ner",
+     "modifiable": "unknown",
+     "multilingual": true,
+     "param_count": 177270281,
+     "section": "how to use",
+     "size_mb": 709.106622,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "Leo97/KoELECTRA-small-v3-modu-ner::2",
+    "score": 0.86218214,
+    "metadata": {
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 44550,
+     "language_status": "known",
+     "languages": [
+      "ko"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "Leo97/KoELECTRA-small-v3-modu-ner",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "param_count": 14064671,
+     "section": "how to use",
+     "size_mb": 56.284578,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "NlpHUST/vi-word-segmentation::1",
+    "score": 0.86218214,
+    "metadata": {
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 802,
+     "language_status": "known",
+     "languages": [
+      "vi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "NlpHUST/vi-word-segmentation",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "section": "intended uses & limitations",
+     "size_mb": 532.344177,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "Davlan/xlm-roberta-base-ner-hrl::2",
+    "score": 0.86218214,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 191477,
+     "language_status": "unknown",
+     "languages": [],
+     "lineage_status": "unknown",
+     "model_id": "Davlan/xlm-roberta-base-ner-hrl",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 277460491,
+     "section": "how to use",
+     "size_mb": 1109.868164,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "Davlan/xlm-roberta-base-wikiann-ner::2",
+    "score": 0.86218214,
+    "metadata": {
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 2554,
+     "language_status": "unknown",
+     "languages": [],
+     "lineage_status": "unknown",
+     "model_id": "Davlan/xlm-roberta-base-wikiann-ner",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "param_count": 277460491,
+     "section": "how to use",
+     "size_mb": 1109.868164,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "Davlan/distilbert-base-multilingual-cased-ner-hrl::2",
+    "score": 0.86218214,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 128283,
+     "language_status": "unknown",
+     "languages": [],
+     "lineage_status": "unknown",
+     "model_id": "Davlan/distilbert-base-multilingual-cased-ner-hrl",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 134741001,
+     "section": "how to use",
+     "size_mb": 538.976358,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "Davlan/xlm-roberta-large-ner-hrl::2",
+    "score": 0.86218214,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 42896,
+     "language_status": "unknown",
+     "languages": [],
+     "lineage_status": "unknown",
+     "model_id": "Davlan/xlm-roberta-large-ner-hrl",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 558850571,
+     "section": "how to use",
+     "size_mb": 2235.45296,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "dslim/bert-large-NER::2",
+    "score": 0.862172127,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 163458,
+     "language_status": "known",
+     "languages": [
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "dslim/bert-large-NER",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 333588489,
+     "section": "how to use",
+     "size_mb": 1334.400964,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "dslim/bert-base-NER::3",
+    "score": 0.862172127,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 1248332,
+     "language_status": "known",
+     "languages": [
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "dslim/bert-base-NER",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 108317193,
+     "section": "how to use",
+     "size_mb": 433.292294,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "pczarnik/herbert-base-ner::1",
+    "score": 0.862144589,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 7339,
+     "language_status": "known",
+     "languages": [
+      "pl"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "pczarnik/herbert-base-ner",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 123858185,
+     "section": "how to use",
+     "size_mb": 495.458244,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "onnx-community/bert-base-multilingual-cased-ner-hrl-ONNX::3",
+    "score": 0.862144589,
+    "metadata": {
+     "base_model": "Davlan/bert-base-multilingual-cased-ner-hrl",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 1531,
+     "language_status": "unknown",
+     "languages": [],
+     "lineage_status": "known",
+     "model_id": "onnx-community/bert-base-multilingual-cased-ner-hrl-ONNX",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "how to use",
+     "size_status": "unknown",
+     "task": "token-classification",
+     "text": "You can use this model with Transformers *pipeline* for NER."
+    }
+   },
+   {
+    "id": "gchhablani/wav2vec2-large-xlsr-mr-3::2",
+    "score": 0.861610532,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 326,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "evaluation",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be evaluated as follows on 10% of the Marathi data on OpenSLR.\n\n**Test Result**: 19.05 % (157+157 examples)\n\n**Test Result on OpenSLR test**: 14.15 % (157 examples)\n\n**Test Results on InterSpeech test**: 27.14 % (157 examples)"
+    }
+   },
+   {
+    "id": "IreNkweke/bert-finetuned-ner-ontonotes5::1",
+    "score": 0.860552073,
+    "metadata": {
+     "base_model": "dslim/bert-base-NER",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 748,
+     "language_status": "unknown",
+     "languages": [],
+     "lineage_status": "known",
+     "model_id": "IreNkweke/bert-finetuned-ner-ontonotes5",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 107748133,
+     "section": "intended uses & limitations",
+     "size_mb": 431.015868,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "The model is intended for use in applications requiring NER, such as information extraction, text classification, and enhancing search capabilities by identifying key entities within the text. It can be used to identify entities in any English text, including news articles, social media posts, and legal documents."
+    }
+   },
+   {
+    "id": "aparnabhat/kannada-ner::1",
+    "score": 0.859979272,
+    "metadata": {
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 15,
+     "language_status": "known",
+     "languages": [
+      "kn"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "aparnabhat/kannada-ner",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "section": "model description",
+     "size_mb": 709.142253,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "{{ model_description  }}\n\n- **Developed by:** {{ Aparna Nayak}}\n- **Model type:** {{ NER }}\n- **Language(s) (NLP):** {{ Python }}\n- **Finetuned from model [optional]:** {{ bert-base-multilingual-cased }}"
+    }
+   },
+   {
+    "id": "CAMeL-Lab/bert-base-arabic-camelbert-msa-ner::1",
+    "score": 0.859955,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 17476,
+     "language_status": "known",
+     "languages": [
+      "ar"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "CAMeL-Lab/bert-base-arabic-camelbert-msa-ner",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "intended uses",
+     "size_mb": 436.407625,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "You can use the CAMeLBERT MSA NER model directly as part of our CAMeL Tools NER component (*recommended*) or as part of the transformers pipeline."
+    }
+   },
+   {
+    "id": "Rishabh157/multiconer-multilingual-ner-mdeberta::0",
+    "score": 0.859755933,
+    "metadata": {
+     "base_model": "microsoft/mdeberta-v3-base",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 726,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "es",
+      "fr",
+      "de",
+      "it",
+      "pt",
+      "sv",
+      "uk",
+      "zh",
+      "bn",
+      "hi",
+      "fa"
+     ],
+     "lineage_status": "known",
+     "model_id": "Rishabh157/multiconer-multilingual-ner-mdeberta",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278270275,
+     "section": "multiconer 2023 fine-grained multilingual ner (mdeberta-v3-base)",
+     "size_mb": 556.564934,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "This model is a fine-grained **Multilingual Named Entity Recognition (NER)** model fine-tuned on the prestigious **MultiCoNER 2023 (v2)** benchmark suite across **12+ languages**.\n\nBuilt on top of `microsoft/mdeberta-v3-base`, it targets **complex, fine-grained entities in noisy, low-context, and short text domains** across **33 fine-grained categories** (67 BIO output logits).\n\nDeveloped by **Rishabh Kumar**.\n\n---"
+    }
+   },
+   {
+    "id": "salesken/Hindi-FastConformer-Streaming-ASR::2",
+    "score": 0.859129,
+    "metadata": {
+     "base_model": "nvidia/stt_en_fastconformer_hybrid_large_streaming_multi",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 35,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "salesken/Hindi-FastConformer-Streaming-ASR",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "**how to get started with the model**",
+     "size_status": "unknown",
+     "task": "automatic-speech-recognition",
+     "text": "You can load and use the model with the following code:\n\n```python\nimport nemo.collections.asr as nemo_asr\nasr_model = nemo_asr.models.EncDecHybridRNNTCTCBPEModel.from_pretrained(model_name=\"salesken/Hindi-FastConformer-Streaming-ASR\")"
+    }
+   },
+   {
+    "id": "BettySara/whisper-large-v3-malayalam-FT::1",
+    "score": 0.858798683,
+    "metadata": {
+     "base_model": "openai/whisper-large-v3-turbo",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 178,
+     "language_status": "known",
+     "languages": [
+      "ml"
+     ],
+     "lineage_status": "known",
+     "model_id": "BettySara/whisper-large-v3-malayalam-FT",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 808878080,
+     "section": "intended use",
+     "size_mb": 3235.581408,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model can be used for:\n\n- Malayalam speech transcription\n- ASR research for low-resource Indic languages\n- Academic experiments comparing full fine-tuning and PEFT methods\n- Speech-based applications in Malayalam such as accessibility tools, transcription systems, and voice-enabled interfaces"
+    }
+   },
+   {
+    "id": "Tejas2000/SpeechRecog::0",
+    "score": 0.858750343,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 17,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "Tejas2000/SpeechRecog",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "wav2vec2-large-xlsr-53-marathi",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "Fine-tuned facebook/wav2vec2-large-xlsr-53 on Marathi using the Open SLR64 dataset. When using this model, make sure that your speech input is sampled at 16kHz. This data contains only female voices but the model works well for male voices too. Trained on Google Colab Pro on Tesla P100 16GB GPU.\n**WER (Word Error Rate) on the Test Set**: 12.70 %"
+    }
+   },
+   {
+    "id": "Tejas2000/Wav2Vec_Deploy::0",
+    "score": 0.858750343,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 9,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "Tejas2000/Wav2Vec_Deploy",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "wav2vec2-large-xlsr-53-marathi",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "Fine-tuned facebook/wav2vec2-large-xlsr-53 on Marathi using the Open SLR64 dataset. When using this model, make sure that your speech input is sampled at 16kHz. This data contains only female voices but the model works well for male voices too. Trained on Google Colab Pro on Tesla P100 16GB GPU.\n**WER (Word Error Rate) on the Test Set**: 12.70 %"
+    }
+   },
+   {
+    "id": "sumedh/wav2vec2-large-xlsr-marathi::0",
+    "score": 0.858738303,
+    "metadata": {
+     "base_model": "facebook/wav2vec2-large-xlsr-53",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 380291,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "sumedh/wav2vec2-large-xlsr-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 315508420,
+     "section": "wav2vec2-large-xlsr-53-marathi",
+     "size_mb": 1262.086232,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "Fine-tuned facebook/wav2vec2-large-xlsr-53 on Marathi using the Open SLR64 dataset. When using this model, make sure that your speech input is sampled at 16kHz. This data contains only female voices but the model works well for male voices too. Trained on Google Colab Pro on Tesla P100 16GB GPU.\n**WER (Word Error Rate) on the Test Set**: 12.70 %"
+    }
+   },
+   {
+    "id": "karthid/ta_Tamil_NER::0",
+    "score": 0.858623743,
+    "metadata": {
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "ta"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "karthid/ta_Tamil_NER",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "section": "how to use",
+     "size_status": "unknown",
+     "task": "token-classification",
+     "text": "You can use this model with spacy.\n\n!pip install https://huggingface.co/karthid/ta_Tamil_NER/resolve/main/ta_Tamil_NER-any-py3-none-any.whl\n\nimport ta_Tamil_NER\n\nfrom spacy import displacy\n\nnlp = ta_Tamil_NER.load()\n\ndoc = nlp(\"கூகுள் நிறுவனம் தனது முக்கிய வசதியான ஸ்ட்ரீட் வியூ வசதியை 10 நகரங்களில் இந்தியாவில் அறிமுகப்படுத்தி உள்ளது.\")\n\ndisplacy.render(doc,jupyter=True, style = \"ent\")"
+    }
+   },
+   {
+    "id": "SVECTOR-CORPORATION/SPTK-2::2",
+    "score": 0.858513772,
+    "metadata": {
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 13,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "zh",
+      "de",
+      "es",
+      "ru",
+      "ko",
+      "fr",
+      "ja",
+      "pt",
+      "tr",
+      "pl",
+      "ca",
+      "nl",
+      "ar",
+      "sv",
+      "it",
+      "id",
+      "hi",
+      "fi",
+      "vi",
+      "he",
+      "uk",
+      "el",
+      "ms",
+      "cs",
+      "ro",
+      "da",
+      "hu",
+      "ta",
+      "no",
+      "th",
+      "ur",
+      "hr",
+      "bg",
+      "lt",
+      "la",
+      "mi",
+      "ml",
+      "cy",
+      "sk",
+      "te",
+      "fa",
+      "lv",
+      "bn",
+      "sr",
+      "az",
+      "sl",
+      "kn",
+      "et",
+      "mk",
+      "br",
+      "eu",
+      "is",
+      "hy",
+      "ne",
+      "mn",
+      "bs",
+      "kk",
+      "sq",
+      "sw",
+      "gl",
+      "mr",
+      "pa",
+      "si",
+      "km",
+      "sn",
+      "yo",
+      "so",
+      "af",
+      "oc",
+      "ka",
+      "be",
+      "tg",
+      "sd",
+      "gu",
+      "am",
+      "yi",
+      "lo",
+      "uz",
+      "fo",
+      "ht",
+      "ps",
+      "tk",
+      "nn",
+      "mt",
+      "sa",
+      "tl",
+      "mg",
+      "as",
+      "tt",
+      "haw",
+      "ln",
+      "ha",
+      "ba",
+      "jw",
+      "su"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "SVECTOR-CORPORATION/SPTK-2",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "param_count": 808878080,
+     "section": "📜 license",
+     "size_mb": 1617.824864,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model is licensed under the **SVECTOR Proprietary License**.\nFor research or commercial use, please contact licence@svector.co.in.\n\n---"
+    }
+   },
+   {
+    "id": "clarin-pl/combo-seg-xlm-roberta-base-marathi-ufal-ud2.17::0",
+    "score": 0.858472884,
+    "metadata": {
+     "commercial": "conditional",
+     "doc_quality": "full",
+     "downloads": 11,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "clarin-pl/combo-seg-xlm-roberta-base-marathi-ufal-ud2.17",
+     "modifiable": "conditional",
+     "multilingual": false,
+     "section": "model description",
+     "size_mb": 1114.774606,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "This is a Marathi-language character-level segmentation model based on COMBO-SEG, an open-source text segmentation system. It performs:\n\n- sentence segmentation\n- tokenisation (including multi-word token detection)\n\nThe Marathi model uses ``FacebookAI/xlm-roberta-base`` as its base encoder and is trained on UD_Marathi-UFAL (UD v2.17)."
+    }
+   },
+   {
+    "id": "gchhablani/wav2vec2-large-xlsr-mr::2",
+    "score": 0.858304501,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 14,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "evaluation",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be evaluated as follows on 10% of the Marathi data on OpenSLR.\n\n**Test Result**: 14.53 %"
+    }
+   },
+   {
+    "id": "HariSekhar/Eng_Marathi_translation::2",
+    "score": 0.858231366,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 18,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HariSekhar/Eng_Marathi_translation",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "how to use",
+     "size_mb": 30.053146,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Here is how to use this model to translate English text into Marathi in Python:\n\n```python\nfrom transformers import AutoModelForSeq2SeqLM, AutoTokenizer\n\ntokenizer = AutoTokenizer.from_pretrained(\"HariSekhar/Eng_Marathi_translation\")\nmodel = AutoModelForSeq2SeqLM.from_pretrained(\"HariSekhar/Eng_Marathi_translation\")\n\ntext = \"Your English text to translate.\"\n\ninputs = tokenizer.encode(text, return_tensors=\"pt\")\noutputs = model.generate(inputs)\n\nprint(tokenizer.decode(outputs[0], skip_special_tokens=True))"
+    }
+   },
+   {
+    "id": "gchhablani/wav2vec2-large-xlsr-mr-2::2",
+    "score": 0.858025908,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 7,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "evaluation",
+     "size_mb": 1262.196247,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be evaluated as follows on the test set of the Marathi data on InterSpeech-2021.\n\n**Test Result**: 19.98 %  (555 examples from test set were used for evaluation)\n\n**Test Result on 10% of OpenSLR74 data**: 64.64 %"
+    }
+   },
+   {
+    "id": "Sujji77/swecha-gonthuka-finetuned::3",
+    "score": 0.857696295,
+    "metadata": {
+     "base_model": "swechatelangana/swecha-gonthuka-asr",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 11,
+     "language_status": "known",
+     "languages": [
+      "te"
+     ],
+     "lineage_status": "known",
+     "model_id": "Sujji77/swecha-gonthuka-finetuned",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 94436308,
+     "section": "intended uses",
+     "size_mb": 377.77108,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model can be used for:\n\n- Telugu Speech-to-Text\n- Automatic Speech Recognition (ASR)\n- Voice-enabled applications\n- Telugu transcription\n- Language technology research\n\n---"
+    }
+   },
+   {
+    "id": "Marxav/wav2vec2-large-xlsr-53-breton::0",
+    "score": 0.857672215,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 132105,
+     "language_status": "known",
+     "languages": [
+      "br"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "Marxav/wav2vec2-large-xlsr-53-breton",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "wav2vec2-large-xlsr-53-breton",
+     "size_mb": 1262.106007,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows:\n\nThe above code leads to the following prediction for the first two samples:\n* Prediction: [\"neller ket dont a-benn eus netra la vez ser merc'hed evel sich\", 'an eil hag egile']\n* Reference: [\"N'haller ket dont a-benn eus netra pa vezer nec'het evel-se.\", 'An eil hag egile.']\n\nThe model can be evaluated as follows on the {language} test data of Common Voice.\n\n**Test Result**: 43.43%"
+    }
+   },
+   {
+    "id": "nandinipapisetti/swecha-gonthuka-asr::3",
+    "score": 0.857666731,
+    "metadata": {
+     "base_model": "swechatelangana/swecha-gonthuka-asr",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 9,
+     "language_status": "known",
+     "languages": [
+      "te"
+     ],
+     "lineage_status": "known",
+     "model_id": "nandinipapisetti/swecha-gonthuka-asr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 94436308,
+     "section": "intended uses",
+     "size_mb": 377.77108,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model can be used for:\n- Telugu Speech-to-Text\n- Automatic Speech Recognition (ASR)\n- Voice-enabled applications\n- Telugu transcription\n- Language technology research\n\n---"
+    }
+   }
+  ],
+  "candidates": [
+   {
+    "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+    "score": 0.3015677,
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 326,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `text` and `audio_path` fields:"
+    },
+    "chunks": [
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-3::1",
+      "score": 0.3015677,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 326,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "usage",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `text` and `audio_path` fields:"
+      },
+      "retrieval_score": 0.867043674
+     },
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-3::2",
+      "score": 0.0032730652,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 326,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "evaluation",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be evaluated as follows on 10% of the Marathi data on OpenSLR.\n\n**Test Result**: 19.05 % (157+157 examples)\n\n**Test Result on OpenSLR test**: 14.15 % (157 examples)\n\n**Test Results on InterSpeech test**: 27.14 % (157 examples)"
+      },
+      "retrieval_score": 0.861610532
+     }
+    ]
+   },
+   {
+    "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+    "score": 0.29838914,
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 7,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.196247,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+    },
+    "chunks": [
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-2::1",
+      "score": 0.29838914,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 7,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "usage",
+       "size_mb": 1262.196247,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+      },
+      "retrieval_score": 0.871684551
+     },
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-2::2",
+      "score": 0.0067449897,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 7,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "evaluation",
+       "size_mb": 1262.196247,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be evaluated as follows on the test set of the Marathi data on InterSpeech-2021.\n\n**Test Result**: 19.98 %  (555 examples from test set were used for evaluation)\n\n**Test Result on 10% of OpenSLR74 data**: 64.64 %"
+      },
+      "retrieval_score": 0.858025908
+     }
+    ]
+   },
+   {
+    "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+    "score": 0.2961451,
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 14,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+    },
+    "chunks": [
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr::1",
+      "score": 0.2961451,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 14,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "usage",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+      },
+      "retrieval_score": 0.871684551
+     },
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr::2",
+      "score": 0.0066411127,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 14,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "evaluation",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be evaluated as follows on 10% of the Marathi data on OpenSLR.\n\n**Test Result**: 14.53 %"
+      },
+      "retrieval_score": 0.858304501
+     }
+    ]
+   },
+   {
+    "model_id": "tanmaylaud/wav2vec2-large-xlsr-hindi-marathi",
+    "score": 0.28130686,
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 64,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "tanmaylaud/wav2vec2-large-xlsr-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.237208,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi text and path fields:"
+    },
+    "chunks": [
+     {
+      "id": "tanmaylaud/wav2vec2-large-xlsr-hindi-marathi::1",
+      "score": 0.28130686,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 64,
+       "language_status": "known",
+       "languages": [
+        "mr",
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "tanmaylaud/wav2vec2-large-xlsr-hindi-marathi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "usage",
+       "size_mb": 1262.237208,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi text and path fields:"
+      },
+      "retrieval_score": 0.865918338
+     }
+    ]
+   },
+   {
+    "model_id": "vaibhav006/indic-ner-muril-naamapadam",
+    "score": 0.23510839,
+    "meta": {
+     "base_model": "google/muril-base-cased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 132,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "pa",
+      "te"
+     ],
+     "lineage_status": "known",
+     "model_id": "vaibhav006/indic-ner-muril-naamapadam",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 236971015,
+     "section": "multilingual indic ner (muril-naamapadam)",
+     "size_mb": 947.90742,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "This model is fine-tuned for NER in **Marathi**, **Punjabi**, and **Telugu**."
+    },
+    "chunks": [
+     {
+      "id": "vaibhav006/indic-ner-muril-naamapadam::0",
+      "score": 0.23510839,
+      "metadata": {
+       "base_model": "google/muril-base-cased",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 132,
+       "language_status": "known",
+       "languages": [
+        "mr",
+        "pa",
+        "te"
+       ],
+       "lineage_status": "known",
+       "model_id": "vaibhav006/indic-ner-muril-naamapadam",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 236971015,
+       "section": "multilingual indic ner (muril-naamapadam)",
+       "size_mb": 947.90742,
+       "size_status": "known",
+       "task": "token-classification",
+       "text": "This model is fine-tuned for NER in **Marathi**, **Punjabi**, and **Telugu**."
+      },
+      "retrieval_score": 0.873594582
+     }
+    ]
+   }
+  ],
+  "results": [
+   {
+    "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 326,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `text` and `audio_path` fields:"
+    },
+    "chunks": [
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-3::1",
+      "score": 0.3015677,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 326,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "usage",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `text` and `audio_path` fields:"
+      },
+      "retrieval_score": 0.867043674
+     },
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-3::2",
+      "score": 0.0032730652,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 326,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "evaluation",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be evaluated as follows on 10% of the Marathi data on OpenSLR.\n\n**Test Result**: 19.05 % (157+157 examples)\n\n**Test Result on OpenSLR test**: 14.15 % (157 examples)\n\n**Test Results on InterSpeech test**: 27.14 % (157 examples)"
+      },
+      "retrieval_score": 0.861610532
+     }
+    ],
+    "table": {
+     "task": "fail",
+     "languages": "pass",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 7,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.196247,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+    },
+    "chunks": [
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-2::1",
+      "score": 0.29838914,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 7,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "usage",
+       "size_mb": 1262.196247,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+      },
+      "retrieval_score": 0.871684551
+     },
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-2::2",
+      "score": 0.0067449897,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 7,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "evaluation",
+       "size_mb": 1262.196247,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be evaluated as follows on the test set of the Marathi data on InterSpeech-2021.\n\n**Test Result**: 19.98 %  (555 examples from test set were used for evaluation)\n\n**Test Result on 10% of OpenSLR74 data**: 64.64 %"
+      },
+      "retrieval_score": 0.858025908
+     }
+    ],
+    "table": {
+     "task": "fail",
+     "languages": "pass",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 14,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+    },
+    "chunks": [
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr::1",
+      "score": 0.2961451,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 14,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "usage",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+      },
+      "retrieval_score": 0.871684551
+     },
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr::2",
+      "score": 0.0066411127,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 14,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "evaluation",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be evaluated as follows on 10% of the Marathi data on OpenSLR.\n\n**Test Result**: 14.53 %"
+      },
+      "retrieval_score": 0.858304501
+     }
+    ],
+    "table": {
+     "task": "fail",
+     "languages": "pass",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "tanmaylaud/wav2vec2-large-xlsr-hindi-marathi",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 64,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "tanmaylaud/wav2vec2-large-xlsr-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.237208,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi text and path fields:"
+    },
+    "chunks": [
+     {
+      "id": "tanmaylaud/wav2vec2-large-xlsr-hindi-marathi::1",
+      "score": 0.28130686,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 64,
+       "language_status": "known",
+       "languages": [
+        "mr",
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "tanmaylaud/wav2vec2-large-xlsr-hindi-marathi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "usage",
+       "size_mb": 1262.237208,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi text and path fields:"
+      },
+      "retrieval_score": 0.865918338
+     }
+    ],
+    "table": {
+     "task": "fail",
+     "languages": "pass",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "vaibhav006/indic-ner-muril-naamapadam",
+    "meta": {
+     "base_model": "google/muril-base-cased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 132,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "pa",
+      "te"
+     ],
+     "lineage_status": "known",
+     "model_id": "vaibhav006/indic-ner-muril-naamapadam",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 236971015,
+     "section": "multilingual indic ner (muril-naamapadam)",
+     "size_mb": 947.90742,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "This model is fine-tuned for NER in **Marathi**, **Punjabi**, and **Telugu**."
+    },
+    "chunks": [
+     {
+      "id": "vaibhav006/indic-ner-muril-naamapadam::0",
+      "score": 0.23510839,
+      "metadata": {
+       "base_model": "google/muril-base-cased",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 132,
+       "language_status": "known",
+       "languages": [
+        "mr",
+        "pa",
+        "te"
+       ],
+       "lineage_status": "known",
+       "model_id": "vaibhav006/indic-ner-muril-naamapadam",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 236971015,
+       "section": "multilingual indic ner (muril-naamapadam)",
+       "size_mb": 947.90742,
+       "size_status": "known",
+       "task": "token-classification",
+       "text": "This model is fine-tuned for NER in **Marathi**, **Punjabi**, and **Telugu**."
+      },
+      "retrieval_score": 0.873594582
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "commercial": "pass"
+    },
+    "overall": "pass",
+    "notes": []
+   }
+  ],
+  "closest": [
+   {
+    "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 326,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `text` and `audio_path` fields:"
+    },
+    "chunks": [
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-3::1",
+      "score": 0.3015677,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 326,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "usage",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `text` and `audio_path` fields:"
+      },
+      "retrieval_score": 0.867043674
+     },
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-3::2",
+      "score": 0.0032730652,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 326,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-3",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "evaluation",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be evaluated as follows on 10% of the Marathi data on OpenSLR.\n\n**Test Result**: 19.05 % (157+157 examples)\n\n**Test Result on OpenSLR test**: 14.15 % (157 examples)\n\n**Test Results on InterSpeech test**: 27.14 % (157 examples)"
+      },
+      "retrieval_score": 0.861610532
+     }
+    ],
+    "table": {
+     "task": "fail",
+     "languages": "pass",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 7,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.196247,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+    },
+    "chunks": [
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-2::1",
+      "score": 0.29838914,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 7,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "usage",
+       "size_mb": 1262.196247,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+      },
+      "retrieval_score": 0.871684551
+     },
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr-2::2",
+      "score": 0.0067449897,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 7,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr-2",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "evaluation",
+       "size_mb": 1262.196247,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be evaluated as follows on the test set of the Marathi data on InterSpeech-2021.\n\n**Test Result**: 19.98 %  (555 examples from test set were used for evaluation)\n\n**Test Result on 10% of OpenSLR74 data**: 64.64 %"
+      },
+      "retrieval_score": 0.858025908
+     }
+    ],
+    "table": {
+     "task": "fail",
+     "languages": "pass",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 14,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "usage",
+     "size_mb": 1262.212631,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+    },
+    "chunks": [
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr::1",
+      "score": 0.2961451,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 14,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "usage",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be used directly (without a language model) as follows, assuming you have a dataset with Marathi `sentence` and `path` fields:"
+      },
+      "retrieval_score": 0.871684551
+     },
+     {
+      "id": "gchhablani/wav2vec2-large-xlsr-mr::2",
+      "score": 0.0066411127,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 14,
+       "language_status": "known",
+       "languages": [
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "gchhablani/wav2vec2-large-xlsr-mr",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "evaluation",
+       "size_mb": 1262.212631,
+       "size_status": "known",
+       "task": "automatic-speech-recognition",
+       "text": "The model can be evaluated as follows on 10% of the Marathi data on OpenSLR.\n\n**Test Result**: 14.53 %"
+      },
+      "retrieval_score": 0.858304501
+     }
+    ],
+    "table": {
+     "task": "fail",
+     "languages": "pass",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   }
+  ],
+  "fully_verified": true,
+  "outcome": "answer"
+ }
+}

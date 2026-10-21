@@ -8,7 +8,7 @@ pip install -r requirements.txt
 python -m src.check_env --init                         # creates .env from .env.example (never overwrites)
 # open .env and fill in the keys (comments say where to get each one)
 python -m src.check_env                                # reports set/missing; never prints a value
-pytest                                                 # offline, ~3 s
+pytest                                                 # offline, about 20 s (about 300 tests)
 ```
 
 Python 3.10+ (the code uses `X | None` annotations). Windows is fine: all file I/O is
@@ -25,6 +25,8 @@ code agree. Ollama and Streamlit both run on Windows.
 | `GROQ_API_KEY` | `llm` | required when `LLM_PROVIDER=groq` |
 | `GROQ_MODEL`, `OLLAMA_MODEL` | `llm` | **optional overrides**; the models are pinned in `config.yaml` (`llm.*`: `openai/gpt-oss-20b`, `qwen2.5:7b-instruct`) |
 | `OLLAMA_HOST` | `llm` | defaults to `http://localhost:11434` |
+| `INDEX_BACKEND` | `index`, `retrieve` | `local` (exact search over `data/localindex/`, the default in `config.yaml`) or `pinecone` (the live index); results are the same in aggregate |
+| `RERANKER` | `rerank` | `pinecone` (hosted, default), `local`, or `none` (ablation) |
 | `REPLAY`, `RECORD`, `REPLAY_DIR` | `replay` | `REPLAY=1` serves recorded demo runs (wins over `RECORD`); `RECORD=1` saves live runs; dir defaults to `demo/cache` |
 | `PYTHONUTF8` | Python | set to `1` on Windows |
 | `LLM_CACHE_DIR` | `llm` | defaults to `.cache/llm` |
@@ -44,6 +46,13 @@ python -m src.ingest fetch           # resumable fetch into data/raw/, then cano
 python -m src.snapshot build         # snapshot + data-quality report + the lines for config.yaml
 RECORD=1 streamlit run app.py        # record demo runs  (REPLAY=1 to play them back)
 streamlit run app.py                 # the UI
+python -m src.index --namespace prod --embed-only        # fill the embedding cache (hosted, cached by content hash)
+python -m src.index --namespace prod --store local       # build the local index   (--store pinecone: upsert to Pinecone)
+python -m eval.run_eval --tag v3 --label 40              # five systems on 100 queries; writes eval/results and the blind sheet
+streamlit run eval/label_app.py                          # blind relevance labelling (python -m eval.relevance_report for numbers)
+streamlit run eval/faithfulness_app.py                   # score explanations (python -m eval.faithfulness_report)
+python -m scripts.record_demo                            # record demo/plan.json into demo/cache (RECORD is implied)
+python -m scripts.pinecone_semantics_check               # live filter-semantics check on throwaway namespaces
 pytest -k graph -q                   # a subset
 ```
 
@@ -90,7 +99,9 @@ Set the namespace in `config.yaml: pinecone.namespace` (do not commit a personal
 | Symptom | Likely cause |
 |---|---|
 | `ModuleNotFoundError: src` | run from the repo root (tests and `python -m src.ingest` rely on it) |
-| Streamlit shows "Search isn't wired up" | `app._live_graph()` is still a stub (task 4.2 in the implementation plan) |
+| Streamlit shows "Search is unavailable: …" | A missing key, no network, or an import error; the message says which |
+| Pinecone calls fail with "Name or service not known" behind a proxy | The Pinecone SDK ignores `HTTPS_PROXY` unless told; `src.index.connect` passes `proxy_url` and the CA bundle when those variables are set |
+| Hosted rerank returns HTTP 400 about a 1,024-token pair | Indic chunks tokenize heavily; the request sends `truncate: END` (already in `rerank.py`) |
 | Every model fails the task check | an override carried a bad task value (E-GRAPH-12) |
 | Hindi models missing from results | check `language_status`/`languages` in the raw record; the card may spell the language unusually |
 | Ingest keeps retrying | Hub rate limit; set `HF_TOKEN`, or rerun later (it resumes) |

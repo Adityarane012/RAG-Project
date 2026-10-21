@@ -1,164 +1,118 @@
 # Implementation plan (single person, to Oct 30)
 
-Status as of **2026-10-21**. One person (the project owner) completes the whole project; the AI
-assistant writes and runs everything that can be run from the cloud session. Work is split into
-**machine work** (the assistant does it in-session) and **human work** (only the owner can do it:
-labelling, hand-scoring, rehearsal, GitHub/environment settings, key rotation).
+Status as of **2026-10-21 (evening)**. One person (the project owner) completes the project; the AI assistant wrote and ran
+everything that can run from the cloud session. What is left is **human work**: labelling, hand-scoring, rehearsal and the
+write-up. This file says what is done, what remains, in what order, and what to cut if time runs short.
 
-Companion docs: [PROJECT.md](PROJECT.md) (what), [decisions.md](decisions.md) (why),
-[architecture.md](architecture.md) (how), [testing-strategy.md](testing-strategy.md) (edge cases, `E-...`),
-[evaluation-plan.md](evaluation-plan.md), [data-pipeline.md](data-pipeline.md),
-[demo-runbook.md](demo-runbook.md), [development.md](development.md).
+Companion docs: [PROJECT.md](PROJECT.md) (what), [decisions.md](decisions.md) (why), [architecture.md](architecture.md) (how),
+[testing-strategy.md](testing-strategy.md), [evaluation-plan.md](evaluation-plan.md), [data-pipeline.md](data-pipeline.md),
+[data-notes.md](data-notes.md) (every live measurement), [demo-runbook.md](demo-runbook.md), [development.md](development.md).
 
-## 0. Assumptions
-
-| # | Assumption | If wrong |
-|---|---|---|
-| 1 | Deadline is **Oct 30**; today is Oct 21 (9 days) | Shift the dates in section 4 |
-| 2 | One person; no work is divided. There are no teammates, so there is no second labeller (see section 3) | n/a |
-| 3 | Free tiers only. Groq `gpt-oss-20b`/`120b`: 8,000 tokens/min, 1,000 requests/day, 200,000 tokens/day (confirmed from response headers). Pinecone Starter: 1M read / 2M write units per month. Hub: 1,000 API requests / 300 s, 5,000 resolver requests / 300 s | Re-budget (section 6) |
-| 4 | 40 queries are labelled for relevance (not 50) | The labelling sheet is built from the first 40 queries by id in `eval/queries.jsonl` order |
-| 5 | The report's format is deferred; write-up tasks produce content, not a formatted report | Add formatting time |
-| 6 | The cloud sandbox blocks two host groups (section 5). Everything that needs them has a documented local substitute | Allow the hosts; re-run the listed steps |
-
-## 1. Done (machine work)
-
-All code is committed on `claude/wonderful-hypatia-gmeus3` and `main`; 279 offline tests pass.
+## 1. Done
 
 | Area | State |
 |---|---|
-| Verification core | `normalize`, `verify`, `retrieve.build_filter` (D12 `$or`), license rights map, D20 size rule, language/direction handling, multilingual map seed |
-| Ingest | Resumable Hub fetch (READMEs via `/resolve/`), canonical base-model ids, snapshot builder and data-quality report. Fetched 9,763 of 9,764 candidates (1 logged failure) |
-| LLM layer | Groq (`gpt-oss-20b`, fallback `gpt-oss-120b`, `reasoning_effort=low`), Ollama option, cache, token throttle settled against real usage, retry-after handling, deterministic extraction backstop |
-| Retrieval | Hosted embeddings (Pinecone inference, content-hash cache), exact `LocalIndex` with Pinecone filter semantics, hosted reranker with cache, evidence selection (<= 4 passages/model, 5,000-token budget) |
-| Graph and UI | LangGraph pipeline with variants (ours / naive / keyword), clarify and relax caps, editable intent, side-by-side compare, check-a-model, build-on estimates, glossary, replay mode |
-| Baselines and harness | Naive RAG, keyword (BM25), HF Hub (basic and licensed), `eval/run_eval.py`, metrics, blind relevance sheet export, kappa |
-| Evaluation assets | 100 queries committed before tuning (G1), 20-case extraction set and runner, parse check of all 100 queries (0 failures; q045 no task extracted, reported only), poisoned-card test (0/5 explanations repeated injected claims) |
-| Demo | Scripted recorder `scripts/record_demo.py` + `demo/plan.json` |
+| Verification core | `normalize`, `verify`, `retrieve.build_filter` (D12), license map (extended from the real data), D20 size rule, languages, directions, multilingual map |
+| Data | 9,764 models fetched, canonical base ids, snapshot cut (sha256 in `config.yaml`), data-quality report in [data-notes.md](data-notes.md) |
+| Index | 29,665 chunks embedded (hosted `multilingual-e5-large`, 2.49M tokens, cached) and upserted to Pinecone `prod`; the same corpus in an exact local index |
+| Live checks | Pinecone filter semantics E-RET-9..12 pass; hosted rerank works (truncation fix); Groq limits measured; poisoned-card test passes |
+| Pipeline | LangGraph with variants ours / naive / keyword; verifies a pool of 100 models before showing 5; retrieval and explanation use the user's own words; deterministic extraction backstop |
+| UI | Editable intent, side-by-side comparison, check-a-model, glossary, build-on, Try-it with an honest caveat |
+| Evaluation | 100 queries (committed before tuning), 23-case extraction set, five systems, harness, **outputs frozen as v2 (G4)**, ablation without reranker, run on live Pinecone, blind relevance sheet (40 queries, 686 pairs), faithfulness sheet (28 explanations), labelling and scoring tools with reports |
+| Demo | Recorded against Pinecone (`demo/cache/`), replay verified with the network broken |
+| Tests | About 300, offline |
 
-## 2. Remaining machine work (assistant, in order)
+## 2. Headline results so far (v2, 75 normal queries; full tables in `eval/results/results-v2.md`)
 
-| # | Task | Output | Needs |
+| System | Violation % | Unknown % | Fully verified % |
 |---|---|---|---|
-| M1 | Finish canonicalization; retry the failed model; **cut snapshot**, read the data-quality report | `data/`, numbers into `data-notes.md`; `snapshot_*` lines for `config.yaml` | nothing |
-| M2 | Extend license map / aliases / size rule from the report; extend the multilingual map to about 20 entries (each with a source) | code + tests | M1 |
-| M3 | Embed the whole corpus (hosted embeddings), build the local index | `data/embeddings`, `data/localindex` | Pinecone control plane (works) |
-| M4 | Smoke-test `build_pipeline("ours")` on real queries; calibrate the explain token budget and the two-calls-per-query total (< 8K tokens/min) | measured numbers into `data-notes.md` | M3 |
-| M5 | Run `python -m eval.run_eval --tag v1 --label 40` (ours, naive, keyword, hf_basic, hf_licensed); failure analysis; bug fixes (every query used to debug is listed as "seen"); re-run as v2 and **freeze (G4)** | `eval/results/v1`, `v2` | M4 |
-| M6 | Resolve the abstention metric from real feasibility counts (section 3) | `evaluation-plan.md` change | M5 |
-| M7 | Export the blind relevance sheet (40 queries) and the faithfulness set (about 30 answers) | files for the owner | G4 |
-| M8 | Record the demo (`python -m scripts.record_demo`), commit `demo/cache/`, verify `REPLAY=1` | `demo/cache/` | G4 |
-| M9 | Update docs with live findings (D8 hosted embeddings note, fallback model, reasoning effort, chunk cap, LocalIndex, blocked hosts, counts) | docs | M1-M8 |
-| M10 | Compute final metrics, tables and the content of the write-up (no formatting) | `docs/results.md` | labels |
+| ours | 0.0 | 16.7 | 83.3 |
+| naive RAG | 50.4 | 20.5 | 29.1 |
+| keyword + filters | 0.0 | 62.0 | 38.0 |
+| HF Hub, basic filters | 32.8 | 13.6 | 53.6 |
+| HF Hub, licensed filters | 25.9 | 14.7 | 59.5 |
 
-## 3. Human work (owner)
+Ours never recommends a failing model by construction (D2), so the comparison that matters is *fully verified* and, once
+labelled, *relevance*: the keyword baseline also never violates but is ⚠️ on 62% of what it returns. Clarification: ours asked
+on 100% of the 15 vague queries. "Impossible" queries cannot be proved impossible (unknown-size and unknown-language models
+never fail), so the abstention metric is defined on the 12 queries where no model in the corpus fully passes: ours shows the
+no-verified-model banner on all 12 and never claims verification, while the baselines recommend violators on 63 to 75% of
+their results. The abstain and relax paths exist and are tested, but are not reachable on this corpus (see §6).
 
-| # | Task | Estimate | When |
-|---|---|---|---|
-| H1 | Allow the blocked hosts (section 5); say when done so the assistant can run the live Pinecone and Try-it checks | 5 min | any time |
-| H2 | Attach `records.jsonl.gz` to a GitHub Release; confirm the `snapshot_*` lines in `config.yaml` | 15 min | after M1 |
-| H3 | **Label relevance 0/1/2** for 40 queries on the blind sheet (about 40 x 5-15 models) | about 4 h | after M7 |
-| H4 | **Repeat pass**: re-label a random 15 queries at least 24 h later without looking at the first labels (test-retest agreement, reported as kappa) | about 1.5 h | 1+ day after H3 |
-| H5 | **Faithfulness**: hand-score about 30 explanations (claims supported by the cited card text) | about 2 h | after M7 |
-| H6 | Rehearse the demo twice (live, and `REPLAY=1` with Wi-Fi off); screenshots | about 2 h | after M8 |
-| H7 | Report: decide format when the course says; content comes from M10 | n/a | deferred |
-| H8 | Rotate the Groq, HF and Pinecone keys after the project (they were pasted in chat) | 10 min | after Oct 30 |
+## 3. Remaining work (you), in order
 
-**Single-labeller caveat (state it in the write-up).** One person writes the queries, labels the
-results and reads the outputs, so labels may be biased toward the system's behaviour. Mitigations:
-labels are blind (system names hidden, rows shuffled); the sheet is built from the union of all
-systems' top 5; outputs are frozen before labelling (G4); and H4 measures self-consistency. Kappa
-here is **test-retest agreement of one labeller, not inter-annotator agreement**, and is reported
-as such.
+| # | Task | Time | How | When |
+|---|---|---|---|---|
+| H1 | **Relevance labelling, pass 1**: 686 pairs over 40 queries | about 4 h, in sittings | `streamlit run eval/label_app.py`, Pass 1. It saves every click. Do **not** open `eval/labels/_key.json` | Oct 22 to Oct 24 |
+| H2 | **Faithfulness scoring**: 28 explanations | about 1.5 h | `streamlit run eval/faithfulness_app.py` | Oct 24 |
+| H3 | **Relevance, pass 2**: repeat on 15 random queries, at least 24 h after pass 1 | about 1.5 h | label app, Pass 2 | Oct 25 or later |
+| H4 | Numbers for the write-up | 5 min | `python -m eval.relevance_report`, `python -m eval.faithfulness_report` | after H1 to H3 |
+| H5 | Rehearse twice: live, and `REPLAY=1` with Wi-Fi off; take screenshots | about 2 h | [demo-runbook.md](demo-runbook.md) | Oct 27 to Oct 29 |
+| H6 | Write-up (format not decided yet) | your time | content sources: `eval/results/*.md`, [data-notes.md](data-notes.md), [security-and-limitations.md](security-and-limitations.md), [eval/seen.md](../eval/seen.md) | Oct 26 to Oct 29 |
+| H7 | Attach `data/snapshot-2026-10-21/records.jsonl.gz` to a GitHub Release and put its URL in `config.yaml: snapshot_url` | 15 min | GitHub web UI | any time |
+| H8 | **Rotate the Groq, Hugging Face and Pinecone keys** after Oct 30 (they were pasted into the chat) | 10 min | provider dashboards | after the project |
 
-**Abstention metric.** Because a model with unknown size or language never *fails* a constraint
-(D12), a query cannot always be proven impossible. M5 measures, per "impossible" query, how many
-candidates fail with a definite reason. M6 then defines correct non-recommendation as: the system
-abstains or relaxes, **or** answers with the all-unknown banner and no verified-violating model.
-The violation rate on the impossible slice is reported alongside.
+**Single-labeller caveat (say it in the write-up).** One person wrote the queries, will label the results and has seen the
+system, so labels may lean toward it. Mitigations in place: labels are blind (no system names, shuffled, union of four systems'
+top 5); outputs are frozen before labelling; pass 2 measures self-consistency. The kappa reported is **test-retest agreement of
+one labeller, not inter-annotator agreement**.
 
-## 4. Calendar to Oct 30
+## 4. Gates and rules
 
-| Day | Machine work | Human work |
-|---|---|---|
-| Oct 21 (Wed) | M1 (fetch finishing), snapshot, M3 started | H1 |
-| Oct 22 | M2, M3 done, M4 | H2 |
-| Oct 23 | M5 v1, failure analysis | |
-| Oct 24 | fixes, M5 v2, M6; **G4 freeze** | |
-| Oct 25 | M7, M8 | H3 (first half) |
-| Oct 26 | M9 | H3 (second half), H5 |
-| Oct 27 | M10 first numbers | H4 (24 h+ after H3 pass) |
-| Oct 28 | M10 final, docs tidy | H6 rehearsal 1 |
-| Oct 29 | buffer, re-record only if frozen state changed | H6 rehearsal 2 |
-| Oct 30 | deliver | |
-
-## 5. Gates and rules
-
-| Gate | What must be true |
+| Gate | State |
 |---|---|
-| **G1** (met) | `eval/queries.jsonl` committed before any experiment |
-| **G2** | Snapshot cut, report in `data-notes.md`; failed fetches <= 2% |
-| **G3** | Index built; one filtered query per constraint type is correct |
-| **G4** | Evaluation outputs frozen (results v2 committed) **before any labelling** |
-| **G5** | Demo recorded against the frozen index; tag `v1.0-demo` |
-| **G6** | Two rehearsals done |
+| G1 queries committed before tuning | met |
+| G2 snapshot cut, report written | met |
+| G3 `prod` live, one filtered query per constraint type correct | met (Pinecone semantics check, 4 of 4) |
+| G4 evaluation outputs frozen before labelling | met: commit `6881683` (results v2); later commits add tools and a Pinecone re-run, not changes to the labelled outputs |
+| G5 demo recorded | met (`demo/cache/`). Re-record if the index or config changes |
+| G6 two rehearsals | open (H5) |
 
-**Tuning policy.** Before G1: no experiments on eval queries (met). G1 to G4: the extraction prompt
-and backstop are tuned only on the 20-case extraction set; documented ablations; bug fixes from
-failure analysis, with every eval query used for debugging listed as "seen". After G4: no change
-to retrieval, ranking, prompts, models or config; any change to the index or config after
-recording means re-recording.
+**After G4 do not change** retrieval, ranking, prompts, models or config values: the labels depend on the frozen outputs. If you
+must, re-run `python -m eval.run_eval --tag v3 --label 40`, which makes a new blind sheet and **invalidates labels already given**.
+Every evaluation query used for debugging is listed in [eval/seen.md](../eval/seen.md).
 
-**Blocked hosts.** The cloud sandbox allows the Hub API, Groq and the Pinecone control plane and
-inference endpoints. It blocks:
+## 5. Budgets (measured)
 
-| Host | Blocks | Substitute used now |
+| Resource | Limit | Used so far |
 |---|---|---|
-| Pinecone data plane (`hf-model-finder-cactjug.svc.aped-4627-b74a.pinecone.io`, or `*.pinecone.io`) | live Pinecone upsert/query, live check of `$or`/`$in` semantics (E-RET-9 to 12) | `LocalIndex` (exact, same filter semantics, unit-tested) |
-| Hugging Face weight CDN (`us.aws.cdn.hf.co`, probably `*.hf.co`) | local reranker and e5 weights, Try-it smoke test on small models | hosted Pinecone reranker; Try-it snippets covered by template tests only |
+| Groq tokens per day (`gpt-oss-20b`) | 200,000 | extraction about 500 per call; explanation 1,345 to 2,778; about 3,300 per explained query. The 28-item faithfulness set and the demo are cached |
+| Groq tokens per minute | 8,000 | the throttle settles against real usage |
+| Pinecone hosted embedding | not published | 2.49M tokens for the whole corpus; rebuilds are free (cache) |
+| Pinecone storage/reads | Starter | 29,665 vectors; the evaluation and demo used a few thousand read units |
 
-To allow them: cloud environment menu, Edit, Network access, Allowed domains
-(<https://code.claude.com/docs/en/cloud-environments#network-access>). Once allowed, the assistant
-runs the live Pinecone semantics check, upserts `prod`, and runs the Try-it smoke test. Nothing in
-the deliverable depends on this: the evaluation runs on the local index and the report states that.
+## 6. Findings that shape the write-up
 
-## 6. Budgets (measured where stated)
-
-| Resource | Limit | Plan |
-|---|---|---|
-| Groq tokens per day | 200,000 | Extraction about 650 tokens per call (measured, `reasoning_effort=low`); explanation about 5,000-token prompts. Evaluation: 5 systems x 40 labelled queries share cached extraction; explanations only for the faithfulness set (about 30) and the demo. Spread across days; fallback model has its own daily budget |
-| Groq tokens per minute | 8,000 | Throttle settles against real usage; no more than two calls per query inside a minute |
-| Pinecone hosted embedding | quota unknown (about 5M tokens historically) | One embedding pass of about 2.5M tokens expected; usage logged in `data/embeddings/usage.jsonl`; the content-hash cache means a rebuild costs nothing |
-| Pinecone rerank | small | 1 rerank unit per call; results cached in `data/rerank_cache` |
-| Hub | 1,000 API requests / 300 s | Fetch is resumable; done |
+- **Verified models are invisible to semantic search** (direction, size, license are not in the card text). Verifying a pool of 100 and then cutting to 5 raised fully verified answers from 72% to 83% (v1 to v2) and fixed the translation queries.
+- **The extractor's `soft_query` is fragile** ("permissive license" replaced the topic), so every system searches with the user's own words.
+- **27% of models have unknown size** (GGUF-only, ONNX-only, no standard weights): ⚠️ by design, not guessed.
+- **Direction is known for only 380 models** (`opus-mt-*` names); most translation answers show direction ⚠️.
+- **Abstain/relax are unreachable here**: unknown-size (27%) and unknown-language (13%) models always remain, so an impossible request ends as an all-⚠️ answer with the banner (the behaviour you chose).
+- **Try-it**: 10 of 18 small models ran the template; MLX, quantized, corrupt or custom-code models need other tooling (the UI says so).
+- **A named permissive license** (Apache/MIT/BSD/"permissive") is read as commercial + modifiable, an approximation shown in "We understood".
 
 ## 7. Risks
 
-| Risk | Likelihood | Mitigation |
-|---|---|---|
-| Groq daily token limit hit during evaluation | medium | cache; split runs across days; fallback model; `LLM_PROVIDER=ollama` if a laptop is available |
-| Hosted embedding quota runs out mid-build | low-medium | cache keeps finished work; the build resumes; fallback is the local e5 model once the CDN is allowed |
-| Labelling takes longer than 4 h | medium | labels are on 40 queries, not 50; the sheet is sorted by query so partial labelling still gives complete queries |
-| Single-labeller bias | certain | stated limitation, blind sheet, test-retest |
-| Everything-unknown results on impossible queries | high | handled by the M6 metric definition |
-| Index or config changes after G4 | low | G4 rule; re-record if it happens |
+| Risk | Mitigation |
+|---|---|
+| Labelling takes longer than 4 h | Label by query: a partially labelled sheet still gives complete queries (the report counts only fully labelled queries, for every system alike) |
+| Single-labeller bias | stated; blind sheet; pass 2 |
+| Live demo fails (Wi-Fi, quota) | `REPLAY=1` with the recorded runs; Groq fallback model; local index (`INDEX_BACKEND=local`) |
+| Config or index changed after G4/G5 | re-run and re-record; labels must be redone |
 
-## 8. Cut ladder (in this order if time runs out)
+## 8. Cut ladder (in this order if time runs short)
 
-1. Faithfulness set 30 -> 20 answers.
-2. Test-retest 15 -> 10 queries.
-3. Drop the ablation (reranker on/off, k).
-4. Drop the Try-it smoke test (templates stay covered by unit tests).
-5. Relevance labelling 40 -> 30 queries.
+1. Faithfulness 28 -> 20 items.
+2. Pass 2 on 15 -> 10 queries.
+3. Label 40 -> 30 queries (the report uses only fully labelled queries).
+4. Skip the second rehearsal.
 
-Already cut: D24 reported metrics and live-fetch in check-a-model.
+Already cut: D24 reported metrics and live fetch in check-a-model; the reranker ablation is reported on latency only (relevance
+impact is not measured because the ablation outputs are not in the labelled sheet).
 
 ## 9. Definition of done
 
-- Snapshot cut with date and checksum in `config.yaml`; quality report in `data-notes.md`.
-- Index built; evaluation run for all five systems; results v2 committed before labelling.
-- 40 queries labelled; 15 re-labelled; about 30 explanations hand-scored.
-- Demo recorded and replayable with `REPLAY=1`; two rehearsals done.
-- Docs match behaviour (architecture section 11 table updated).
-- Write-up content ready (results tables and limitations); format decided later.
+- Relevance pass 1 and the repeat pass done; `eval/results/relevance.md` and `faithfulness.md` generated.
+- Demo rehearsed twice (live and replay).
+- Write-up content assembled from the result files (format decided later).
 - Keys rotated.

@@ -120,10 +120,10 @@ where the code is known to fall short, the row says so.
 | 6 | One model with many chunks | Counted once, scored by best chunk | ✅ |
 | 7 | Equal scores | Deterministic order | 🔲 |
 | 8 | Fewer than 5 distinct models in 50 chunks | `k` doubles to the cap; stops when the index is exhausted | ✅ |
-| 9 | **Live:** vectors lacking `size_mb` under the `$or` | Returned alongside small ones; large ones excluded | 🔎 |
-| 10 | **Live:** `$in` against a list-valued `languages` | Matches if any element matches | 🔎 |
-| 11 | **Live:** `$and` of several `$or` clauses | Accepted and correct | 🔎 |
-| 12 | **Live:** `prod` vs `exp-<name>` namespaces | Queries never cross namespaces | 🔎 |
+| 9 | **Live:** vectors lacking `size_mb` under the `$or` | Returned alongside small ones; large ones excluded | ✅ live, 2026-10-21 (`scripts/pinecone_semantics_check.py`) |
+| 10 | **Live:** `$in` against a list-valued `languages` | Matches if any element matches | ✅ live, 2026-10-21 (`scripts/pinecone_semantics_check.py`) |
+| 11 | **Live:** `$and` of several `$or` clauses | Accepted and correct | ✅ live, 2026-10-21 (`scripts/pinecone_semantics_check.py`) |
+| 12 | **Live:** `prod` vs `exp-<name>` namespaces | Queries never cross namespaces | ✅ live, 2026-10-21 (`scripts/pinecone_semantics_check.py`) |
 
 ### 4.4 LLM layer: `llm.py` (E-LLM)
 
@@ -238,7 +238,7 @@ where the code is known to fall short, the row says so.
 | 6 | JSON cached, README missing | Only the README is fetched | ✅ |
 | 7 | UTF-8 round trip on any OS | | ✅ |
 | 8 | Two ids that map to one filename (`a__b/c` vs `a/b__c`) | Collision; extremely unlikely, document | 🔲 |
-| 9 | **Live:** `list_models(language=…)` pagination and rate limits | All Indic-tagged models returned | 🔎 |
+| 9 | **Live:** `list_models(language=…)` pagination and rate limits | All Indic-tagged models returned | ✅ live, 2026-10-21 (`scripts/pinecone_semantics_check.py`) |
 
 ### 4.11 UI: `app.py` (E-APP)
 
@@ -306,7 +306,7 @@ where the code is known to fall short, the row says so.
 
 One throw-away script (not committed to the default test run) should assert, against real services:
 
-1. Pinecone semantics: E-RET-9..12 on a 10-vector index.
+1. Pinecone semantics: E-RET-9..12 on a 10-vector index. **Done:** `python -m scripts.pinecone_semantics_check` (all four pass).
 2. Hub shape: for five saved responses, `normalize_record` returns a record with every field typed as expected.
 3. Groq (`openai/gpt-oss-20b`, then the fallback model) and Ollama (`qwen2.5:7b-instruct`): JSON mode returns parseable objects for 20 queries (§6).
 4. Tokeniser: E-IDX-4 on 50 real Indic cards.

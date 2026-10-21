@@ -1,11 +1,37 @@
 {
-  "_comment": "Every query the demo shows, with the follow-ups a presenter would click. scripts/record_demo.py runs each exactly as the UI does and saves the final state under demo/cache/ for REPLAY=1.",
-  "steps": [
-    {"name": "1. small commercial Hindi sentiment (with naive comparison)", "query": "Small sentiment model for Hindi I can use in a commercial app", "compare": true},
-    {"name": "2. commercial Hindi to Marathi translation (with naive comparison)", "query": "Commercial Hindi to Marathi translation", "compare": true},
-    {"name": "3. beginner: vague request, answers the clarifying question", "query": "I want a Hindi model", "clarify_choice": "text-classification"},
-    {"name": "4. Marathi NER from the README example", "query": "Marathi NER model under 500 MB, usable commercially, works well on noisy social-media text", "compare": true},
-    {"name": "5. impossible request, accepts the relaxation", "query": "Marathi speech recognition under 10 MB", "accept_relax": true},
-    {"name": "6. build on it: modifiable fine-tuning request", "query": "Tamil NER model I can fine-tune"}
-  ]
+ "_comment": "Every query the demo shows, with the follow-ups a presenter would click. scripts/record_demo.py runs each exactly as the UI does and saves the final state under demo/cache/ for REPLAY=1.",
+ "steps": [
+  {
+   "name": "1. small commercial Hindi sentiment (with naive comparison)",
+   "query": "Small sentiment model for Hindi I can use in a commercial app",
+   "compare": true
+  },
+  {
+   "name": "2. commercial Hindi to Marathi translation (with naive comparison)",
+   "query": "Commercial Hindi to Marathi translation",
+   "compare": true
+  },
+  {
+   "name": "3. beginner: vague request, answers the clarifying question",
+   "query": "I want a Hindi model",
+   "clarify_choice": "text-classification"
+  },
+  {
+   "name": "4. Marathi NER, commercial use (with naive comparison)",
+   "query": "Marathi NER model I can use commercially",
+   "compare": true
+  },
+  {
+   "name": "5. impossible request: every result stays unknown, banner says no model is fully verified",
+   "query": "Hindi to Marathi translation under 1 MB"
+  },
+  {
+   "name": "6. translation where the direction is stated in the model name, versus unknown",
+   "query": "Urdu to English translation I can use in a product"
+  },
+  {
+   "name": "7. build on it: modifiable fine-tuning request",
+   "query": "Tamil NER model I can fine-tune"
+  }
+ ]
 }

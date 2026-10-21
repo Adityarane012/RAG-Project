@@ -295,14 +295,29 @@ Companion document: [PROJECT.md](PROJECT.md)
 
 **All decisions are Accepted.** D2, D3, D8, D9, D10 and D11 were accepted on 2026-10-21 (they were Proposed). D9 stays conditional on the Pinecone plan check: the local reranker is the default either way.
 
+## Updates from the live build (2026-10-21)
+
+Nothing here reverses an Accepted decision; these are the facts the live runs added. Evidence is in [data-notes.md](data-notes.md).
+
+- **D6 (corpus size):** 9,764 models, about 20% above the 5 to 8k estimate.
+- **D7 (LLM):** `openai/gpt-oss-20b` extracts 100% on the 20-case set; the fallback is `openai/gpt-oss-120b` because `llama-3.1-8b-instant` is not on the account, and it is weaker (85%), so a deterministic backstop fills size, rights, single-category task, language names and named permissive licenses from the user's own words (never on instruction-like queries). `reasoning_effort=low` keeps calls near 500 tokens.
+- **D8 (embeddings):** Pinecone-hosted `multilingual-e5-large` (1,024 dimensions), cached by content hash. The whole corpus cost 2.49M tokens. No local weights are needed.
+- **D9 (reranking):** hosted `bge-reranker-v2-m3` works on the Starter plan (API version 2024-10, `truncate: END`, cached). The local reranker remains an option.
+- **D12 (unknown handling):** confirmed live on Pinecone (E-RET-9..12). Added: verify a pool of 100 models before the top-5 cut, because semantic search cannot see direction, size or license; otherwise verified models rank below unknown ones that merely read better.
+- **D18 (retrieval text):** every system searches with the user's own query. The extractor's `soft_query` is only used to select explanation evidence, and even there the user's words replace it.
+- **D11 (abstention):** "verifiably impossible" cannot be satisfied (unknown models never fail). The metric is defined on queries for which no model in the corpus fully passes: ours must not claim verification there. The abstain and relax paths are implemented and tested but unreachable on this corpus, so an impossible request ends as an all-unknown answer with the banner.
+- **D11 (labelling):** one labeller (the project owner). Agreement is test-retest on a repeat pass, not inter-annotator.
+- **D13 (Try-it):** a fixed template ran for 10 of 18 small models; the UI says it is a template.
+- **D20 (size rule):** unchanged. 27% of models have unknown size (GGUF/ONNX-only or non-standard names); they stay ⚠️.
+
 ## Verification checklist
-- [ ] Model counts per task (top 1,000 + Indic-tagged); confirm the ~5–8k estimate
-- [ ] Pinecone Starter: current inference token limit, and whether reranking is included
-- [ ] Groq free tier: current rate limits for the chosen model
-- [ ] NLLB-200 license on its model card
-- [ ] Ollama model runs acceptably on at least one team laptop
-- [ ] `$or` metadata filter with a missing field behaves as D12 assumes (10-vector test index)
-- [ ] `base_model` coverage: what fraction of the corpus declares it? (D14 lineage is only worth showing if coverage is meaningful)
-- [ ] `param_count` availability from safetensors metadata (D14 memory estimate)
-- [ ] Which filters the HF Hub UI currently offers (task, language, license, parameter count?) before building the D19 baseline
-- [ ] Fraction of cards with `model-index` results (decides whether D24 is worth showing)
+- [x] Model counts per task: 9,764 unique (above the 5 to 8k estimate)
+- [x] Pinecone Starter: hosted embeddings and hosted reranking both work; the embedding token quota is not published (2.49M used without error)
+- [x] Groq free tier: 8,000 tokens/min, 1,000 requests/day, 200,000 tokens/day for `gpt-oss-20b` and `gpt-oss-120b`
+- [ ] NLLB-200 license on its model card (not checked)
+- [ ] Ollama model runs acceptably on a laptop (not checked; no Ollama in the build environment)
+- [x] `$or` metadata filter with a missing field behaves as D12 assumes (live, `scripts/pinecone_semantics_check.py`)
+- [x] `base_model` coverage: 51.9% (lineage is worth showing)
+- [x] `param_count` availability: 51.4%
+- [x] Which filters the HF Hub offers: task and language tags, and license tags; no size-in-MB filter and no notion of unknowns. `hf_basic` = task + language; `hf_licensed` = plus `license:apache-2.0` when commercial or modifiable use is needed; both sorted by downloads
+- [x] Fraction of cards with `model-index` results: 26.6% (D24 is cut anyway)

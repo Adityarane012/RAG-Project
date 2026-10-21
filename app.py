@@ -154,6 +154,8 @@ def render_state(state: dict) -> None:
         if report:
             with st.expander("Try it"):
                 st.code(report["try_it"] or "", language="python")
+                st.caption("A standard template, not tested on this model. It suits ordinary Hugging Face weights; MLX, GGUF, "
+                           "quantized or custom-code models need their own runtime. The model page says which.")
                 st.markdown(f"[Open the model page]({report['model_page']})")
             with st.expander("Build on it"):
                 render_build_on(report)

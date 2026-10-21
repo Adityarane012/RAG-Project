@@ -83,9 +83,7 @@ prompt tuning beyond what ours also received.
 
 ## 5. Manual labelling
 
-**Relevance @5** (40 queries by default; D11 says ~50). Two labellers, **A and C (not B**, who tuned the system); one sheet row per
-(query, model). The unit labelled is the *union* of each query's top-5 across the four systems (about 10 unique query-model pairs per query), so 40 queries is about 400 judgements per labeller, roughly 3.5 hours; 50 queries would be about 5 hours. Grade against the *soft preference only* (hard constraints are scored
-automatically):
+**Relevance @5, single-person protocol (current).** There is one labeller, the project owner, on **40 queries** (not 50). The unit labelled is the *union* of each query's top-5 across ours, naive, keyword and the licensed Hub baseline: 686 pairs, about 4 hours. The sheet is exported by `python -m eval.run_eval --label 40` (stratified by task, reproducible), blind (no system names, shuffled), with the system key in a separate file that the labeller does not open. Label with `streamlit run eval/label_app.py`. Grade the *purpose* of the request only (hard constraints are scored automatically):
 
 | Grade | Meaning |
 |---|---|
@@ -93,22 +91,30 @@ automatically):
 | 1 | Plausible: right task/language, no evidence on the preference |
 | 0 | Does not suit |
 
-Report mean grade@5 and the share of queries with at least one grade-2 model. Label blind
-to which system produced the list (shuffle systems together). Both label the same items;
-report **Cohen's kappa** from `eval.metrics.cohens_kappa`: quadratic-weighted (the usual
-choice for ordinal grades, since 0-vs-2 is worse than 1-vs-2) and unweighted. Disagreements
-are resolved by discussion, and the pre-resolution kappa is the one reported.
+Report mean grade@5 and the share of queries with at least one grade-2 model, per system (`python -m eval.relevance_report`; only
+fully labelled queries count, for every system alike). **Agreement is test-retest of one labeller**: at least 24 hours later, repeat
+15 random queries (the page hides the first grades), and report Cohen's kappa from `eval.metrics.cohens_kappa`, quadratic-weighted
+and unweighted. This measures self-consistency, not inter-annotator agreement, and the write-up must say so. A single labeller who
+also wrote the queries and built the system can favour it; the blind sheet, the frozen outputs (G4) and the repeat pass are the
+mitigations, not a cure.
 
-**Faithfulness** (~30 answers), scored **by hand**. For each explanation, split into claims; mark each
-*supported* / *unsupported* / *contradicted* by the cited `card_section`. Report the share
-supported and list the unsupported claims. RAGAS faithfulness may be run as a cross-check
-only: it adds an LLM judge, which is another component that can fail.
+**Faithfulness** (28 explanations; one random explained model per query, from `python -m scripts.make_faithfulness_set`), scored **by hand** with
+`streamlit run eval/faithfulness_app.py`: count the factual claims and how many the shown card passages support (a true claim
+the passages do not state is unsupported). Report the share of claims supported and of explanations with every claim supported
+(`python -m eval.faithfulness_report`). RAGAS is not used: it adds an LLM judge, which is another component that can fail.
+
+**Abstention.** "Verifiably impossible" queries cannot be built (a model with unknown size or language never fails, D12). The metric is
+defined on the queries for which no model in the corpus fully passes (12 of 85 normal and impossible queries in v2): ours must not claim
+verification there, and the table reports each system's violation rate on that slice. The abstain and relax paths are tested but not
+reachable on this corpus.
 
 ## 6. Ablations and design justification
 
 - **Four-system table** (D19) on the full query set.
-- At least one **tuning choice backed by a number**: relevance@5 with section chunking vs
-  fixed-size chunking (same index otherwise). Optionally reranker on/off.
+- One ablation was run: reranker off (`results-v2-ablation-no-reranker.md`): the verification metrics are unchanged and latency
+  falls from about 1.3 s to 0.2 s. Its relevance effect is **not measured** (its outputs are not in the labelled sheet). A chunking
+  ablation was cut. The design choices backed by a number are the verify pool (fully verified 72% to 83%) and the extraction
+  backstop (87% to 100% on the extraction set, a tuning-set figure).
 - Slice the results: by task, by slice (§2), and Indic vs non-Indic queries.
 
 ## 7. Reproducibility (D21)

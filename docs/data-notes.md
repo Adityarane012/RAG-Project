@@ -12,7 +12,9 @@ Everything in the other docs that says "verify" or "measure" ends up here as a d
 | Fetch | 9,763 of 9,764 cards fetched; 1 logged failure (a transient proxy error on `RGalliennePeren/Voxtral-rg`) |
 | Canonical base-model ids | 1,513 distinct base ids; 71 resolved to a different current id (legacy ids merged) |
 | Pinecone control plane and hosted inference | Work: index created, hosted embeddings (`multilingual-e5-large`, 1,024 dimensions) and hosted rerank (`bge-reranker-v2-m3`, API version `2024-10`; `2024-07` returns 404) |
-| Pinecone data plane (upsert/query), `$or`/`$in`/`$and` filter semantics | **Not run**: the host `hf-model-finder-cactjug.svc.aped-4627-b74a.pinecone.io` is blocked by the sandbox. The same filter semantics are implemented and unit-tested in `LocalIndex`; a live comparison is pending (needs the host allowed) |
+| Pinecone data plane and filter semantics (E-RET-9 to 12) | **Pass, all four** (`python -m scripts.pinecone_semantics_check`, `eval/results/pinecone_semantics.json`): a missing `size_mb` is kept by the `$or`, `$in` matches any element of a list field, nested `$and` of `$or` clauses is accepted and correct, namespaces never cross. The data-plane host was blocked at first and was allowed later the same day. The Python SDK ignores `HTTPS_PROXY` by default, so `src.index.connect` now passes `proxy_url` and the CA bundle when those variables are set |
+| Real upsert | `prod` namespace holds **29,665 vectors** (`describe_index_stats`) |
+| Evaluation on Pinecone vs the exact local index | Same aggregates for ours, naive and keyword (violation, unknown, fully verified, answered). Top-5 lists identical on 72 of 100 queries for ours and for naive, 100 of 100 for keyword; the rest differ in order or by one model (approximate search, ties). The labelled results are from the local index; see `eval/results/results-v2-pinecone.md` |
 | Pinecone hosted embedding quota | Not stated by the API. The whole corpus (29,665 chunks) used **2.49M tokens** with no quota error |
 | Hosted rerank limits | Pair limit 1,024 tokens: Indic chunks exceeded it and failed the whole request, so the call now sends `parameters.truncate = END` |
 | Groq limits | `gpt-oss-20b` and `gpt-oss-120b`: 8,000 tokens/min, 1,000 requests/day, 200,000 tokens/day (from response headers). `llama-3.1-8b-instant` is **not** on the account (fallback is `gpt-oss-120b`) |
@@ -21,9 +23,9 @@ Everything in the other docs that says "verify" or "measure" ends up here as a d
 | Reasoning tokens | With default reasoning, extraction cost about 1,150 tokens; `reasoning_effort=low` removed that |
 | Latency | Warm query, no explanation: median 1.3 s, p95 2.0 s (local index, hosted embed + rerank). With explanation: 7 to 17 s (the Groq call and the throttle) |
 | Poisoned cards | Redesigned test (poisoned cards with unknown metadata so the filter cannot remove them): 5/5 runs, tables come from metadata only, poisoned cards ranked below honest ones, 0/5 explanations repeated the injected claims (`eval/results/poison_test.json`) |
-| e5 tokenizer vs `approx_tokens` | Not run (needs the model weights; the HF CDN host is blocked). Hosted embeddings took the place of local ones |
-| Local reranker / local embeddings | Not run (HF CDN host `us.aws.cdn.hf.co` is blocked) |
-| Try-it smoke test on small models | Not run (needs weight downloads). Snippet templates are covered by unit tests |
+| e5 tokenizer vs `approx_tokens` | Not run: hosted embeddings replaced local ones, so the tokenizer is not in the path |
+| Local reranker / local embeddings | Not run: the hosted equivalents are used; the local classes are unit-tested with fakes only |
+| Try-it smoke test (`python -m scripts.tryit_smoke`, `eval/results/tryit_smoke.json`) | **10 of 18** snippets ran on small safetensors models recommended in the evaluation. Failures: 4 MLX or 4-bit quantized weights (`transformers` cannot load them), 1 corrupt safetensors header, 1 architecture needing newer code, 2 decoder-only models used as `translation` pipelines (unsupported in `transformers` 5). The UI now says the snippet is a standard template, not tested on that model |
 | NLLB-200 licence card, `TASK_GUIDES` URLs | Not run |
 | Ollama | Not run (no Ollama in the sandbox); the provider code is tested with fakes |
 

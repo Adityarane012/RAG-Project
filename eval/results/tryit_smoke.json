@@ -1,0 +1,150 @@
+{
+ "models": 18,
+ "passed": 10,
+ "results": [
+  {
+   "model_id": "aitytech/Whisper-Tiny-MLX-FP16",
+   "task": "automatic-speech-recognition",
+   "size_mb": 74.4,
+   "ok": false,
+   "seconds": 13.9,
+   "tail": "ne 316, in log_state_dict_report\n    raise RuntimeError(\n        \"You set `ignore_mismatched_sizes` to `False`, thus raising an error. For details look at the above report!\"\n    )\nRuntimeError: You set `ignore_mismatched_sizes` to `False`, thus raising an error. For details look at the above report!"
+  },
+  {
+   "model_id": "Open4bits/whisper-tiny-f16",
+   "task": "automatic-speech-recognition",
+   "size_mb": 75.5,
+   "ok": true,
+   "seconds": 20.1,
+   "tail": "{'text': ' Thank you very much.'}"
+  },
+  {
+   "model_id": "aitytech/Whisper-Base-MLX-FP16",
+   "task": "automatic-speech-recognition",
+   "size_mb": 143.7,
+   "ok": false,
+   "seconds": 15.1,
+   "tail": "ne 316, in log_state_dict_report\n    raise RuntimeError(\n        \"You set `ignore_mismatched_sizes` to `False`, thus raising an error. For details look at the above report!\"\n    )\nRuntimeError: You set `ignore_mismatched_sizes` to `False`, thus raising an error. For details look at the above report!"
+  },
+  {
+   "model_id": "Open4bits/whisper-base-f16",
+   "task": "automatic-speech-recognition",
+   "size_mb": 145.2,
+   "ok": true,
+   "seconds": 25.7,
+   "tail": "{'text': ' you'}"
+  },
+  {
+   "model_id": "DireDreadlord/Vakya-Mini-Extended-100M",
+   "task": "translation",
+   "size_mb": 215.9,
+   "ok": false,
+   "seconds": 9.0,
+   "tail": "raise KeyError(\n    ...<2 lines>...\n    )\nKeyError: 'The task translation has been removed from transformers. Use the `text-generation` pipeline with a chat model instead. See the migration guide for more details: https://github.com/huggingface/transformers/blob/main/MIGRATION_GUIDE_V5.md#pipelines'"
+  },
+  {
+   "model_id": "DireDreadlord/Vakya-Mini-100M",
+   "task": "translation",
+   "size_mb": 215.9,
+   "ok": false,
+   "seconds": 8.5,
+   "tail": "raise KeyError(\n    ...<2 lines>...\n    )\nKeyError: 'The task translation has been removed from transformers. Use the `text-generation` pipeline with a chat model instead. See the migration guide for more details: https://github.com/huggingface/transformers/blob/main/MIGRATION_GUIDE_V5.md#pipelines'"
+  },
+  {
+   "model_id": "sifat-febo/banglish-ontor",
+   "task": "text-classification",
+   "size_mb": 0.6,
+   "ok": true,
+   "seconds": 11.2,
+   "tail": "[{'label': 'curiosity', 'score': 0.6949068307876587}]"
+  },
+  {
+   "model_id": "Nebulixlabs/Quantum-Classifier-Calibrated",
+   "task": "text-classification",
+   "size_mb": 2.0,
+   "ok": false,
+   "seconds": 8.2,
+   "tail": "`. If this does not work, and the checkpoint is very new, then there may not be a release version that supports this model yet. In this case, you can get the most up-to-date code by installing Transformers from source with the command `pip install git+https://github.com/huggingface/transformers.git`"
+  },
+  {
+   "model_id": "ajajali09/hindi-conversation-interruption-intent-classifier-TinyBERT-L-2-v2",
+   "task": "text-classification",
+   "size_mb": 17.5,
+   "ok": true,
+   "seconds": 12.6,
+   "tail": "[{'label': 'affirmation', 'score': 0.9238423705101013}]"
+  },
+  {
+   "model_id": "mrm8488/bert-tiny-finetuned-sms-spam-detection",
+   "task": "text-classification",
+   "size_mb": 17.6,
+   "ok": true,
+   "seconds": 11.6,
+   "tail": "[{'label': 'LABEL_0', 'score': 0.9007810354232788}]"
+  },
+  {
+   "model_id": "hiteshwadhwani/pii-model-indic-v1",
+   "task": "token-classification",
+   "size_mb": 131.6,
+   "ok": true,
+   "seconds": 21.1,
+   "tail": "[]"
+  },
+  {
+   "model_id": "OpenMed/OpenMed-PII-Hindi-ClinicalE5-Small-33M-v1",
+   "task": "token-classification",
+   "size_mb": 133.0,
+   "ok": true,
+   "seconds": 16.2,
+   "tail": "[]"
+  },
+  {
+   "model_id": "OpenMed/OpenMed-NER-ProteinDetect-BioPatient-108M",
+   "task": "token-classification",
+   "size_mb": 215.5,
+   "ok": true,
+   "seconds": 16.2,
+   "tail": "[]"
+  },
+  {
+   "model_id": "OpenMed/OpenMed-NER-ProteinDetect-PubMed-v2-109M",
+   "task": "token-classification",
+   "size_mb": 217.8,
+   "ok": true,
+   "seconds": 17.0,
+   "tail": "[]"
+  },
+  {
+   "model_id": "tasal9/Multilingual-ZamAI-Embeddings",
+   "task": "sentence-similarity",
+   "size_mb": 0.0,
+   "ok": false,
+   "seconds": 11.0,
+   "tail": "^\n  File \"/usr/local/lib/python3.13/dist-packages/transformers/modeling_utils.py\", line 4486, in _load_pretrained_model\n    file_pointer = safe_open(file, framework=\"pt\", device=device, backend=backend)\nsafetensors._safetensors_rust.SafetensorError: Error while deserializing header: header too large"
+  },
+  {
+   "model_id": "sifat-febo/banglish-embed-tiny",
+   "task": "sentence-similarity",
+   "size_mb": 11.4,
+   "ok": true,
+   "seconds": 13.7,
+   "tail": "tensor([[0.5713]])"
+  },
+  {
+   "model_id": "thoddnn/all-MiniLM-L6-v2-4bit",
+   "task": "sentence-similarity",
+   "size_mb": 12.8,
+   "ok": false,
+   "seconds": 11.9,
+   "tail": "ne 316, in log_state_dict_report\n    raise RuntimeError(\n        \"You set `ignore_mismatched_sizes` to `False`, thus raising an error. For details look at the above report!\"\n    )\nRuntimeError: You set `ignore_mismatched_sizes` to `False`, thus raising an error. For details look at the above report!"
+  },
+  {
+   "model_id": "mlx-community/all-MiniLM-L6-v2-4bit",
+   "task": "sentence-similarity",
+   "size_mb": 12.8,
+   "ok": false,
+   "seconds": 9.3,
+   "tail": "ne 316, in log_state_dict_report\n    raise RuntimeError(\n        \"You set `ignore_mismatched_sizes` to `False`, thus raising an error. For details look at the above report!\"\n    )\nRuntimeError: You set `ignore_mismatched_sizes` to `False`, thus raising an error. For details look at the above report!"
+  }
+ ]
+}

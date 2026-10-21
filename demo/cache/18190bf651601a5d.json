@@ -1,0 +1,36 @@
+{
+ "input": {
+  "query": "I want a Hindi model",
+  "overrides": {}
+ },
+ "state": {
+  "query": "I want a Hindi model",
+  "overrides": {},
+  "clarifications_asked": 1,
+  "constraints": {
+   "task": null,
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hindi model"
+  },
+  "intent": "We understood: you want a model (we're not sure what for yet), for Hindi.",
+  "question": {
+   "field": "task",
+   "question": "What should the model do?",
+   "options": {
+    "token-classification": "Find names in text (NER)",
+    "text-classification": "Detect sentiment / classify text",
+    "automatic-speech-recognition": "Transcribe speech",
+    "translation": "Translate text",
+    "sentence-similarity": "Compare sentence similarity"
+   }
+  },
+  "outcome": "clarify"
+ }
+}
