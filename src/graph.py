@@ -102,6 +102,9 @@ def build_graph(deps: Deps, variant: str = "ours"):
     if variant not in VARIANTS:
         raise ValueError(f"variant must be one of {VARIANTS}, got {variant!r}")
     plain = variant != "ours"
+    # The full system verifies a wider pool than it shows, so a verified model ranked 6th by the reranker can
+    # still outrank an unknown one (D12); the baselines keep retrieval order and show exactly the top models.
+    pool_size = CFG["retrieval"]["top_models"] if plain else CFG["retrieval"]["verify_pool"]
 
     def extract(state: State) -> State:
         # User edits go through the same validator as the LLM's output: an override is untrusted input too
@@ -115,15 +118,18 @@ def build_graph(deps: Deps, variant: str = "ours"):
 
     def retrieve(state: State) -> State:
         # naive RAG searches with no filter at all; keyword relies on deps.fetch applying the filter itself
-        text = state["constraints"].get("soft_query") or state["query"]    # every system searches with the same text
+        # Every system searches with the user's own words. The extractor's `soft_query` is a fragile LLM field: on
+        # "small Gujarati classifier with a permissive license" it came back as "permissive license" and retrieval
+        # returned only licence sections. It is still used to pick explanation evidence.
+        text = state["query"]
         return {"matches": fetch_chunks(lambda flt, k: deps.fetch(text, flt, k),
-                                        {} if variant == "naive" else state["constraints"])}
+                                        {} if variant == "naive" else state["constraints"], top_n=pool_size)}
 
     def rerank(state: State) -> State:
         matches = state["matches"]
         if variant != "keyword":
-            matches = deps.rerank(state["constraints"].get("soft_query") or state["query"], matches)
-        return {"candidates": group_by_model(matches, CFG["retrieval"]["top_models"])}
+            matches = deps.rerank(state["query"], matches)
+        return {"candidates": group_by_model(matches, pool_size)}
 
     def verify_node(state: State) -> State:
         c = state["constraints"]
@@ -134,6 +140,7 @@ def build_graph(deps: Deps, variant: str = "ours"):
                             "table": table, "overall": overall(table), "notes": notes(cand["meta"], c)})
         if not plain:   # the full system ranks passes above unknowns above fails; the baselines keep retrieval order
             results.sort(key=lambda r: rank_key(r["table"]))  # stable: reranker order within a group
+        results = results[:CFG["retrieval"]["top_models"]]
         return {"results": results, "closest": results[:3]}
 
     def relax(state: State) -> State:

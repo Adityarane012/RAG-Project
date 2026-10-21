@@ -71,7 +71,10 @@ class HostedReranker:
         if path.exists():
             self.cache_hits += 1
             return json.loads(path.read_text(encoding="utf-8"))
-        body = {"model": "bge-reranker-v2-m3", "query": query, "documents": docs, "top_n": len(docs), "return_documents": False}
+        body = {"model": "bge-reranker-v2-m3", "query": query, "documents": docs, "top_n": len(docs), "return_documents": False,
+                # Indic scripts tokenize far heavier than our word-based estimate; without this a long
+                # Gujarati chunk makes the whole request fail with HTTP 400 (1,024-token pair limit)
+                "parameters": {"truncate": "END"}}
         headers = {"Api-Key": self._key, "X-Pinecone-API-Version": self.API_VERSION, "Content-Type": "application/json"}
         for attempt in range(5):
             r = self._post("https://api.pinecone.io/rerank", json=body, headers=headers, timeout=120)

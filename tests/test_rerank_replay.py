@@ -138,6 +138,13 @@ def test_hosted_rerank_replaces_scores_sorts_best_first_and_keeps_the_original_s
     assert [d["text"] for d in body["documents"]] == ["x", "z", "y"] and ms[0]["score"] == 0.99    # input untouched
 
 
+def test_hosted_rerank_asks_the_service_to_truncate_long_pairs(tmp_path):
+    # live finding: a long Gujarati chunk exceeded the 1,024-token pair limit and failed the whole request
+    h, sent = hosted(tmp_path, [rows(0.5)])
+    h("q", [m(0, 0.9)])
+    assert sent[0][1]["parameters"] == {"truncate": "END"}
+
+
 def test_hosted_rerank_is_cached_so_a_rerun_costs_nothing_and_usage_is_logged(tmp_path):
     h, sent = hosted(tmp_path, [rows(0.2, 0.8)])
     ms = [m(0, 0.9), m(1, 0.8)]

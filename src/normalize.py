@@ -40,6 +40,10 @@ LICENSE_RIGHTS: dict[str, tuple[str, str]] = {
     "bsl-1.0": ("yes", "yes"),
     "ecl-2.0": ("yes", "yes"),
     "wtfpl": ("yes", "yes"),
+    "afl-3.0": ("yes", "yes"),
+    "openmdw-1.0": ("yes", "yes"),     # Linux Foundation OpenMDW: permissive, attribution
+    "openmdw-1.1": ("yes", "yes"),
+    "pddl": ("yes", "yes"),            # public-domain dedication (a data licence; seen on a few cards)
     # Non-commercial: modification allowed, result non-commercial only
     "cc-by-nc-2.0": ("no", "yes"),
     "cc-by-nc-3.0": ("no", "yes"),
@@ -64,6 +68,10 @@ LICENSE_RIGHTS: dict[str, tuple[str, str]] = {
     "llama3.2": ("conditional", "conditional"),
     "llama3.3": ("conditional", "conditional"),
     "gemma": ("conditional", "conditional"),
+    "llama4": ("conditional", "conditional"),
+    "lfm1.0": ("conditional", "conditional"),                     # revenue threshold applies
+    "nvidia-open-model-license": ("conditional", "conditional"),  # use conditions carry over
+    "falcon-llm-license": ("conditional", "conditional"),         # royalty above a revenue threshold
     # Copyleft / share-alike: derivatives allowed but must carry the same terms, and
     # commercial use comes with obligations. Both rights need a human to read the terms.
     "cc-by-sa-3.0": ("conditional", "conditional"),
@@ -71,6 +79,8 @@ LICENSE_RIGHTS: dict[str, tuple[str, str]] = {
     "gpl": ("conditional", "conditional"),
     "gpl-2.0": ("conditional", "conditional"),
     "gpl-3.0": ("conditional", "conditional"),
+    "lgpl": ("conditional", "conditional"),
+    "odbl": ("conditional", "conditional"),
     "lgpl-2.1": ("conditional", "conditional"),
     "lgpl-3.0": ("conditional", "conditional"),
     "agpl-3.0": ("conditional", "conditional"),

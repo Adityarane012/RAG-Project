@@ -28,7 +28,7 @@ def index_with(models):
     return idx
 
 
-def test_ours_embeds_the_soft_query_filters_reranks_and_verifies():
+def test_ours_embeds_the_users_query_filters_reranks_and_verifies():
     idx = index_with([("good/m", [1, 0], {}), ("big/m", [0.9, 0.1], {"size_mb": 9000.0}), ("nc/m", [0.8, 0.2], {"commercial": "no"})])
     emb, seen = Emb(), {}
 
@@ -38,7 +38,7 @@ def test_ours_embeds_the_soft_query_filters_reranks_and_verifies():
 
     g = pipeline.build_pipeline("ours", namespace="ns", index=idx, embedder=emb, reranker=rerank, extract=lambda q: dict(CONS))
     s = g.invoke({"query": "a long original request"})
-    assert emb.queries == ["hindi sentiment"] and seen["q"] == "hindi sentiment"
+    assert emb.queries == ["a long original request"] and seen["q"] == "a long original request"
     assert [r["model_id"] for r in s["results"]] == ["good/m"] and seen["n"] == 1        # filtered BEFORE reranking
     assert s["outcome"] == "answer" and "fully_verified" in s
 
@@ -60,5 +60,5 @@ def test_keyword_uses_bm25_with_the_same_filter_and_no_embedding_or_reranker():
         raise AssertionError("keyword must not rerank")
 
     g = pipeline.build_pipeline("keyword", keyword=kw, embedder=emb, reranker=boom, extract=lambda q: dict(CONS))
-    s = g.invoke({"query": "q"})
+    s = g.invoke({"query": "hindi sentiment model"})
     assert [r["model_id"] for r in s["results"]] == ["a/m"] and emb.queries == []

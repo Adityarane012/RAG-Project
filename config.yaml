@@ -1,8 +1,8 @@
 # Single config file (D21). Changing embedding.model means re-indexing everything.
 # Data snapshot (D21): normalized metadata, attached to a GitHub Release. The raw API cache
 # stays local. `python -m src.snapshot build` prints the values to paste here.
-snapshot_date: null          # shown in the UI
-snapshot_sha256: null        # checked by src.snapshot.load_snapshot
+snapshot_date: 2026-10-21       # shown in the UI
+snapshot_sha256: 0ae0bd3c3fd79b8cf592650b1bfac735156472662a8a6fcbeabcdb79295732ed   # checked by src.snapshot.load_snapshot
 snapshot_url: null           # the GitHub Release asset
 
 # LLM models are pinned here (D7); the env vars GROQ_MODEL / OLLAMA_MODEL override them.
@@ -86,6 +86,7 @@ retrieval:                   # D18
   k_chunks: 50
   k_chunks_max: 400
   top_models: 5
+  verify_pool: 25            # models verified before the top_models cut, so verified passes can outrank unknowns (D12)
   reranker: pinecone         # pinecone (hosted bge-reranker-v2-m3, works on this plan, tiny monthly quota, cached) | local | none (D9)
   rerank_cache_dir: data/rerank_cache
   local_reranker_model: BAAI/bge-reranker-v2-m3

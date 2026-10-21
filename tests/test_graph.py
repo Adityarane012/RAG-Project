@@ -46,6 +46,23 @@ def test_happy_path_ranks_passes_above_unknowns_and_drops_failures():
     assert "task" in s["intent"].lower() or "model" in s["intent"].lower()
 
 
+def test_a_verified_model_ranked_below_the_cut_still_beats_unknowns():
+    # live finding: 5 language-unknown models filled the top 5 while verified models ranked 6th and below never showed
+    unknowns = [chunk(f"unk/{i}", 0.99 - i / 100, language_status="unknown", languages=[]) for i in range(6)]
+    pool = unknowns + [chunk("good/late", 0.10)]
+    g, _ = make(FULL, pool)
+    s = g.invoke({"query": "q"})
+    ids = [r["model_id"] for r in s["results"]]
+    assert ids[0] == "good/late" and len(ids) == 5          # verified first, then the best unknowns, capped at top_models
+
+
+def test_baselines_still_show_exactly_the_retrieval_top_models():
+    pool = [chunk(f"unk/{i}", 0.99 - i / 100, language_status="unknown", languages=[]) for i in range(6)] + [chunk("good/late", 0.10)]
+    deps = Deps(extract=lambda q: dict(FULL), fetch=lambda t, f, k: pool[:k], rerank=lambda q, m: m, explain=None)
+    s = build_graph(deps, variant="naive").invoke({"query": "q"})
+    assert [r["model_id"] for r in s["results"]] == [f"unk/{i}" for i in range(5)]
+
+
 def test_vague_query_clarifies_then_proceeds_with_the_answer():
     g, calls = make({"task": None, "langs": ["hi"], "soft_query": "q"}, [chunk("a/b", 0.9, languages=["hi"])])
     first = g.invoke({"query": "I want a Hindi model"})
@@ -241,10 +258,12 @@ def test_ours_is_unchanged_by_the_variant_switch_and_bad_variants_are_rejected()
         build_graph(Deps(extract=lambda q: {}, fetch=lambda t, f, k: [], rerank=lambda q, m: m, explain=None), variant="bm25")
 
 
-def test_every_system_searches_with_the_same_query_text():
+def test_every_system_searches_with_the_users_own_words_not_the_extracted_soft_query():
+    # live finding: the extractor turned "small Gujarati classifier with a permissive license" into "permissive license",
+    # so retrieval returned only licence sections; the user's words are the robust retrieval text
     texts = {}
     for variant in ("ours", "naive", "keyword"):
         g, seen = make_variant(variant, {**FULL, "soft_query": "noisy social media text"}, [chunk("a/b", 0.9)])
         g.invoke({"query": "a long original request"})
         texts[variant] = set(seen["texts"])
-    assert texts == {"ours": {"noisy social media text"}, "naive": {"noisy social media text"}, "keyword": {"noisy social media text"}}
+    assert texts == {v: {"a long original request"} for v in ("ours", "naive", "keyword")}

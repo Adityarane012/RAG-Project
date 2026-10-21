@@ -170,3 +170,12 @@ def test_why_size_is_unknown():
     assert size_unknown_reason([("model-q4.gguf", 5)]) == "gguf_only"
     assert size_unknown_reason([("best_checkpoint.bin", 5)]) == "weights_with_other_name"
     assert size_unknown_reason([("README.md", 5)]) == "no_weight_files"
+
+
+def test_licenses_found_unmapped_in_the_real_snapshot_are_now_mapped():
+    # from the 2026-10-21 data-quality report: these were the biggest mappable gaps
+    from src.normalize import license_rights
+    assert license_rights("openmdw-1.1") == ("yes", "yes") and license_rights("afl-3.0") == ("yes", "yes")
+    assert license_rights("llama4") == ("conditional", "conditional") and license_rights("odbl") == ("conditional", "conditional")
+    # a bare "cc", "other" and "unknown" tell us nothing: they must stay unknown, never guessed
+    assert all(license_rights(x) == ("unknown", "unknown") for x in ("cc", "other", "unknown"))
