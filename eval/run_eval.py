@@ -16,6 +16,7 @@ import argparse
 import csv
 import hashlib
 import json
+import os
 import random
 import statistics
 import subprocess
@@ -321,7 +322,7 @@ def main(argv: list[str] | None = None) -> None:
     meta = {"tag": args.tag, "date": time.strftime("%Y-%m-%d"), "git": git_sha(), "config_sha": config_sha(),
             "llm": f"{CFG['llm']['groq_model']} (reasoning_effort={CFG['llm'].get('reasoning_effort')})",
             "store": store_backend(), "embedding": f"{CFG['embedding']['backend']}:{CFG['embedding']['model']}",
-            "reranker": CFG["retrieval"]["reranker"], "n_queries": len(queries),
+            "reranker": os.getenv("RERANKER") or CFG["retrieval"]["reranker"], "n_queries": len(queries),
             "kinds": dict(Counter(q["kind"] for q in queries)), "impossible_ids": [q["id"] for q in queries if q["kind"] == "impossible"]}
     out = Path("eval/results")
     out.mkdir(parents=True, exist_ok=True)

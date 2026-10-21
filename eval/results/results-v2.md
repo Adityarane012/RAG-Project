@@ -1,6 +1,6 @@
 # Evaluation results (v2)
 
-- date 2026-10-21 · git `606468e` · config sha256 `9b94abbbe378` · LLM `openai/gpt-oss-20b (reasoning_effort=low)` · vector store `local` · embeddings `pinecone:intfloat/multilingual-e5-large` · reranker `pinecone`
+- date 2026-10-21 · git `152cfcb` · config sha256 `9b94abbbe378` · LLM `openai/gpt-oss-20b (reasoning_effort=low)` · vector store `local` · embeddings `pinecone:intfloat/multilingual-e5-large` · reranker `pinecone`
 - queries: 100 ({'normal': 75, 'vague': 15, 'impossible': 10}); single author, written before any retrieval experiment (D11 deviation)
 - queries whose parsed constraints are empty (violation is trivially 0 for them): 3
 
@@ -8,11 +8,11 @@
 
 | System | Answered % | Recs | Violation % | Unknown % | Fully verified % | Median s | p95 s |
 |---|---|---|---|---|---|---|---|
-| ours | 97.3 | 365 | 0.0 | 16.7 | 83.3 | 1.28 | 2.0 |
-| naive | 100.0 | 375 | 50.4 | 20.5 | 29.1 | 0.41 | 0.71 |
-| keyword | 100.0 | 368 | 0.0 | 62.0 | 38.0 | 0.04 | 0.07 |
-| hf_basic | 100.0 | 375 | 32.8 | 13.6 | 53.6 | 0.1 | 0.13 |
-| hf_licensed | 100.0 | 375 | 25.9 | 14.7 | 59.5 | 0.09 | 0.14 |
+| ours | 97.3 | 365 | 0.0 | 16.7 | 83.3 | 0.21 | 0.38 |
+| naive | 100.0 | 375 | 50.4 | 20.5 | 29.1 | 0.06 | 0.66 |
+| keyword | 100.0 | 368 | 0.0 | 62.0 | 38.0 | 0.04 | 0.1 |
+| hf_basic | 100.0 | 375 | 32.8 | 13.6 | 53.6 | 0.1 | 0.15 |
+| hf_licensed | 100.0 | 375 | 25.9 | 14.7 | 59.5 | 0.1 | 0.14 |
 
 ### Violations by constraint (% of recommended models failing that constraint)
 
@@ -53,6 +53,16 @@
 | q100 | 6 | 192 |
 
 0/10 are verifiably impossible (no model passes or is unknown).
+
+### Queries with no fully verified model in the corpus (12): false assurance and violations
+
+| System | answered % | violation % | unknown % | claimed fully verified | shown with banner | abstained / relaxed |
+|---|---|---|---|---|---|---|
+| ours | 100.0 | 0.0 | 100.0 | 0 | 12 | 0 |
+| naive | 100.0 | 73.3 | 26.7 | 0 | 12 | 0 |
+| keyword | 100.0 | 0.0 | 100.0 | 0 | 12 | 0 |
+| hf_basic | 100.0 | 75.0 | 25.0 | 0 | 12 | 0 |
+| hf_licensed | 100.0 | 63.3 | 36.7 | 0 | 12 | 0 |
 
 ## Vague and impossible queries: baselines (they never ask or abstain)
 
