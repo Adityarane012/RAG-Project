@@ -5,7 +5,7 @@
 | [PROJECT.md](PROJECT.md) | What we are building and how, users, scope, demo script, risks, viva questions |
 | [decisions.md](decisions.md) | *Why* for every choice (D1–D24), with status |
 | [architecture.md](architecture.md) | How the code is organised: modules, data model, graph, filter-vs-verify, failure modes |
-| [implementation-plan.md](implementation-plan.md) | Phase-wise plan from today to the demo: owners, hours, gates, budgets, risks, cut ladder, decisions needed |
+| [implementation-plan.md](implementation-plan.md) | Single-person plan to Oct 30: what is done, machine vs human work, calendar, gates, budgets, risks, cut ladder |
 | [testing-strategy.md](testing-strategy.md) | Test layers, the edge-case catalogue (with status), live checks, extraction and poisoning tests |
 | [data-pipeline.md](data-pipeline.md) | Hub → Pinecone: sampling, fetching, size rule, license map, languages, data-quality report |
 | [evaluation-plan.md](evaluation-plan.md) | Query set, metrics, baselines, labelling, reproducibility, threats to validity |
