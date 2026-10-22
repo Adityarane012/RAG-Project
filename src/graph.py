@@ -128,7 +128,15 @@ def build_graph(deps: Deps, variant: str = "ours"):
     def rerank(state: State) -> State:
         matches = state["matches"]
         if variant != "keyword":
-            matches = deps.rerank(state["query"], matches)
+            try:
+                matches = deps.rerank(state["query"], matches)
+            except Exception as e:
+                from src.rerank import RerankQuotaExceeded
+
+                if isinstance(e, RerankQuotaExceeded):
+                    pass
+                else:
+                    raise
         return {"candidates": group_by_model(matches, pool_size)}
 
     def verify_node(state: State) -> State:

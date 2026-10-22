@@ -79,7 +79,7 @@ class HostedReranker:
         for attempt in range(5):
             r = self._post("https://api.pinecone.io/rerank", json=body, headers=headers, timeout=120)
             if r.status_code == 429 or r.status_code >= 500:
-                if any(w in r.text.lower() for w in ("quota", "monthly", "limit exceeded")):
+                if any(w in r.text.lower() for w in ("quota", "monthly", "limit exceeded", "resource_exhausted", "request limit")):
                     raise RerankQuotaExceeded(r.text[:300])
                 self._sleep(min(2 ** attempt, 20))
                 continue

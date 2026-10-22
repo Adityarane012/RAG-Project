@@ -28,7 +28,7 @@ ICON_DISPLAY = {"pass": "pass", "fail": "❌ fail", "unknown": "⚠️ unknown"}
 LEGEND = "pass · ❌ fails · ⚠️ unknown (the card or metadata doesn't say; we don't guess)"
 
 
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def _live_graph(variant: str = "ours"):
     """The real pipeline for `variant`, built once per process (needs the vector index, keys and models)."""
     from src.pipeline import build_pipeline
@@ -45,7 +45,7 @@ def get_graph(variant: str = "ours") -> ReplayGraph:
     return ReplayGraph(_live_graph(variant), mode, variant=variant)
 
 
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def _records():
     """Snapshot records for check-a-model (the cached corpus; RAW_DIR overrides the location)."""
     from src import ingest
@@ -282,6 +282,8 @@ def main() -> None:
                         st.session_state["elapsed"] = time.time() - t0
                     except MissingRecording as e:
                         st.warning(str(e))
+                    except Exception as e:
+                        st.error(f"Search failed: {e}")
         if "state" in st.session_state:
             state = st.session_state["state"]
             elapsed = st.session_state.get("elapsed")
