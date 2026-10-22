@@ -1,0 +1,29 @@
+item_id,claims,supported,note,ts
+q002|BuzzASR/marathi,2,2,,1761144200
+q006|abhishekgautamm/whisper-tiny-hinglish-v2,2,2,,1761144215
+q007|Open4bits/whisper-base-f16,2,1,Passages state multilingual ASR but do not state support for Gujarati,1761144230
+q011|patrickvonplaten/wav2vec2_tiny_random_robust,3,3,,1761144245
+q013|WhissleAI/STT-hinglish-loans-ONNX,2,2,,1761144260
+q015|dkubeio/DKube-asr-hinglish-v1-0.8B,2,2,,1761144275
+q017|DireDreadlord/Vakya-Mini-Extended-100M,2,2,,1761144290
+q022|vijaysarathy/indictrans2-indic-en-multilingual-ft,1,0,Card evidence shows Telugu -> English (source) rather than English -> Telugu (target),1761144305
+q023|Helsinki-NLP/opus-mt-ur-en,3,3,,1761144320
+q025|Helsinki-NLP/opus-mt-iir-en,2,2,,1761144335
+q029|Helsinki-NLP/opus-mt-ml-en,2,2,,1761144350
+q031|pascalrai/hinglish-twitter-roberta-base-sentiment,2,2,,1761144365
+q032|l3cube-pune/MarathiSentiment,2,2,,1761144380
+q035|kingshukroy/twhin-bert-base-hate-speech-ben-hin,2,2,,1761144395
+q036|Nebulixlabs/Quantum-Classifier-Calibrated,1,1,,1761144410
+q037|tabularisai/multilingual-emotion-classification,2,2,,1761144425
+q039|shae2977/xlm-roberta-hinglish-sentiment-analysis,3,3,,1761144440
+q042|vincentoh/deberta-v3-xsmall-l0-bouncer,2,2,,1761144455
+q050|chandanaau/distilbert-telugu-ner,2,2,,1761144470
+q055|SIRIS-Lab/citation-parser-ENTITY,2,1,Card describes citation parsing NER only; does not state support for Urdu,1761144485
+q056|vaibhav006/indic-ner-muril-naamapadam,1,1,,1761144500
+q058|hiteshwadhwani/pii-model-indic-v1,2,1,Card is for PII token classification; does not mention POS tagging,1761144515
+q061|convaiinnovations/hindi-embedding-model-final,2,2,,1761144530
+q062|tylerl0208/Nemotron-3-Embed-8B-BF16,2,2,,1761144545
+q064|l3cube-pune/tamil-sentence-bert-nli,2,2,,1761144560
+q065|l3cube-pune/telugu-sentence-bert-nli,2,2,,1761144575
+q070|eswardivi/tamal-sentence-bert-nli,2,2,,1761144590
+q072|l3cube-pune/punjabi-sentence-bert-nli,2,2,,1761144605

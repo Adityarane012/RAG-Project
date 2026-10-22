@@ -87,7 +87,7 @@ def _write_atomic(path: Path, text: str) -> None:
     """Write then rename, so a crash never leaves a truncated file that a resumed run
     would mistake for a finished fetch."""
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(text, encoding="utf-8")
+    tmp.write_text(text, encoding="utf-8", newline="")
     tmp.replace(path)
 
 
