@@ -24,17 +24,18 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Prior art:** semantic search over the HF Hub already exists (davanstrien's hub-semantic-search MCP; the *Model Fit Finder* Space), and the Hub UI itself filters by task, language and license string. Our differentiator is **interpreting license rights, guaranteeing hard-constraint satisfaction, and handling unknowns honestly**, measured against both (D19).
 
 ## D2. Core principle: the LLM parses, code verifies
-- **Status:** Proposed
+- **Status:** Accepted (2026-10-21)
 - **Decision:** The LLM only (a) extracts constraints from the query into JSON and (b) writes explanations. All yes/no checks (size, license, language) are done in code, before retrieval (filters) and after (re-verification).
 - **Rationale:** an LLM will recommend a non-commercial or oversized model if its card *sounds* relevant. Deterministic checks make the violation rate measurable and close to zero.
 - **Consequence:** every recommendation shows a per-constraint table: ✅ pass / ❌ fail / ⚠️ unknown.
 - **Extended by D14, D17, D18:** license rights, lineage, memory estimates and size thresholds are all computed in code. Card text can never change a verification result.
 
 ## D3. Three possible results per constraint, plus license mapping
-- **Status:** Proposed
+- **Status:** Accepted (2026-10-21)
 - **Decision:** constraints evaluate to `pass`, `fail`, or `unknown`. Licenses map to commercial use as `yes` / `no` / `conditional` / `unknown` (e.g., Apache-2.0 and MIT → yes; CC-BY-NC → no; Llama-style and OpenRAIL → conditional).
 - **Rationale:** many cards are missing metadata. Guessing produces false claims; dropping those models silently produces false negatives.
 - **Extended by D14:** a second, independent right (`modifiable`) uses the same map.
+- **Update 2026-10-21:** copyleft / share-alike licenses (GPL, LGPL, AGPL, MPL, CC-BY-SA) map to `conditional` for **both** `commercial` and `modifiable`: derivatives are allowed but must carry the same terms. `conditional` always shows as ⚠️ when the right is required.
 
 ## D4. Vector database: Pinecone
 - **Status:** Accepted (2026-10-16)
@@ -45,6 +46,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **In scope:** `automatic-speech-recognition`, `translation`, `text-classification`, `token-classification`, `sentence-similarity`.
 - **Out of scope:** `text-generation` (largest category, messiest licenses, already the focus of existing tools). Stretch goal only.
 - **Demo roles:** ASR showcases the size constraint (sizes from tens of MB to several GB). Translation showcases the license constraint (NLLB-200 is believed to be CC-BY-NC; **verify**).
+- **Known gap (2026-10-21):** requests for an "embedding model" are mapped to `sentence-similarity`. Many embedding models are tagged `feature-extraction` instead and are not in the corpus. Accepted (that tag is full of base encoders and would swell the corpus); listed under limitations.
 
 ## D6. Corpus sampling: top models plus the Indic long tail
 - **Status:** Accepted (2026-10-16)
@@ -59,20 +61,22 @@ Companion document: [PROJECT.md](PROJECT.md)
   - Every LLM response is cached (protects against rate limits and makes runs reproducible).
   - Run 20 test queries and measure **JSON parse success** and **constraint extraction accuracy** on Groq; confirm Ollama passes the same test as a backup.
   - Demo day: switching to Ollama has been rehearsed in advance.
+- **Pinned models (2026-10-21), in `config.yaml`:** Groq `openai/gpt-oss-20b` with `llama-3.1-8b-instant` as a one-shot rate-limit fallback; Ollama `qwen2.5:7b-instruct` (`qwen2.5:3b` on 8 GB laptops). Final only after the 20-query test. Not used: `llama-3.3-70b-versatile` (retirement reports conflict), and `gpt-oss:20b` locally (needs ~16 GB).
 
 ## D8. Embeddings: local `intfloat/multilingual-e5-large`
-- **Status:** Proposed
+- **Status:** Accepted (2026-10-21)
 - **Decision:** embed locally and upload the vectors, instead of using Pinecone's hosted inference.
 - **Rationale:** the estimated corpus (~6k models × 3 chunks × ~300 tokens ≈ 5.4M tokens) exceeds the Starter plan's historical 5M monthly inference tokens (verify the current limit), and we will re-index several times while tuning.
 - **Constraints:** 1024 dimensions, ~507-token input limit, so card sections stay under ~450 tokens. Queries **must** be embedded with the same model.
 - **Bonus:** multilingual, so Hindi/Marathi queries work.
 
 ## D9. Reranking: Pinecone hosted if the plan allows, local fallback
-- **Status:** Proposed
+- **Status:** Accepted (2026-10-21)
 - **Decision:** use Pinecone's integrated reranking if the Starter plan includes it (check with the list-models API); otherwise run `bge-reranker-v2-m3` locally.
+- **Default (2026-10-21):** local `bge-reranker-v2-m3` is the safe default; switch to Pinecone-hosted only if the plan check shows it is available and worthwhile.
 
-## D10. Metadata schema (draft)
-- **Status:** Proposed
+## D10. Metadata schema
+- **Status:** Accepted (2026-10-21)
 - **Fields:**
   - `model_id`, `task`, `section`, `downloads`
   - `languages` (list; empty → unknown) + `multilingual` (bool, from D18's map)
@@ -83,9 +87,15 @@ Companion document: [PROJECT.md](PROJECT.md)
   - `param_count` (number, only written when known), added by D14 for memory estimates
   - `doc_quality` (`full` / `minimal`), added by D20
 - **Rule:** every field that can be missing follows the D12 pattern. Metadata is identical on every chunk of the same model.
+- **Accepted schema includes these additions made during implementation (2026-10-21):**
+  - `language_status` (`known` / `unknown`): Pinecone cannot filter on "list is empty", so the D12 pattern needs an explicit flag for languages too.
+  - `directions` (list such as `"hi-mr"`, only when stated) + `direction_source` (`"model_name"`), for D18 translation direction.
+  - `section` and `text`, per chunk (not per model): `text` is what the explanation step cites (D17).
+  - `multilingual` is also set when a card says "multilingual" without listing languages (then `language_status` is `unknown`).
+  See `docs/architecture.md` §4.1 for the full table.
 
 ## D11. Evaluation design
-- **Status:** Proposed
+- **Status:** Accepted (2026-10-21)
 - **Test set (~120 queries), written before tuning:**
   - ~100 written by the teammate **not** building the pipeline, including ~10 impossible queries and ~15 vague beginner queries (D13)
   - ~20 from classmates who have never seen the system, to reduce author bias
@@ -105,6 +115,8 @@ Companion document: [PROJECT.md](PROJECT.md)
 
 - **Ablation:** see D19 for the baselines; all run on the same query set.
 - **Design justification:** at least one tuning choice is backed by a number, e.g. relevance@5 with section chunking vs. fixed-size chunking.
+- **Single-author deviation (2026-10-21):** the project is now one person, so the D11 independence rule cannot hold: the same author wrote the queries and builds the system, and there are no classmate queries. Mitigations: the 100 queries (75 normal, 15 vague, 10 impossible; `source: "author"`) were committed **before any retrieval experiment** (git history is the evidence) and were written from user needs, not from system output; they are frozen; every query later used to debug is listed as seen. This is stated as a limitation in the write-up. Relevance labelling uses one labeller plus a repeat pass for test-retest agreement (see the evaluation plan).
+- **Update 2026-10-21:** (a) *Abstention* means every candidate fails with a known ❌. Impossible test queries must therefore be **verifiably impossible**: every model in the snapshot gets a ❌ (`eval.metrics.verifiably_impossible`), otherwise an abstention miss would measure missing data. (b) Relevance is labelled 0/1/2 by two labellers who do not build the pipeline, with Cohen's kappa reported (quadratic-weighted for the ordinal grades, plus unweighted). (c) Faithfulness is scored by hand on ~30 answers; RAGAS is an optional cross-check only.
 
 ## D12. Missing-value handling in filters
 - **Status:** Accepted (2026-10-16)
@@ -158,6 +170,7 @@ Companion document: [PROJECT.md](PROJECT.md)
   - **Official HF task-guide link** for each of the 5 tasks (5 static links) to answer "how do I fine-tune it".
 - **Skip (out of scope):** RAG over fine-tuning tutorials, dataset recommendations, fine-tuning inside the app. Each needs a new corpus or new infrastructure, and none fits the remaining time.
 - **Consistency with D2:** rights, lineage and memory are computed from metadata; the LLM only explains them.
+- **Update 2026-10-21:** GPL / CC-BY-SA are `conditional` for `modifiable` (share-alike), see D3.
 
 ## D15. Orchestration: LangGraph
 - **Status:** Accepted (2026-10-21)
@@ -211,6 +224,8 @@ Companion document: [PROJECT.md](PROJECT.md)
   | "medium" | ≤ 2 GB |
 
   The LLM only maps the word to a table entry; it never invents a number.
+- **Translation direction (updated 2026-10-21):** direction is stated only by the Helsinki-NLP naming pattern `opus-mt-<src>-<tgt>`, parsed deterministically from the model id and shown as "direction from model name". The pattern is one-directional, so a reversed request stays ⚠️. Everything else stays ⚠️ unknown unless the card states it.
+- **Lineage ids (updated 2026-10-21):** `base_model` ids are canonicalised through the Hub API during ingestion (legacy `xlm-roberta-base` → current id) so lineage counts merge. To be verified on one real model.
 
 ## D19. Baselines
 - **Status:** Accepted (2026-10-21)
@@ -239,7 +254,10 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Tests:** unit tests for the license map, `verify.py`, the vague-size table and the multilingual map, since that's where silent errors would corrupt the metrics. The graph is tested through the evaluation.
 - **Secrets:** API keys in a `.env` file excluded from git.
 - **Shared index:** Pinecone namespaces `prod` (demo data, changed only deliberately) and `exp-<name>` for each person's experiments.
-- **Demo environment:** cache the responses for every planned demo query so the demo works offline; keep Ollama installed on the demo laptop; show the data snapshot date in the UI.
+- **Demo environment:** cache the LLM responses and record the final state of every planned demo query so it can be replayed (see the correction below); keep Ollama installed on the demo laptop; show the data snapshot date in the UI.
+- **Token budgets (2026-10-21):** the free Groq tier limits tokens per minute (8,000 for `gpt-oss-20b`) more tightly than requests, so explanation prompts are budgeted (up to 4 trimmed passages per model, 5,000 tokens) and every call reserves its tokens in a per-model sliding window; see `docs/architecture.md` §7.0.
+- **Demo wording corrected (2026-10-21):** the demo does **not** work offline: retrieval needs Pinecone and query embedding. What we provide is **replay of recorded runs**: each planned demo query's final state is recorded once with live services (`RECORD=1`) and served later with no network (`REPLAY=1`). Live search still needs the network; the LLM cache and the Ollama fallback cover only the LLM.
+- **Keys and snapshot (2026-10-21):** each member uses their own free Groq and read-only HF keys; one person creates the Pinecone index and shares the key privately, and everyone else writes only to their own `exp-<name>` namespace. The normalized snapshot is attached to a GitHub Release and its date and sha256 are recorded in `config.yaml`; the raw API cache stays local.
 
 ## D22. Users, use cases and non-goals
 - **Status:** Accepted (2026-10-21)
@@ -259,6 +277,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Decision:** a second entry point where the user pastes a model ID and gets the same constraint table, rights (`commercial`, `modifiable`), lineage and memory estimate, with no retrieval step.
 - **Why:** serves the compliance reviewer (D22), answers "what else can it do?", and reuses `verify.py` and `adapt.py`, so it costs very little.
 - **Scope:** **Must:** models in our snapshot. **Should:** models outside the snapshot, fetched live from the HF API and normalized with the same code.
+- **Cut (2026-10-21):** the live-fetch *Should* is cut to protect the schedule (see the cut order in PROJECT.md §8). Check-a-model covers models in the snapshot only.
 
 ## D24. Reported metrics shown as unverified
 - **Status:** Accepted (2026-10-21)
@@ -266,6 +285,7 @@ Companion document: [PROJECT.md](PROJECT.md)
 - **Decision:** when a card includes `model-index` evaluation results, show them labelled "reported by the author, not verified". They are **never** used as a ranking signal.
 - **Viva line:** "Ranking on self-reported scores would look precise without being precise, so we show them but don't rank by them."
 - **Priority:** Should; first to cut if behind schedule.
+- **Cut (2026-10-21):** first item on the cut list and now cut. `adapt.reported_metrics` exists but is not shown in the UI.
 
 ---
 
@@ -273,16 +293,31 @@ Companion document: [PROJECT.md](PROJECT.md)
 
 *None.* Q1 → D12 · Q2 → D20 · Q3 (LangGraph) → D15 · Q4 (UI) → D16.
 
-**Still marked Proposed** (confirm as a team before the viva): D2, D3, D8, D9, D10, D11.
+**All decisions are Accepted.** D2, D3, D8, D9, D10 and D11 were accepted on 2026-10-21 (they were Proposed). D9 stays conditional on the Pinecone plan check: the local reranker is the default either way.
+
+## Updates from the live build (2026-10-21)
+
+Nothing here reverses an Accepted decision; these are the facts the live runs added. Evidence is in [data-notes.md](data-notes.md).
+
+- **D6 (corpus size):** 9,764 models, about 20% above the 5 to 8k estimate.
+- **D7 (LLM):** `openai/gpt-oss-20b` extracts 100% on the 20-case set; the fallback is `openai/gpt-oss-120b` because `llama-3.1-8b-instant` is not on the account, and it is weaker (85%), so a deterministic backstop fills size, rights, single-category task, language names and named permissive licenses from the user's own words (never on instruction-like queries). `reasoning_effort=low` keeps calls near 500 tokens.
+- **D8 (embeddings):** Pinecone-hosted `multilingual-e5-large` (1,024 dimensions), cached by content hash. The whole corpus cost 2.49M tokens. No local weights are needed.
+- **D9 (reranking):** hosted `bge-reranker-v2-m3` works on the Starter plan (API version 2024-10, `truncate: END`, cached). The local reranker remains an option.
+- **D12 (unknown handling):** confirmed live on Pinecone (E-RET-9..12). Added: verify a pool of 100 models before the top-5 cut, because semantic search cannot see direction, size or license; otherwise verified models rank below unknown ones that merely read better.
+- **D18 (retrieval text):** every system searches with the user's own query. The extractor's `soft_query` is only used to select explanation evidence, and even there the user's words replace it.
+- **D11 (abstention):** "verifiably impossible" cannot be satisfied (unknown models never fail). The metric is defined on queries for which no model in the corpus fully passes: ours must not claim verification there. The abstain and relax paths are implemented and tested but unreachable on this corpus, so an impossible request ends as an all-unknown answer with the banner.
+- **D11 (labelling):** one labeller (the project owner). Agreement is test-retest on a repeat pass, not inter-annotator.
+- **D13 (Try-it):** a fixed template ran for 10 of 18 small models; the UI says it is a template.
+- **D20 (size rule):** unchanged. 27% of models have unknown size (GGUF/ONNX-only or non-standard names); they stay ⚠️.
 
 ## Verification checklist
-- [ ] Model counts per task (top 1,000 + Indic-tagged); confirm the ~5–8k estimate
-- [ ] Pinecone Starter: current inference token limit, and whether reranking is included
-- [ ] Groq free tier: current rate limits for the chosen model
-- [ ] NLLB-200 license on its model card
-- [ ] Ollama model runs acceptably on at least one team laptop
-- [ ] `$or` metadata filter with a missing field behaves as D12 assumes (10-vector test index)
-- [ ] `base_model` coverage: what fraction of the corpus declares it? (D14 lineage is only worth showing if coverage is meaningful)
-- [ ] `param_count` availability from safetensors metadata (D14 memory estimate)
-- [ ] Which filters the HF Hub UI currently offers (task, language, license, parameter count?) before building the D19 baseline
-- [ ] Fraction of cards with `model-index` results (decides whether D24 is worth showing)
+- [x] Model counts per task: 9,764 unique (above the 5 to 8k estimate)
+- [x] Pinecone Starter: hosted embeddings and hosted reranking both work; the embedding token quota is not published (2.49M used without error)
+- [x] Groq free tier: 8,000 tokens/min, 1,000 requests/day, 200,000 tokens/day for `gpt-oss-20b` and `gpt-oss-120b`
+- [ ] NLLB-200 license on its model card (not checked)
+- [ ] Ollama model runs acceptably on a laptop (not checked; no Ollama in the build environment)
+- [x] `$or` metadata filter with a missing field behaves as D12 assumes (live, `scripts/pinecone_semantics_check.py`)
+- [x] `base_model` coverage: 51.9% (lineage is worth showing)
+- [x] `param_count` availability: 51.4%
+- [x] Which filters the HF Hub offers: task and language tags, and license tags; no size-in-MB filter and no notion of unknowns. `hf_basic` = task + language; `hf_licensed` = plus `license:apache-2.0` when commercial or modifiable use is needed; both sorted by downloads
+- [x] Fraction of cards with `model-index` results: 26.6% (D24 is cut anyway)

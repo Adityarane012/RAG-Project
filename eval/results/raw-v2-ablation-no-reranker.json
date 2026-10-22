@@ -1,0 +1,9579 @@
+{
+ "meta": {
+  "tag": "v2-ablation-no-reranker",
+  "date": "2026-10-21",
+  "git": "152cfcb",
+  "config_sha": "9b94abbbe378c8f2749a3b3d75f8370db3a75f6d16946b1ac82da362cd420755",
+  "llm": "openai/gpt-oss-20b (reasoning_effort=low)",
+  "store": "local",
+  "embedding": "pinecone:intfloat/multilingual-e5-large",
+  "reranker": "none",
+  "n_queries": 100,
+  "kinds": {
+   "normal": 75,
+   "vague": 15,
+   "impossible": 10
+  },
+  "impossible_ids": [
+   "q091",
+   "q092",
+   "q093",
+   "q094",
+   "q095",
+   "q096",
+   "q097",
+   "q098",
+   "q099",
+   "q100"
+  ]
+ },
+ "parsed": {
+  "q001": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hindi speech recognition laptop"
+  },
+  "q002": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Marathi ASR model"
+  },
+  "q003": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": 500,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "phone call audio"
+  },
+  "q004": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "bn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Apache or MIT licensed"
+  },
+  "q005": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Telugu transcription model"
+  },
+  "q006": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "हिंदी"
+  },
+  "q007": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": 1000,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Speech to text for Gujarati"
+  },
+  "q008": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada speech recognition trained on noisy real-world recordings"
+  },
+  "q009": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "ml"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "medium",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Malayalam ASR model, medium size, usable in a paid product"
+  },
+  "q010": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "pa"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "tiny",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Punjabi voice transcription"
+  },
+  "q011": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "good with accents"
+  },
+  "q012": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "hi",
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "multilingual speech recognition Hindi Tamil"
+  },
+  "q013": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "hi",
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hindi-English code-mixed speech recognition"
+  },
+  "q014": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "ar"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Arabic speech recognition model"
+  },
+  "q015": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "lecture speech recognition Hindi"
+  },
+  "q016": {
+   "task": "translation",
+   "langs": [
+    "hi",
+    "en"
+   ],
+   "direction": [
+    "hi",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Hindi to English translation model"
+  },
+  "q017": {
+   "task": "translation",
+   "langs": [
+    "en",
+    "hi"
+   ],
+   "direction": [
+    "en",
+    "hi"
+   ],
+   "max_size_mb": 500,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English to Hindi machine translation under 500 MB"
+  },
+  "q018": {
+   "task": "translation",
+   "langs": [
+    "hi",
+    "mr"
+   ],
+   "direction": [
+    "hi",
+    "mr"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Hindi to Marathi translation"
+  },
+  "q019": {
+   "task": "translation",
+   "langs": [
+    "mr",
+    "en"
+   ],
+   "direction": [
+    "mr",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "मराठी ते इंग्रजी भाषांतर मॉडेल"
+  },
+  "q020": {
+   "task": "translation",
+   "langs": [
+    "ta",
+    "en"
+   ],
+   "direction": [
+    "ta",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Translate Tamil to English, small model"
+  },
+  "q021": {
+   "task": "translation",
+   "langs": [
+    "bn",
+    "en"
+   ],
+   "direction": [
+    "bn",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Apache-2.0 license"
+  },
+  "q022": {
+   "task": "translation",
+   "langs": [
+    "en",
+    "te"
+   ],
+   "direction": [
+    "en",
+    "te"
+   ],
+   "max_size_mb": null,
+   "size_word": "lightweight",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "English to Telugu translation, lightweight, commercial"
+  },
+  "q023": {
+   "task": "translation",
+   "langs": [
+    "ur",
+    "en"
+   ],
+   "direction": [
+    "ur",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "machine translation model"
+  },
+  "q024": {
+   "task": "translation",
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Multilingual translation model covering Indian languages"
+  },
+  "q025": {
+   "task": "translation",
+   "langs": [
+    "en",
+    "gu"
+   ],
+   "direction": [
+    "en",
+    "gu"
+   ],
+   "max_size_mb": 1000,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English to Gujarati translation"
+  },
+  "q026": {
+   "task": "translation",
+   "langs": [
+    "kn",
+    "en"
+   ],
+   "direction": [
+    "kn",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Kannada to English translation model"
+  },
+  "q027": {
+   "task": "translation",
+   "langs": [
+    "en",
+    "fr"
+   ],
+   "direction": [
+    "en",
+    "fr"
+   ],
+   "max_size_mb": null,
+   "size_word": "tiny",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English to French translation, tiny"
+  },
+  "q028": {
+   "task": "translation",
+   "langs": [
+    "de",
+    "en"
+   ],
+   "direction": [
+    "de",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "commercial friendly license"
+  },
+  "q029": {
+   "task": "translation",
+   "langs": [
+    "ml",
+    "en"
+   ],
+   "direction": [
+    "ml",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "news articles"
+  },
+  "q030": {
+   "task": "translation",
+   "langs": [
+    "en",
+    "pa"
+   ],
+   "direction": [
+    "en",
+    "pa"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English to Punjabi translation"
+  },
+  "q031": {
+   "task": "text-classification",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "sentiment model for Hindi"
+  },
+  "q032": {
+   "task": "text-classification",
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": 300,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Marathi sentiment analysis model"
+  },
+  "q033": {
+   "task": "text-classification",
+   "langs": [
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "noisy Tamil social media text"
+  },
+  "q034": {
+   "task": "text-classification",
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Telugu news topic classification"
+  },
+  "q035": {
+   "task": "text-classification",
+   "langs": [
+    "bn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Bengali hate speech detection model"
+  },
+  "q036": {
+   "task": "text-classification",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "tiny",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English SMS spam detection"
+  },
+  "q037": {
+   "task": "text-classification",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hindi tweets emotion classification"
+  },
+  "q038": {
+   "task": "text-classification",
+   "langs": [
+    "ur"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "medium",
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "permissive license"
+  },
+  "q039": {
+   "task": "text-classification",
+   "langs": [
+    "hi",
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hinglish sentiment analysis"
+  },
+  "q040": {
+   "task": "text-classification",
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Gujarati text classifier"
+  },
+  "q041": {
+   "task": "text-classification",
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada sentiment analysis model"
+  },
+  "q042": {
+   "task": "text-classification",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "lightweight",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Toxic comment classifier for English, lightweight, commercial use"
+  },
+  "q043": {
+   "task": "text-classification",
+   "langs": [
+    "ml"
+   ],
+   "direction": null,
+   "max_size_mb": 500,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Malayalam news category classifier"
+  },
+  "q044": {
+   "task": "text-classification",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Zero-shot text classification Hindi"
+  },
+  "q045": {
+   "task": null,
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Language identification model for Indian languages"
+  },
+  "q046": {
+   "task": "token-classification",
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": 500,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "works well on noisy social-media text"
+  },
+  "q047": {
+   "task": "token-classification",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "हिंदी में नाम पहचानने वाला"
+  },
+  "q048": {
+   "task": "token-classification",
+   "langs": [
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Tamil NER model"
+  },
+  "q049": {
+   "task": "token-classification",
+   "langs": [
+    "bn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Bengali POS tagger"
+  },
+  "q050": {
+   "task": "token-classification",
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "permissive license"
+  },
+  "q051": {
+   "task": "token-classification",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "legal documents"
+  },
+  "q052": {
+   "task": "token-classification",
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Gujarati NER, commercial use"
+  },
+  "q053": {
+   "task": "token-classification",
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": 1000,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada token classification model"
+  },
+  "q054": {
+   "task": "token-classification",
+   "langs": [
+    "ml"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Malayalam named entity recognition model"
+  },
+  "q055": {
+   "task": "token-classification",
+   "langs": [
+    "ur"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "lightweight",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Urdu NER"
+  },
+  "q056": {
+   "task": "token-classification",
+   "langs": [
+    "pa"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Punjabi NER model"
+  },
+  "q057": {
+   "task": "token-classification",
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Multilingual NER covering Indian languages"
+  },
+  "q058": {
+   "task": "token-classification",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "POS tagging model"
+  },
+  "q059": {
+   "task": "token-classification",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Medical entity extraction"
+  },
+  "q060": {
+   "task": "token-classification",
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "names of people and places in Marathi news text"
+  },
+  "q061": {
+   "task": "sentence-similarity",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Hindi sentence embedding model"
+  },
+  "q062": {
+   "task": "sentence-similarity",
+   "langs": [
+    "mr",
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Multilingual sentence embeddings that work for Marathi and English"
+  },
+  "q063": {
+   "task": "sentence-similarity",
+   "langs": [
+    "bn"
+   ],
+   "direction": null,
+   "max_size_mb": 500,
+   "size_word": "small",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Bengali embedding model"
+  },
+  "q064": {
+   "task": "sentence-similarity",
+   "langs": [
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Tamil sentence similarity model"
+  },
+  "q065": {
+   "task": "sentence-similarity",
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Paraphrase detection for Telugu"
+  },
+  "q066": {
+   "task": "sentence-similarity",
+   "langs": [
+    "ur"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Sentence transformers for Urdu semantic search, permissive license"
+  },
+  "q067": {
+   "task": "sentence-similarity",
+   "langs": [
+    "hi",
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Cross-lingual sentence embeddings for Hindi-English retrieval"
+  },
+  "q068": {
+   "task": "sentence-similarity",
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "lightweight",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Gujarati embeddings"
+  },
+  "q069": {
+   "task": "sentence-similarity",
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "medium",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada semantic similarity model"
+  },
+  "q070": {
+   "task": "sentence-similarity",
+   "langs": [
+    "ml"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "commercial license"
+  },
+  "q071": {
+   "task": "sentence-similarity",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "tiny",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English sentence similarity model tiny mobile search feature"
+  },
+  "q072": {
+   "task": "sentence-similarity",
+   "langs": [
+    "pa"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Punjabi sentence embeddings"
+  },
+  "q073": {
+   "task": "sentence-similarity",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Embeddings for clustering Hindi short texts like tweets"
+  },
+  "q074": {
+   "task": "sentence-similarity",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Semantic search embeddings for legal text in English"
+  },
+  "q075": {
+   "task": "sentence-similarity",
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "multilingual embedding model"
+  },
+  "q076": {
+   "task": null,
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hindi model"
+  },
+  "q077": {
+   "task": null,
+   "langs": [
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Something for Tamil"
+  },
+  "q078": {
+   "task": null,
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Marathi model"
+  },
+  "q079": {
+   "task": null,
+   "langs": [
+    "bn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Bengali language model"
+  },
+  "q080": {
+   "task": null,
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Indian languages"
+  },
+  "q081": {
+   "task": null,
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "lightweight",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Lightweight model please"
+  },
+  "q082": {
+   "task": null,
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "college project Telugu model"
+  },
+  "q083": {
+   "task": null,
+   "langs": [
+    "ur"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Urdu model"
+  },
+  "q084": {
+   "task": null,
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Gujarati model"
+  },
+  "q085": {
+   "task": null,
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada"
+  },
+  "q086": {
+   "task": null,
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Need a model that I can sell commercially"
+  },
+  "q087": {
+   "task": null,
+   "langs": [
+    "ml"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Malayalam"
+  },
+  "q088": {
+   "task": null,
+   "langs": [
+    "pa"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Punjabi model"
+  },
+  "q089": {
+   "task": null,
+   "langs": [
+    "hi",
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hindi English mixed understanding"
+  },
+  "q090": {
+   "task": null,
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Help me find a model"
+  },
+  "q091": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": 10,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Marathi speech recognition"
+  },
+  "q092": {
+   "task": "token-classification",
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": 5,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "NER model"
+  },
+  "q093": {
+   "task": "translation",
+   "langs": [
+    "hi",
+    "mr"
+   ],
+   "direction": [
+    "hi",
+    "mr"
+   ],
+   "max_size_mb": 20,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Apache-2.0 license"
+  },
+  "q094": {
+   "task": "sentence-similarity",
+   "langs": [
+    "ur"
+   ],
+   "direction": null,
+   "max_size_mb": 2,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Urdu sentence embedding model"
+  },
+  "q095": {
+   "task": "text-classification",
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": 3,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Gujarati sentiment model"
+  },
+  "q096": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "pa"
+   ],
+   "direction": null,
+   "max_size_mb": 15,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Punjabi speech recognition"
+  },
+  "q097": {
+   "task": "token-classification",
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": 1,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada NER under 1 MB"
+  },
+  "q098": {
+   "task": "translation",
+   "langs": [
+    "bn",
+    "en"
+   ],
+   "direction": [
+    "bn",
+    "en"
+   ],
+   "max_size_mb": 10,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Bengali to English translation"
+  },
+  "q099": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "sat"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Santali speech recognition model"
+  },
+  "q100": {
+   "task": "token-classification",
+   "langs": [
+    "brx"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Bodo named entity recognition model"
+  }
+ },
+ "outcomes": {
+  "ours": {
+   "q001": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "abhishekgautamm/whisper-tiny-hinglish-ct2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "Aryan-401/whisper-tiny-finetune-hindi-fleurs",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "Open4bits/whisper-base-f16",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     },
+     {
+      "model_id": "adalat-ai/whisper-small-hi-curated-reverse-mft-1-1-1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "quinnb/whisper-test-custom",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.414
+   },
+   "q002": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "theharshithh/open-sarika",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi",
+       "gu",
+       "mr"
+      ]
+     },
+     {
+      "model_id": "SharadhNaiduTrains/sravaani-flow-model",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "hi",
+       "kn",
+       "te",
+       "ta",
+       "ml",
+       "bn",
+       "gu"
+      ]
+     },
+     {
+      "model_id": "nagraj-desai/whisper-small-mr",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "mr"
+      ]
+     },
+     {
+      "model_id": "atharva-again/indic-conformer-600m-quantized",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn",
+       "kok"
+      ]
+     },
+     {
+      "model_id": "OpenVoiceOS/ai4bharat-indicconformer-mr-onnx",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "mr"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.242
+   },
+   "q003": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Open4bits/whisper-tiny-f16",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     },
+     {
+      "model_id": "Open4bits/whisper-base-f16",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     },
+     {
+      "model_id": "Lingalingeswaran/whisper-tiny-ta",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "ta"
+      ]
+     },
+     {
+      "model_id": "sorika-labs/vaani1-lite-asr-turbo",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi",
+       "en",
+       "zh",
+       "ja",
+       "ko",
+       "es",
+       "fr",
+       "de"
+      ]
+     },
+     {
+      "model_id": "jvh/whisper-base-quant-ct2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.217
+   },
+   "q004": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Tmanna/whisper-bengali-final",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "bn"
+      ]
+     },
+     {
+      "model_id": "mukherjee78/abc-voice-slm-asr",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "bn",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "Fardeen9065/whisper-bangla-asr",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "SayedShaun/stt_bn_fastconformer_hybrid_large_v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "bn"
+      ]
+     },
+     {
+      "model_id": "Noobbbbb/whisper-small-bn",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "bn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.237
+   },
+   "q005": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "vasista22/whisper-telugu-medium",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "vasista22/whisper-telugu-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "vasista22/whisper-telugu-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "vasista22/whisper-telugu-tiny",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "lamyer/Telugu-transcription",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "te"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.244
+   },
+   "q006": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "quinnb/whisper-test-custom",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "Open4bits/whisper-base-f16",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     },
+     {
+      "model_id": "aditii09/hc_hindi_asr",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "Aryan-401/whisper-tiny-finetune-hindi-fleurs",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "Open4bits/whisper-tiny-f16",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.232
+   },
+   "q007": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "vasista22/whisper-gujarati-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "gu"
+      ]
+     },
+     {
+      "model_id": "vasista22/whisper-gujarati-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "gu"
+      ]
+     },
+     {
+      "model_id": "WhissleAI/speech-tagger_gujlish_wav2vec2_meta",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "gu"
+      ]
+     },
+     {
+      "model_id": "jvh/whisper-base-quant-ct2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     },
+     {
+      "model_id": "jvh/whisper-medium-quant-ct2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.248
+   },
+   "q008": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "onnx-community/whisper-kannada-base-ONNX",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "kn"
+      ]
+     },
+     {
+      "model_id": "vasista22/whisper-kannada-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "kn"
+      ]
+     },
+     {
+      "model_id": "vasista22/whisper-kannada-tiny",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "kn"
+      ]
+     },
+     {
+      "model_id": "vasista22/whisper-kannada-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "kn"
+      ]
+     },
+     {
+      "model_id": "Imadsarvm/Sarvm-Translation",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "kn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.201
+   },
+   "q009": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "adalat-ai/whisper-medium-ml-high-lr",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "ml"
+      ]
+     },
+     {
+      "model_id": "adalat-ai/whisper-small-ml-high-lr",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "ml"
+      ]
+     },
+     {
+      "model_id": "BettySara/betty-malayalam-whisper-large-v3-qlora-r32",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "ml"
+      ]
+     },
+     {
+      "model_id": "adalat-ai/whisper-small-ml-rmft",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "ml"
+      ]
+     },
+     {
+      "model_id": "adalat-ai/whisper-medium-ml-rmft",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "ml"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.251
+   },
+   "q010": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "ystsai/whisper-tiny-bnb-4bit",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     },
+     {
+      "model_id": "Open4bits/whisper-tiny-f16",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     },
+     {
+      "model_id": "jvh/whisper-base-quant-ct2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     },
+     {
+      "model_id": "Sangramsing/whisper-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     },
+     {
+      "model_id": "Sangramsing/whisper-large",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.223
+   },
+   "q011": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Open4bits/whisper-base-f16",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     },
+     {
+      "model_id": "happyman11/TacRFC-whisper-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "happyman11/TacRFC-whisper-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "Open4bits/whisper-tiny-f16",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     },
+     {
+      "model_id": "The-Data-Dilemma/MediBeng-Whisper-Tiny",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.258
+   },
+   "q012": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "ManiKumarAdapala/indic-transcribe-core-8bit",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "amn-raw/parakeet-indic-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi",
+       "mr",
+       "bn",
+       "as",
+       "ta",
+       "te",
+       "kn",
+       "ml"
+      ]
+     },
+     {
+      "model_id": "Archit-01/indic-asr-multi",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi",
+       "mr",
+       "te",
+       "ta",
+       "kn",
+       "ml",
+       "gu",
+       "pa"
+      ]
+     },
+     {
+      "model_id": "atharva-again/indic-conformer-600m-quantized",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn",
+       "kok"
+      ]
+     },
+     {
+      "model_id": "ARTPARK-IISc/SraVaani-0.5-live",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn",
+       "kok"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.241
+   },
+   "q013": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "WhissleAI/STT-hinglish-loans-ONNX",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "smajji/nemotron-hinglish-v4",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "smajji/nemotron-hinglish-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "Abhisingh-18/hindi-english-codeswitch-asr",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "VED-G/whisper-small-mucs-hindi-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.221
+   },
+   "q014": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "MostafaMaroof/wav2vec2-arabic-phoneme-asr",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "ar"
+      ]
+     },
+     {
+      "model_id": "IbrahimAmin/egyptian-arabic-wav2vec2-xlsr-53",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "ar",
+       "arz"
+      ]
+     },
+     {
+      "model_id": "TBOGamer22/wav2vec2-quran-phonetics",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "ar"
+      ]
+     },
+     {
+      "model_id": "obadx/recitation-segmenter-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "ar"
+      ]
+     },
+     {
+      "model_id": "microsoft/paza-whisper-large-v3-turbo",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "zh",
+       "de",
+       "es",
+       "ru",
+       "ko",
+       "fr",
+       "ja"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.216
+   },
+   "q015": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "vasista22/whisper-hindi-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "prakhya15/hindi-conformer-ctc-finetuned",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "vasista22/whisper-hindi-medium",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "vasista22/whisper-hindi-large-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "ArchCoder/whisper-small-hindi-lora",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.294
+   },
+   "q016": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Sams200/opus-mt-hi-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "translation",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "Satwik11/gemma-2b-mt-Hindi-Fintuned",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "yash17366392/Fine-Tuned_Helsinki_model",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "HPLT/translate-hi-en-v1.0-hplt_opus",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "HPLT/translate-en-hi-v1.0-hplt_opus",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.209
+   },
+   "q017": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Helsinki-NLP/opus-mt-en-hi",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "Sams200/opus-mt-en-hi",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "sag-9755/Fine_Tune_MarianMT_English_to_Hindi",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "Swekerr/eng2hindi",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "54gO/marianmt-en-hi-translator",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.239
+   },
+   "q018": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "COIL-D/translate-it2-hindi-marathi",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "hi",
+       "mr"
+      ]
+     },
+     {
+      "model_id": "law-ai/InLegalTrans-En2Indic-1B",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "bn",
+       "hi",
+       "mr",
+       "ta",
+       "te",
+       "ml",
+       "pa"
+      ]
+     },
+     {
+      "model_id": "TigreGotico/indictrans2-indic-indic-dist-320M-onnx",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "en",
+       "gom",
+       "gu",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "TigreGotico/indictrans2-en-indic-dist-200M-onnx",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "en",
+       "gom",
+       "gu",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "Aji230923/indictrans2-en-indic-dist-200M-onnx",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi",
+       "mr",
+       "gu"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.309
+   },
+   "q019": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Sams200/opus-mt-mr-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "translation",
+      "languages": [
+       "mr",
+       "en"
+      ]
+     },
+     {
+      "model_id": "HariSekhar/Eng_Marathi_translation",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "mr"
+      ]
+     },
+     {
+      "model_id": "thenlpresearcher/iitb-en-indic-only-punct",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "mr"
+      ]
+     },
+     {
+      "model_id": "Helsinki-NLP/opus-mt-tc-bible-big-deu_eng_fra_por_spa-iir",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "anp",
+       "as",
+       "awa",
+       "bal",
+       "bho",
+       "bn",
+       "bpy",
+       "de"
+      ]
+     },
+     {
+      "model_id": "Helsinki-NLP/opus-mt-tc-bible-big-deu_eng_fra_por_spa-inc",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "anp",
+       "as",
+       "awa",
+       "bho",
+       "bn",
+       "bpy",
+       "de",
+       "dv"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.201
+   },
+   "q020": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "vijaysarathy/indictrans2-indic-en-multilingual-ft",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "ta",
+       "hi",
+       "te",
+       "kn",
+       "ml",
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "Helsinki-NLP/opus-mt-en-dra",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "ta",
+       "kn",
+       "ml",
+       "te",
+       "dra"
+      ]
+     },
+     {
+      "model_id": "WindstormLabs/origin-Helsinki-NLP-opus-mt-en-dra",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "ta",
+       "kn",
+       "ml",
+       "te",
+       "dra"
+      ]
+     },
+     {
+      "model_id": "Helsinki-NLP/opus-mt-dra-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "ta",
+       "kn",
+       "ml",
+       "te",
+       "dra",
+       "en"
+      ]
+     },
+     {
+      "model_id": "WindstormLabs/origin-Helsinki-NLP-opus-mt-dra-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "ta",
+       "kn",
+       "ml",
+       "te",
+       "dra",
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.244
+   },
+   "q021": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Helsinki-NLP/opus-mt-bn-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "translation",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "Sams200/opus-mt-bn-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "translation",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "Tmanna/srt-en-bn-lora",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "uthayamurthy/origin-task3-indictrans2-lora",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "HPLT/translate-bn-en-v2.0-hplt",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.258
+   },
+   "q022": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "hima06varshini/TeluguTranslatica",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "te"
+      ]
+     },
+     {
+      "model_id": "vijaysarathy/indictrans2-indic-en-multilingual-ft",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "ta",
+       "hi",
+       "te",
+       "kn",
+       "ml",
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "Helsinki-NLP/opus-mt-en-dra",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "ta",
+       "kn",
+       "ml",
+       "te",
+       "dra"
+      ]
+     },
+     {
+      "model_id": "WindstormLabs/origin-Helsinki-NLP-opus-mt-en-dra",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "ta",
+       "kn",
+       "ml",
+       "te",
+       "dra"
+      ]
+     },
+     {
+      "model_id": "Helsinki-NLP/opus-mt-dra-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "ta",
+       "kn",
+       "ml",
+       "te",
+       "dra",
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.258
+   },
+   "q023": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Helsinki-NLP/opus-mt-ur-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass"
+      },
+      "overall": "pass",
+      "task": "translation",
+      "languages": [
+       "ur",
+       "en"
+      ]
+     },
+     {
+      "model_id": "samiulhaq/iwslt-bt-ur-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "ur",
+       "en"
+      ]
+     },
+     {
+      "model_id": "samiulhaq/iwslt-bt-en-ur",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "ur"
+      ]
+     },
+     {
+      "model_id": "HPLT/translate-ur-en-v2.0-hplt_opus",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "ur",
+       "en"
+      ]
+     },
+     {
+      "model_id": "ayeshasadiq025/nllb-medical-clinical",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "ur"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.24
+   },
+   "q024": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "langs",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q025": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Helsinki-NLP/opus-mt-en-iir",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "bn",
+       "or",
+       "gu",
+       "mr",
+       "ur",
+       "hi",
+       "ps"
+      ]
+     },
+     {
+      "model_id": "WindstormLabs/origin-Helsinki-NLP-opus-mt-en-iir",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "bn",
+       "or",
+       "gu",
+       "mr",
+       "ur",
+       "hi",
+       "ps"
+      ]
+     },
+     {
+      "model_id": "ManiKumarAdapala/Gemma3-En2Indic-NMT-270M",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi",
+       "bn",
+       "gu",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     },
+     {
+      "model_id": "Helsinki-NLP/opus-mt-tc-bible-big-deu_eng_fra_por_spa-ine",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "acf",
+       "af",
+       "an",
+       "ang",
+       "anp",
+       "as",
+       "ast",
+       "awa"
+      ]
+     },
+     {
+      "model_id": "WindstormLabs/origin-Helsinki-NLP-opus-mt-tc-bible-big-deu_eng_fra_por_spa-ine",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "acf",
+       "af",
+       "an",
+       "ang",
+       "anp",
+       "as",
+       "ast",
+       "awa"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.211
+   },
+   "q026": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "rajaykumar12959/nllb-en-kn-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "HPLT/translate-kn-en-v2.0-hplt_opus",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "kn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "HPLT/translate-kn-en-v2.0-hplt",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "kn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "HPLT/translate-en-kn-v2.0-hplt_opus",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "HPLT/translate-en-kn-v2.0-hplt",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "kn"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.242
+   },
+   "q027": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "cstr/opus-mt-en-fr-GGUF",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "fr"
+      ]
+     },
+     {
+      "model_id": "skillsafe-ai/opus-mt-en-fr",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "fr"
+      ]
+     },
+     {
+      "model_id": "arka7/moe-multilingual-translator-stage2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "fr",
+       "hi",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "WindyTranslate/translate-windy-hplt-en-te",
+      "table": {
+       "task": "pass",
+       "languages": "unknown",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": []
+     },
+     {
+      "model_id": "WindyWord/translate-windy-hplt-en-te",
+      "table": {
+       "task": "pass",
+       "languages": "unknown",
+       "direction": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": []
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.191
+   },
+   "q028": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "cstr/opus-mt-de-en-GGUF",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "translation",
+      "languages": [
+       "de",
+       "en"
+      ]
+     },
+     {
+      "model_id": "Helsinki-NLP/opus-mt-en-de",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "de"
+      ]
+     },
+     {
+      "model_id": "allenai/wmt19-de-en-6-6-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "de",
+       "en"
+      ]
+     },
+     {
+      "model_id": "allenai/wmt19-de-en-6-6-big",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "de",
+       "en"
+      ]
+     },
+     {
+      "model_id": "allenai/wmt16-en-de-12-1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "de"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.185
+   },
+   "q029": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Sams200/opus-mt-ml-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass"
+      },
+      "overall": "pass",
+      "task": "translation",
+      "languages": [
+       "ml",
+       "en"
+      ]
+     },
+     {
+      "model_id": "Helsinki-NLP/opus-mt-ml-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "pass"
+      },
+      "overall": "pass",
+      "task": "translation",
+      "languages": [
+       "ml",
+       "en"
+      ]
+     },
+     {
+      "model_id": "kurianbenoy/kde_en_ml_translation_model",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "ml"
+      ]
+     },
+     {
+      "model_id": "endurasolution/aksharakuppy_English-Malayalam-Translate",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "ml"
+      ]
+     },
+     {
+      "model_id": "Navneeth017/nllb-1.3b-en-ml-ct2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "ml"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.191
+   },
+   "q030": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "partex-nv/Llama-3.1-8B-VaaniSetu-EN2PA",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "pa"
+      ]
+     },
+     {
+      "model_id": "Ajaple/gur-slm-decoder-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "pa",
+       "en"
+      ]
+     },
+     {
+      "model_id": "CohereLabs/North-Small-Translate-1.0",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "sq",
+       "ar",
+       "bg",
+       "bn",
+       "ca",
+       "cs",
+       "da"
+      ]
+     },
+     {
+      "model_id": "Prince-1/sarvam-translate-onnx",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gom",
+       "gu",
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "onnx-community/sarvam-translate-onnx",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gom",
+       "gu",
+       "en",
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.212
+   },
+   "q031": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "vashuag/HindiEmotion",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "agentlans/multilingual-e5-small-aligned-sentiment",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "clapAI/mmBERT-small-multilingual-sentiment",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "zh",
+       "vi",
+       "ko",
+       "ja",
+       "ar",
+       "de",
+       "es"
+      ]
+     },
+     {
+      "model_id": "pascalrai/hinglish-twitter-roberta-base-sentiment",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "agentlans/multilingual-e5-small-refusal-classifier",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "zh",
+       "fr",
+       "pt",
+       "es",
+       "ja",
+       "tr",
+       "ru"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.173
+   },
+   "q032": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "l3cube-pune/MarathiSentiment",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "mr"
+      ]
+     },
+     {
+      "model_id": "l3cube-pune/hate-bert-hasoc-marathi",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "mr"
+      ]
+     },
+     {
+      "model_id": "ibraheemmoosa/xlmindic-base-multiscript-soham",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "as",
+       "bn",
+       "gu",
+       "hi",
+       "mr",
+       "ne",
+       "or",
+       "pa"
+      ]
+     },
+     {
+      "model_id": "ibraheemmoosa/xlmindic-base-uniscript-soham",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "as",
+       "bn",
+       "gu",
+       "hi",
+       "mr",
+       "ne",
+       "or",
+       "pa"
+      ]
+     },
+     {
+      "model_id": "ShantanuT01/BERT-tiny-RAID",
+      "table": {
+       "task": "pass",
+       "languages": "unknown",
+       "size": "pass"
+      },
+      "overall": "unknown",
+      "task": "text-classification",
+      "languages": []
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.243
+   },
+   "q033": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "E-motionAssistant/Tamil_Emotion_Recognition_Model",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "ta"
+      ]
+     },
+     {
+      "model_id": "tsmaitry/indic-toxicity-detector",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "hi",
+       "ta"
+      ]
+     },
+     {
+      "model_id": "Swift-Support/labse-sentiment-1.0",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "si",
+       "ta"
+      ]
+     },
+     {
+      "model_id": "Hemanth-thunder/emotion-detect-tamil",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "ta",
+       "en"
+      ]
+     },
+     {
+      "model_id": "samarthramesh/gaperon-mmbert-tamil",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "ta"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.172
+   },
+   "q034": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "l3cube-pune/telugu-topic-all-doc",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "dbhaskarganesh/TinyLlama1BTeluguFineTuneModel",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "Madhesh4124/telugu-metaphor-muril",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "vasantharan/Multimodal_Hate_Speech_Detection_in_Dravidian_languages",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "ta",
+       "ml",
+       "te"
+      ]
+     },
+     {
+      "model_id": "classla/multilingual-IPTC-news-topic-classifier",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.164
+   },
+   "q035": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "abirmondalind/bert-base-multilingual-cased-hate-speech-ben-hin",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "bn",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "abirmondalind/bert-base-multilingual-uncased-hate-speech-ben-hin",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "bn",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "abirmondalind/muril-base-cased-hate-speech-ben-hin",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "bn",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "kingshukroy/distilbert-base-multilingual-cased-hate-speech-ben-hin",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "bn",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "kingshukroy/xlm-roberta-base-hate-speech-ben-hin",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "bn",
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.167
+   },
+   "q036": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "mrm8488/bert-tiny-finetuned-sms-spam-detection",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "marklkelly/bert-tiny-injection-detector",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "boltuix/bert-emotion",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "sifat-febo/banglish-ontor",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "boltuix/bert-lite",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.162
+   },
+   "q037": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "ShivamSharma8168/hindi-sentiment-model",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "airzipm/sentiment-analysis-muril-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "vashuag/HindiEmotion",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "samarthruckstar/xlm_hindi_english_emoClss",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "darelphilip/hinglish-toxicity-classifier",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.162
+   },
+   "q038": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "dataranch/urdish-roberta-base-sentiment",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "ur",
+       "en"
+      ]
+     },
+     {
+      "model_id": "iumairr/xlm-t-roman-urdu-sentiment",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "ur"
+      ]
+     },
+     {
+      "model_id": "FarazAbdulMuqtader/roman-urdu-sentiment-xlmr",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "ur"
+      ]
+     },
+     {
+      "model_id": "mahwizzzz/UrduIntentClassification",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "ur"
+      ]
+     },
+     {
+      "model_id": "abeeranajam31/urdu-spam-classifier",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "ur"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.207
+   },
+   "q039": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "shae2977/xlm-roberta-hinglish-sentiment-analysis",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "chaturvedipriyanshu17/muril-lora-codemixed-sentiment",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "hi",
+       "en",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "airzipm/sentiment-analysis-muril-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "marshal-yash/gujlish-sentiment-analysis",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "gu",
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "pankajbiswas6/hinglish-hate-speech-bilstm",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.172
+   },
+   "q040": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "KPROCKS/Model",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "gu"
+      ]
+     },
+     {
+      "model_id": "marshal-yash/gujlish-sentiment-analysis",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "gu",
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "ibraheemmoosa/xlmindic-base-uniscript-soham",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "as",
+       "bn",
+       "gu",
+       "hi",
+       "mr",
+       "ne",
+       "or",
+       "pa"
+      ]
+     },
+     {
+      "model_id": "saksham-joshi/sentivox-muril-goemotions",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "hi",
+       "bn",
+       "ta",
+       "te",
+       "ml",
+       "kn",
+       "gu"
+      ]
+     },
+     {
+      "model_id": "ayushbillade/OffensiveChatDefender",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "mr",
+       "hi",
+       "gu"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.25
+   },
+   "q041": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "agentlans/multilingual-e5-small-aligned-sentiment",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "Hate-speech-CNERG/deoffxlmr-mono-kannada",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "kn"
+      ]
+     },
+     {
+      "model_id": "saksham-joshi/sentivox-muril-goemotions",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "hi",
+       "bn",
+       "ta",
+       "te",
+       "ml",
+       "kn",
+       "gu"
+      ]
+     },
+     {
+      "model_id": "ZombitX64/MultiSent-E5-Pro",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "th",
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg"
+      ]
+     },
+     {
+      "model_id": "Madhesh4124/kannada-metaphor-bert",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "kn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.193
+   },
+   "q042": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "ibm-granite/granite-guardian-hap-38m",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "ibm-granite/granite-guardian-hap-125m",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "tabularisai/robust-sentiment-analysis",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "protectai/distilroberta-base-rejection-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "agentlans/multilingual-e5-small-refusal-classifier",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "zh",
+       "fr",
+       "pt",
+       "es",
+       "ja",
+       "tr",
+       "ru"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.201
+   },
+   "q043": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "agentlans/multilingual-e5-small-aligned-sentiment",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "agentlans/multilingual-e5-small-aligned-quality",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "agentlans/multilingual-e5-small-aligned-readability",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "JanSchachtschabel/m2v-gte-multilingual-768",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "adisyonist/14-allergens-0.1B",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "tr",
+       "bn",
+       "ca",
+       "hr",
+       "cs",
+       "da",
+       "nl"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.188
+   },
+   "q044": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "darelphilip/hinglisToxicity_darel_mmberta",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "tuklu/SASC",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "samarthramesh/gaperon-mmbert-hindi",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "tsmaitry/indic-toxicity-detector",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "hi",
+       "ta"
+      ]
+     },
+     {
+      "model_id": "darelphilip/hinglish-toxicity-classifier",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "text-classification",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.161
+   },
+   "q045": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q046": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "SIRIS-Lab/citation-parser-ENTITY",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "l3cube-pune/me-lid-roberta",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "mr",
+       "en"
+      ]
+     },
+     {
+      "model_id": "benjamin/wtp-bert-tiny",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "am",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     },
+     {
+      "model_id": "benjamin/wtp-bert-mini",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "am",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     },
+     {
+      "model_id": "benjamin/wtp-canine-s-6l-no-adapters",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "am",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.163
+   },
+   "q047": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "hiteshwadhwani/pii-model-indic-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "SIRIS-Lab/citation-parser-ENTITY",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-PII-Hindi-ClinicalE5-Small-33M-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-PII-Hindi-BioClinicalBERT-Base-110M-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-PII-Hindi-BiomedBERT-Base-110M-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.163
+   },
+   "q048": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "clarin-pl/combo-nlp-xlm-roberta-base-tamil-ttb-ud2.17",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "ta"
+      ]
+     },
+     {
+      "model_id": "Lokeshwaran/xlm-roberta-base-fintuned-panx-ta-hi",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "ta",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "theanugrah/muril-indic-ner",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "as",
+       "bn",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     },
+     {
+      "model_id": "clarin-pl/combo-seg-xlm-roberta-base-tamil-ttb-ud2.17",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "ta"
+      ]
+     },
+     {
+      "model_id": "ai4bharat/IndicNER",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "as",
+       "bn",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.293
+   },
+   "q049": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "HasinManjare/bangla-punctuation-extended-v3",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "bn"
+      ]
+     },
+     {
+      "model_id": "MBMMurad/BanglaBERT_Person_Name_Extractor",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "bn"
+      ]
+     },
+     {
+      "model_id": "konko/bengali-bpe-tokenizer",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "konko/bornomala-bengali-tokenizer",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "HasinManjare/bangla-punctuation-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "bn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.262
+   },
+   "q050": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "saiprathap-k-r/SGPT",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "de",
+       "fr",
+       "hi",
+       "te",
+       "ta",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "chandanaau/distilbert-telugu-ner",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "SIRIS-Lab/affilgood-NER-multilingual",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "nicolauduran45/affilgood-ner-multilingual-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "ROG-7/muril-indic-ner-explainable-crf",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "hi",
+       "te",
+       "ta",
+       "kn",
+       "ml"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.226
+   },
+   "q051": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Ar86Bat/multilang-pii-ner",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "de",
+       "fr",
+       "it"
+      ]
+     },
+     {
+      "model_id": "onnx-community/multilang-pii-ner-ONNX",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "de",
+       "fr",
+       "it"
+      ]
+     },
+     {
+      "model_id": "splynx/multilang-pii-ner-ONNX",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "de",
+       "fr",
+       "it"
+      ]
+     },
+     {
+      "model_id": "saidylive/newsintel-ner",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "disham993/electrical-ner-ModernBERT-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.172
+   },
+   "q052": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Kantkamal/Gujarati-BERT-NER",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "gu"
+      ]
+     },
+     {
+      "model_id": "SIRIS-Lab/citation-parser-ENTITY",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "ai4bharat/IndicNER",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "as",
+       "bn",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     },
+     {
+      "model_id": "SIRIS-Lab/affilgood-NER-multilingual",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "nicolauduran45/affilgood-ner-multilingual-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.221
+   },
+   "q053": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "ai4bharat/IndicBERT-v3-270M",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "hi",
+       "te",
+       "ta",
+       "bn",
+       "ml",
+       "mr",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "sach3v/indicphi-muril-pii",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "en",
+       "gu",
+       "hi",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "ROG-7/muril-indic-ner-explainable-crf",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "hi",
+       "te",
+       "ta",
+       "kn",
+       "ml"
+      ]
+     },
+     {
+      "model_id": "segment-any-text/sat-1l",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "am",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     },
+     {
+      "model_id": "segment-any-text/sat-1l-sm",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "am",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.188
+   },
+   "q054": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "ROG-7/muril-indic-ner-explainable-crf",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "hi",
+       "te",
+       "ta",
+       "kn",
+       "ml"
+      ]
+     },
+     {
+      "model_id": "SIRIS-Lab/affilgood-NER-multilingual",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "nicolauduran45/affilgood-ner-multilingual-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "chrisdepallan/ner-skills-distilbert",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "ml"
+      ]
+     },
+     {
+      "model_id": "prachuryyaIITG/SampurNER_Malayalam_IndicBERTv2",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "ml"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.184
+   },
+   "q055": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "SIRIS-Lab/citation-parser-ENTITY",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "benjamin/wtp-bert-tiny",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "am",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     },
+     {
+      "model_id": "benjamin/wtp-bert-mini",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "am",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     },
+     {
+      "model_id": "benjamin/wtp-canine-s-9l-no-adapters",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "am",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     },
+     {
+      "model_id": "benjamin/wtp-canine-s-6l-no-adapters",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "am",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.171
+   },
+   "q056": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "vaibhav006/indic-ner-muril-naamapadam",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "mr",
+       "pa",
+       "te"
+      ]
+     },
+     {
+      "model_id": "theanugrah/muril-indic-ner",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "as",
+       "bn",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     },
+     {
+      "model_id": "SIRIS-Lab/affilgood-NER-multilingual",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "nicolauduran45/affilgood-ner-multilingual-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "SIRIS-Lab/citation-parser-ENTITY",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.197
+   },
+   "q057": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "ai4bharat/IndicNER",
+      "table": {
+       "task": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "as",
+       "bn",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     },
+     {
+      "model_id": "rohin30n/armour-ai-ner",
+      "table": {
+       "task": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "Rishabh157/spanmarker-multiconer-mdeberta",
+      "table": {
+       "task": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "bn",
+       "de",
+       "en",
+       "es",
+       "fr",
+       "hi",
+       "it",
+       "pt"
+      ]
+     },
+     {
+      "model_id": "Rishabh157/multiconer-multilingual-ner-mdeberta",
+      "table": {
+       "task": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "es",
+       "fr",
+       "de",
+       "it",
+       "pt",
+       "sv",
+       "uk"
+      ]
+     },
+     {
+      "model_id": "sagorsarker/mbert-bengali-ner",
+      "table": {
+       "task": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "bn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.188
+   },
+   "q058": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "OpenMed/OpenMed-PII-Hindi-ClinicalE5-Small-33M-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "hiteshwadhwani/pii-model-indic-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-PII-Hindi-BioClinicalBERT-Base-110M-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-PII-Hindi-BiomedBERT-Base-110M-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-PII-Hindi-BiomedBERTFull-Base-110M-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.183
+   },
+   "q059": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "kormilitzin/en_core_med7_lg",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-NER-BloodCancerDetect-BigMed-278M",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-NER-BloodCancerDetect-BigMed-560M",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-NER-BloodCancerDetect-BioClinical-108M",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-NER-BloodCancerDetect-BioMed-109M",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.107
+   },
+   "q060": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "prachuryyaIITG/SampurNER_Marathi_IndicBERTv2",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "mr"
+      ]
+     },
+     {
+      "model_id": "prachuryyaIITG/CLASSER_Marathi_MuRIL",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "mr"
+      ]
+     },
+     {
+      "model_id": "l3cube-pune/marathi-pos-tagger",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "mr"
+      ]
+     },
+     {
+      "model_id": "clarin-pl/combo-seg-xlm-roberta-base-marathi-ufal-ud2.17",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "mr"
+      ]
+     },
+     {
+      "model_id": "l3cube-pune/marathi-social-ner",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "mr"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.148
+   },
+   "q061": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "DeepMostInnovations/hindi-embedding-foundational-model-10B",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "DeepMostInnovations/hindi-embedding-foundational-model",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "convaiinnovations/hindi-embedding-foundational-model",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "convaiinnovations/hindi-embedding-model-final",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "vivekkopthsd/taxrag-embedding-granite-97m-multilingual",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.178
+   },
+   "q062": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "anuragwagh0/marathlish-minilm",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "mr",
+       "en"
+      ]
+     },
+     {
+      "model_id": "Horizon-Labs/multilingual-embedding-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "de",
+       "fr",
+       "es",
+       "pt",
+       "it",
+       "nl",
+       "pl"
+      ]
+     },
+     {
+      "model_id": "Horizon-Labs/multilingual-embedding-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "de",
+       "fr",
+       "es",
+       "pt",
+       "it",
+       "nl",
+       "pl"
+      ]
+     },
+     {
+      "model_id": "quanfire-ai/multilingual-embedding",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "hi",
+       "bn",
+       "gu",
+       "kn",
+       "ml",
+       "mr",
+       "sa",
+       "ta"
+      ]
+     },
+     {
+      "model_id": "l3cube-pune/indic-sentence-bert-nli",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "hi",
+       "mr",
+       "kn",
+       "ta",
+       "te",
+       "ml",
+       "gu"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.19
+   },
+   "q063": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "istiaqfuad/triBne-e5-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "kazalbrur/bangla-embed-e5-small-banglish",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "kazalbrur/bangla-embed-e5-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "sifat-febo/banglish-embed-tiny",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "sifat-febo/banglish-embed-minilm-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.162
+   },
+   "q064": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Tamil-ai/tamil-embed-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "ta",
+       "en"
+      ]
+     },
+     {
+      "model_id": "emonnsl/embed_model",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "as",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     },
+     {
+      "model_id": "upskyy/e5-small-korean",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "upskyy/e5-base-korean",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "upskyy/e5-large-korean",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.171
+   },
+   "q065": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "emonnsl/embed_model",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "as",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     },
+     {
+      "model_id": "aloobun/indic-mxbai-L8-embed",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "ta",
+       "te"
+      ]
+     },
+     {
+      "model_id": "upskyy/gte-base-korean",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     },
+     {
+      "model_id": "l3cube-pune/telugu-sentence-bert-nli",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "Msobhi/Persian_Sentence_Embedding_v3",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "fa",
+       "en",
+       "ar",
+       "bn",
+       "es",
+       "fi",
+       "fr",
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.16
+   },
+   "q066": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "DANI001/bert-b-m-uncased",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "ur",
+       "en"
+      ]
+     },
+     {
+      "model_id": "alphaedge-ai/clip-ViT-B-32-multilingual-v1-ur-16384",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "ur"
+      ]
+     },
+     {
+      "model_id": "alphaedge-ai/clip-ViT-B-32-multilingual-v1-ur-32768",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "ur"
+      ]
+     },
+     {
+      "model_id": "Dyna-99/local-st-model",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "ar",
+       "bg",
+       "ca",
+       "cs",
+       "da",
+       "de",
+       "el",
+       "en"
+      ]
+     },
+     {
+      "model_id": "ImranzamanML/multilingual-mpnet-finetuned",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "ar",
+       "bg",
+       "ca",
+       "cs",
+       "da",
+       "de",
+       "el",
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.187
+   },
+   "q067": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "vivekkopthsd/taxrag-embedding-granite-97m-multilingual",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "ManmohanBuildsProducts/auto-parts-search-v3",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "anuragwagh0/hinglish-minilm",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "hi",
+       "en"
+      ]
+     },
+     {
+      "model_id": "AkshitaS/bhasha-embed-v0",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "quanfire-ai/embed-gov-indic",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "hi",
+       "ur",
+       "ta",
+       "te",
+       "kn",
+       "ml",
+       "bn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.168
+   },
+   "q068": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-16384",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "gu"
+      ]
+     },
+     {
+      "model_id": "alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-32768",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "gu"
+      ]
+     },
+     {
+      "model_id": "univo-models/static-similarity-mrl-multilingual-int8-128",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "ar",
+       "bg",
+       "ca",
+       "cs",
+       "da",
+       "de",
+       "el",
+       "en"
+      ]
+     },
+     {
+      "model_id": "Marqo/multilingual-e5-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "elastic/multilingual-e5-small-optimized",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.162
+   },
+   "q069": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "l3cube-pune/kannada-sentence-similarity-sbert",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "kn"
+      ]
+     },
+     {
+      "model_id": "l3cube-pune/kannada-sentence-bert-nli",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "kn"
+      ]
+     },
+     {
+      "model_id": "emonnsl/embed_model",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "as",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     },
+     {
+      "model_id": "upskyy/e5-small-korean",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "upskyy/e5-base-korean",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.177
+   },
+   "q070": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Blaxzter/LaBSE-sentence-embeddings",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "emonnsl/embed_model",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "as",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     },
+     {
+      "model_id": "aloobun/indic-mxbai-L8-embed",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "ta",
+       "te"
+      ]
+     },
+     {
+      "model_id": "Teradata/gte-multilingual-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     },
+     {
+      "model_id": "eswardivi/tamal-sentence-bert-nli",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "ml",
+       "ta"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.209
+   },
+   "q071": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "codersan/FaMiniLM",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "fa",
+       "en"
+      ]
+     },
+     {
+      "model_id": "mlsa-iai-msu-lab/sci-rus-tiny3.5",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "ru",
+       "en",
+       "zh"
+      ]
+     },
+     {
+      "model_id": "khyentsevision/minilm-bo-en-sim",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bo",
+       "en"
+      ]
+     },
+     {
+      "model_id": "redis/langcache-embed-v3-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "thoddnn/all-MiniLM-L6-v2-4bit",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.16
+   },
+   "q072": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "emonnsl/embed_model",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "bn",
+       "as",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     },
+     {
+      "model_id": "l3cube-pune/punjabi-sentence-similarity-sbert",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "pa"
+      ]
+     },
+     {
+      "model_id": "Blaxzter/LaBSE-sentence-embeddings",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "l3cube-pune/punjabi-sentence-bert-nli",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "pa"
+      ]
+     },
+     {
+      "model_id": "judicialmind/KCC-Embed-0.6B",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "hi",
+       "mr",
+       "gu",
+       "pa",
+       "kn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.177
+   },
+   "q073": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "DeepMostInnovations/hindi-embedding-foundational-model-10B",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "DeepMostInnovations/hindi-embedding-foundational-model",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "convaiinnovations/hindi-embedding-foundational-model",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "convaiinnovations/hindi-embedding-model-final",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "hi"
+      ]
+     },
+     {
+      "model_id": "AkshitaS/bhasha-embed-v0",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.155
+   },
+   "q074": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "vivekkopthsd/taxrag-embedding-granite-97m-multilingual",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "hi"
+      ]
+     },
+     {
+      "model_id": "Hanno-Labs/dinghy-law-0.6b-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "de",
+       "zh"
+      ]
+     },
+     {
+      "model_id": "Hanno-Labs/dinghy-law-4b-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "de",
+       "zh"
+      ]
+     },
+     {
+      "model_id": "axondendriteplus/Legal-Embed-bge-base-en-v1.5",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en"
+      ]
+     },
+     {
+      "model_id": "ufca-llms/jua-4B-mixed",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "pt",
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.163
+   },
+   "q075": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "vllm-sr/mmbert-embed-32k-2d-matryoshka",
+      "table": {
+       "task": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": []
+     },
+     {
+      "model_id": "Marchris/nomic-embed-text-v2-moe",
+      "table": {
+       "task": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "es",
+       "fr",
+       "de",
+       "it",
+       "pt",
+       "pl",
+       "nl"
+      ]
+     },
+     {
+      "model_id": "ajmcclary/nomic-embed-text-v2-moe",
+      "table": {
+       "task": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "es",
+       "fr",
+       "de",
+       "it",
+       "pt",
+       "pl",
+       "nl"
+      ]
+     },
+     {
+      "model_id": "indiansatoshi/nomic-embed-text-v2-moe-GGUF",
+      "table": {
+       "task": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "es",
+       "fr",
+       "de",
+       "it",
+       "pt",
+       "pl",
+       "nl"
+      ]
+     },
+     {
+      "model_id": "nomic-ai/nomic-embed-text-v2-moe-GGUF",
+      "table": {
+       "task": "pass",
+       "commercial": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "es",
+       "fr",
+       "de",
+       "it",
+       "pt",
+       "pl",
+       "nl"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.138
+   },
+   "q076": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q077": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q078": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q079": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q080": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q081": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q082": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q083": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q084": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q085": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q086": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q087": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q088": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q089": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q090": {
+    "outcome": "clarify",
+    "top": [],
+    "fully_verified": null,
+    "question": "task",
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.001
+   },
+   "q091": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "atharva-again/indic-conformer-600m-quantized",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn",
+       "kok"
+      ]
+     },
+     {
+      "model_id": "amn-raw/parakeet-indic-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi",
+       "mr",
+       "bn",
+       "as",
+       "ta",
+       "te",
+       "kn",
+       "ml"
+      ]
+     },
+     {
+      "model_id": "eulogik/polywhisper",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi",
+       "ta",
+       "te",
+       "bn",
+       "mr"
+      ]
+     },
+     {
+      "model_id": "kazuto098/indic-transcribe-core-int4-onnx",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "PVKREDDY0808/bodhan-marathi-asr-artifacts",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "mr"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.254
+   },
+   "q092": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "OpenMed/OpenMed-PII-Telugu-ClinicalE5-Small-33M-v1-onnx-android",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "token-classification",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-PII-Telugu-ClinicalE5-Large-335M-v1-onnx-android",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "token-classification",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-PII-Telugu-ClinicalBGE-Large-335M-v1-onnx-android",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "token-classification",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-PII-Telugu-BiomedELECTRA-Large-335M-v1-onnx-android",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "token-classification",
+      "languages": [
+       "te"
+      ]
+     },
+     {
+      "model_id": "OpenMed/OpenMed-PII-Telugu-FastClinical-Small-82M-v1-onnx-android",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "token-classification",
+      "languages": [
+       "te"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.31
+   },
+   "q093": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Aji230923/indictrans2-en-indic-dist-200M-onnx",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi",
+       "mr",
+       "gu"
+      ]
+     },
+     {
+      "model_id": "SPRINGLab/shiksha-MT-nllb-3.3B",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "bn",
+       "gu",
+       "hi",
+       "mr",
+       "ml",
+       "kn",
+       "ta",
+       "te"
+      ]
+     },
+     {
+      "model_id": "mobilebytesensei/betterflow-indictrans2-indic-en-200m-int8",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "bn",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "pa",
+       "ta"
+      ]
+     },
+     {
+      "model_id": "naklitechie/indictrans2-en-indic-dist-200M-ONNX",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "hi",
+       "bn",
+       "ta",
+       "te",
+       "mr",
+       "gu",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "TigreGotico/indictrans2-en-indic-dist-200M-onnx",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "en",
+       "gom",
+       "gu",
+       "hi"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.234
+   },
+   "q094": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "tasal9/Multilingual-ZamAI-Embeddings",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "pass"
+      },
+      "overall": "pass",
+      "task": "sentence-similarity",
+      "languages": [
+       "ps",
+       "en",
+       "ar",
+       "fa",
+       "ur"
+      ]
+     },
+     {
+      "model_id": "MenteEAI/mentee-embed-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "sentence-similarity",
+      "languages": [
+       "en",
+       "ar",
+       "ur"
+      ]
+     },
+     {
+      "model_id": "Teradata/multilingual-e5-small",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "Teradata/gte-multilingual-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     },
+     {
+      "model_id": "Teradata/multilingual-e5-base",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "sentence-similarity",
+      "languages": [
+       "af",
+       "am",
+       "ar",
+       "as",
+       "az",
+       "be",
+       "bg",
+       "bn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.177
+   },
+   "q095": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "anuj-inavlabs/ThinkSpark-4.4M",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "text-classification",
+      "languages": [
+       "hi",
+       "mr",
+       "bn",
+       "gu",
+       "pa",
+       "ta",
+       "te",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "gpustack/gte-multilingual-reranker-base-GGUF",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "text-classification",
+      "languages": [
+       "af",
+       "ar",
+       "az",
+       "be",
+       "bg",
+       "bn",
+       "ca",
+       "ceb"
+      ]
+     },
+     {
+      "model_id": "Dashutosh884/Hugging_Face",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "sw",
+       "hi",
+       "gu",
+       "mr"
+      ]
+     },
+     {
+      "model_id": "hillbyte/Indic-Lite",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "text-classification",
+      "languages": [
+       "hi",
+       "bn",
+       "ta",
+       "te",
+       "mr",
+       "gu",
+       "kn",
+       "ml"
+      ]
+     },
+     {
+      "model_id": "connect211/category-of-needs-classification-minilm-v2",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "text-classification",
+      "languages": [
+       "en",
+       "es",
+       "fr",
+       "de",
+       "ar",
+       "zh",
+       "hi",
+       "pt"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.155
+   },
+   "q096": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "sukhpalsingh/baniguru_v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "pa"
+      ]
+     },
+     {
+      "model_id": "karansea/indicconformer-stt-pa-ctc-shabad-preview",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "pa"
+      ]
+     },
+     {
+      "model_id": "atharva-again/indic-conformer-600m-quantized",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn",
+       "kok"
+      ]
+     },
+     {
+      "model_id": "remiai3/STT_MODELS_FOR_APP",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "hi",
+       "bn",
+       "te",
+       "ta",
+       "mr",
+       "gu",
+       "kn",
+       "ml"
+      ]
+     },
+     {
+      "model_id": "ps-dev-090202323123/indicconformer-pa-sherpa-onnx",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown",
+       "commercial": "pass"
+      },
+      "overall": "unknown",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "pa"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.216
+   },
+   "q097": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "theanugrah/muril-indic-ner",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "token-classification",
+      "languages": [
+       "as",
+       "bn",
+       "gu",
+       "hi",
+       "kn",
+       "ml",
+       "mr",
+       "or"
+      ]
+     },
+     {
+      "model_id": "therajasekhar/punctuate-indic-v1-ONNX",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "token-classification",
+      "languages": [
+       "te",
+       "kn",
+       "gu",
+       "mr",
+       "ml",
+       "bn",
+       "pa",
+       "ta"
+      ]
+     },
+     {
+      "model_id": "saiprathap-k-r/SGPT",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "de",
+       "fr",
+       "hi",
+       "te",
+       "ta",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "seamon67/Dewpoint",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "token-classification",
+      "languages": [
+       "ar",
+       "az",
+       "bg",
+       "bn",
+       "bs",
+       "ca",
+       "cs",
+       "da"
+      ]
+     },
+     {
+      "model_id": "valkayuh/dewpoint",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "size": "unknown"
+      },
+      "overall": "unknown",
+      "task": "token-classification",
+      "languages": [
+       "ar",
+       "az",
+       "bg",
+       "bn",
+       "bs",
+       "ca",
+       "cs",
+       "da"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.105
+   },
+   "q098": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "Tmanna/srt-en-bn-lora",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "Rajatava/en-bn-transformer-v1",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "en",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "WindstormLabs/translate-bn-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "WindyWord/translate-bn-en",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     },
+     {
+      "model_id": "nahidstaq/bangla-transliteration",
+      "table": {
+       "task": "pass",
+       "languages": "pass",
+       "direction": "unknown",
+       "size": "unknown",
+       "commercial": "pass",
+       "modifiable": "pass"
+      },
+      "overall": "unknown",
+      "task": "translation",
+      "languages": [
+       "bn",
+       "en"
+      ]
+     }
+    ],
+    "fully_verified": false,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.186
+   },
+   "q099": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "thunderboltc/whisper-small-santali-sanlish",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "sat",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "thunderboltc/whisper_sanlish_mnx_lr2e5",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "sat",
+       "bn"
+      ]
+     },
+     {
+      "model_id": "atharva-again/indic-conformer-600m-quantized",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn",
+       "kok"
+      ]
+     },
+     {
+      "model_id": "ManiKumarAdapala/indic-transcribe-core-8bit",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "adidsh/indic-transcribe-flex-int8-onnx",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "automatic-speech-recognition",
+      "languages": [
+       "en",
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.211
+   },
+   "q100": {
+    "outcome": "answer",
+    "top": [
+     {
+      "model_id": "sach3v/indicphi-muril-pii",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "en",
+       "gu",
+       "hi",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "ai4bharat/Cadence-Fast",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "ai4bharat/Cadence",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "as",
+       "bn",
+       "brx",
+       "doi",
+       "gu",
+       "hi",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "ai4bharat/IndicBERT-v3-1B",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "hi",
+       "te",
+       "ta",
+       "bn",
+       "ml",
+       "mr",
+       "kn"
+      ]
+     },
+     {
+      "model_id": "ai4bharat/IndicBERT-v3-270M",
+      "table": {
+       "task": "pass",
+       "languages": "pass"
+      },
+      "overall": "pass",
+      "task": "token-classification",
+      "languages": [
+       "en",
+       "hi",
+       "te",
+       "ta",
+       "bn",
+       "ml",
+       "mr",
+       "kn"
+      ]
+     }
+    ],
+    "fully_verified": true,
+    "question": null,
+    "offer": null,
+    "explain_error": null,
+    "latency_s": 0.148
+   }
+  }
+ },
+ "result": {
+  "systems": {
+   "ours": {
+    "normal": {
+     "queries": 75,
+     "answered_pct": 97.3,
+     "recommendations": 365,
+     "violation_pct": 0.0,
+     "unknown_pct": 16.7,
+     "fully_verified_pct": 83.3,
+     "violation_by_constraint_pct": {
+      "commercial": 0.0,
+      "direction": 0.0,
+      "languages": 0.0,
+      "modifiable": 0.0,
+      "size": 0.0,
+      "task": 0.0
+     },
+     "latency_median_s": 0.19,
+     "latency_p95_s": 0.29,
+     "by_task": {
+      "automatic-speech-recognition": {
+       "queries": 15,
+       "answered_pct": 100.0,
+       "recommendations": 75,
+       "violation_pct": 0.0,
+       "unknown_pct": 0.0,
+       "fully_verified_pct": 100.0,
+       "violation_by_constraint_pct": {
+        "commercial": 0.0,
+        "languages": 0.0,
+        "modifiable": 0.0,
+        "size": 0.0,
+        "task": 0.0
+       },
+       "latency_median_s": 0.24,
+       "latency_p95_s": 0.41
+      },
+      "none": {
+       "queries": 1,
+       "answered_pct": 0.0,
+       "recommendations": 0,
+       "violation_pct": null,
+       "unknown_pct": null,
+       "fully_verified_pct": null,
+       "violation_by_constraint_pct": {},
+       "latency_median_s": 0.0,
+       "latency_p95_s": 0.0
+      },
+      "sentence-similarity": {
+       "queries": 15,
+       "answered_pct": 100.0,
+       "recommendations": 75,
+       "violation_pct": 0.0,
+       "unknown_pct": 0.0,
+       "fully_verified_pct": 100.0,
+       "violation_by_constraint_pct": {
+        "commercial": 0.0,
+        "languages": 0.0,
+        "modifiable": 0.0,
+        "size": 0.0,
+        "task": 0.0
+       },
+       "latency_median_s": 0.17,
+       "latency_p95_s": 0.21
+      },
+      "text-classification": {
+       "queries": 14,
+       "answered_pct": 100.0,
+       "recommendations": 70,
+       "violation_pct": 0.0,
+       "unknown_pct": 1.4,
+       "fully_verified_pct": 98.6,
+       "violation_by_constraint_pct": {
+        "commercial": 0.0,
+        "languages": 0.0,
+        "modifiable": 0.0,
+        "size": 0.0,
+        "task": 0.0
+       },
+       "latency_median_s": 0.17,
+       "latency_p95_s": 0.25
+      },
+      "token-classification": {
+       "queries": 15,
+       "answered_pct": 100.0,
+       "recommendations": 75,
+       "violation_pct": 0.0,
+       "unknown_pct": 0.0,
+       "fully_verified_pct": 100.0,
+       "violation_by_constraint_pct": {
+        "commercial": 0.0,
+        "languages": 0.0,
+        "modifiable": 0.0,
+        "size": 0.0,
+        "task": 0.0
+       },
+       "latency_median_s": 0.18,
+       "latency_p95_s": 0.29
+      },
+      "translation": {
+       "queries": 15,
+       "answered_pct": 93.3,
+       "recommendations": 70,
+       "violation_pct": 0.0,
+       "unknown_pct": 85.7,
+       "fully_verified_pct": 14.3,
+       "violation_by_constraint_pct": {
+        "commercial": 0.0,
+        "direction": 0.0,
+        "languages": 0.0,
+        "modifiable": 0.0,
+        "size": 0.0,
+        "task": 0.0
+       },
+       "latency_median_s": 0.21,
+       "latency_p95_s": 0.31
+      }
+     },
+     "by_language_group": {
+      "indic": {
+       "queries": 61,
+       "answered_pct": 100.0,
+       "recommendations": 305,
+       "violation_pct": 0.0,
+       "unknown_pct": 17.0,
+       "fully_verified_pct": 83.0,
+       "violation_by_constraint_pct": {
+        "commercial": 0.0,
+        "direction": 0.0,
+        "languages": 0.0,
+        "modifiable": 0.0,
+        "size": 0.0,
+        "task": 0.0
+       },
+       "latency_median_s": 0.2,
+       "latency_p95_s": 0.29
+      },
+      "non_indic": {
+       "queries": 14,
+       "answered_pct": 85.7,
+       "recommendations": 60,
+       "violation_pct": 0.0,
+       "unknown_pct": 15.0,
+       "fully_verified_pct": 85.0,
+       "violation_by_constraint_pct": {
+        "commercial": 0.0,
+        "direction": 0.0,
+        "languages": 0.0,
+        "modifiable": 0.0,
+        "size": 0.0,
+        "task": 0.0
+       },
+       "latency_median_s": 0.17,
+       "latency_p95_s": 0.26
+      }
+     }
+    },
+    "vague": {
+     "queries": 15,
+     "answered_pct": 0.0,
+     "recommendations": 0,
+     "violation_pct": null,
+     "unknown_pct": null,
+     "fully_verified_pct": null,
+     "violation_by_constraint_pct": {},
+     "latency_median_s": 0.0,
+     "latency_p95_s": 0.0
+    },
+    "impossible": {
+     "queries": 10,
+     "answered_pct": 100.0,
+     "recommendations": 50,
+     "violation_pct": 0.0,
+     "unknown_pct": 78.0,
+     "fully_verified_pct": 22.0,
+     "violation_by_constraint_pct": {
+      "commercial": 0.0,
+      "direction": 0.0,
+      "languages": 0.0,
+      "modifiable": 0.0,
+      "size": 0.0,
+      "task": 0.0
+     },
+     "latency_median_s": 0.2,
+     "latency_p95_s": 0.31
+    },
+    "outcomes": {
+     "normal": {
+      "answer": 73,
+      "clarify": 2
+     },
+     "vague": {
+      "clarify": 15
+     },
+     "impossible": {
+      "answer": 10
+     }
+    },
+    "clarification_rate_pct": 100.0,
+    "abstention_pct": 0.0,
+    "impossible_shown_with_banner_pct": 70.0,
+    "impossible_shown_as_verified_pct": 30.0
+   }
+  },
+  "no_constraint_queries": [
+   "q045",
+   "q080",
+   "q090"
+  ],
+  "extraction": {},
+  "feasibility": {
+   "q001": {
+    "full_pass": 219,
+    "not_fail": 830
+   },
+   "q002": {
+    "full_pass": 691,
+    "not_fail": 1006
+   },
+   "q003": {
+    "full_pass": 143,
+    "not_fail": 540
+   },
+   "q004": {
+    "full_pass": 747,
+    "not_fail": 1068
+   },
+   "q005": {
+    "full_pass": 699,
+    "not_fail": 1021
+   },
+   "q006": {
+    "full_pass": 210,
+    "not_fail": 821
+   },
+   "q007": {
+    "full_pass": 156,
+    "not_fail": 535
+   },
+   "q008": {
+    "full_pass": 690,
+    "not_fail": 965
+   },
+   "q009": {
+    "full_pass": 303,
+    "not_fail": 747
+   },
+   "q010": {
+    "full_pass": 31,
+    "not_fail": 374
+   },
+   "q011": {
+    "full_pass": 158,
+    "not_fail": 866
+   },
+   "q012": {
+    "full_pass": 668,
+    "not_fail": 940
+   },
+   "q013": {
+    "full_pass": 1008,
+    "not_fail": 1260
+   },
+   "q014": {
+    "full_pass": 800,
+    "not_fail": 1143
+   },
+   "q015": {
+    "full_pass": 1627,
+    "not_fail": 2026
+   },
+   "q016": {
+    "full_pass": 3,
+    "not_fail": 785
+   },
+   "q017": {
+    "full_pass": 2,
+    "not_fail": 531
+   },
+   "q018": {
+    "full_pass": 0,
+    "not_fail": 602
+   },
+   "q019": {
+    "full_pass": 4,
+    "not_fail": 606
+   },
+   "q020": {
+    "full_pass": 0,
+    "not_fail": 375
+   },
+   "q021": {
+    "full_pass": 4,
+    "not_fail": 640
+   },
+   "q022": {
+    "full_pass": 0,
+    "not_fail": 357
+   },
+   "q023": {
+    "full_pass": 5,
+    "not_fail": 751
+   },
+   "q024": {
+    "full_pass": 1241,
+    "not_fail": 1695
+   },
+   "q025": {
+    "full_pass": 0,
+    "not_fail": 453
+   },
+   "q026": {
+    "full_pass": 0,
+    "not_fail": 534
+   },
+   "q027": {
+    "full_pass": 0,
+    "not_fail": 366
+   },
+   "q028": {
+    "full_pass": 3,
+    "not_fail": 638
+   },
+   "q029": {
+    "full_pass": 3,
+    "not_fail": 547
+   },
+   "q030": {
+    "full_pass": 0,
+    "not_fail": 545
+   },
+   "q031": {
+    "full_pass": 37,
+    "not_fail": 420
+   },
+   "q032": {
+    "full_pass": 8,
+    "not_fail": 202
+   },
+   "q033": {
+    "full_pass": 148,
+    "not_fail": 634
+   },
+   "q034": {
+    "full_pass": 99,
+    "not_fail": 587
+   },
+   "q035": {
+    "full_pass": 166,
+    "not_fail": 667
+   },
+   "q036": {
+    "full_pass": 32,
+    "not_fail": 387
+   },
+   "q037": {
+    "full_pass": 411,
+    "not_fail": 846
+   },
+   "q038": {
+    "full_pass": 85,
+    "not_fail": 550
+   },
+   "q039": {
+    "full_pass": 371,
+    "not_fail": 807
+   },
+   "q040": {
+    "full_pass": 55,
+    "not_fail": 556
+   },
+   "q041": {
+    "full_pass": 84,
+    "not_fail": 572
+   },
+   "q042": {
+    "full_pass": 146,
+    "not_fail": 673
+   },
+   "q043": {
+    "full_pass": 8,
+    "not_fail": 309
+   },
+   "q044": {
+    "full_pass": 411,
+    "not_fail": 846
+   },
+   "q045": {
+    "full_pass": 9764,
+    "not_fail": 9764
+   },
+   "q046": {
+    "full_pass": 8,
+    "not_fail": 92
+   },
+   "q047": {
+    "full_pass": 23,
+    "not_fail": 199
+   },
+   "q048": {
+    "full_pass": 62,
+    "not_fail": 221
+   },
+   "q049": {
+    "full_pass": 97,
+    "not_fail": 247
+   },
+   "q050": {
+    "full_pass": 173,
+    "not_fail": 329
+   },
+   "q051": {
+    "full_pass": 770,
+    "not_fail": 891
+   },
+   "q052": {
+    "full_pass": 46,
+    "not_fail": 201
+   },
+   "q053": {
+    "full_pass": 22,
+    "not_fail": 140
+   },
+   "q054": {
+    "full_pass": 57,
+    "not_fail": 209
+   },
+   "q055": {
+    "full_pass": 7,
+    "not_fail": 90
+   },
+   "q056": {
+    "full_pass": 48,
+    "not_fail": 205
+   },
+   "q057": {
+    "full_pass": 1200,
+    "not_fail": 1388
+   },
+   "q058": {
+    "full_pass": 23,
+    "not_fail": 199
+   },
+   "q059": {
+    "full_pass": 714,
+    "not_fail": 877
+   },
+   "q060": {
+    "full_pass": 67,
+    "not_fail": 217
+   },
+   "q061": {
+    "full_pass": 335,
+    "not_fail": 728
+   },
+   "q062": {
+    "full_pass": 297,
+    "not_fail": 661
+   },
+   "q063": {
+    "full_pass": 34,
+    "not_fail": 382
+   },
+   "q064": {
+    "full_pass": 163,
+    "not_fail": 667
+   },
+   "q065": {
+    "full_pass": 195,
+    "not_fail": 670
+   },
+   "q066": {
+    "full_pass": 268,
+    "not_fail": 651
+   },
+   "q067": {
+    "full_pass": 383,
+    "not_fail": 744
+   },
+   "q068": {
+    "full_pass": 85,
+    "not_fail": 376
+   },
+   "q069": {
+    "full_pass": 87,
+    "not_fail": 584
+   },
+   "q070": {
+    "full_pass": 144,
+    "not_fail": 645
+   },
+   "q071": {
+    "full_pass": 95,
+    "not_fail": 326
+   },
+   "q072": {
+    "full_pass": 149,
+    "not_fail": 660
+   },
+   "q073": {
+    "full_pass": 397,
+    "not_fail": 757
+   },
+   "q074": {
+    "full_pass": 641,
+    "not_fail": 1080
+   },
+   "q075": {
+    "full_pass": 1006,
+    "not_fail": 1344
+   },
+   "q091": {
+    "full_pass": 7,
+    "not_fail": 360
+   },
+   "q092": {
+    "full_pass": 0,
+    "not_fail": 105
+   },
+   "q093": {
+    "full_pass": 0,
+    "not_fail": 284
+   },
+   "q094": {
+    "full_pass": 1,
+    "not_fail": 127
+   },
+   "q095": {
+    "full_pass": 0,
+    "not_fail": 117
+   },
+   "q096": {
+    "full_pass": 7,
+    "not_fail": 342
+   },
+   "q097": {
+    "full_pass": 0,
+    "not_fail": 31
+   },
+   "q098": {
+    "full_pass": 0,
+    "not_fail": 308
+   },
+   "q099": {
+    "full_pass": 33,
+    "not_fail": 319
+   },
+   "q100": {
+    "full_pass": 6,
+    "not_fail": 192
+   }
+  },
+  "no_verified_slice": {
+   "queries": 12,
+   "ids": [
+    "q018",
+    "q020",
+    "q022",
+    "q025",
+    "q026",
+    "q027",
+    "q030",
+    "q092",
+    "q093",
+    "q095",
+    "q097",
+    "q098"
+   ],
+   "systems": {
+    "ours": {
+     "violation_pct": 0.0,
+     "unknown_pct": 100.0,
+     "answered_pct": 100.0,
+     "claimed_fully_verified": 0,
+     "banner": 12,
+     "abstained_or_relaxed": 0
+    }
+   }
+  }
+ }
+}

@@ -28,8 +28,8 @@ def rights_notes(meta: dict) -> list[str]:
     if modifiable == "no":
         notes.append("No derivatives allowed: you may not fine-tune and redistribute it.")
     if "conditional" in (commercial, modifiable):
-        notes.append("Extra terms apply (e.g. use restrictions that carry over to a "
-                     "fine-tune). Read the license before relying on it.")
+        notes.append("Extra terms apply (e.g. use restrictions or share-alike conditions that "
+                     "carry over to a fine-tune). Read the license before relying on it.")
     if "unknown" in (commercial, modifiable):
         notes.append("The license is missing or not one we can interpret.")
     return notes

@@ -133,7 +133,7 @@ The pipeline is implemented as a **LangGraph graph** (D15). The two loops (clari
 6. An impossible query → "No model meets all constraints; relax the size limit to 1 GB?"
 7. Close on the baseline comparison table.
 
-Every planned demo query is cached, so the demo works offline (D21).
+Every planned demo query is recorded once with live services and can be replayed without any network (D21). Live search still needs the network.
 
 ## 8. Plan (14 days, started 2026-10-16)
 

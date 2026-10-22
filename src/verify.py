@@ -39,7 +39,10 @@ def check_languages(meta: dict, langs: list[str]) -> str:
     have = meta.get("languages") or []
     if not have or meta.get("language_status") == "unknown":
         return UNKNOWN
-    return PASS if all(lang in have for lang in langs) else FAIL
+    if all(lang in have for lang in langs):
+        return PASS
+    # A multilingual model's list may be partial (the card says "multilingual"), so absence is not proof.
+    return UNKNOWN if meta.get("multilingual") else FAIL
 
 
 def check_direction(meta: dict, direction: list[str]) -> str:
@@ -92,6 +95,9 @@ def notes(meta: dict, constraints: dict) -> list[str]:
     if constraints.get("langs") and meta.get("multilingual"):
         wanted = ", ".join(constraints["langs"])
         out.append(f"multilingual, not specific to {wanted}")
+    direction = constraints.get("direction")
+    if direction and meta.get("direction_source") == "model_name" and f"{direction[0]}-{direction[1]}" in (meta.get("directions") or []):
+        out.append("direction from model name")
     if meta.get("doc_quality") == "minimal":
         out.append("minimal documentation")
     return out

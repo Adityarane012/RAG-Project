@@ -72,3 +72,93 @@ def test_devanagari_round_trips_regardless_of_platform_encoding(raw_dir, monkeyp
     ingest.fetch_raw("a/b")
     assert ingest.raw_path("a/b", ".md").read_bytes() == card.encode("utf-8")
     assert ingest.load_raw("a/b")[1] == card
+
+
+def test_candidate_listing_only_uses_arguments_the_real_hub_library_accepts():
+    """A live run once failed on `list_models(language=...)`, which does not exist. Calls are checked
+    against the installed library's real signature so API drift is caught offline."""
+    import inspect
+
+    from huggingface_hub import HfApi
+
+    allowed = set(inspect.signature(HfApi.list_models).parameters)
+    seen = []
+
+    class Rec:
+        def list_models(self, **kw):
+            seen.append(kw)
+            assert set(kw) <= allowed, f"not accepted by huggingface_hub: {set(kw) - allowed}"
+            return []
+
+    ingest.candidate_ids(Rec(), tasks=("translation",))
+    assert any(kw.get("filter") in ingest.INDIC_LANGS for kw in seen)            # Indic via tags
+    assert any(kw.get("sort") == "downloads" and kw.get("limit") == ingest.TOP_N for kw in seen)   # top-N
+    assert all(kw["pipeline_tag"] == "translation" for kw in seen)
+
+
+class FakeResp:
+    def __init__(self, status, headers=None):
+        self.status_code, self.headers = status, headers or {}
+
+    def raise_for_status(self):
+        raise requests.HTTPError(str(self.status_code))
+
+
+def test_retry_wait_honours_the_server_hint_and_caps_it():
+    assert ingest._retry_wait(FakeResp(429, {"retry-after": "42"}), 0) == 42
+    assert ingest._retry_wait(FakeResp(429, {"ratelimit": '"api";r=0;t=17'}), 0) == 17      # HF's header
+    assert ingest._retry_wait(FakeResp(429, {"retry-after": "99999"}), 0) == 300               # never sleep for hours
+    assert ingest._retry_wait(FakeResp(429, {"retry-after": "soon"}), 3) == 8                  # garbage -> back-off
+    assert ingest._retry_wait(FakeResp(503), 2) == 4 and ingest._retry_wait(FakeResp(503), 20) == 60
+    assert ingest._retry_wait(FakeResp(429, {"retry-after": "0"}), 0) == 1                     # never a busy loop
+
+
+def test_get_sleeps_the_hinted_time_then_succeeds(monkeypatch):
+    seq = [FakeResp(429, {"retry-after": "3"}), FakeResp(200)]
+    slept = []
+    monkeypatch.setattr(ingest.requests, "get", lambda *a, **k: seq.pop(0))
+    monkeypatch.setattr(ingest.time, "sleep", slept.append)
+    assert ingest._get("http://x").status_code == 200 and slept == [3.0]
+
+
+def test_get_gives_up_with_an_error_after_the_retries(monkeypatch):
+    monkeypatch.setattr(ingest.requests, "get", lambda *a, **k: FakeResp(429, {"retry-after": "1"}))
+    monkeypatch.setattr(ingest.time, "sleep", lambda s: None)
+    with pytest.raises(requests.HTTPError):
+        ingest._get("http://x", retries=3)
+
+
+def test_a_forbidden_readme_is_a_logged_failure_not_a_silent_empty_card(raw_dir, monkeypatch):
+    """The raw endpoint answers 403 for some public repos; that must not be cached as 'no README'."""
+    def fake_get(url, params=None, retries=5):
+        if "/api/" in url:
+            return Resp(payload={"id": "a/b"})
+        assert "/resolve/main/README.md" in url, url           # the resolver, not /raw/
+        return Resp(status=403)
+
+    monkeypatch.setattr(ingest, "_get", fake_get)
+    with pytest.raises(requests.HTTPError):
+        ingest.fetch_raw("a/b")
+    assert not ingest.raw_path("a/b", ".md").exists()           # nothing cached: a rerun retries it
+
+
+def test_get_retries_dropped_connections_then_succeeds_and_finally_raises(monkeypatch):
+    slept = []
+    monkeypatch.setattr(ingest.time, "sleep", slept.append)
+    calls = {"n": 0}
+
+    def flaky(*a, **k):
+        calls["n"] += 1
+        if calls["n"] < 3:
+            raise requests.ConnectionError("proxy hiccup")
+        return FakeResp(200)
+
+    monkeypatch.setattr(ingest.requests, "get", flaky)
+    assert ingest._get("http://x").status_code == 200 and slept == [1, 2]
+
+    def dead(*a, **k):
+        raise requests.Timeout("down")
+
+    monkeypatch.setattr(ingest.requests, "get", dead)
+    with pytest.raises(requests.Timeout):
+        ingest._get("http://x", retries=3)

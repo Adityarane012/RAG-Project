@@ -1,0 +1,2130 @@
+{
+ "input": {
+  "query": "Small sentiment model for Hindi I can use in a commercial app",
+  "overrides": {}
+ },
+ "state": {
+  "query": "Small sentiment model for Hindi I can use in a commercial app",
+  "overrides": {},
+  "constraints": {
+   "task": "text-classification",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "sentiment model for Hindi"
+  },
+  "intent": "We understood: you want a model to classify text, e.g. detect sentiment, for Hindi, no bigger than 500 MB (we read \"small\" as this), usable commercially.",
+  "matches": [
+   {
+    "id": "ShivamSharma8168/hindi-sentiment-model::0",
+    "score": 0.895347238,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 8,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "ShivamSharma8168/hindi-sentiment-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "🇮🇳 hindi sentiment analysis model",
+     "size_mb": 1112.208084,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This repository contains a fine-tuned Hindi Sentiment Analysis model built using the HuggingFace Transformers library.\nIt predicts sentiment for Hindi text and classifies it into:\n\n- **Positive**\n- **Neutral**\n- **Negative**\n\nThis model is suitable for Hindi tweets, reviews, comments, and general Hindi language sentiment tasks.\n\n---"
+    }
+   },
+   {
+    "id": "ShivamSharma8168/hindi-sentiment-model::2",
+    "score": 0.892760336,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 8,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "ShivamSharma8168/hindi-sentiment-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "🧠 intended usage",
+     "size_mb": 1112.208084,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "You can use this model for:\n\n- Hindi sentiment analysis\n- Social media monitoring\n- Review classification\n- Feedback analysis\n- Tweet polarity detection\n\n---"
+    }
+   },
+   {
+    "id": "marshal-yash/gujlish-sentiment-analysis::2",
+    "score": 0.890322804,
+    "metadata": {
+     "base_model": "google/muril-base-cased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 10,
+     "language_status": "known",
+     "languages": [
+      "gu",
+      "en",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "marshal-yash/gujlish-sentiment-analysis",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 237558531,
+     "section": "intended use",
+     "size_mb": 950.257668,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This model is ideal for:\n* Analyzing social media comments (YouTube, Instagram) in India.\n* Processing audio transcriptions from mixed-language conversations.\n* Customer feedback analysis for Indian apps."
+    }
+   },
+   {
+    "id": "alphaedge-ai/clip-ViT-B-32-multilingual-v1-hi-16384::0",
+    "score": 0.889236927,
+    "metadata": {
+     "base_model": "sentence-transformers/clip-ViT-B-32-multilingual-v1",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 12,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "alphaedge-ai/clip-ViT-B-32-multilingual-v1-hi-16384",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 55504896,
+     "section": "clip-vit-b-32-multilingual-v1-hi-16384",
+     "size_mb": 222.030624,
+     "size_status": "known",
+     "task": "sentence-similarity",
+     "text": "This model is a smaller version of sentence-transformers/clip-ViT-B-32-multilingual-v1 optimized for **Hindi** language via vocabulary size reduction using the trimming method.\nThis trimmed model should perform similarly to the original model with only 16,384 tokens and a much smaller memory footprint. However, it may not perform well for other languages as tokens not commonly used in the selected languages were removed from the vocabulary."
+    }
+   },
+   {
+    "id": "alphaedge-ai/clip-ViT-B-32-multilingual-v1-hi-32768::0",
+    "score": 0.88898629,
+    "metadata": {
+     "base_model": "sentence-transformers/clip-ViT-B-32-multilingual-v1",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 16,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "alphaedge-ai/clip-ViT-B-32-multilingual-v1-hi-32768",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 68087808,
+     "section": "clip-vit-b-32-multilingual-v1-hi-32768",
+     "size_mb": 272.362328,
+     "size_status": "known",
+     "task": "sentence-similarity",
+     "text": "This model is a smaller version of sentence-transformers/clip-ViT-B-32-multilingual-v1 optimized for **Hindi** language via vocabulary size reduction using the trimming method.\nThis trimmed model should perform similarly to the original model with only 32,768 tokens and a much smaller memory footprint. However, it may not perform well for other languages as tokens not commonly used in the selected languages were removed from the vocabulary."
+    }
+   },
+   {
+    "id": "ShivamSharma8168/hindi-sentiment-model::1",
+    "score": 0.885447264,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 8,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "ShivamSharma8168/hindi-sentiment-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "🚀 model overview",
+     "size_mb": 1112.208084,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "- **Model type:** Sequence Classification\n- **Base model:** Multilingual Transformer\n- **Framework:** HuggingFace Transformers\n- **Language:** Hindi (hi)\n- **Task:** Sentiment Classification\n\nThis model was fine-tuned using a labeled Hindi dataset containing user-generated text such as tweets/comments.\n\n---"
+    }
+   },
+   {
+    "id": "vasista22/whisper-hindi-small::0",
+    "score": 0.884823501,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 505,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "vasista22/whisper-hindi-small",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "whisper hindi small",
+     "size_mb": 967.099139,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model is a fine-tuned version of openai/whisper-small on the Hindi data available from multiple publicly available ASR corpuses.\nIt has been fine-tuned as a part of the Whisper fine-tuning sprint.\n\n**NOTE:** The code used to train this model is available for re-use in the whisper-finetune repository."
+    }
+   },
+   {
+    "id": "makbar023/roman-sentiment-model::1",
+    "score": 0.883995056,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "ur",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "makbar023/roman-sentiment-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "intended uses",
+     "size_status": "unknown",
+     "task": "text-classification",
+     "text": "This model is designed for:\n- **Businesses and companies** analyzing customer reviews and feedback in Roman Urdu\n- **Social media monitoring** to understand public sentiment\n- **Product and service evaluation** based on customer comments\n- **Market research** on Urdu-speaking audiences using Roman script"
+    }
+   },
+   {
+    "id": "marshal-yash/gujlish-sentiment-analysis::0",
+    "score": 0.882404923,
+    "metadata": {
+     "base_model": "google/muril-base-cased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 10,
+     "language_status": "known",
+     "languages": [
+      "gu",
+      "en",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "marshal-yash/gujlish-sentiment-analysis",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 237558531,
+     "section": "gujlish & hinglish sentiment analysis model (muril fine-tuned)",
+     "size_mb": 950.257668,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This model is a fine-tuned version of google/muril-base-cased trained on a custom synthetic dataset of **150,000 code-mixed samples**. It is designed to detect sentiment (Positive, Negative, Neutral) in Indian languages, specifically handling **Code-Switching** (mixing Gujarati/Hindi with English)."
+    }
+   },
+   {
+    "id": "clarin-pl/combo-seg-xlm-roberta-base-hindi-hdtb-ud2.17::0",
+    "score": 0.881948,
+    "metadata": {
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 18,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "clarin-pl/combo-seg-xlm-roberta-base-hindi-hdtb-ud2.17",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "model description",
+     "size_mb": 1114.773902,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "This is a Hindi-language character-level segmentation model based on COMBO-SEG, an open-source text segmentation system. It performs:\n\n- sentence segmentation\n- tokenisation (including multi-word token detection)\n\nThe Hindi model uses ``FacebookAI/xlm-roberta-base`` as its base encoder and is trained on UD_Hindi-HDTB (UD v2.17)."
+    }
+   },
+   {
+    "id": "vashuag/HindiEmotion::1",
+    "score": 0.880879,
+    "metadata": {
+     "base_model": "ai4bharat/indic-bert",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 137,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "vashuag/HindiEmotion",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 33448967,
+     "section": "overview",
+     "size_mb": 133.799332,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "Explanation\nThis model processes Hindi text and applies powerful machine learning strategies to classify emotions effectively. For example, when given the input \"बिजली जल्दी आ गई, बहुत शुक्रिया\" (translated as \"The electricity came quickly, thank you\"), it produces scores that indicate the likelihood of various emotions. In this case, the model suggests a strong presence of joy (about 76%) while also noting some neutral and sadness scores.\n\nBy leveraging datasets such as google_go_emotions_hindi_translated, the model learns from diverse emotional expressions in Hindi, ensuring it can handle a variety of contexts effectively. The comprehensive metrics, including precision, recall, and F1 scores, confirm its reliability for practical applications in areas like sentiment analysis and customer feedback. This functionality enables users to better understand emotional subtleties in Hindi communications.\n\nusage: |\n  ```python\n  from transformers import pipeline\n\n  # Load the model pipeline\n  emotion_model = pipeline(\"text-classification\", model=\"vashuag/HindiEmotion\", return_all_scores=True)\n\n  # Example prediction\n  text = \"आप बहुत अच्छे हैं\"  # Translation: \"You are very good.\"\n  predictions = emotion_model(text)\n  print(predictions)"
+    }
+   },
+   {
+    "id": "clarin-pl/combo-nlp-xlm-roberta-base-hindi-hdtb-ud2.17::0",
+    "score": 0.880729437,
+    "metadata": {
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 7,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "clarin-pl/combo-nlp-xlm-roberta-base-hindi-hdtb-ud2.17",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "model description",
+     "size_mb": 1129.600623,
+     "size_status": "known",
+     "task": "token-classification",
+     "text": "This is a Hindi-language model based on combo-nlp, an open-source natural language preprocessing system. It performs:\n\n- sentence segmentation (via combo-seg)\n- tokenisation (via combo-seg)\n- part-of-speech tagging\n- morphological analysis\n- lemmatisation\n- dependency parsing\n\nThe Hindi model uses ``FacebookAI/xlm-roberta-base`` as its base encoder and is trained on UD_Hindi-HDTB (UD v2.17)."
+    }
+   },
+   {
+    "id": "vasista22/whisper-hindi-medium::0",
+    "score": 0.880685806,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 256,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "vasista22/whisper-hindi-medium",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "whisper hindi medium",
+     "size_mb": 3055.748571,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model is a fine-tuned version of openai/whisper-medium on the Hindi data available from multiple publicly available ASR corpuses.\nIt has been fine-tuned as a part of the Whisper fine-tuning sprint.\n\n**NOTE:** The code used to train this model is available for re-use in the whisper-finetune repository."
+    }
+   },
+   {
+    "id": "yash17366392/Fine-Tuned_Helsinki_model::1",
+    "score": 0.88019079,
+    "metadata": {
+     "base_model": "Helsinki-NLP/opus-mt-en-hi",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "yash17366392/Fine-Tuned_Helsinki_model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 139355646,
+     "section": "primary use",
+     "size_mb": 557.452192,
+     "size_status": "known",
+     "task": "translation",
+     "text": "This model is intended for:\n\n* English → Hindi translation\n* Hindi → English translation\n* Educational and research purposes\n* Multilingual applications\n* NLP experiments involving bilingual translation"
+    }
+   },
+   {
+    "id": "LondonStory/txlm-roberta-hindi-sentiment::1",
+    "score": 0.880073309,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 26,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "LondonStory/txlm-roberta-hindi-sentiment",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "description of the model and the training data",
+     "size_mb": 1112.255469,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "`txlm-roberta-hindi-sentiment` is a Hindi language sentiment classifier model (in Devanagari script) which is trained on a publicly available Hindi language dataset. See the GitHub source of the dataset HERE.\n\nThe training, testing and validation datasets consist of 6807, 1634 and 635 numbers of labelled Hindi language examples respectively.\n\nThe trained model shows a weighted average macro F1-score of 0.89 (please see the confusion matrix in the Google Colab notebook below)."
+    }
+   },
+   {
+    "id": "pavanmantha/whisper-small-hi::3",
+    "score": 0.879728556,
+    "metadata": {
+     "base_model": "openai/whisper-medium",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 10,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "pavanmantha/whisper-small-hi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 241734912,
+     "section": "direct use",
+     "size_mb": 966.99508,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model can be used out-of-the-box for **Hindi speech-to-text transcription** without any additional fine-tuning. It is suitable for:\n\n- Transcribing Hindi audio files or streams\n- Building voice-enabled applications for Hindi speakers\n- Integrating into pipelines for downstream NLP tasks (e.g., translation, summarization)"
+    }
+   },
+   {
+    "id": "vasista22/whisper-hindi-large-v2::0",
+    "score": 0.878906071,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 1062,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "vasista22/whisper-hindi-large-v2",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "whisper hindi large-v2",
+     "size_mb": 6173.64753,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model is a fine-tuned version of openai/whisper-large-v2 on the Hindi data available from multiple publicly available ASR corpuses.\nIt has been fine-tuned as a part of the Whisper fine-tuning sprint.\n\n**NOTE:** The code used to train this model is available for re-use in the whisper-finetune repository."
+    }
+   },
+   {
+    "id": "EshwarDhande/marathi-toxicity-classifier::0",
+    "score": 0.878820539,
+    "metadata": {
+     "base_model": "google-bert/bert-base-multilingual-uncased",
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 21,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "EshwarDhande/marathi-toxicity-classifier",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "section": "license & usage restrictions",
+     "size_status": "unknown",
+     "task": "text-classification",
+     "text": "This model is **not open-source** and requires explicit permission for use.\nTo obtain a license, please contact: eshwar.dhande@iitgn.ac.in\n\n- ❌ **Commercial use is prohibited without approval.**\n- ❌ **Redistribution and modification are not allowed without permission.**\n- ✅ **Research use may be granted on request.**"
+    }
+   },
+   {
+    "id": "airzipm/sentiment-analysis-muril-v2::0",
+    "score": 0.878640354,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 124,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "airzipm/sentiment-analysis-muril-v2",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 237558531,
+     "section": "sentiment analysis v2 — muril (english + hindi + hinglish)",
+     "size_mb": 950.257668,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "A 3-class sentiment classifier (**Negative / Neutral / Positive**) fine-tuned from\n`google/muril-base-cased`, which unlike the\nv1 `roberta-base` model can natively handle **Hindi (Devanagari)** and **Hinglish (romanized\ncode-mixed Hindi-English)** text in addition to English."
+    }
+   },
+   {
+    "id": "abhiprd2000/hindi-sentiment-model::0",
+    "score": 0.878613234,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 35,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "abhiprd2000/hindi-sentiment-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "hindi sentiment analysis model",
+     "size_mb": 1112.20806,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "**Author:** Abhimanyu Prasad | @abhiprd20\n\nFine-tuned XLM-RoBERTa model for 3-class sentiment analysis on Hindi text in Devanagari script, trained as part of a cross-lingual transfer study across English, Hindi, Maithili, and Bhojpuri.\n\n---"
+    }
+   },
+   {
+    "id": "bajpaideeksha/hinglish-translation::2",
+    "score": 0.878562093,
+    "metadata": {
+     "base_model": "openai-community/gpt2",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "bajpaideeksha/hinglish-translation",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "model description",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "The model is designed to convert English sentences into Hinglish, a colloquial blend of Hindi and English commonly used in informal communication. It is particularly useful for applications like chatbots, social media tools, and language learning platforms.\n\n- **Model type**: GPT-2 fine-tuned with LoRA\n- **Languages**: English (input), Hinglish (output)\n- **Training data**: 3080 rows of English-Hinglish pairs\n- **Fine-tuning method**: LoRA (Low-Rank Adaptation)\n- **License**: MIT"
+    }
+   },
+   {
+    "id": "martin-mwiti/whisper-small-hi-lora-r32-alpha64-20241231::0",
+    "score": 0.877707601,
+    "metadata": {
+     "base_model": "openai/whisper-small",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "martin-mwiti/whisper-small-hi-lora-r32-alpha64-20241231",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "model description",
+     "size_status": "unknown",
+     "task": "automatic-speech-recognition",
+     "text": "This is a fine-tuned Whisper Small model for Automatic Speech Recognition (ASR) in Hindi, developed using Parameter-Efficient Fine-Tuning (PEFT) with Low-Rank Adaptation (LoRA). The model is designed to transcribe Hindi speech with improved accuracy and efficiency.\n\n- **Developed by:** martin-mwiti\n- **Model type:** Automatic Speech Recognition (ASR)\n- **Language(s):** Hindi\n- **License:** Apache-2.0\n- **Finetuned from model:** openai/whisper-small"
+    }
+   },
+   {
+    "id": "makbar023/roman-sentiment-model::0",
+    "score": 0.87749815,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "ur",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "makbar023/roman-sentiment-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "model description",
+     "size_status": "unknown",
+     "task": "text-classification",
+     "text": "This model performs sentiment analysis on Roman Urdu (Romanized Urdu) text, classifying input into three categories: **Negative**, **Neutral**, and **Positive**. It can analyze both single sentences and batch process multiple sentences from files."
+    }
+   },
+   {
+    "id": "ankitklakra/kurukh-to-hindi::0",
+    "score": 0.87742579,
+    "metadata": {
+     "base_model": "google/mt5-small",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 36,
+     "language_status": "known",
+     "languages": [
+      "kru",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "ankitklakra/kurukh-to-hindi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 300176768,
+     "section": "🇮🇳 kurukh (oraon) to hindi translator",
+     "size_mb": 1200.729512,
+     "size_status": "known",
+     "task": "translation",
+     "text": "This is a **sequence-to-sequence transformer model** designed to translate the low-resource **Kurukh (Oraon)** language into **Hindi**. It has been fine-tuned on the **Google mT5-small** architecture using a custom dataset of approximately **10,000 sentence pairs**."
+    }
+   },
+   {
+    "id": "abhiprd2000/hindi-sentiment-model::1",
+    "score": 0.877260208,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 35,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "abhiprd2000/hindi-sentiment-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "model description",
+     "size_mb": 1112.20806,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This model is part of a cross-lingual transfer study examining how well NLP models transfer across languages of varying resource levels — from high-resource English to extremely low-resource Maithili and Bhojpuri.\n\nHindi serves as the pivot language in this study: it is the highest-resource of the three Indic languages, pre-trained into XLM-RoBERTa, and linguistically related to both Maithili and Bhojpuri. Comparing Hindi results against Maithili and Bhojpuri reveals how linguistic proximity and resource availability interact in cross-lingual transfer.\n\n**Base model:** `cardiffnlp/twitter-xlm-roberta-base-sentiment`\n\n**Task:** 3-class sentiment classification — Positive, Negative, Neutral\n\n**Language:** Hindi (हिन्दी) — Devanagari script\n\n**Training data:** 20,000 sentences (balanced, sampled from iam-tsr/hindi-sentiments)\n\n**Training dataset citation:** iam-tsr/hindi-sentiments — MIT License\n\n---"
+    }
+   },
+   {
+    "id": "ajajali09/hindi-conversation-interruption-intent-classifier-TinyBERT-L-2-v2::0",
+    "score": 0.877232254,
+    "metadata": {
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 28,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "ajajali09/hindi-conversation-interruption-intent-classifier-TinyBERT-L-2-v2",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "param_count": 4386307,
+     "section": "hindi conversational intent classifier / interruption detection",
+     "size_mb": 17.549828,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "A lightweight Hindi conversational text classification model, (also can be used as interruption detection), designed to classify short user utterances into three categories: **affirmation**, **interruption**, and **others**.\n\nThe model is intended for real-time conversational AI and Voice AI applications, including identifying potential user interruptions from speech-to-text (STT) transcripts."
+    }
+   },
+   {
+    "id": "shae2977/xlm-roberta-hinglish-sentiment-analysis::0",
+    "score": 0.876984239,
+    "metadata": {
+     "base_model": "FacebookAI/xlm-roberta-base",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 92,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "shae2977/xlm-roberta-hinglish-sentiment-analysis",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "xlm-roberta hinglish sentiment analysis",
+     "size_mb": 1112.20806,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "A fine-tuned XLM-RoBERTa model for sentiment classification of Hinglish text — the code-mixed Hindi-English language used by hundreds of millions of Indians online.\n\nMost sentiment models are trained on clean English or formal Hindi. They fail badly on Hinglish because it is neither; it is a fluid mix of both, written in Roman script, full of slang, abbreviations, and cultural references. This model is trained specifically to handle that."
+    }
+   },
+   {
+    "id": "Satwik11/gemma-2b-mt-Hindi-Fintuned::1",
+    "score": 0.876750767,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 18,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "Satwik11/gemma-2b-mt-Hindi-Fintuned",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 2506172416,
+     "section": "direct use",
+     "size_mb": 5012.363704,
+     "size_status": "known",
+     "task": "translation",
+     "text": "This model can be directly used for translating English text to Hindi. It is suitable for various applications such as:\n-Localization of content\n-Cross-lingual communication\n-Educational tools for language learning\n-Multilingual content creation"
+    }
+   },
+   {
+    "id": "FarazAbdulMuqtader/roman-urdu-sentiment-xlmr::1",
+    "score": 0.876700282,
+    "metadata": {
+     "base_model": "FacebookAI/xlm-roberta-base",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 14,
+     "language_status": "known",
+     "languages": [
+      "ur"
+     ],
+     "lineage_status": "known",
+     "model_id": "FarazAbdulMuqtader/roman-urdu-sentiment-xlmr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "model description",
+     "size_mb": 1112.20806,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This model classifies Roman Urdu text into one of three sentiment classes: **Positive**, **Negative**, or **Neutral**. It's built on `xlm-roberta-base`, fine-tuned on a large Roman Urdu sentiment corpus to handle the inconsistent spelling and English code-mixing typical of informal Roman Urdu text."
+    }
+   },
+   {
+    "id": "theharshithh/open-sarika::2",
+    "score": 0.876649618,
+    "metadata": {
+     "base_model": "openai/whisper-large-v3",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 1561,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "gu",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "theharshithh/open-sarika",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 1543490560,
+     "section": "direct use",
+     "size_mb": 6174.112072,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "The model can be used for:\n1. Transcribing speech in Hindi, Gujarati, and Marathi\n2. Translating speech between these languages\n\nHere's a simple example to get started:"
+    }
+   },
+   {
+    "id": "Hate-speech-CNERG/hindi-abusive-MuRIL::0",
+    "score": 0.87649,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 84,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "Hate-speech-CNERG/hindi-abusive-MuRIL",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_mb": 950.318143,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This model is used detecting **abusive speech** in **Devanagari Hindi**. It is finetuned on MuRIL model using Hindi abusive speech dataset.\nThe model is trained with learning rates of 2e-5. Training code can be found at this url\n\nLABEL_0 :-> Normal\n\nLABEL_1 :-> Abusive"
+    }
+   },
+   {
+    "id": "chaturvedipriyanshu17/muril-lora-codemixed-sentiment::1",
+    "score": 0.876488745,
+    "metadata": {
+     "base_model": "google/muril-base-cased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 18,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en",
+      "bn"
+     ],
+     "lineage_status": "known",
+     "model_id": "chaturvedipriyanshu17/muril-lora-codemixed-sentiment",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 237558531,
+     "section": "model description",
+     "size_mb": 950.257668,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "- **Base model:** MuRIL (Multilingual Representations for Indian Languages) — pre-trained on 17 Indic languages\n- **Fine-tuning method:** LoRA (r=8, alpha=16) via the PEFT library\n- **Task:** 3-class sentiment classification — Negative (0), Neutral (1), Positive (2)\n- **Dataset:** `md-nishat-008/Code-Mixed-Sentiment-Analysis-Dataset` — 99,999 code-mixed samples"
+    }
+   },
+   {
+    "id": "Kenpache/flame2-hindi::0",
+    "score": 0.876375735,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 8,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "Kenpache/flame2-hindi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278043651,
+     "section": "flame2-hindi — financial sentiment analysis for indian markets",
+     "size_mb": 1112.198252,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "**One model. One market. Perspective-aware financial sentiment for India.**\n\nFLAME2-Hindi classifies Hindi financial news headlines as **Negative**, **Neutral**, or **Positive** from the perspective of an **Indian investor**.\n\nThis means economic events are labeled based on how they impact the Indian economy:\n- *\"तेल की कीमतें गिरकर 65 डॉलर प्रति बैरल हुईं\"* (Oil falls to $65) → **Positive** (India is an oil importer)\n- *\"भारतीय रिजर्व बैंक ने रेपो रेट में कटौती की\"* (RBI cuts repo rate) → **Positive** (stimulates growth)\n- *\"रुपया डॉलर के मुकाबले कमजोर हुआ\"* (Rupee weakens vs dollar) → **Negative** (hurts imports)\n\nPart of the FLAME2 family.\n\n---"
+    }
+   },
+   {
+    "id": "martin-mwiti/whisper-small-hi-lora-r32-alpha64-20241231::2",
+    "score": 0.8762905,
+    "metadata": {
+     "base_model": "openai/whisper-small",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "martin-mwiti/whisper-small-hi-lora-r32-alpha64-20241231",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "direct use",
+     "size_status": "unknown",
+     "task": "automatic-speech-recognition",
+     "text": "This model can be used for transcribing Hindi speech audio files. It is optimized for automatic speech recognition tasks using the Whisper Small model as a base."
+    }
+   },
+   {
+    "id": "convaiinnovations/hindi-embedding-foundational-model::0",
+    "score": 0.876095235,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 26,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "convaiinnovations/hindi-embedding-foundational-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "hindi sentence embeddings model",
+     "size_status": "unknown",
+     "task": "sentence-similarity",
+     "text": "This is a custom state-of-the-art sentence embedding model trained specifically for Hindi text. It leverages an advanced transformer architecture with specialized pooling strategies to create high-quality semantic representations of Hindi sentences."
+    }
+   },
+   {
+    "id": "convaiinnovations/hindi-embedding-model-final::0",
+    "score": 0.876095235,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 27,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "convaiinnovations/hindi-embedding-model-final",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "hindi sentence embeddings model",
+     "size_status": "unknown",
+     "task": "sentence-similarity",
+     "text": "This is a custom state-of-the-art sentence embedding model trained specifically for Hindi text. It leverages an advanced transformer architecture with specialized pooling strategies to create high-quality semantic representations of Hindi sentences."
+    }
+   },
+   {
+    "id": "DeepMostInnovations/hindi-embedding-foundational-model-10B::0",
+    "score": 0.876081407,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 9,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "DeepMostInnovations/hindi-embedding-foundational-model-10B",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "hindi sentence embeddings model",
+     "size_status": "unknown",
+     "task": "sentence-similarity",
+     "text": "This is a custom state-of-the-art sentence embedding model trained specifically for Hindi text. It leverages an advanced transformer architecture with specialized pooling strategies to create high-quality semantic representations of Hindi sentences."
+    }
+   },
+   {
+    "id": "DeepMostInnovations/hindi-embedding-foundational-model::0",
+    "score": 0.876081407,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 19,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "DeepMostInnovations/hindi-embedding-foundational-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "hindi sentence embeddings model",
+     "size_status": "unknown",
+     "task": "sentence-similarity",
+     "text": "This is a custom state-of-the-art sentence embedding model trained specifically for Hindi text. It leverages an advanced transformer architecture with specialized pooling strategies to create high-quality semantic representations of Hindi sentences."
+    }
+   },
+   {
+    "id": "md-ahtisham/hindi-asr-phi4-mm::2",
+    "score": 0.875918627,
+    "metadata": {
+     "base_model": "microsoft/Phi-4-multimodal-instruct",
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 34,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "md-ahtisham/hindi-asr-phi4-mm",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "param_count": 5574460384,
+     "section": "direct use",
+     "size_mb": 22298.14516,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model is intended for **Hindi automatic speech recognition (ASR)** without further fine-tuning. It can be used to transcribe spoken Hindi audio across diverse domains including conversational, instructional, and broadcast speech."
+    }
+   },
+   {
+    "id": "specialv/whisper-small-merged-hi-en::0",
+    "score": 0.875795245,
+    "metadata": {
+     "base_model": "openai/whisper-small",
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 8,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "specialv/whisper-small-merged-hi-en",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "param_count": 241734912,
+     "section": "whisper small - merged hindi & english (task arithmetic)",
+     "size_mb": 966.99508,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model is a bilingual version of OpenAI's Whisper Small, specifically optimized for Hindi transcription while recovering original English capabilities using **Task Arithmetic merging**."
+    }
+   },
+   {
+    "id": "joshuavinith/whisper-small-hindi::1",
+    "score": 0.875349104,
+    "metadata": {
+     "base_model": "openai/whisper-small",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 25,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "joshuavinith/whisper-small-hindi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 241734912,
+     "section": "model description",
+     "size_mb": 966.99508,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model is a domain-adapted version of Whisper-small, fine-tuned for conversational Hindi ASR. The base model was adapted using a carefully engineered utterance-level dataset derived from 104 long-form Hindi recordings. Key contributions include a custom data pipeline, disfluency-aware dataset construction, and a novel lattice-based multi-system consensus evaluation framework.\n\n- **Model type:** Whisper (encoder-decoder Transformer)\n- **Language:** Hindi (hi)\n- **Task:** Automatic Speech Recognition (ASR)\n- **Base model:** openai/whisper-small (244M parameters)\n- **Fine-tuned by:** Joshuva Vinith\n- **License:** MIT\n\n---"
+    }
+   },
+   {
+    "id": "tester3792005/indian_lang_profanity::3",
+    "score": 0.875314236,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 7,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "tester3792005/indian_lang_profanity",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 237557762,
+     "section": "features",
+     "size_mb": 950.254592,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "- Supports Hindi, English, Hinglish, and other Indic languages\n- Handles code-mixed text\n- Suitable for content moderation and safety filtering\n- Works with Hugging Face pipeline\n- Can be used offline if model files are stored locally"
+    }
+   },
+   {
+    "id": "nashit93/EnglishToHindiTranslationLongContext::1",
+    "score": 0.875256598,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "nashit93/EnglishToHindiTranslationLongContext",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "model overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "- **Base Model**: Adapted from Google's mT5-small models\n- **Language Pair**: English to Hindi\n- **Training Data**: Large-scale, diverse dataset ensuring nuanced translation\n- **Features**: Customized tokenizer, handling of long sentences, and attention mechanisms for context preservation"
+    }
+   },
+   {
+    "id": "anuragwagh0/hinglish-minilm::0",
+    "score": 0.875203192,
+    "metadata": {
+     "base_model": "sentence-transformers/all-MiniLM-L6-v2",
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 467,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "anuragwagh0/hinglish-minilm",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "param_count": 22713216,
+     "section": "hinglish-minilm",
+     "size_mb": 90.864192,
+     "size_status": "known",
+     "task": "sentence-similarity",
+     "text": "This is a **Hinglish (Hindi-English)** sentence embedding model.\nIt maps \"Hinglish\" queries (e.g., *\"Paise transfer karne hai\"*) to their English semantic equivalents (e.g., *\"Money Transfer\"*).\n\nIt is designed for Indian developers building **Search Engines**, **Chatbots**, or **Recommendation Systems** for India."
+    }
+   },
+   {
+    "id": "zindagi-technologies/whisper-small-hindi::0",
+    "score": 0.874664128,
+    "metadata": {
+     "base_model": "openai/whisper-small",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 101,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "zindagi-technologies/whisper-small-hindi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 241734912,
+     "section": "whisper-small-hindi — `openai/whisper-small` fine-tuned for hindi asr on ai4bharat kathbath",
+     "size_mb": 966.99508,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "**Publisher**: Zindagi Technologies Pvt Ltd, New Delhi · **Model card version**: 1.3 (2026-09-03)\n**Public location**: https://huggingface.co/zindagi-technologies/whisper-small-hindi (published 2026-09-03)\n\nThis is OpenAI's open-source `whisper-small` (244 M parameters, Apache-2.0) fully fine-tuned for\nHindi speech-to-text on 134.75 hours of the AI4Bharat Kathbath Hindi corpus. On the held-out Kathbath\nHindi test set the word error rate falls from 97.94% (base model, correctly configured for Hindi)\nto **14.87%**; on the independent FLEURS `hi_in` test set from 80.23% to **19.54%**. Every number\nbelow is derived from a file in the project repository; see *Evaluation* and *Reproducibility*."
+    }
+   },
+   {
+    "id": "peterwei89/whisper-small-hi-new::0",
+    "score": 0.87448287,
+    "metadata": {
+     "base_model": "openai/whisper-small",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 6,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "peterwei89/whisper-small-hi-new",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 241734912,
+     "section": "whisper small hindi - peter wei",
+     "size_mb": 966.99508,
+     "size_status": "known",
+     "task": "automatic-speech-recognition",
+     "text": "This model is a fine-tuned version of openai/whisper-small on the hindi_project1 dataset.\nIt achieves the following results on the evaluation set:\n- Loss: 0.4301\n- Wer: 34.1361"
+    }
+   },
+   {
+    "id": "emonnsl/embed_model::1",
+    "score": 0.874208093,
+    "metadata": {
+     "base_model": "l3cube-pune/bengali-sentence-similarity-sbert",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 15,
+     "language_status": "known",
+     "languages": [
+      "bn",
+      "as",
+      "gu",
+      "hi",
+      "kn",
+      "ml",
+      "mr",
+      "or",
+      "pa",
+      "ta",
+      "te"
+     ],
+     "lineage_status": "known",
+     "model_id": "emonnsl/embed_model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 237556224,
+     "section": "model description",
+     "size_mb": 950.247272,
+     "size_status": "known",
+     "task": "sentence-similarity",
+     "text": "- **Model Type:** Sentence Transformer\n- **Base model:** l3cube-pune/bengali-sentence-similarity-sbert\n- **Maximum Sequence Length:** 512 tokens\n- **Output Dimensionality:** 768 tokens\n- **Similarity Function:** Cosine Similarity\n- **Training Dataset:**\n    - Divyanshu/indicxnli\n- **Languages:** bn, as, gu, hi, kn, ml, mr, or, pa, ta, te\n- **License:** apache-2.0"
+    }
+   },
+   {
+    "id": "alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-16384::0",
+    "score": 0.874105334,
+    "metadata": {
+     "base_model": "sentence-transformers/clip-ViT-B-32-multilingual-v1",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 10,
+     "language_status": "known",
+     "languages": [
+      "gu"
+     ],
+     "lineage_status": "known",
+     "model_id": "alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-16384",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 55504896,
+     "section": "clip-vit-b-32-multilingual-v1-gu-16384",
+     "size_mb": 222.030624,
+     "size_status": "known",
+     "task": "sentence-similarity",
+     "text": "This model is a smaller version of sentence-transformers/clip-ViT-B-32-multilingual-v1 optimized for **Gujarati** language via vocabulary size reduction using the trimming method.\nThis trimmed model should perform similarly to the original model with only 16,384 tokens and a much smaller memory footprint. However, it may not perform well for other languages as tokens not commonly used in the selected languages were removed from the vocabulary."
+    }
+   },
+   {
+    "id": "tabularisai/robust-sentiment-analysis::1",
+    "score": 0.874038517,
+    "metadata": {
+     "base_model": "distilbert/distilbert-base-uncased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 882,
+     "language_status": "known",
+     "languages": [
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "tabularisai/robust-sentiment-analysis",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 66957317,
+     "section": "model details",
+     "size_mb": 267.841796,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "- **Model Name:** tabularisai/robust-sentiment-analysis\n- **Base Model:** distilbert/distilbert-base-uncased\n- **Task:** Text Classification (Sentiment Analysis)\n- **Language:** English\n- **Number of Classes:** 5 (*Very Negative, Negative, Neutral, Positive, Very Positive*)\n- **Usage:**\n  - Social media analysis\n  - Customer feedback analysis\n  - Product reviews classification\n  - Brand monitoring\n  - Market research\n  - Customer service optimization\n  - Competitive intelligence"
+    }
+   },
+   {
+    "id": "tahamueed23/roman-urdu-sentiment::1",
+    "score": 0.873860955,
+    "metadata": {
+     "base_model": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 19,
+     "language_status": "known",
+     "languages": [
+      "ur"
+     ],
+     "lineage_status": "known",
+     "model_id": "tahamueed23/roman-urdu-sentiment",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "📌 model description",
+     "size_mb": 1112.208084,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This model is a fine-tuned version of `xlm-roberta-base` specifically trained for **sentiment analysis of Roman Urdu text** — the Latin-script transliteration of Urdu widely used in Pakistani social media, messaging, and informal writing.\n\nThe model was trained on a real-world dataset of **student feedback** collected from Pakistani educational institutions, covering opinions on teachers, courses, classroom environment, and academic experiences. It is designed to be robust to:\n\n- Highly variable Roman Urdu spelling (e.g. `acha` / `accha` / `achha` / `achi`)\n- Code-mixed sentences with occasional English words\n- Informal, noisy, social-media-style writing\n- Short, context-sparse feedback phrases"
+    }
+   }
+  ],
+  "candidates": [
+   {
+    "model_id": "ShivamSharma8168/hindi-sentiment-model",
+    "score": 0.479001,
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 8,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "ShivamSharma8168/hindi-sentiment-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "🇮🇳 hindi sentiment analysis model",
+     "size_mb": 1112.208084,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This repository contains a fine-tuned Hindi Sentiment Analysis model built using the HuggingFace Transformers library.\nIt predicts sentiment for Hindi text and classifies it into:\n\n- **Positive**\n- **Neutral**\n- **Negative**\n\nThis model is suitable for Hindi tweets, reviews, comments, and general Hindi language sentiment tasks.\n\n---"
+    },
+    "chunks": [
+     {
+      "id": "ShivamSharma8168/hindi-sentiment-model::0",
+      "score": 0.479001,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 8,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "ShivamSharma8168/hindi-sentiment-model",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 278045955,
+       "section": "🇮🇳 hindi sentiment analysis model",
+       "size_mb": 1112.208084,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "This repository contains a fine-tuned Hindi Sentiment Analysis model built using the HuggingFace Transformers library.\nIt predicts sentiment for Hindi text and classifies it into:\n\n- **Positive**\n- **Neutral**\n- **Negative**\n\nThis model is suitable for Hindi tweets, reviews, comments, and general Hindi language sentiment tasks.\n\n---"
+      },
+      "retrieval_score": 0.895347238
+     },
+     {
+      "id": "ShivamSharma8168/hindi-sentiment-model::2",
+      "score": 0.1664043,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 8,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "ShivamSharma8168/hindi-sentiment-model",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 278045955,
+       "section": "🧠 intended usage",
+       "size_mb": 1112.208084,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "You can use this model for:\n\n- Hindi sentiment analysis\n- Social media monitoring\n- Review classification\n- Feedback analysis\n- Tweet polarity detection\n\n---"
+      },
+      "retrieval_score": 0.892760336
+     },
+     {
+      "id": "ShivamSharma8168/hindi-sentiment-model::1",
+      "score": 0.03155902,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 8,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "ShivamSharma8168/hindi-sentiment-model",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 278045955,
+       "section": "🚀 model overview",
+       "size_mb": 1112.208084,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "- **Model type:** Sequence Classification\n- **Base model:** Multilingual Transformer\n- **Framework:** HuggingFace Transformers\n- **Language:** Hindi (hi)\n- **Task:** Sentiment Classification\n\nThis model was fine-tuned using a labeled Hindi dataset containing user-generated text such as tweets/comments.\n\n---"
+      },
+      "retrieval_score": 0.885447264
+     }
+    ]
+   },
+   {
+    "model_id": "vashuag/HindiEmotion",
+    "score": 0.37834427,
+    "meta": {
+     "base_model": "ai4bharat/indic-bert",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 137,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "vashuag/HindiEmotion",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 33448967,
+     "section": "overview",
+     "size_mb": 133.799332,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "Explanation\nThis model processes Hindi text and applies powerful machine learning strategies to classify emotions effectively. For example, when given the input \"बिजली जल्दी आ गई, बहुत शुक्रिया\" (translated as \"The electricity came quickly, thank you\"), it produces scores that indicate the likelihood of various emotions. In this case, the model suggests a strong presence of joy (about 76%) while also noting some neutral and sadness scores.\n\nBy leveraging datasets such as google_go_emotions_hindi_translated, the model learns from diverse emotional expressions in Hindi, ensuring it can handle a variety of contexts effectively. The comprehensive metrics, including precision, recall, and F1 scores, confirm its reliability for practical applications in areas like sentiment analysis and customer feedback. This functionality enables users to better understand emotional subtleties in Hindi communications.\n\nusage: |\n  ```python\n  from transformers import pipeline\n\n  # Load the model pipeline\n  emotion_model = pipeline(\"text-classification\", model=\"vashuag/HindiEmotion\", return_all_scores=True)\n\n  # Example prediction\n  text = \"आप बहुत अच्छे हैं\"  # Translation: \"You are very good.\"\n  predictions = emotion_model(text)\n  print(predictions)"
+    },
+    "chunks": [
+     {
+      "id": "vashuag/HindiEmotion::1",
+      "score": 0.37834427,
+      "metadata": {
+       "base_model": "ai4bharat/indic-bert",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 137,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "en"
+       ],
+       "lineage_status": "known",
+       "model_id": "vashuag/HindiEmotion",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 33448967,
+       "section": "overview",
+       "size_mb": 133.799332,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "Explanation\nThis model processes Hindi text and applies powerful machine learning strategies to classify emotions effectively. For example, when given the input \"बिजली जल्दी आ गई, बहुत शुक्रिया\" (translated as \"The electricity came quickly, thank you\"), it produces scores that indicate the likelihood of various emotions. In this case, the model suggests a strong presence of joy (about 76%) while also noting some neutral and sadness scores.\n\nBy leveraging datasets such as google_go_emotions_hindi_translated, the model learns from diverse emotional expressions in Hindi, ensuring it can handle a variety of contexts effectively. The comprehensive metrics, including precision, recall, and F1 scores, confirm its reliability for practical applications in areas like sentiment analysis and customer feedback. This functionality enables users to better understand emotional subtleties in Hindi communications.\n\nusage: |\n  ```python\n  from transformers import pipeline\n\n  # Load the model pipeline\n  emotion_model = pipeline(\"text-classification\", model=\"vashuag/HindiEmotion\", return_all_scores=True)\n\n  # Example prediction\n  text = \"आप बहुत अच्छे हैं\"  # Translation: \"You are very good.\"\n  predictions = emotion_model(text)\n  print(predictions)"
+      },
+      "retrieval_score": 0.880879
+     }
+    ]
+   },
+   {
+    "model_id": "LondonStory/txlm-roberta-hindi-sentiment",
+    "score": 0.18417984,
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 26,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "LondonStory/txlm-roberta-hindi-sentiment",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "description of the model and the training data",
+     "size_mb": 1112.255469,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "`txlm-roberta-hindi-sentiment` is a Hindi language sentiment classifier model (in Devanagari script) which is trained on a publicly available Hindi language dataset. See the GitHub source of the dataset HERE.\n\nThe training, testing and validation datasets consist of 6807, 1634 and 635 numbers of labelled Hindi language examples respectively.\n\nThe trained model shows a weighted average macro F1-score of 0.89 (please see the confusion matrix in the Google Colab notebook below)."
+    },
+    "chunks": [
+     {
+      "id": "LondonStory/txlm-roberta-hindi-sentiment::1",
+      "score": 0.18417984,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 26,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "LondonStory/txlm-roberta-hindi-sentiment",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "description of the model and the training data",
+       "size_mb": 1112.255469,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "`txlm-roberta-hindi-sentiment` is a Hindi language sentiment classifier model (in Devanagari script) which is trained on a publicly available Hindi language dataset. See the GitHub source of the dataset HERE.\n\nThe training, testing and validation datasets consist of 6807, 1634 and 635 numbers of labelled Hindi language examples respectively.\n\nThe trained model shows a weighted average macro F1-score of 0.89 (please see the confusion matrix in the Google Colab notebook below)."
+      },
+      "retrieval_score": 0.880073309
+     }
+    ]
+   },
+   {
+    "model_id": "marshal-yash/gujlish-sentiment-analysis",
+    "score": 0.100524865,
+    "meta": {
+     "base_model": "google/muril-base-cased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 10,
+     "language_status": "known",
+     "languages": [
+      "gu",
+      "en",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "marshal-yash/gujlish-sentiment-analysis",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 237558531,
+     "section": "gujlish & hinglish sentiment analysis model (muril fine-tuned)",
+     "size_mb": 950.257668,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This model is a fine-tuned version of google/muril-base-cased trained on a custom synthetic dataset of **150,000 code-mixed samples**. It is designed to detect sentiment (Positive, Negative, Neutral) in Indian languages, specifically handling **Code-Switching** (mixing Gujarati/Hindi with English)."
+    },
+    "chunks": [
+     {
+      "id": "marshal-yash/gujlish-sentiment-analysis::0",
+      "score": 0.100524865,
+      "metadata": {
+       "base_model": "google/muril-base-cased",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 10,
+       "language_status": "known",
+       "languages": [
+        "gu",
+        "en",
+        "hi"
+       ],
+       "lineage_status": "known",
+       "model_id": "marshal-yash/gujlish-sentiment-analysis",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 237558531,
+       "section": "gujlish & hinglish sentiment analysis model (muril fine-tuned)",
+       "size_mb": 950.257668,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "This model is a fine-tuned version of google/muril-base-cased trained on a custom synthetic dataset of **150,000 code-mixed samples**. It is designed to detect sentiment (Positive, Negative, Neutral) in Indian languages, specifically handling **Code-Switching** (mixing Gujarati/Hindi with English)."
+      },
+      "retrieval_score": 0.882404923
+     },
+     {
+      "id": "marshal-yash/gujlish-sentiment-analysis::2",
+      "score": 0.013480103,
+      "metadata": {
+       "base_model": "google/muril-base-cased",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 10,
+       "language_status": "known",
+       "languages": [
+        "gu",
+        "en",
+        "hi"
+       ],
+       "lineage_status": "known",
+       "model_id": "marshal-yash/gujlish-sentiment-analysis",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 237558531,
+       "section": "intended use",
+       "size_mb": 950.257668,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "This model is ideal for:\n* Analyzing social media comments (YouTube, Instagram) in India.\n* Processing audio transcriptions from mixed-language conversations.\n* Customer feedback analysis for Indian apps."
+      },
+      "retrieval_score": 0.890322804
+     }
+    ]
+   },
+   {
+    "model_id": "shae2977/xlm-roberta-hinglish-sentiment-analysis",
+    "score": 0.07094483,
+    "meta": {
+     "base_model": "FacebookAI/xlm-roberta-base",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 92,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "shae2977/xlm-roberta-hinglish-sentiment-analysis",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "xlm-roberta hinglish sentiment analysis",
+     "size_mb": 1112.20806,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "A fine-tuned XLM-RoBERTa model for sentiment classification of Hinglish text — the code-mixed Hindi-English language used by hundreds of millions of Indians online.\n\nMost sentiment models are trained on clean English or formal Hindi. They fail badly on Hinglish because it is neither; it is a fluid mix of both, written in Roman script, full of slang, abbreviations, and cultural references. This model is trained specifically to handle that."
+    },
+    "chunks": [
+     {
+      "id": "shae2977/xlm-roberta-hinglish-sentiment-analysis::0",
+      "score": 0.07094483,
+      "metadata": {
+       "base_model": "FacebookAI/xlm-roberta-base",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 92,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "en"
+       ],
+       "lineage_status": "known",
+       "model_id": "shae2977/xlm-roberta-hinglish-sentiment-analysis",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 278045955,
+       "section": "xlm-roberta hinglish sentiment analysis",
+       "size_mb": 1112.20806,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "A fine-tuned XLM-RoBERTa model for sentiment classification of Hinglish text — the code-mixed Hindi-English language used by hundreds of millions of Indians online.\n\nMost sentiment models are trained on clean English or formal Hindi. They fail badly on Hinglish because it is neither; it is a fluid mix of both, written in Roman script, full of slang, abbreviations, and cultural references. This model is trained specifically to handle that."
+      },
+      "retrieval_score": 0.876984239
+     }
+    ]
+   }
+  ],
+  "results": [
+   {
+    "model_id": "ShivamSharma8168/hindi-sentiment-model",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 8,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "ShivamSharma8168/hindi-sentiment-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "🇮🇳 hindi sentiment analysis model",
+     "size_mb": 1112.208084,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This repository contains a fine-tuned Hindi Sentiment Analysis model built using the HuggingFace Transformers library.\nIt predicts sentiment for Hindi text and classifies it into:\n\n- **Positive**\n- **Neutral**\n- **Negative**\n\nThis model is suitable for Hindi tweets, reviews, comments, and general Hindi language sentiment tasks.\n\n---"
+    },
+    "chunks": [
+     {
+      "id": "ShivamSharma8168/hindi-sentiment-model::0",
+      "score": 0.479001,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 8,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "ShivamSharma8168/hindi-sentiment-model",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 278045955,
+       "section": "🇮🇳 hindi sentiment analysis model",
+       "size_mb": 1112.208084,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "This repository contains a fine-tuned Hindi Sentiment Analysis model built using the HuggingFace Transformers library.\nIt predicts sentiment for Hindi text and classifies it into:\n\n- **Positive**\n- **Neutral**\n- **Negative**\n\nThis model is suitable for Hindi tweets, reviews, comments, and general Hindi language sentiment tasks.\n\n---"
+      },
+      "retrieval_score": 0.895347238
+     },
+     {
+      "id": "ShivamSharma8168/hindi-sentiment-model::2",
+      "score": 0.1664043,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 8,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "ShivamSharma8168/hindi-sentiment-model",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 278045955,
+       "section": "🧠 intended usage",
+       "size_mb": 1112.208084,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "You can use this model for:\n\n- Hindi sentiment analysis\n- Social media monitoring\n- Review classification\n- Feedback analysis\n- Tweet polarity detection\n\n---"
+      },
+      "retrieval_score": 0.892760336
+     },
+     {
+      "id": "ShivamSharma8168/hindi-sentiment-model::1",
+      "score": 0.03155902,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 8,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "ShivamSharma8168/hindi-sentiment-model",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 278045955,
+       "section": "🚀 model overview",
+       "size_mb": 1112.208084,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "- **Model type:** Sequence Classification\n- **Base model:** Multilingual Transformer\n- **Framework:** HuggingFace Transformers\n- **Language:** Hindi (hi)\n- **Task:** Sentiment Classification\n\nThis model was fine-tuned using a labeled Hindi dataset containing user-generated text such as tweets/comments.\n\n---"
+      },
+      "retrieval_score": 0.885447264
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "size": "fail",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "vashuag/HindiEmotion",
+    "meta": {
+     "base_model": "ai4bharat/indic-bert",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 137,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "vashuag/HindiEmotion",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 33448967,
+     "section": "overview",
+     "size_mb": 133.799332,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "Explanation\nThis model processes Hindi text and applies powerful machine learning strategies to classify emotions effectively. For example, when given the input \"बिजली जल्दी आ गई, बहुत शुक्रिया\" (translated as \"The electricity came quickly, thank you\"), it produces scores that indicate the likelihood of various emotions. In this case, the model suggests a strong presence of joy (about 76%) while also noting some neutral and sadness scores.\n\nBy leveraging datasets such as google_go_emotions_hindi_translated, the model learns from diverse emotional expressions in Hindi, ensuring it can handle a variety of contexts effectively. The comprehensive metrics, including precision, recall, and F1 scores, confirm its reliability for practical applications in areas like sentiment analysis and customer feedback. This functionality enables users to better understand emotional subtleties in Hindi communications.\n\nusage: |\n  ```python\n  from transformers import pipeline\n\n  # Load the model pipeline\n  emotion_model = pipeline(\"text-classification\", model=\"vashuag/HindiEmotion\", return_all_scores=True)\n\n  # Example prediction\n  text = \"आप बहुत अच्छे हैं\"  # Translation: \"You are very good.\"\n  predictions = emotion_model(text)\n  print(predictions)"
+    },
+    "chunks": [
+     {
+      "id": "vashuag/HindiEmotion::1",
+      "score": 0.37834427,
+      "metadata": {
+       "base_model": "ai4bharat/indic-bert",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 137,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "en"
+       ],
+       "lineage_status": "known",
+       "model_id": "vashuag/HindiEmotion",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 33448967,
+       "section": "overview",
+       "size_mb": 133.799332,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "Explanation\nThis model processes Hindi text and applies powerful machine learning strategies to classify emotions effectively. For example, when given the input \"बिजली जल्दी आ गई, बहुत शुक्रिया\" (translated as \"The electricity came quickly, thank you\"), it produces scores that indicate the likelihood of various emotions. In this case, the model suggests a strong presence of joy (about 76%) while also noting some neutral and sadness scores.\n\nBy leveraging datasets such as google_go_emotions_hindi_translated, the model learns from diverse emotional expressions in Hindi, ensuring it can handle a variety of contexts effectively. The comprehensive metrics, including precision, recall, and F1 scores, confirm its reliability for practical applications in areas like sentiment analysis and customer feedback. This functionality enables users to better understand emotional subtleties in Hindi communications.\n\nusage: |\n  ```python\n  from transformers import pipeline\n\n  # Load the model pipeline\n  emotion_model = pipeline(\"text-classification\", model=\"vashuag/HindiEmotion\", return_all_scores=True)\n\n  # Example prediction\n  text = \"आप बहुत अच्छे हैं\"  # Translation: \"You are very good.\"\n  predictions = emotion_model(text)\n  print(predictions)"
+      },
+      "retrieval_score": 0.880879
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "size": "pass",
+     "commercial": "pass"
+    },
+    "overall": "pass",
+    "notes": []
+   },
+   {
+    "model_id": "LondonStory/txlm-roberta-hindi-sentiment",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 26,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "LondonStory/txlm-roberta-hindi-sentiment",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "description of the model and the training data",
+     "size_mb": 1112.255469,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "`txlm-roberta-hindi-sentiment` is a Hindi language sentiment classifier model (in Devanagari script) which is trained on a publicly available Hindi language dataset. See the GitHub source of the dataset HERE.\n\nThe training, testing and validation datasets consist of 6807, 1634 and 635 numbers of labelled Hindi language examples respectively.\n\nThe trained model shows a weighted average macro F1-score of 0.89 (please see the confusion matrix in the Google Colab notebook below)."
+    },
+    "chunks": [
+     {
+      "id": "LondonStory/txlm-roberta-hindi-sentiment::1",
+      "score": 0.18417984,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 26,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "LondonStory/txlm-roberta-hindi-sentiment",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "description of the model and the training data",
+       "size_mb": 1112.255469,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "`txlm-roberta-hindi-sentiment` is a Hindi language sentiment classifier model (in Devanagari script) which is trained on a publicly available Hindi language dataset. See the GitHub source of the dataset HERE.\n\nThe training, testing and validation datasets consist of 6807, 1634 and 635 numbers of labelled Hindi language examples respectively.\n\nThe trained model shows a weighted average macro F1-score of 0.89 (please see the confusion matrix in the Google Colab notebook below)."
+      },
+      "retrieval_score": 0.880073309
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "size": "fail",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "marshal-yash/gujlish-sentiment-analysis",
+    "meta": {
+     "base_model": "google/muril-base-cased",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 10,
+     "language_status": "known",
+     "languages": [
+      "gu",
+      "en",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "marshal-yash/gujlish-sentiment-analysis",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 237558531,
+     "section": "gujlish & hinglish sentiment analysis model (muril fine-tuned)",
+     "size_mb": 950.257668,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This model is a fine-tuned version of google/muril-base-cased trained on a custom synthetic dataset of **150,000 code-mixed samples**. It is designed to detect sentiment (Positive, Negative, Neutral) in Indian languages, specifically handling **Code-Switching** (mixing Gujarati/Hindi with English)."
+    },
+    "chunks": [
+     {
+      "id": "marshal-yash/gujlish-sentiment-analysis::0",
+      "score": 0.100524865,
+      "metadata": {
+       "base_model": "google/muril-base-cased",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 10,
+       "language_status": "known",
+       "languages": [
+        "gu",
+        "en",
+        "hi"
+       ],
+       "lineage_status": "known",
+       "model_id": "marshal-yash/gujlish-sentiment-analysis",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 237558531,
+       "section": "gujlish & hinglish sentiment analysis model (muril fine-tuned)",
+       "size_mb": 950.257668,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "This model is a fine-tuned version of google/muril-base-cased trained on a custom synthetic dataset of **150,000 code-mixed samples**. It is designed to detect sentiment (Positive, Negative, Neutral) in Indian languages, specifically handling **Code-Switching** (mixing Gujarati/Hindi with English)."
+      },
+      "retrieval_score": 0.882404923
+     },
+     {
+      "id": "marshal-yash/gujlish-sentiment-analysis::2",
+      "score": 0.013480103,
+      "metadata": {
+       "base_model": "google/muril-base-cased",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 10,
+       "language_status": "known",
+       "languages": [
+        "gu",
+        "en",
+        "hi"
+       ],
+       "lineage_status": "known",
+       "model_id": "marshal-yash/gujlish-sentiment-analysis",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 237558531,
+       "section": "intended use",
+       "size_mb": 950.257668,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "This model is ideal for:\n* Analyzing social media comments (YouTube, Instagram) in India.\n* Processing audio transcriptions from mixed-language conversations.\n* Customer feedback analysis for Indian apps."
+      },
+      "retrieval_score": 0.890322804
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "size": "fail",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "shae2977/xlm-roberta-hinglish-sentiment-analysis",
+    "meta": {
+     "base_model": "FacebookAI/xlm-roberta-base",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 92,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "shae2977/xlm-roberta-hinglish-sentiment-analysis",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "xlm-roberta hinglish sentiment analysis",
+     "size_mb": 1112.20806,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "A fine-tuned XLM-RoBERTa model for sentiment classification of Hinglish text — the code-mixed Hindi-English language used by hundreds of millions of Indians online.\n\nMost sentiment models are trained on clean English or formal Hindi. They fail badly on Hinglish because it is neither; it is a fluid mix of both, written in Roman script, full of slang, abbreviations, and cultural references. This model is trained specifically to handle that."
+    },
+    "chunks": [
+     {
+      "id": "shae2977/xlm-roberta-hinglish-sentiment-analysis::0",
+      "score": 0.07094483,
+      "metadata": {
+       "base_model": "FacebookAI/xlm-roberta-base",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 92,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "en"
+       ],
+       "lineage_status": "known",
+       "model_id": "shae2977/xlm-roberta-hinglish-sentiment-analysis",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 278045955,
+       "section": "xlm-roberta hinglish sentiment analysis",
+       "size_mb": 1112.20806,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "A fine-tuned XLM-RoBERTa model for sentiment classification of Hinglish text — the code-mixed Hindi-English language used by hundreds of millions of Indians online.\n\nMost sentiment models are trained on clean English or formal Hindi. They fail badly on Hinglish because it is neither; it is a fluid mix of both, written in Roman script, full of slang, abbreviations, and cultural references. This model is trained specifically to handle that."
+      },
+      "retrieval_score": 0.876984239
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "size": "fail",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   }
+  ],
+  "closest": [
+   {
+    "model_id": "ShivamSharma8168/hindi-sentiment-model",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 8,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "ShivamSharma8168/hindi-sentiment-model",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278045955,
+     "section": "🇮🇳 hindi sentiment analysis model",
+     "size_mb": 1112.208084,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "This repository contains a fine-tuned Hindi Sentiment Analysis model built using the HuggingFace Transformers library.\nIt predicts sentiment for Hindi text and classifies it into:\n\n- **Positive**\n- **Neutral**\n- **Negative**\n\nThis model is suitable for Hindi tweets, reviews, comments, and general Hindi language sentiment tasks.\n\n---"
+    },
+    "chunks": [
+     {
+      "id": "ShivamSharma8168/hindi-sentiment-model::0",
+      "score": 0.479001,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 8,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "ShivamSharma8168/hindi-sentiment-model",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 278045955,
+       "section": "🇮🇳 hindi sentiment analysis model",
+       "size_mb": 1112.208084,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "This repository contains a fine-tuned Hindi Sentiment Analysis model built using the HuggingFace Transformers library.\nIt predicts sentiment for Hindi text and classifies it into:\n\n- **Positive**\n- **Neutral**\n- **Negative**\n\nThis model is suitable for Hindi tweets, reviews, comments, and general Hindi language sentiment tasks.\n\n---"
+      },
+      "retrieval_score": 0.895347238
+     },
+     {
+      "id": "ShivamSharma8168/hindi-sentiment-model::2",
+      "score": 0.1664043,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 8,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "ShivamSharma8168/hindi-sentiment-model",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 278045955,
+       "section": "🧠 intended usage",
+       "size_mb": 1112.208084,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "You can use this model for:\n\n- Hindi sentiment analysis\n- Social media monitoring\n- Review classification\n- Feedback analysis\n- Tweet polarity detection\n\n---"
+      },
+      "retrieval_score": 0.892760336
+     },
+     {
+      "id": "ShivamSharma8168/hindi-sentiment-model::1",
+      "score": 0.03155902,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 8,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "ShivamSharma8168/hindi-sentiment-model",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 278045955,
+       "section": "🚀 model overview",
+       "size_mb": 1112.208084,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "- **Model type:** Sequence Classification\n- **Base model:** Multilingual Transformer\n- **Framework:** HuggingFace Transformers\n- **Language:** Hindi (hi)\n- **Task:** Sentiment Classification\n\nThis model was fine-tuned using a labeled Hindi dataset containing user-generated text such as tweets/comments.\n\n---"
+      },
+      "retrieval_score": 0.885447264
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "size": "fail",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "vashuag/HindiEmotion",
+    "meta": {
+     "base_model": "ai4bharat/indic-bert",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 137,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "vashuag/HindiEmotion",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 33448967,
+     "section": "overview",
+     "size_mb": 133.799332,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "Explanation\nThis model processes Hindi text and applies powerful machine learning strategies to classify emotions effectively. For example, when given the input \"बिजली जल्दी आ गई, बहुत शुक्रिया\" (translated as \"The electricity came quickly, thank you\"), it produces scores that indicate the likelihood of various emotions. In this case, the model suggests a strong presence of joy (about 76%) while also noting some neutral and sadness scores.\n\nBy leveraging datasets such as google_go_emotions_hindi_translated, the model learns from diverse emotional expressions in Hindi, ensuring it can handle a variety of contexts effectively. The comprehensive metrics, including precision, recall, and F1 scores, confirm its reliability for practical applications in areas like sentiment analysis and customer feedback. This functionality enables users to better understand emotional subtleties in Hindi communications.\n\nusage: |\n  ```python\n  from transformers import pipeline\n\n  # Load the model pipeline\n  emotion_model = pipeline(\"text-classification\", model=\"vashuag/HindiEmotion\", return_all_scores=True)\n\n  # Example prediction\n  text = \"आप बहुत अच्छे हैं\"  # Translation: \"You are very good.\"\n  predictions = emotion_model(text)\n  print(predictions)"
+    },
+    "chunks": [
+     {
+      "id": "vashuag/HindiEmotion::1",
+      "score": 0.37834427,
+      "metadata": {
+       "base_model": "ai4bharat/indic-bert",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 137,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "en"
+       ],
+       "lineage_status": "known",
+       "model_id": "vashuag/HindiEmotion",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 33448967,
+       "section": "overview",
+       "size_mb": 133.799332,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "Explanation\nThis model processes Hindi text and applies powerful machine learning strategies to classify emotions effectively. For example, when given the input \"बिजली जल्दी आ गई, बहुत शुक्रिया\" (translated as \"The electricity came quickly, thank you\"), it produces scores that indicate the likelihood of various emotions. In this case, the model suggests a strong presence of joy (about 76%) while also noting some neutral and sadness scores.\n\nBy leveraging datasets such as google_go_emotions_hindi_translated, the model learns from diverse emotional expressions in Hindi, ensuring it can handle a variety of contexts effectively. The comprehensive metrics, including precision, recall, and F1 scores, confirm its reliability for practical applications in areas like sentiment analysis and customer feedback. This functionality enables users to better understand emotional subtleties in Hindi communications.\n\nusage: |\n  ```python\n  from transformers import pipeline\n\n  # Load the model pipeline\n  emotion_model = pipeline(\"text-classification\", model=\"vashuag/HindiEmotion\", return_all_scores=True)\n\n  # Example prediction\n  text = \"आप बहुत अच्छे हैं\"  # Translation: \"You are very good.\"\n  predictions = emotion_model(text)\n  print(predictions)"
+      },
+      "retrieval_score": 0.880879
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "size": "pass",
+     "commercial": "pass"
+    },
+    "overall": "pass",
+    "notes": []
+   },
+   {
+    "model_id": "LondonStory/txlm-roberta-hindi-sentiment",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 26,
+     "language_status": "known",
+     "languages": [
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "LondonStory/txlm-roberta-hindi-sentiment",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "description of the model and the training data",
+     "size_mb": 1112.255469,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "`txlm-roberta-hindi-sentiment` is a Hindi language sentiment classifier model (in Devanagari script) which is trained on a publicly available Hindi language dataset. See the GitHub source of the dataset HERE.\n\nThe training, testing and validation datasets consist of 6807, 1634 and 635 numbers of labelled Hindi language examples respectively.\n\nThe trained model shows a weighted average macro F1-score of 0.89 (please see the confusion matrix in the Google Colab notebook below)."
+    },
+    "chunks": [
+     {
+      "id": "LondonStory/txlm-roberta-hindi-sentiment::1",
+      "score": 0.18417984,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 26,
+       "language_status": "known",
+       "languages": [
+        "hi"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "LondonStory/txlm-roberta-hindi-sentiment",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "description of the model and the training data",
+       "size_mb": 1112.255469,
+       "size_status": "known",
+       "task": "text-classification",
+       "text": "`txlm-roberta-hindi-sentiment` is a Hindi language sentiment classifier model (in Devanagari script) which is trained on a publicly available Hindi language dataset. See the GitHub source of the dataset HERE.\n\nThe training, testing and validation datasets consist of 6807, 1634 and 635 numbers of labelled Hindi language examples respectively.\n\nThe trained model shows a weighted average macro F1-score of 0.89 (please see the confusion matrix in the Google Colab notebook below)."
+      },
+      "retrieval_score": 0.880073309
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "size": "fail",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   }
+  ],
+  "fully_verified": true,
+  "outcome": "answer"
+ }
+}

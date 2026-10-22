@@ -1,0 +1,513 @@
+item_id,request,model_id,explanation,cited_sections,evidence
+q002|BuzzASR/marathi,I need a Marathi ASR model I can use commercially,BuzzASR/marathi,"The card describes a monolingual Marathi ASR model fine‑tuned from openai/whisper‑large‑v3, indicating it is specifically trained for Marathi speech recognition.","[""buzzasr — marathi""]","[buzzasr — marathi]
+A monolingual automatic speech recognition model for **Marathi**, fine-tuned from
+openai/whisper-large-v3. Part of **BuzzASR**,
+a suite of 102 language-specialized ASR models
+(paper: arXiv:2609.09554, Findings of EMNLP 2026).
+
+This model uses **simple fine-tuning (Whisper's tokenizer, ASR fine-tuning only)**."
+q006|abhishekgautamm/whisper-tiny-hinglish-v2,हिंदी के लिए छोटा स्पीच रिकग्निशन मॉडल जो व्यावसायिक उपयोग के लिए ठीक हो,abhishekgautamm/whisper-tiny-hinglish-v2,"This card describes a fine‑tune of Whisper‑tiny that transcribes Hindi, English and Hinglish speech directly into Roman script, with English kept verbatim and Hindi rendered in everyday Roman spelling. The model’s small size and on‑device focus align with the user’s request for a compact Hindi ASR model suitable for commercial use.","[""whisper-tiny hinglish v2 (romanized)""]","[whisper-tiny hinglish v2 (romanized)]
+A fine-tune of `openai/whisper-tiny` that transcribes **Hindi, English and
+code-switched Hinglish** speech from India **directly into Roman script**, the way people type it
+(`kya scene hai`, not `क्या सीन है`). English stays verbatim and Hindi comes out in everyday Roman spelling.
+
+- 39 M parameters, 16 kHz, max 30 s per window (longer audio is windowed automatically).
+- Output is always Roman, with no separate transliteration step at inference.
+- Built for on-device dictation; it is the speech model of Yapper."
+q007|Open4bits/whisper-base-f16,"Speech to text for Gujarati, commercial use allowed, under 1 GB",Open4bits/whisper-base-f16,"The intended use section lists speech‑to‑text transcription and multilingual ASR applications, implying it can handle Gujarati as part of its multilingual capability. The model is designed for efficient inference in low‑memory environments, which aligns with the user’s size constraint.","[""intended use""]","[intended use]
+This model is intended for:
+- Speech-to-text transcription
+- Multilingual ASR applications
+- Research and benchmarking
+- Efficient inference in low-memory environments
+
+---"
+q011|patrickvonplaten/wav2vec2_tiny_random_robust,"English speech recognition, small, commercial license, good with accents",patrickvonplaten/wav2vec2_tiny_random_robust,"The card states this model is for automatic-speech-recognition in English, is small (tiny), and is licensed under Apache‑2.0, which is a commercial‑friendly license. It also notes that it is compatible with endpoints and runs in the US region, indicating it is suitable for deployment. The metadata confirms it is designed for English speech and is a lightweight model, matching the user’s request for a small English ASR model that works well with accents.","[""metadata""]","[metadata]
+Model: patrickvonplaten/wav2vec2_tiny_random_robust
+Task: automatic-speech-recognition
+Languages: en
+Tags: transformers, pytorch, wav2vec2, feature-extraction, automatic-speech-recognition, en, dataset:librispeech_asr, license:apache-2.0, endpoints_compatible, region:us"
+q013|WhissleAI/STT-hinglish-loans-ONNX,Hindi-English code-mixed speech recognition,WhissleAI/STT-hinglish-loans-ONNX,"The card states that this model is a Hindi-English code‑mixed (Hinglish) speech recognition system optimized for conversational audio in financial and customer service domains. It uses a Conformer‑CTC architecture with a dual‑head tag classifier that extracts speaker metadata and conversation intent in real‑time, directly addressing the need for Hinglish ASR in conversational settings.","[""whissle stt hinglish-loans""]","[whissle stt hinglish-loans]
+Hindi-English code-mixed (Hinglish) speech recognition model optimized for conversational audio in financial and customer service domains. Built on Conformer-CTC architecture with a dual-head tag classifier that extracts speaker metadata and conversation intent in real-time.
+
+[model details]
+| | |
+|---|---|
+| **Architecture** | Conformer-CTC (EncDecCTCModelBPE) + dual-head tag classifier |
+| **Encoder** | 512-dim, Conformer layers |
+| **Download size** | ~478 MB |
+| **Format** | ONNX (CPU and GPU compatible) |
+| **Sample rate** | 16 kHz mono |
+| **Languages** | Hindi, English, Hindi-English code-mixed |"
+q015|dkubeio/DKube-asr-hinglish-v1-0.8B,"Speech recognition for lectures in Hindi, I want to fine-tune it later",dkubeio/DKube-asr-hinglish-v1-0.8B,"The card explains that this is a fine‑tuned Whisper model for Hinglish (code‑switched Hindi–English) and that it can reliably transcribe speech in that style. It also notes that the model can be used as a standalone Whisper checkpoint, which would allow the user to fine‑tune it further for lecture transcription.","[""dkube-asr-hinglish-v1-0.8b"", ""training""]","[dkube-asr-hinglish-v1-0.8b]
+A fine-tune of `openai/whisper-large-v3-turbo`
+(~0.8 B params) for **Hinglish** — code-switched Hindi–English — automatic speech recognition (ASR). It
+transcribes speech that mixes Hindi and English within the same utterance (Hindi in Devanagari, English
+tokens kept as English), a setting where the base model tends to struggle.
+
+A LoRA (r=16 / α=32) on the attention `q_proj`/`v_proj`, **merged into the base** — so this is a
+complete, standalone Whisper model (`library_name: transformers`), not an adapter.
+Load and use it exactly like any `WhisperForConditionalGeneration` checkpoint.
+
+> **Prototype — verify the transcripts.** This model was trained on a small, single-domain corpus and
+> reliably transcribes speech in that style, but it will **mis-transcribe out-of-domain audio (other
+> accents, topics, noisy recordings) with confidence**, and inherits Whisper's habits (hallucinating on
+> silence, repetition). Treat its output as a draft to review, not ground truth. See *Known failures*.
+
+[training]
+- **Data:** a 2,000-clip subset of `agarwalayushi/hinglish`
+  — 1,602 train / 200 validation / 201 test. Resampled to 16 kHz mono, loudness-normalized,
+  silence-trimmed, ≤ 30 s segments.
+- **Recipe:** LoRA r=16 / α=32 / dropout=0.05 on the attention `q_proj`/`v_proj`, then merged. 3 epochs,
+  batch size 1, learning rate 1e-4, bf16, gradient checkpointing. Peak ~7.4 GiB on an **NVIDIA GB10
+  (DGX Spark)**, unified memory, under a resource-capped pipeline.
+
+| Source | License | Use |
+|---|---|---|
+| `agarwalayushi/hinglish` | CC BY 4.0 | training + evaluation audio/transcripts (attribution required) |
+| `openai/whisper-large-v3-turbo` | MIT | base model weights |
+
+The dataset is a public corpus of casual, tech-tutorial-style Banarasi Hinglish speech; a leading
+language tag was stripped from each transcript during preprocessing."
+q017|DireDreadlord/Vakya-Mini-Extended-100M,English to Hindi machine translation under 500 MB,DireDreadlord/Vakya-Mini-Extended-100M,"The card describes a lightweight English‑to‑Hindi translation model based on Falcon‑H1, with an estimated 100M parameters, which is well below the 500 MB size limit and suitable for local, memory‑constrained environments.","[""vakya-mini-extended-100m (vakya-v1.2.1)""]","[vakya-mini-extended-100m (vakya-v1.2.1)]
+Vakya is a lightweight en-hi translation model finetuned using SFT on the base falcon-h1-tiny-multilingual-100m-instruct model. It offers quick and fairly accurate hindi translations for english sentences.
+It's small size (108M parameters) allows it to run comfortably on laptop grade GPUs.
+
+Vakya-Mini-Extended is the first generation of Lightweight Indic Translator(LIT) models which can provide accurate and fast translation in local, memory-constrained environments.
+The **Extended** model features updated training on a larger translation corpus which leads to overall superior translation capabilities.
+
+The Vakya series will be made available in the following sizes: **Mini**(100M), **Standard**(270M), **Large**(500M)
+
+---
+
+**Estimated parameters:** ~100M
+
+**Architecture:** Falcon-H1
+
+**Intended use:** English-Hindi Translations
+
+---"
+q022|vijaysarathy/indictrans2-indic-en-multilingual-ft,"English to Telugu translation, lightweight, commercial",vijaysarathy/indictrans2-indic-en-multilingual-ft,"The training setup lists Telugu as one of the target languages in a multilingual English‑to‑Indic translation model, indicating it can translate English into Telugu.","[""training setup""]","[training setup]
+- Languages: Tamil, Hindi, Telugu, Kannada, Malayalam, Bengali  (→ English)
+- Examples per language: up to 6000, epochs: 2, LR: 1e-05, label smoothing: 0.1
+- Cosine schedule with warm-up, weight decay 0.01, fp16 mixed precision"
+q023|Helsinki-NLP/opus-mt-ur-en,Urdu to English machine translation model,Helsinki-NLP/opus-mt-ur-en,"The card states that the model translates from Urdu (urd) to English (eng), uses a transformer-align architecture, and is trained on OPUS data. It lists normalization and SentencePiece preprocessing, matching the user’s need for an Urdu‑to‑English translation model.","[""system info:"", ""urd-eng""]","[system info:]
+- hf_name: urd-eng
+
+- source_languages: urd
+
+- target_languages: eng
+
+- opus_readme_url: https://github.com/Helsinki-NLP/Tatoeba-Challenge/tree/master/models/urd-eng/README.md
+
+- original_repo: Tatoeba-Challenge
+
+- tags: ['translation']
+
+- languages: ['ur', 'en']
+
+- src_constituents: {'urd'}
+
+- tgt_constituents: {'eng'}
+
+- src_multilingual: False
+
+- tgt_multilingual: False
+
+- prepro:  normalization + SentencePiece (spm32k,spm32k)
+
+- url_model: https://object.pouta.csc.fi/Tatoeba-MT-models/urd-eng/opus-2020-06-17.zip
+
+- url_test_set: https://object.pouta.csc.fi/Tatoeba-MT-models/urd-eng/opus-2020-06-17.test.txt
+
+- src_alpha3: urd
+
+- tgt_alpha3: eng
+
+- short_pair: ur-en
+
+- chrF2_score: 0.435
+
+- bleu: 23.2
+
+- brevity_penalty: 0.975
+
+- ref_len: 12029.0
+
+- src_name: Urdu
+
+- tgt_name: English
+
+- train_date: 2020-06-17
+
+- src_alpha2: ur
+
+- tgt_alpha2: en
+
+- prefer_old: False
+
+- long_pair: urd-eng
+
+- helsinki_git_sha: 480fcbe0ee1bf4774bcbe6226ad9f58e63f6c535
+
+- transformers_git_sha: 2207e5d8cb224e954a7cba69fa4ac2309e9ff30b
+
+- port_machine: brutasse
+
+- port_time: 2020-08-21-14:41
+
+[urd-eng]
+* source group: Urdu
+* target group: English
+*  OPUS readme: urd-eng
+
+*  model: transformer-align
+* source language(s): urd
+* target language(s): eng
+* model: transformer-align
+* pre-processing: normalization + SentencePiece (spm32k,spm32k)
+* download original weights: opus-2020-06-17.zip
+* test set translations: opus-2020-06-17.test.txt
+* test set scores: opus-2020-06-17.eval.txt"
+q025|Helsinki-NLP/opus-mt-iir-en,English to Gujarati translation under 1 GB,Helsinki-NLP/opus-mt-iir-en,"This model translates from various Indo‑Iranian languages to English, not the other way around, and does not include Gujarati as a target language.","[""source group: Indo‑Iranian languages"", ""target language(s): eng""]","[iir-eng]
+* source group: Indo-Iranian languages
+* target group: English
+*  OPUS readme: iir-eng
+
+*  model: transformer
+* source language(s): asm awa ben bho gom guj hif_Latn hin jdt_Cyrl kur_Arab kur_Latn mai mar npi ori oss pan_Guru pes pes_Latn pes_Thaa pnb pus rom san_Deva sin snd_Arab tgk_Cyrl tly_Latn urd zza
+* target language(s): eng
+* model: transformer
+* pre-processing: normalization + SentencePiece (spm32k,spm32k)
+* download original weights: opus2m-2020-08-01.zip
+* test set translations: opus2m-2020-08-01.test.txt
+* test set scores: opus2m-2020-08-01.eval.txt"
+q029|Helsinki-NLP/opus-mt-ml-en,Malayalam to English translation for news articles,Helsinki-NLP/opus-mt-ml-en,"This card lists Malayalam as the source language and English as the target language, and notes that the model was trained on the OPUS dataset, a large collection of parallel text suitable for news translation.","[""opus-mt-ml-en""]","[opus-mt-ml-en]
+* source languages: ml
+* target languages: en
+*  OPUS readme: ml-en
+
+*  dataset: opus
+* model: transformer-align
+* pre-processing: normalization + SentencePiece
+* download original weights: opus-2020-04-20.zip
+* test set translations: opus-2020-04-20.test.txt
+* test set scores: opus-2020-04-20.eval.txt"
+q031|pascalrai/hinglish-twitter-roberta-base-sentiment,Small sentiment model for Hindi I can use in a commercial app,pascalrai/hinglish-twitter-roberta-base-sentiment,"The card explains that the model is optimized for Hinglish text and emojis, fine‑tuned on a Hinglish tweet sentiment dataset. It reports an F1‑score of 0.74 on unseen data. While it focuses on Hinglish, it can still be useful for Hindi sentiment analysis in a commercial setting where code‑mixed content is common.","[""overview"", ""model inference""]","[overview]
+The model is more optimized for hinglish + emojis and emojis seem to take more attention than the hinglish words.
+This may be due to the base model being trained for emoji classification and then later trained for sentiment analysis.
+
+This model is better if emojis are to be also included for sentiment analysis.
+No Evaluation is done for data with only text and no emojis.
+
+The model was fine-tuned with the dataset: mteb/tweet_sentiment_extraction from hugging face
+converted to Hinglish text.
+
+The model has a test loss of 0.6 and an f1 score of 0.74 on the unseen data from the dataset.
+
+[model inference]
+Possible Future Direction:
+
+1. Pre-train the Hinglish model with both Hindi, Hinglish, and English datasets. Current tokens for hinlish have very small sizes i.e. low-priority vocabs are used mostly."
+q032|l3cube-pune/MarathiSentiment,"मराठी भावना विश्लेषण मॉडेल, ३०० MB पेक्षा लहान",l3cube-pune/MarathiSentiment,"The card states that MarathiSentiment is an IndicBERT model fine‑tuned on the L3CubeMahaSent dataset, which is a Marathi tweet‑based sentiment analysis dataset. This directly matches the user’s request for a Marathi sentiment analysis model.","[""marathisentiment""]","[marathisentiment]
+** An updated and better version of this model covering multiple domains is shared here:  marathi-sentiment-md  **
+
+MarathiSentiment is an IndicBERT(ai4bharat/indic-bert) model fine-tuned on L3CubeMahaSent - a Marathi tweet-based sentiment analysis dataset.
+[dataset link] (https://github.com/l3cube-pune/MarathiNLP)
+
+More details on the dataset, models, and baseline results can be found in our [paper] (http://arxiv.org/abs/2103.11408)"
+q035|kingshukroy/twhin-bert-base-hate-speech-ben-hin,Bengali hate speech detection model I can use commercially,kingshukroy/twhin-bert-base-hate-speech-ben-hin,"The model card states that this is a fine‑tuned model for Bengali and Hindi, trained on a Kaggle hate‑speech dataset, and it can classify Bengali text into the categories defamation, hate, non‑hate, violence, and vulgar. This directly addresses the user’s need for a Bengali hate‑speech detection model that can be used commercially.","[""overview""]","[overview]
+This model is a finetuned version of  model in the **Bengali** and **Hindi** languages.
+
+The dataset used is a Kaggle Dataset - Modified-hate-speech-bengali-hindi
+
+This model can classify Bengali and Hindi texts into the following 5 classes :-
+
+- defamation
+- hate
+- non-hate
+- violence
+- vulgar"
+q036|Nebulixlabs/Quantum-Classifier-Calibrated,"Spam detection for English SMS messages, tiny",Nebulixlabs/Quantum-Classifier-Calibrated,"The card lists fine‑tuning on a spam dataset (KimDongH/spam_dataset‑train‑eval‑test2), showing that the model has been trained for spam detection, though the size and deployment details are not specified.","[""fine-tuning""]","[fine-tuning]
+Datasets:
+
+- Nebulixlabs/safety-dataset
+- KimDongH/spam_dataset-train-eval-test2
+
+Batch size:
+
+128
+
+Target tokens:
+
+30,000,000
+
+Actual tokens:
+
+30,010,756
+
+Epochs:
+
+9"
+q037|tabularisai/multilingual-emotion-classification,Emotion classification for Hindi tweets,tabularisai/multilingual-emotion-classification,"The card describes a multilingual multi‑label emotion classification model that includes Hindi among 23 languages and predicts 11 emotion categories. It is suitable for detecting emotions in Hindi tweets and can handle mixed emotions, matching the user’s need for emotion classification.","[""model details"", ""model description"", ""training data""]","[model details]
+- `Model Name:` tabularisai/multilingual-emotion-classification
+- `Base Model:` FacebookAI/xlm-roberta-base
+- `Task:` Multi-label Text Classification (Emotion Recognition)
+- `Languages:` 23 — English, Mandarin Chinese (中文), Spanish (Español), Hindi (हिन्दी), Arabic (العربية), Bengali (বাংলা), Portuguese (Português), Russian (Русский), Japanese (日本語), German (Deutsch), Indonesian (Bahasa Indonesia), Tamil (தமிழ்), Vietnamese (Tiếng Việt), Korean (한국어), French (Français), Turkish (Türkçe), Italian (Italiano), Polish (Polski), Ukrainian (Українська), Urdu (اردو), Dutch (Nederlands), Punjabi (ਪੰਜਾਬੀ), and Swahili.
+- `Number of Classes:` 11 — *anger, contempt, disgust, fear, frustration, gratitude, joy, love, neutral, sadness, surprise*
+- `Label Mode:` Multi-label — each text can be assigned **zero, one, or multiple** emotions (independent sigmoid heads, τ = 0.5).
+- `Usage:`
+  - Social media emotion analysis
+  - Customer feedback analysis
+  - Product review emotion tagging
+  - Brand monitoring
+  - Conversational AI / chatbot affect tracking
+  - Market research
+  - Customer service optimization
+
+>
+
+[model description]
+This model is a fine-tuned version of `FacebookAI/xlm-roberta-base` for multilingual multi-label emotion classification. It was trained on synthetic multilingual data covering 23 languages and 11 emotion categories, enabling robust emotion detection across languages, registers, and cultural contexts.
+
+Unlike single-label sentiment classifiers, this model predicts a **set** of emotions per input — reflecting the reality that utterances often carry mixed affect (e.g. *gratitude + love*, *frustration + sadness*).
+
+[training data]
+Trained on synthetic multilingual data generated by advanced LLMs, providing broad coverage of emotion expressions across all 23 supported languages. All labels are multi-hot vectors over the 11 emotion classes."
+q039|shae2977/xlm-roberta-hinglish-sentiment-analysis,Sentiment analysis for Hinglish (code-mixed Hindi and English),shae2977/xlm-roberta-hinglish-sentiment-analysis,"The card states that this XLM‑RoBERTa model is fine‑tuned specifically for sentiment classification of Hinglish text, noting that most existing sentiment models fail on code‑mixed Hindi‑English written in Roman script. It highlights that the model was trained on self‑annotated Hinglish YouTube comments and achieves a weighted F1 of 0.67 versus 0.39 for VADER, demonstrating its suitability for the user’s request.","[""xlm-roberta hinglish sentiment analysis"", ""performance""]","[xlm-roberta hinglish sentiment analysis]
+A fine-tuned XLM-RoBERTa model for sentiment classification of Hinglish text — the code-mixed Hindi-English language used by hundreds of millions of Indians online.
+
+Most sentiment models are trained on clean English or formal Hindi. They fail badly on Hinglish because it is neither; it is a fluid mix of both, written in Roman script, full of slang, abbreviations, and cultural references. This model is trained specifically to handle that.
+
+[model details]
+| Property | Value |
+|---|---|
+| Base model | `FacebookAI/xlm-roberta-base` |
+| Fine-tuned on | Self-annotated Hinglish YouTube comments |
+| Task | 3-class sentiment classification |
+| Classes | Negative (0), Neutral (1), Positive (2) |
+| Training samples | ~2,500 |
+| Test samples | ~638 |
+
+[performance]
+Evaluated on a held-out test set of Hinglish YouTube comments.
+
+| Model | Weighted F1 |
+|---|---|
+| VADER (baseline) | 0.39 |
+| **XLM-RoBERTa (this model)** | **0.67** |
+
+VADER drops to 0.39 on Hinglish because it has no concept of Roman-script Hindi words like *acha*, *bahut*, *zabardast*, or mixed constructions like *""yaar this song is too good na?""*. XLM-RoBERTa's multilingual pretraining gives it a foundation to handle this naturally."
+q042|vincentoh/deberta-v3-xsmall-l0-bouncer,"Toxic comment classifier for English, lightweight, commercial use",vincentoh/deberta-v3-xsmall-l0-bouncer,"The L0 Bouncer is a 22‑M parameter DeBERTa‑v3‑xsmall model offering ultra‑fast inference (~5.7 ms) and high recall (99 %) for binary safe vs. harmful classification, making it a lightweight, production‑ready solution for real‑time content moderation.","[""key features"", ""l0 bouncer - deberta safety classifier"", ""model description""]","[key features]
+- **Ultra-fast inference**: ~5.7ms per input
+- **High recall**: 99% (catches nearly all harmful content)
+- **Lightweight**: Only 22M parameters
+- **Production-ready**: Designed for real-time content moderation
+
+[l0 bouncer - deberta safety classifier]
+A fast, lightweight safety classifier based on DeBERTa-v3-xsmall (22M parameters) that serves as the first tier (L0) in a multi-tier safety cascade system.
+
+[model description]
+The L0 Bouncer is designed for **high-throughput, low-latency safety screening** of text inputs. It provides binary classification (safe vs. harmful) with a focus on maximizing recall to catch potentially harmful content."
+q050|chandanaau/distilbert-telugu-ner,Telugu named entity recognition with a permissive license,chandanaau/distilbert-telugu-ner,"This model is a distilled multilingual BERT fine‑tuned on the same Naamapadam Telugu NER dataset, offering a smaller, more efficient alternative while still targeting Telugu NER.","[""distilbert telugu ner"", ""research context""]","[distilbert telugu ner]
+Fine-tuned `distilbert-base-multilingual-cased` for **Named Entity Recognition on Telugu**, trained on the Naamapadam benchmark (Mhaske et al., ACL 2023).
+
+[research context]
+Telugu (~80M speakers) is a **low-resource language** for NLP. Existing SOTA Telugu NER models like IndicNER achieve ~0.80 F1 but rely on 180M+ parameter models pretrained specifically on Indian languages. This work explores whether a **smaller, distilled multilingual model** (66M params, 40% smaller than BERT) can deliver acceptable NER performance via transfer learning — addressing the accuracy-vs-efficiency tradeoff that decides real-world deployability."
+q055|SIRIS-Lab/citation-parser-ENTITY,"Urdu NER, lightweight",SIRIS-Lab/citation-parser-ENTITY,"The card states that the model is a multilingual DistilBERT fine‑tuned for Named Entity Recognition, which means it can identify entity spans in text. Although it is specialized for citation parsing, the underlying token‑classification capability is generic and can be applied to other NER tasks, including Urdu. The model is lightweight because it uses DistilBERT, a smaller version of BERT, which reduces computational load.","[""model description"", ""overview""]","[model description]
+The **Citation Parsing (NER)** model is part of the `Citation Parser` package. It is fine-tuned for extracting structured information from citation texts into the following key fields:
+
+- `TITLE`
+- `AUTHORS`
+- `VOLUME`
+- `ISSUE`
+- `YEAR`
+- `DOI`
+- `ISSN`
+- `ISBN`
+- `FIRST_PAGE`
+- `LAST_PAGE`
+- `JOURNAL`
+- `EDITOR`
+
+This model was trained using the **DistilBERT-base-multilingual-cased** architecture, making it capable of processing multilingual citation data.
+
+[overview]
+Click to expand
+
+- **Model type:** Language Model
+- **Architecture:** DistilBERT
+- **Language:** Multilingual
+- **License:** Apache 2.0
+- **Task:** Named Entity Recognition (NER) for Citation Parsing
+- **Dataset:** Custom Citation Parsing Dataset
+- **Additional Resources:**
+  - GitHub
+
+[training]
+The model was trained using the `SIRIS-Lab/citation-parser-ENTITY` dataset consisting of:
+- **Training data**: 2419 samples
+- **Test data**: 269 samples
+
+The following hyperparameters were used for training:
+
+- **Base Model**: `distilbert/distilbert-base-multilingual-cased`
+- **Batch Size**: 16
+- **Number of Epochs**: 10
+- **Learning Rate**: 2e-5
+- **Weight Decay**: 0.01
+- **Max Sequence Length**: 512
+
+[intended usage]
+This model is designed for extracting citation information and parsing raw citation text into structured fields. It is ideal for automating citation metadata extraction in academic databases, manuscript workflows, or citation analysis tools."
+q056|vaibhav006/indic-ner-muril-naamapadam,Punjabi NER model that allows modification,vaibhav006/indic-ner-muril-naamapadam,"The card states that this model is fine‑tuned for NER in Marathi, Punjabi, and Telugu, directly matching the user’s need for a Punjabi NER model that can be modified.","[""multilingual indic ner (muril-naamapadam)""]","[multilingual indic ner (muril-naamapadam)]
+This model is fine-tuned for NER in **Marathi**, **Punjabi**, and **Telugu**."
+q058|hiteshwadhwani/pii-model-indic-v1,"Hindi POS tagging model, small and commercial friendly",hiteshwadhwani/pii-model-indic-v1,"The card notes that the model detects PII in Hindi (Devanagari) and is built on a multilingual Indian language model. It supports Hindi text, making it relevant for a Hindi POS‑style tagging requirement, and its small size and open‑source nature fit commercial friendliness.","[""pii detection model (indian + us) — indicbert"", ""supported languages""]","[pii detection model (indian + us) — indicbert]
+A token classification model for detecting and redacting **Personally Identifiable Information (PII)** in English, Hindi, Hinglish, and Devanagari text.
+
+Built on top of ai4bharat/indic-bert — a multilingual ALBERT model pretrained on 12 Indian languages.
+
+[training details]
+- **Base model**: ai4bharat/indic-bert (ALBERT, 12 Indian languages)
+- **Training data**: ~11,800 synthetic samples
+  - English (Indian + US PII): ~4,700 samples
+  - Hinglish (Roman script): ~1,000 samples
+  - Devanagari + English mix: ~1,000 samples
+  - Pure Devanagari: ~5,000 samples
+  - Negative samples (no PII): ~3,000 samples
+- **Epochs**: 15
+- **Learning rate**: 3e-5
+- **Batch size**: 32
+- **Optimizer**: AdamW
+
+[supported languages]
+- **English** — names, addresses, phone numbers, SSN, etc.
+- **Hindi (Devanagari)** — राजेश कुमार, मुंबई, महाराष्ट्र, etc.
+- **Hinglish** — ""Mera naam Rajesh hai aur main Mumbai mein rehta hoon""
+- **Mixed Devanagari + English** — ""मेरा phone number 9876543210 है"""
+q061|convaiinnovations/hindi-embedding-model-final,Hindi ke liye sentence embedding model chahiye jo commercial use mein allowed ho,convaiinnovations/hindi-embedding-model-final,"The card describes this as a custom state‑of‑the‑art sentence‑embedding model trained specifically for Hindi text, using a transformer architecture and specialized pooling strategies to produce high‑quality semantic representations of Hindi sentences. This directly addresses the need for a Hindi sentence embedding model.","[""hindi sentence embeddings model""]","[hindi sentence embeddings model]
+This is a custom state-of-the-art sentence embedding model trained specifically for Hindi text. It leverages an advanced transformer architecture with specialized pooling strategies to create high-quality semantic representations of Hindi sentences."
+q062|tylerl0208/Nemotron-3-Embed-8B-BF16,Multilingual sentence embeddings that work for Marathi and English,tylerl0208/Nemotron-3-Embed-8B-BF16,"The card describes the model as a versatile multilingual embedding system evaluated on 34 languages, including Marathi and English, and optimized for retrieval and semantic similarity, matching the request for multilingual sentence embeddings.","[""description:""]","[description:]
+**Nemotron-3-Embed-8B-BF16** is a versatile text embedding model trained by NVIDIA and optimized for retrieval and semantic similarity tasks. It provides strong multilingual and cross-lingual retrieval capabilities and is designed to serve as a foundational component in text-based Retrieval-Augmented Generation (RAG) systems. This model was evaluated across 34 languages: English, Arabic, Assamese, Bengali, Bulgarian, Chinese, Danish, Dutch, Finnish, French, German, Hindi, Hinglish, Indonesian, Italian, Japanese, Korean, Malay, Marathi, Nepali, Norwegian, Persian, Portuguese, Romanian, Russian, Spanish, Swahili, Swedish, Tamil, Telugu, Thai, Ukrainian, Urdu, Vietnamese.
+
+The model generates dense vector embeddings from multilingual text inputs, enabling retrieval, semantic search, and (agentic) RAG workflows. As a core component of text retrieval systems, an embedding model transforms text, such as questions or passages, into dense vector representations. These models are typically transformer encoders that process input tokens and produce embeddings suitable for efficient similarity matching.
+
+**Nemotron-3-Embed-8B-BF16** achieves state-of-the-art performance on the multilingual RTEB leaderboard) as of July 16, 2026. Read more details in our Blog Post.
+
+This model is ready for commercial use."
+q064|l3cube-pune/tamil-sentence-bert-nli,Tamil sentence similarity model I can fine-tune,l3cube-pune/tamil-sentence-bert-nli,"This is a TamilBERT model trained on NLI data; a fine‑tuned version of it is provided for sentence similarity, indicating that it can be adapted for Tamil sentence similarity tasks.","[""tamilsbert""]","[tamilsbert]
+This is a TamilBERT model (l3cube-pune/tamil-bert) trained on the NLI dataset.
+Released as a part of project MahaNLP: https://github.com/l3cube-pune/MarathiNLP
+A multilingual version of this model supporting major Indic languages and cross-lingual capabilities is shared here  indic-sentence-bert-nli
+
+A better sentence similarity model (fine-tuned version of this model) is shared here: https://huggingface.co/l3cube-pune/tamil-sentence-similarity-sbert
+
+More details on the dataset, models, and baseline results can be found in our [paper] (https://arxiv.org/abs/2304.11434)
+
+ monolingual Indic SBERT paper
+ multilingual Indic SBERT paper
+
+Other Monolingual Indic sentence BERT models are listed below:
+ Marathi SBERT
+ Hindi SBERT
+ Kannada SBERT
+ Telugu SBERT
+ Malayalam SBERT
+ Tamil SBERT
+ Gujarati SBERT
+ Oriya SBERT
+ Bengali SBERT
+ Punjabi SBERT
+ Indic SBERT (multilingual)
+
+Other Monolingual similarity models are listed below:
+ Marathi Similarity
+ Hindi Similarity
+ Kannada Similarity
+ Telugu Similarity
+ Malayalam Similarity
+ Tamil Similarity
+ Gujarati Similarity
+ Oriya Similarity
+ Bengali Similarity
+ Punjabi Similarity
+ Indic Similarity (multilingual)"
+q065|l3cube-pune/telugu-sentence-bert-nli,Paraphrase detection for Telugu,l3cube-pune/telugu-sentence-bert-nli,"The card states that this is a TeluguBERT model fine‑tuned on an NLI dataset, which is directly relevant for paraphrase detection because NLI models learn to judge entailment and contradiction between sentence pairs. The model is also listed under the Telugu SBERT family, indicating it can produce sentence embeddings suitable for similarity tasks such as paraphrase mining.","[""telugusbert""]","[telugusbert]
+This is a TeluguBERT model (l3cube-pune/telugu-bert) trained on the NLI dataset.
+Released as a part of project MahaNLP: https://github.com/l3cube-pune/MarathiNLP
+A multilingual version of this model supporting major Indic languages and cross-lingual capabilities is shared here  indic-sentence-bert-nli
+
+A better sentence similarity model (fine-tuned version of this model) is shared here: https://huggingface.co/l3cube-pune/telugu-sentence-similarity-sbert
+
+More details on the dataset, models, and baseline results can be found in our [paper] (https://arxiv.org/abs/2304.11434)
+
+ monolingual Indic SBERT paper
+ multilingual Indic SBERT paper
+
+Other Monolingual Indic sentence BERT models are listed below:
+ Marathi SBERT
+ Hindi SBERT
+ Kannada SBERT
+ Telugu SBERT
+ Malayalam SBERT
+ Tamil SBERT
+ Gujarati SBERT
+ Oriya SBERT
+ Bengali SBERT
+ Punjabi SBERT
+ Indic SBERT (multilingual)
+
+Other Monolingual similarity models are listed below:
+ Marathi Similarity
+ Hindi Similarity
+ Kannada Similarity
+ Telugu Similarity
+ Malayalam Similarity
+ Tamil Similarity
+ Gujarati Similarity
+ Oriya Similarity
+ Bengali Similarity
+ Punjabi Similarity
+ Indic Similarity (multilingual)"
+q070|eswardivi/tamal-sentence-bert-nli,Malayalam sentence embeddings with a commercial license,eswardivi/tamal-sentence-bert-nli,"The card states the model is for sentence-similarity and supports Malayalam (ml) and Tamil (ta), which matches the user’s need for Malayalam sentence embeddings. It also lists a commercial-friendly license (cc-by-4.0).","[""metadata""]","[metadata]
+Model: eswardivi/tamal-sentence-bert-nli
+Task: sentence-similarity
+Languages: ml, ta
+Tags: sentence-transformers, safetensors, bert, feature-extraction, sentence-similarity, transformers, ml, ta, license:cc-by-4.0, text-embeddings-inference, endpoints_compatible, region:us"
+q072|l3cube-pune/punjabi-sentence-bert-nli,Punjabi sentence embeddings I can modify and redistribute,l3cube-pune/punjabi-sentence-bert-nli,"The card explains that this is a PunjabiBERT model fine‑tuned on an NLI dataset, providing sentence embeddings for Punjabi. It is part of a multilingual Indic SBERT collection and can be used via the Sentence Transformers API. The model is designed for Punjabi sentence representation and can be further fine‑tuned or redistributed for downstream tasks.","[""punjabisbert""]","[punjabisbert]
+This is a PunjabiBERT model (l3cube-pune/punjabi-bert) trained on the NLI dataset.
+Released as a part of project MahaNLP: https://github.com/l3cube-pune/MarathiNLP
+A multilingual version of this model supporting major Indic languages and cross-lingual capabilities is shared here  indic-sentence-bert-nli
+
+A better sentence similarity model (fine-tuned version of this model) is shared here: https://huggingface.co/l3cube-pune/punjabi-sentence-similarity-sbert
+
+More details on the dataset, models, and baseline results can be found in our [paper] (https://arxiv.org/abs/2304.11434)
+
+ monolingual Indic SBERT paper
+ multilingual Indic SBERT paper
+
+Other Monolingual Indic sentence BERT models are listed below:
+ Marathi SBERT
+ Hindi SBERT
+ Kannada SBERT
+ Telugu SBERT
+ Malayalam SBERT
+ Tamil SBERT
+ Gujarati SBERT
+ Oriya SBERT
+ Bengali SBERT
+ Punjabi SBERT
+ Indic SBERT (multilingual)
+
+Other Monolingual similarity models are listed below:
+ Marathi Similarity
+ Hindi Similarity
+ Kannada Similarity
+ Telugu Similarity
+ Malayalam Similarity
+ Tamil Similarity
+ Gujarati Similarity
+ Oriya Similarity
+ Bengali Similarity
+ Punjabi Similarity
+ Indic Similarity (multilingual)"

@@ -1,0 +1,2100 @@
+{
+ "input": {
+  "query": "Commercial Hindi to Marathi translation",
+  "overrides": {}
+ },
+ "state": {
+  "query": "Commercial Hindi to Marathi translation",
+  "overrides": {},
+  "constraints": {
+   "task": "translation",
+   "langs": [
+    "hi",
+    "mr"
+   ],
+   "direction": [
+    "hi",
+    "mr"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Hindi to Marathi translation"
+  },
+  "intent": "We understood: you want a model to translate text between languages, from Hindi to Marathi, usable commercially.",
+  "matches": [
+   {
+    "id": "COIL-D/translate-nllb-hindi-marathi::2",
+    "score": 0.871380746,
+    "metadata": {
+     "base_model": "facebook/nllb-200-distilled-600M",
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-nllb-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 615073792,
+     "section": "intended uses",
+     "size_mb": 2460.354912,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Single-direction machine translation from Hindi to Marathi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `hin_Deva` → `mar_Deva` direction only."
+    }
+   },
+   {
+    "id": "COIL-D/translate-nllb-marathi-hindi::2",
+    "score": 0.869232178,
+    "metadata": {
+     "base_model": "facebook/nllb-200-distilled-600M",
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-nllb-marathi-hindi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 615073792,
+     "section": "intended uses",
+     "size_mb": 2460.354912,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Single-direction machine translation from Marathi to Hindi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `mar_Deva` → `hin_Deva` direction only."
+    }
+   },
+   {
+    "id": "COIL-D/translate-nllb-hindi-marathi::0",
+    "score": 0.863077223,
+    "metadata": {
+     "base_model": "facebook/nllb-200-distilled-600M",
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-nllb-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 615073792,
+     "section": "nllb-200-distilled-600m fine-tuned: hindi → marathi",
+     "size_mb": 2460.354912,
+     "size_status": "known",
+     "task": "translation",
+     "text": "This model is a fine-tuned version of facebook/nllb-200-distilled-600M for **Hindi (hin_Deva) to Marathi (mar_Deva)** machine translation."
+    }
+   },
+   {
+    "id": "WindyWord/translate-en-mr::0",
+    "score": 0.860188603,
+    "metadata": {
+     "base_model": "Helsinki-NLP/opus-mt-en-mr",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "WindyWord/translate-en-mr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "windyword.ai translation — english → marathi",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "> Part of the Windstorm Labs open model catalogue. Scores, licence and attribution for every model: https://windytranslate.com/models/translate-en-mr\n>\n> Canonical copy: https://huggingface.co/WindyTranslate/translate-en-mr\n\n**Translates English → Marathi.**"
+    }
+   },
+   {
+    "id": "WindstormLabs/translate-en-mr::0",
+    "score": 0.860188603,
+    "metadata": {
+     "base_model": "Helsinki-NLP/opus-mt-en-mr",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "WindstormLabs/translate-en-mr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "windyword.ai translation — english → marathi",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "> Part of the Windstorm Labs open model catalogue. Scores, licence and attribution for every model: https://windytranslate.com/models/translate-en-mr\n>\n> Canonical copy: https://huggingface.co/WindyTranslate/translate-en-mr\n\n**Translates English → Marathi.**"
+    }
+   },
+   {
+    "id": "COIL-D/translate-it2-hindi-marathi::0",
+    "score": 0.859805584,
+    "metadata": {
+     "base_model": "ai4bharat/indictrans2-indic-indic-dist-320M",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-it2-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "translate-it2-hindi-marathi",
+     "size_mb": 1284.001795,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Bidirectional **Hindi ↔ Marathi** translation model, fine-tuned from\nai4bharat/indictrans2-indic-indic-dist-320M (IndicTrans2, 320M parameters)\nand converted to CTranslate2 format (float32).\n\n| | |\n|---|---|\n| Directions | Hindi → Marathi and Marathi → Hindi |\n| Language codes | Hindi `hin_Deva`, Marathi `mar_Deva` |\n| Format | CTranslate2 (`model.bin`) |\n| Tokenizer | SentencePiece (`vocab/model.SRC`, `vocab/model.TGT`) |"
+    }
+   },
+   {
+    "id": "HariSekhar/Eng_Marathi_translation::1",
+    "score": 0.85783118,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 18,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HariSekhar/Eng_Marathi_translation",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "model description",
+     "size_mb": 30.053146,
+     "size_status": "known",
+     "task": "translation",
+     "text": "The Eng_Marathi_translation model is a sequence-to-sequence Transformer model that has been fine-tuned for translating English text to Marathi. It uses a standard Transformer architecture with attention mechanisms that weigh the influence of different parts of the input sentence as the model predicts each word of the output sentence."
+    }
+   },
+   {
+    "id": "COIL-D/translate-nllb-marathi-hindi::0",
+    "score": 0.856897295,
+    "metadata": {
+     "base_model": "facebook/nllb-200-distilled-600M",
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-nllb-marathi-hindi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 615073792,
+     "section": "nllb-200-distilled-600m fine-tuned: marathi → hindi",
+     "size_mb": 2460.354912,
+     "size_status": "known",
+     "task": "translation",
+     "text": "This model is a fine-tuned version of facebook/nllb-200-distilled-600M for **Marathi (mar_Deva) to Hindi (hin_Deva)** machine translation."
+    }
+   },
+   {
+    "id": "HPLT/translate-ur-en-v2.0-hplt::0",
+    "score": 0.856257081,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "ur",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-ur-en-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - ur\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-ur-en-v2.0-hplt_opus::0",
+    "score": 0.856257081,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "ur",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-ur-en-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - ur\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "WindyWord/translate-mr-en::0",
+    "score": 0.85584259,
+    "metadata": {
+     "base_model": "Helsinki-NLP/opus-mt-mr-en",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "WindyWord/translate-mr-en",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "windyword.ai translation — marathi → english",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "> Part of the Windstorm Labs open model catalogue. Scores, licence and attribution for every model: https://windytranslate.com/models/translate-mr-en\n>\n> Canonical copy: https://huggingface.co/WindyTranslate/translate-mr-en\n\n**Translates Marathi → English.**"
+    }
+   },
+   {
+    "id": "WindstormLabs/translate-mr-en::0",
+    "score": 0.85584259,
+    "metadata": {
+     "base_model": "Helsinki-NLP/opus-mt-mr-en",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "en"
+     ],
+     "lineage_status": "known",
+     "model_id": "WindstormLabs/translate-mr-en",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "windyword.ai translation — marathi → english",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "> Part of the Windstorm Labs open model catalogue. Scores, licence and attribution for every model: https://windytranslate.com/models/translate-mr-en\n>\n> Canonical copy: https://huggingface.co/WindyTranslate/translate-mr-en\n\n**Translates Marathi → English.**"
+    }
+   },
+   {
+    "id": "HPLT/translate-mr-en-v2.0-hplt::1",
+    "score": 0.855241299,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-mr-en-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "hplt mt release v2.0",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "This repository contains the Marathi-English (mr->en) encoder-decoder translation model trained on HPLT v2.0 parallel data. The model is currently available in Marian format and we are working on converting it to the Hugging Face format."
+    }
+   },
+   {
+    "id": "HariSekhar/Eng_Marathi_translation::0",
+    "score": 0.85403347,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 18,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HariSekhar/Eng_Marathi_translation",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "eng_marathi_translation",
+     "size_mb": 30.053146,
+     "size_status": "known",
+     "task": "translation",
+     "text": "This model is designed to translate text from English to Marathi using a custom-trained Transformer model."
+    }
+   },
+   {
+    "id": "HPLT/translate-mr-en-v2.0-hplt::0",
+    "score": 0.852664113,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-mr-en-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - mr\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-mr-en-v2.0-hplt_opus::0",
+    "score": 0.852664113,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-mr-en-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - mr\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-te-en-v2.0-hplt::0",
+    "score": 0.852151573,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "te",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-te-en-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - te\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-te-en-v2.0-hplt_opus::0",
+    "score": 0.852151573,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "te",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-te-en-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - te\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-hi-en-v2.0-hplt::0",
+    "score": 0.851905525,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-hi-en-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - hi\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-hi-en-v2.0-hplt_opus::0",
+    "score": 0.851905525,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-hi-en-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - hi\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "KRB1975/mt-ja-mr-small100::2",
+    "score": 0.851389945,
+    "metadata": {
+     "commercial": "unknown",
+     "doc_quality": "full",
+     "downloads": 14,
+     "language_status": "known",
+     "languages": [
+      "ja",
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "KRB1975/mt-ja-mr-small100",
+     "modifiable": "unknown",
+     "multilingual": false,
+     "section": "intended use",
+     "size_mb": 388.548438,
+     "size_status": "known",
+     "task": "translation",
+     "text": "- Translation of general-domain text from Japanese to Marathi."
+    }
+   },
+   {
+    "id": "HPLT/translate-mr-en-v2.0-hplt_opus::1",
+    "score": 0.851130843,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-mr-en-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "hplt mt release v2.0",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "This repository contains the Marathi-English (mr->en) encoder-decoder translation model trained on HPLT v2.0 and OPUS parallel data. The model is currently available in Marian format and we are working on converting it to the Hugging Face format."
+    }
+   },
+   {
+    "id": "HPLT/translate-en-mr-v2.0-hplt_opus::0",
+    "score": 0.850573599,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-mr-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - mr\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-mr-v2.0-hplt::0",
+    "score": 0.850573599,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-mr-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - mr\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-ml-en-v2.0-hplt_opus::0",
+    "score": 0.850445211,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "ml",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-ml-en-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - ml\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-ml-en-v2.0-hplt::0",
+    "score": 0.850445211,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "ml",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-ml-en-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - ml\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "omgavali26/emotion-analysis::0",
+    "score": 0.850342333,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 42,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "omgavali26/emotion-analysis",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 278062107,
+     "section": "overview",
+     "size_mb": 1112.2721,
+     "size_status": "known",
+     "task": "text-classification",
+     "text": "---\nlanguage:\n  - mr\ntags:\n  - marathi\n  - emotion-classification\n  - text-classification\n  - indicbert\nlicense: apache-2.0\nmetrics:\n  - accuracy\n  - f1\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-kn-en-v2.0-hplt_opus::0",
+    "score": 0.850045681,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "kn",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-kn-en-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - kn\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-kn-en-v2.0-hplt::0",
+    "score": 0.850045681,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "kn",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-kn-en-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - kn\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "UX4567/Speak-English-AI-3B-v1.0::0",
+    "score": 0.849642,
+    "metadata": {
+     "base_model": "facebook/nllb-200-distilled-600M",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 14,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "UX4567/Speak-English-AI-3B-v1.0",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 615073792,
+     "section": "model card for speak-english-ai-3b-v1.0",
+     "size_mb": 2460.354912,
+     "size_status": "known",
+     "task": "translation",
+     "text": "A lightweight Hindi <-> English translator for spoken English practice, made by Kartik Sharma from Jaipur."
+    }
+   },
+   {
+    "id": "HPLT/translate-en-kn-v2.0-hplt_opus::0",
+    "score": 0.8494941,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "kn"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-kn-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - kn\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-kn-v2.0-hplt::0",
+    "score": 0.8494941,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "kn"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-kn-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - kn\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-te-v2.0-hplt_opus::0",
+    "score": 0.848976851,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "te"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-te-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - te\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-te-v2.0-hplt::0",
+    "score": 0.848976851,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "te"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-te-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - te\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-hi-v2.0-hplt::0",
+    "score": 0.848873377,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-hi-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - hi\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-hi-v2.0-hplt_opus::0",
+    "score": 0.848873377,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "hi"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-hi-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - hi\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-ml-v2.0-hplt_opus::0",
+    "score": 0.848775089,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "ml"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-ml-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - ml\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-ml-v2.0-hplt::0",
+    "score": 0.848775089,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "ml"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-ml-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - ml\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-ur-v2.0-hplt_opus::0",
+    "score": 0.847329199,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "ur"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-ur-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - ur\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-ur-v2.0-hplt::0",
+    "score": 0.847329199,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "ur"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-ur-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - ur\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "WindstormLabs/origin-HPLT-translate-bn-en-v2.0-hplt_opus::0",
+    "score": 0.846980155,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "bn",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "WindstormLabs/origin-HPLT-translate-bn-en-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - bn\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-bn-en-v2.0-hplt_opus::0",
+    "score": 0.846915066,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "bn",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-bn-en-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - bn\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-bn-en-v2.0-hplt::0",
+    "score": 0.846915066,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "bn",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-bn-en-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - bn\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "WindyWord/listen-windy-lingua-mr::0",
+    "score": 0.846846521,
+    "metadata": {
+     "base_model": "DrishtiSharma/whisper-large-v2-marathi",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "WindyWord/listen-windy-lingua-mr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "windyword.ai stt — marathi lingua (gpu (safetensors))",
+     "size_status": "unknown",
+     "task": "automatic-speech-recognition",
+     "text": "> Part of the Windstorm Labs open model catalogue. Scores, licence and attribution for every model: https://windytranslate.com/models/listen-windy-lingua-mr\n\n**Transcribes Marathi speech (Indo-European > Indo-Iranian > Indo-Aryan).**"
+    }
+   },
+   {
+    "id": "WindstormLabs/listen-windy-lingua-mr::0",
+    "score": 0.846846521,
+    "metadata": {
+     "base_model": "DrishtiSharma/whisper-large-v2-marathi",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "WindstormLabs/listen-windy-lingua-mr",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "windyword.ai stt — marathi lingua (gpu (safetensors))",
+     "size_status": "unknown",
+     "task": "automatic-speech-recognition",
+     "text": "> Part of the Windstorm Labs open model catalogue. Scores, licence and attribution for every model: https://windytranslate.com/models/listen-windy-lingua-mr\n\n**Transcribes Marathi speech (Indo-European > Indo-Iranian > Indo-Aryan).**"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-ta-v2.0-hplt::0",
+    "score": 0.846811056,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "ta"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-ta-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - ta\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-en-ta-v2.0-hplt_opus::0",
+    "score": 0.846811056,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "ta"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-en-ta-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - en\n  - ta\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-ta-en-v2.0-hplt_opus::0",
+    "score": 0.846395373,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "ta",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-ta-en-v2.0-hplt_opus",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - ta\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "HPLT/translate-ta-en-v2.0-hplt::0",
+    "score": 0.846395373,
+    "metadata": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 0,
+     "language_status": "known",
+     "languages": [
+      "ta",
+      "en"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HPLT/translate-ta-en-v2.0-hplt",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "overview",
+     "size_status": "unknown",
+     "task": "translation",
+     "text": "---\nlanguage:\n  - ta\n  - en\ntags:\n- translation\nlicense: cc-by-4.0\ninference: false\n---"
+    }
+   },
+   {
+    "id": "thenlpresearcher/iitb-en-indic-without-punct::2",
+    "score": 0.84622252,
+    "metadata": {
+     "base_model": "ai4bharat/indictrans2-en-indic-dist-200M",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 12,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "thenlpresearcher/iitb-en-indic-without-punct",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 211776512,
+     "section": "intended uses & limitations",
+     "size_mb": 847.194992,
+     "size_status": "known",
+     "task": "translation",
+     "text": "This model is intended for translating English text into Marathi, particularly in scenarios where the source English text might lack proper punctuation or contain punctuation-induced ambiguities."
+    }
+   }
+  ],
+  "candidates": [
+   {
+    "model_id": "COIL-D/translate-it2-hindi-marathi",
+    "score": 0.20055768,
+    "meta": {
+     "base_model": "ai4bharat/indictrans2-indic-indic-dist-320M",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-it2-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "translate-it2-hindi-marathi",
+     "size_mb": 1284.001795,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Bidirectional **Hindi ↔ Marathi** translation model, fine-tuned from\nai4bharat/indictrans2-indic-indic-dist-320M (IndicTrans2, 320M parameters)\nand converted to CTranslate2 format (float32).\n\n| | |\n|---|---|\n| Directions | Hindi → Marathi and Marathi → Hindi |\n| Language codes | Hindi `hin_Deva`, Marathi `mar_Deva` |\n| Format | CTranslate2 (`model.bin`) |\n| Tokenizer | SentencePiece (`vocab/model.SRC`, `vocab/model.TGT`) |"
+    },
+    "chunks": [
+     {
+      "id": "COIL-D/translate-it2-hindi-marathi::0",
+      "score": 0.20055768,
+      "metadata": {
+       "base_model": "ai4bharat/indictrans2-indic-indic-dist-320M",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "mr"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-it2-hindi-marathi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "translate-it2-hindi-marathi",
+       "size_mb": 1284.001795,
+       "size_status": "known",
+       "task": "translation",
+       "text": "Bidirectional **Hindi ↔ Marathi** translation model, fine-tuned from\nai4bharat/indictrans2-indic-indic-dist-320M (IndicTrans2, 320M parameters)\nand converted to CTranslate2 format (float32).\n\n| | |\n|---|---|\n| Directions | Hindi → Marathi and Marathi → Hindi |\n| Language codes | Hindi `hin_Deva`, Marathi `mar_Deva` |\n| Format | CTranslate2 (`model.bin`) |\n| Tokenizer | SentencePiece (`vocab/model.SRC`, `vocab/model.TGT`) |"
+      },
+      "retrieval_score": 0.859805584
+     }
+    ]
+   },
+   {
+    "model_id": "COIL-D/translate-nllb-hindi-marathi",
+    "score": 0.11899801,
+    "meta": {
+     "base_model": "facebook/nllb-200-distilled-600M",
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-nllb-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 615073792,
+     "section": "intended uses",
+     "size_mb": 2460.354912,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Single-direction machine translation from Hindi to Marathi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `hin_Deva` → `mar_Deva` direction only."
+    },
+    "chunks": [
+     {
+      "id": "COIL-D/translate-nllb-hindi-marathi::2",
+      "score": 0.11899801,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "mr"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-hindi-marathi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "intended uses",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "Single-direction machine translation from Hindi to Marathi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `hin_Deva` → `mar_Deva` direction only."
+      },
+      "retrieval_score": 0.871380746
+     },
+     {
+      "id": "COIL-D/translate-nllb-hindi-marathi::0",
+      "score": 0.083291925,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "mr"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-hindi-marathi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "nllb-200-distilled-600m fine-tuned: hindi → marathi",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "This model is a fine-tuned version of facebook/nllb-200-distilled-600M for **Hindi (hin_Deva) to Marathi (mar_Deva)** machine translation."
+      },
+      "retrieval_score": 0.863077223
+     }
+    ]
+   },
+   {
+    "model_id": "COIL-D/translate-nllb-marathi-hindi",
+    "score": 0.029986508,
+    "meta": {
+     "base_model": "facebook/nllb-200-distilled-600M",
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-nllb-marathi-hindi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 615073792,
+     "section": "intended uses",
+     "size_mb": 2460.354912,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Single-direction machine translation from Marathi to Hindi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `mar_Deva` → `hin_Deva` direction only."
+    },
+    "chunks": [
+     {
+      "id": "COIL-D/translate-nllb-marathi-hindi::2",
+      "score": 0.029986508,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "mr",
+        "hi"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-marathi-hindi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "intended uses",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "Single-direction machine translation from Marathi to Hindi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `mar_Deva` → `hin_Deva` direction only."
+      },
+      "retrieval_score": 0.869232178
+     },
+     {
+      "id": "COIL-D/translate-nllb-marathi-hindi::0",
+      "score": 0.02199022,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "mr",
+        "hi"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-marathi-hindi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "nllb-200-distilled-600m fine-tuned: marathi → hindi",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "This model is a fine-tuned version of facebook/nllb-200-distilled-600M for **Marathi (mar_Deva) to Hindi (hin_Deva)** machine translation."
+      },
+      "retrieval_score": 0.856897295
+     }
+    ]
+   },
+   {
+    "model_id": "HariSekhar/Eng_Marathi_translation",
+    "score": 0.014392336,
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 18,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HariSekhar/Eng_Marathi_translation",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "model description",
+     "size_mb": 30.053146,
+     "size_status": "known",
+     "task": "translation",
+     "text": "The Eng_Marathi_translation model is a sequence-to-sequence Transformer model that has been fine-tuned for translating English text to Marathi. It uses a standard Transformer architecture with attention mechanisms that weigh the influence of different parts of the input sentence as the model predicts each word of the output sentence."
+    },
+    "chunks": [
+     {
+      "id": "HariSekhar/Eng_Marathi_translation::1",
+      "score": 0.014392336,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 18,
+       "language_status": "known",
+       "languages": [
+        "en",
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "HariSekhar/Eng_Marathi_translation",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "model description",
+       "size_mb": 30.053146,
+       "size_status": "known",
+       "task": "translation",
+       "text": "The Eng_Marathi_translation model is a sequence-to-sequence Transformer model that has been fine-tuned for translating English text to Marathi. It uses a standard Transformer architecture with attention mechanisms that weigh the influence of different parts of the input sentence as the model predicts each word of the output sentence."
+      },
+      "retrieval_score": 0.85783118
+     },
+     {
+      "id": "HariSekhar/Eng_Marathi_translation::0",
+      "score": 0.0036216856,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 18,
+       "language_status": "known",
+       "languages": [
+        "en",
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "HariSekhar/Eng_Marathi_translation",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "eng_marathi_translation",
+       "size_mb": 30.053146,
+       "size_status": "known",
+       "task": "translation",
+       "text": "This model is designed to translate text from English to Marathi using a custom-trained Transformer model."
+      },
+      "retrieval_score": 0.85403347
+     }
+    ]
+   },
+   {
+    "model_id": "thenlpresearcher/iitb-en-indic-without-punct",
+    "score": 0.004054334,
+    "meta": {
+     "base_model": "ai4bharat/indictrans2-en-indic-dist-200M",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 12,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "thenlpresearcher/iitb-en-indic-without-punct",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 211776512,
+     "section": "intended uses & limitations",
+     "size_mb": 847.194992,
+     "size_status": "known",
+     "task": "translation",
+     "text": "This model is intended for translating English text into Marathi, particularly in scenarios where the source English text might lack proper punctuation or contain punctuation-induced ambiguities."
+    },
+    "chunks": [
+     {
+      "id": "thenlpresearcher/iitb-en-indic-without-punct::2",
+      "score": 0.004054334,
+      "metadata": {
+       "base_model": "ai4bharat/indictrans2-en-indic-dist-200M",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 12,
+       "language_status": "known",
+       "languages": [
+        "en",
+        "mr"
+       ],
+       "lineage_status": "known",
+       "model_id": "thenlpresearcher/iitb-en-indic-without-punct",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 211776512,
+       "section": "intended uses & limitations",
+       "size_mb": 847.194992,
+       "size_status": "known",
+       "task": "translation",
+       "text": "This model is intended for translating English text into Marathi, particularly in scenarios where the source English text might lack proper punctuation or contain punctuation-induced ambiguities."
+      },
+      "retrieval_score": 0.84622252
+     }
+    ]
+   }
+  ],
+  "results": [
+   {
+    "model_id": "COIL-D/translate-it2-hindi-marathi",
+    "meta": {
+     "base_model": "ai4bharat/indictrans2-indic-indic-dist-320M",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-it2-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "translate-it2-hindi-marathi",
+     "size_mb": 1284.001795,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Bidirectional **Hindi ↔ Marathi** translation model, fine-tuned from\nai4bharat/indictrans2-indic-indic-dist-320M (IndicTrans2, 320M parameters)\nand converted to CTranslate2 format (float32).\n\n| | |\n|---|---|\n| Directions | Hindi → Marathi and Marathi → Hindi |\n| Language codes | Hindi `hin_Deva`, Marathi `mar_Deva` |\n| Format | CTranslate2 (`model.bin`) |\n| Tokenizer | SentencePiece (`vocab/model.SRC`, `vocab/model.TGT`) |"
+    },
+    "chunks": [
+     {
+      "id": "COIL-D/translate-it2-hindi-marathi::0",
+      "score": 0.20055768,
+      "metadata": {
+       "base_model": "ai4bharat/indictrans2-indic-indic-dist-320M",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "mr"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-it2-hindi-marathi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "translate-it2-hindi-marathi",
+       "size_mb": 1284.001795,
+       "size_status": "known",
+       "task": "translation",
+       "text": "Bidirectional **Hindi ↔ Marathi** translation model, fine-tuned from\nai4bharat/indictrans2-indic-indic-dist-320M (IndicTrans2, 320M parameters)\nand converted to CTranslate2 format (float32).\n\n| | |\n|---|---|\n| Directions | Hindi → Marathi and Marathi → Hindi |\n| Language codes | Hindi `hin_Deva`, Marathi `mar_Deva` |\n| Format | CTranslate2 (`model.bin`) |\n| Tokenizer | SentencePiece (`vocab/model.SRC`, `vocab/model.TGT`) |"
+      },
+      "retrieval_score": 0.859805584
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "direction": "unknown",
+     "commercial": "pass"
+    },
+    "overall": "unknown",
+    "notes": []
+   },
+   {
+    "model_id": "COIL-D/translate-nllb-hindi-marathi",
+    "meta": {
+     "base_model": "facebook/nllb-200-distilled-600M",
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-nllb-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 615073792,
+     "section": "intended uses",
+     "size_mb": 2460.354912,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Single-direction machine translation from Hindi to Marathi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `hin_Deva` → `mar_Deva` direction only."
+    },
+    "chunks": [
+     {
+      "id": "COIL-D/translate-nllb-hindi-marathi::2",
+      "score": 0.11899801,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "mr"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-hindi-marathi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "intended uses",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "Single-direction machine translation from Hindi to Marathi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `hin_Deva` → `mar_Deva` direction only."
+      },
+      "retrieval_score": 0.871380746
+     },
+     {
+      "id": "COIL-D/translate-nllb-hindi-marathi::0",
+      "score": 0.083291925,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "mr"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-hindi-marathi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "nllb-200-distilled-600m fine-tuned: hindi → marathi",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "This model is a fine-tuned version of facebook/nllb-200-distilled-600M for **Hindi (hin_Deva) to Marathi (mar_Deva)** machine translation."
+      },
+      "retrieval_score": 0.863077223
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "direction": "unknown",
+     "commercial": "fail"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "COIL-D/translate-nllb-marathi-hindi",
+    "meta": {
+     "base_model": "facebook/nllb-200-distilled-600M",
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-nllb-marathi-hindi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 615073792,
+     "section": "intended uses",
+     "size_mb": 2460.354912,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Single-direction machine translation from Marathi to Hindi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `mar_Deva` → `hin_Deva` direction only."
+    },
+    "chunks": [
+     {
+      "id": "COIL-D/translate-nllb-marathi-hindi::2",
+      "score": 0.029986508,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "mr",
+        "hi"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-marathi-hindi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "intended uses",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "Single-direction machine translation from Marathi to Hindi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `mar_Deva` → `hin_Deva` direction only."
+      },
+      "retrieval_score": 0.869232178
+     },
+     {
+      "id": "COIL-D/translate-nllb-marathi-hindi::0",
+      "score": 0.02199022,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "mr",
+        "hi"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-marathi-hindi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "nllb-200-distilled-600m fine-tuned: marathi → hindi",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "This model is a fine-tuned version of facebook/nllb-200-distilled-600M for **Marathi (mar_Deva) to Hindi (hin_Deva)** machine translation."
+      },
+      "retrieval_score": 0.856897295
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "direction": "unknown",
+     "commercial": "fail"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "HariSekhar/Eng_Marathi_translation",
+    "meta": {
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 18,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "unknown",
+     "model_id": "HariSekhar/Eng_Marathi_translation",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "model description",
+     "size_mb": 30.053146,
+     "size_status": "known",
+     "task": "translation",
+     "text": "The Eng_Marathi_translation model is a sequence-to-sequence Transformer model that has been fine-tuned for translating English text to Marathi. It uses a standard Transformer architecture with attention mechanisms that weigh the influence of different parts of the input sentence as the model predicts each word of the output sentence."
+    },
+    "chunks": [
+     {
+      "id": "HariSekhar/Eng_Marathi_translation::1",
+      "score": 0.014392336,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 18,
+       "language_status": "known",
+       "languages": [
+        "en",
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "HariSekhar/Eng_Marathi_translation",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "model description",
+       "size_mb": 30.053146,
+       "size_status": "known",
+       "task": "translation",
+       "text": "The Eng_Marathi_translation model is a sequence-to-sequence Transformer model that has been fine-tuned for translating English text to Marathi. It uses a standard Transformer architecture with attention mechanisms that weigh the influence of different parts of the input sentence as the model predicts each word of the output sentence."
+      },
+      "retrieval_score": 0.85783118
+     },
+     {
+      "id": "HariSekhar/Eng_Marathi_translation::0",
+      "score": 0.0036216856,
+      "metadata": {
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 18,
+       "language_status": "known",
+       "languages": [
+        "en",
+        "mr"
+       ],
+       "lineage_status": "unknown",
+       "model_id": "HariSekhar/Eng_Marathi_translation",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "eng_marathi_translation",
+       "size_mb": 30.053146,
+       "size_status": "known",
+       "task": "translation",
+       "text": "This model is designed to translate text from English to Marathi using a custom-trained Transformer model."
+      },
+      "retrieval_score": 0.85403347
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "fail",
+     "direction": "unknown",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "thenlpresearcher/iitb-en-indic-without-punct",
+    "meta": {
+     "base_model": "ai4bharat/indictrans2-en-indic-dist-200M",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 12,
+     "language_status": "known",
+     "languages": [
+      "en",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "thenlpresearcher/iitb-en-indic-without-punct",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 211776512,
+     "section": "intended uses & limitations",
+     "size_mb": 847.194992,
+     "size_status": "known",
+     "task": "translation",
+     "text": "This model is intended for translating English text into Marathi, particularly in scenarios where the source English text might lack proper punctuation or contain punctuation-induced ambiguities."
+    },
+    "chunks": [
+     {
+      "id": "thenlpresearcher/iitb-en-indic-without-punct::2",
+      "score": 0.004054334,
+      "metadata": {
+       "base_model": "ai4bharat/indictrans2-en-indic-dist-200M",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 12,
+       "language_status": "known",
+       "languages": [
+        "en",
+        "mr"
+       ],
+       "lineage_status": "known",
+       "model_id": "thenlpresearcher/iitb-en-indic-without-punct",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 211776512,
+       "section": "intended uses & limitations",
+       "size_mb": 847.194992,
+       "size_status": "known",
+       "task": "translation",
+       "text": "This model is intended for translating English text into Marathi, particularly in scenarios where the source English text might lack proper punctuation or contain punctuation-induced ambiguities."
+      },
+      "retrieval_score": 0.84622252
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "fail",
+     "direction": "unknown",
+     "commercial": "pass"
+    },
+    "overall": "fail",
+    "notes": []
+   }
+  ],
+  "closest": [
+   {
+    "model_id": "COIL-D/translate-it2-hindi-marathi",
+    "meta": {
+     "base_model": "ai4bharat/indictrans2-indic-indic-dist-320M",
+     "commercial": "yes",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-it2-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "section": "translate-it2-hindi-marathi",
+     "size_mb": 1284.001795,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Bidirectional **Hindi ↔ Marathi** translation model, fine-tuned from\nai4bharat/indictrans2-indic-indic-dist-320M (IndicTrans2, 320M parameters)\nand converted to CTranslate2 format (float32).\n\n| | |\n|---|---|\n| Directions | Hindi → Marathi and Marathi → Hindi |\n| Language codes | Hindi `hin_Deva`, Marathi `mar_Deva` |\n| Format | CTranslate2 (`model.bin`) |\n| Tokenizer | SentencePiece (`vocab/model.SRC`, `vocab/model.TGT`) |"
+    },
+    "chunks": [
+     {
+      "id": "COIL-D/translate-it2-hindi-marathi::0",
+      "score": 0.20055768,
+      "metadata": {
+       "base_model": "ai4bharat/indictrans2-indic-indic-dist-320M",
+       "commercial": "yes",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "mr"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-it2-hindi-marathi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "section": "translate-it2-hindi-marathi",
+       "size_mb": 1284.001795,
+       "size_status": "known",
+       "task": "translation",
+       "text": "Bidirectional **Hindi ↔ Marathi** translation model, fine-tuned from\nai4bharat/indictrans2-indic-indic-dist-320M (IndicTrans2, 320M parameters)\nand converted to CTranslate2 format (float32).\n\n| | |\n|---|---|\n| Directions | Hindi → Marathi and Marathi → Hindi |\n| Language codes | Hindi `hin_Deva`, Marathi `mar_Deva` |\n| Format | CTranslate2 (`model.bin`) |\n| Tokenizer | SentencePiece (`vocab/model.SRC`, `vocab/model.TGT`) |"
+      },
+      "retrieval_score": 0.859805584
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "direction": "unknown",
+     "commercial": "pass"
+    },
+    "overall": "unknown",
+    "notes": []
+   },
+   {
+    "model_id": "COIL-D/translate-nllb-hindi-marathi",
+    "meta": {
+     "base_model": "facebook/nllb-200-distilled-600M",
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "hi",
+      "mr"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-nllb-hindi-marathi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 615073792,
+     "section": "intended uses",
+     "size_mb": 2460.354912,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Single-direction machine translation from Hindi to Marathi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `hin_Deva` → `mar_Deva` direction only."
+    },
+    "chunks": [
+     {
+      "id": "COIL-D/translate-nllb-hindi-marathi::2",
+      "score": 0.11899801,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "mr"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-hindi-marathi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "intended uses",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "Single-direction machine translation from Hindi to Marathi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `hin_Deva` → `mar_Deva` direction only."
+      },
+      "retrieval_score": 0.871380746
+     },
+     {
+      "id": "COIL-D/translate-nllb-hindi-marathi::0",
+      "score": 0.083291925,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "hi",
+        "mr"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-hindi-marathi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "nllb-200-distilled-600m fine-tuned: hindi → marathi",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "This model is a fine-tuned version of facebook/nllb-200-distilled-600M for **Hindi (hin_Deva) to Marathi (mar_Deva)** machine translation."
+      },
+      "retrieval_score": 0.863077223
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "direction": "unknown",
+     "commercial": "fail"
+    },
+    "overall": "fail",
+    "notes": []
+   },
+   {
+    "model_id": "COIL-D/translate-nllb-marathi-hindi",
+    "meta": {
+     "base_model": "facebook/nllb-200-distilled-600M",
+     "commercial": "no",
+     "doc_quality": "full",
+     "downloads": 2,
+     "language_status": "known",
+     "languages": [
+      "mr",
+      "hi"
+     ],
+     "lineage_status": "known",
+     "model_id": "COIL-D/translate-nllb-marathi-hindi",
+     "modifiable": "yes",
+     "multilingual": false,
+     "param_count": 615073792,
+     "section": "intended uses",
+     "size_mb": 2460.354912,
+     "size_status": "known",
+     "task": "translation",
+     "text": "Single-direction machine translation from Marathi to Hindi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `mar_Deva` → `hin_Deva` direction only."
+    },
+    "chunks": [
+     {
+      "id": "COIL-D/translate-nllb-marathi-hindi::2",
+      "score": 0.029986508,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "mr",
+        "hi"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-marathi-hindi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "intended uses",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "Single-direction machine translation from Marathi to Hindi. For general-purpose multi-language translation, use the original facebook/nllb-200-distilled-600M instead — this checkpoint is specialized for the `mar_Deva` → `hin_Deva` direction only."
+      },
+      "retrieval_score": 0.869232178
+     },
+     {
+      "id": "COIL-D/translate-nllb-marathi-hindi::0",
+      "score": 0.02199022,
+      "metadata": {
+       "base_model": "facebook/nllb-200-distilled-600M",
+       "commercial": "no",
+       "doc_quality": "full",
+       "downloads": 2,
+       "language_status": "known",
+       "languages": [
+        "mr",
+        "hi"
+       ],
+       "lineage_status": "known",
+       "model_id": "COIL-D/translate-nllb-marathi-hindi",
+       "modifiable": "yes",
+       "multilingual": false,
+       "param_count": 615073792,
+       "section": "nllb-200-distilled-600m fine-tuned: marathi → hindi",
+       "size_mb": 2460.354912,
+       "size_status": "known",
+       "task": "translation",
+       "text": "This model is a fine-tuned version of facebook/nllb-200-distilled-600M for **Marathi (mar_Deva) to Hindi (hin_Deva)** machine translation."
+      },
+      "retrieval_score": 0.856897295
+     }
+    ],
+    "table": {
+     "task": "pass",
+     "languages": "pass",
+     "direction": "unknown",
+     "commercial": "fail"
+    },
+    "overall": "fail",
+    "notes": []
+   }
+  ],
+  "fully_verified": false,
+  "outcome": "answer"
+ }
+}

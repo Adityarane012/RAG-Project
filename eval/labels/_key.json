@@ -1,0 +1,2161 @@
+{
+ "q002|openai/whisper-large-v3": [
+  "hf_licensed"
+ ],
+ "q002|Hemantrao/wav2vec2-large-xls-r-300m-hindi_marathi-code-switching-experimentx1": [
+  "keyword"
+ ],
+ "q002|handy-computer/whisper-medium-gguf": [
+  "hf_licensed"
+ ],
+ "q002|openai/whisper-tiny": [
+  "hf_licensed"
+ ],
+ "q002|gchhablani/wav2vec2-large-xlsr-mr": [
+  "ours"
+ ],
+ "q002|espnet/marathi_lrec2020": [
+  "ours"
+ ],
+ "q002|jiviai/audioX-north-v1": [
+  "ours"
+ ],
+ "q002|OpenVoiceOS/ai4bharat-indicconformer-mr-onnx": [
+  "keyword"
+ ],
+ "q002|openai/whisper-base": [
+  "hf_licensed"
+ ],
+ "q002|ekacare/parrotlet-a-2.5-pro": [
+  "naive"
+ ],
+ "q002|openai/whisper-small": [
+  "hf_licensed"
+ ],
+ "q002|gchhablani/wav2vec2-large-xlsr-mr-3": [
+  "keyword"
+ ],
+ "q002|BuzzASR/marathi": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q002|BettySara/whisper-large-v3-malayalam-FT": [
+  "naive"
+ ],
+ "q002|salesken/Hindi-FastConformer-Streaming-ASR": [
+  "naive"
+ ],
+ "q002|omkar9896/indic-transcribe-openvino-int8": [
+  "keyword"
+ ],
+ "q002|ai4bharat/indicconformer_stt_mr_hybrid_ctc_rnnt_large": [
+  "ours"
+ ],
+ "q002|jeswinjestin/sherpa-onnx-nemo-ctc-indicconformer-malayalam": [
+  "naive"
+ ],
+ "q004|TurjoDutta5555/whisper-small-bengali-15DB-1e5": [
+  "keyword"
+ ],
+ "q004|sha1779/Faster_BengaliRegionalASR": [
+  "ours"
+ ],
+ "q004|openai/whisper-base": [
+  "hf_licensed"
+ ],
+ "q004|arijitx/wav2vec2-xls-r-300m-bengali": [
+  "hf_licensed"
+ ],
+ "q004|ehzawad/Qwen3-ASR-1.7B-bn-BD": [
+  "naive",
+  "keyword"
+ ],
+ "q004|faysal-star/LoRA_bengaliAI_tugstugi_bengaliai-asr_whisper-medium": [
+  "keyword"
+ ],
+ "q004|openai/whisper-tiny": [
+  "hf_licensed"
+ ],
+ "q004|openai/whisper-small": [
+  "hf_licensed"
+ ],
+ "q004|openai/whisper-large-v3": [
+  "hf_licensed"
+ ],
+ "q004|Tmanna/whisper-bengali-final": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q004|Eusha22/faster-whisper-bangla-lora": [
+  "ours",
+  "naive"
+ ],
+ "q004|ehzawad/whisper-large-v3-turbo-bn-BD": [
+  "naive"
+ ],
+ "q004|ARTPARK-IISc/whisper-medium-vaani-bengali": [
+  "ours"
+ ],
+ "q004|barnobarno666/Whisper-medium-bangla": [
+  "ours"
+ ],
+ "q004|ehzawad/Voxtral-Small-24B-2507-bn-BD": [
+  "naive"
+ ],
+ "q004|SayedShaun/bangla-wav2vec2": [
+  "keyword"
+ ],
+ "q006|mistralai/Voxtral-Mini-4B-Realtime-2602": [
+  "hf_licensed"
+ ],
+ "q006|adalat-ai/whisper-small-hi-rmft": [
+  "ours"
+ ],
+ "q006|adalat-ai/whisper-small-hi-high-lr": [
+  "ours"
+ ],
+ "q006|abhishekgautamm/whisper-tiny-hinglish-v2": [
+  "ours"
+ ],
+ "q006|openai/whisper-base": [
+  "hf_licensed"
+ ],
+ "q006|Harveenchadha/hindi_model_with_lm_vakyansh": [
+  "ours"
+ ],
+ "q006|openai/whisper-large-v3": [
+  "hf_licensed"
+ ],
+ "q006|abhishekgautamm/whisper-tiny-hinglish": [
+  "ours",
+  "keyword"
+ ],
+ "q006|openai/whisper-small": [
+  "hf_licensed"
+ ],
+ "q006|SakshiRathi77/wav2vec2-large-xlsr-300m-hi-kagglex": [
+  "naive"
+ ],
+ "q006|openai/whisper-tiny": [
+  "hf_licensed"
+ ],
+ "q006|specialv/whisper-small-merged-hi-en": [
+  "naive"
+ ],
+ "q006|martin-mwiti/whisper-small-hi-lora-r32-alpha64-20241231": [
+  "naive"
+ ],
+ "q006|Mr-Sunglasses/whisperkit-coreml": [
+  "keyword"
+ ],
+ "q006|joshuavinith/whisper-small-hindi": [
+  "naive"
+ ],
+ "q006|abhishekgautamm/whisper-tiny-hinglish-ct2": [
+  "naive"
+ ],
+ "q007|vasista22/whisper-gujarati-base": [
+  "ours"
+ ],
+ "q007|microsoft/speecht5_asr": [
+  "keyword"
+ ],
+ "q007|COIL-D/translate-nllb-hindi-gujarati": [
+  "naive"
+ ],
+ "q007|openai/whisper-base": [
+  "hf_licensed"
+ ],
+ "q007|alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-32768": [
+  "naive"
+ ],
+ "q007|princetunes/whisper-small-gujarati-talpada": [
+  "naive"
+ ],
+ "q007|Archit-01/indic-asr-multi": [
+  "keyword"
+ ],
+ "q007|pathslash/whisper-small-gujarati": [
+  "keyword"
+ ],
+ "q007|HPLT/translate-gu-en-v2.0-hplt_opus": [
+  "naive"
+ ],
+ "q007|Open4bits/whisper-base-f16": [
+  "ours"
+ ],
+ "q007|Open4bits/whisper-tiny-f16": [
+  "ours"
+ ],
+ "q007|WhissleAI/speech-tagger_gujlish_wav2vec2_meta": [
+  "ours"
+ ],
+ "q007|openai/whisper-small": [
+  "hf_licensed"
+ ],
+ "q007|handy-computer/whisper-medium-gguf": [
+  "hf_licensed"
+ ],
+ "q007|alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-16384": [
+  "naive"
+ ],
+ "q007|kazuto098/indic-transcribe-core-int4-onnx": [
+  "keyword"
+ ],
+ "q007|openai/whisper-large-v3": [
+  "hf_licensed"
+ ],
+ "q007|openai/whisper-tiny": [
+  "hf_licensed"
+ ],
+ "q007|aitestinguserpg/whisper-small-gujarati-coreml": [
+  "keyword"
+ ],
+ "q007|vasista22/whisper-gujarati-small": [
+  "ours"
+ ],
+ "q009|adalat-ai/whisper-small-ml-high-lr": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q009|BettySara/betty-malayalam-whisper-large-v3-qlora-r32": [
+  "keyword"
+ ],
+ "q009|openai/whisper-tiny": [
+  "hf_licensed"
+ ],
+ "q009|adalat-ai/whisper-medium-ml-high-lr": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q009|gvs/wav2vec2-large-xlsr-malayalam": [
+  "hf_licensed"
+ ],
+ "q009|adalat-ai/ct2-whisper-medium-ml-rmft": [
+  "ours"
+ ],
+ "q009|openai/whisper-base": [
+  "hf_licensed"
+ ],
+ "q009|adalat-ai/whisper-small-ml-rmft": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q009|openai/whisper-small": [
+  "hf_licensed"
+ ],
+ "q009|BettySara/whisper-large-v3-malayalam-FT": [
+  "naive"
+ ],
+ "q009|openai/whisper-large-v3": [
+  "hf_licensed"
+ ],
+ "q009|adalat-ai/whisper-medium-ml-rmft": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q011|mistralai/Voxtral-Mini-4B-Realtime-2602": [
+  "hf_licensed"
+ ],
+ "q011|openai/whisper-large-v3": [
+  "hf_licensed"
+ ],
+ "q011|abhishekgautamm/whisper-tiny-hinglish": [
+  "ours"
+ ],
+ "q011|FunAudioLLM/Fun-ASR-Nano-2512": [
+  "keyword"
+ ],
+ "q011|AIArchiveInfo/Fun-ASR-MLT-Nano-2512": [
+  "keyword"
+ ],
+ "q011|FunAudioLLM/Fun-ASR-MLT-Nano-2512": [
+  "keyword"
+ ],
+ "q011|qqceqqq/Fun-ASR-Nano-2512": [
+  "keyword"
+ ],
+ "q011|aitytech/Whisper-Base-MLX-FP16": [
+  "ours"
+ ],
+ "q011|David19930/whisper-small-hi": [
+  "naive"
+ ],
+ "q011|openai/whisper-base": [
+  "hf_licensed"
+ ],
+ "q011|futo-org/asr4all-s": [
+  "naive"
+ ],
+ "q011|abhishekgautamm/whisper-tiny-hinglish-ct2": [
+  "naive",
+  "keyword"
+ ],
+ "q011|aitytech/Whisper-Small-MLX-FP16": [
+  "ours"
+ ],
+ "q011|NCAIR1/NigerianAccentedEnglish": [
+  "naive"
+ ],
+ "q011|facebook/wav2vec2-base-960h": [
+  "hf_licensed"
+ ],
+ "q011|openai/whisper-small": [
+  "hf_licensed"
+ ],
+ "q011|aitytech/Whisper-Tiny-MLX-FP16": [
+  "ours"
+ ],
+ "q011|patrickvonplaten/wav2vec2_tiny_random_robust": [
+  "ours"
+ ],
+ "q011|FL33TW00D-HF/whisper-small": [
+  "naive"
+ ],
+ "q013|openai/whisper-large-v3": [
+  "hf_licensed"
+ ],
+ "q013|Systran/faster-whisper-small": [
+  "hf_licensed"
+ ],
+ "q013|epoch-discovery/ep-hindi-asr": [
+  "naive"
+ ],
+ "q013|Trelis/tara": [
+  "ours"
+ ],
+ "q013|happyman11/TacRFC-fastconformer": [
+  "keyword"
+ ],
+ "q013|shujaAK/whisper-medium-hindi-hinglish-asr-fine-tuned": [
+  "ours",
+  "keyword"
+ ],
+ "q013|MahmoudAshraf/mms-300m-1130-forced-aligner": [
+  "hf_licensed"
+ ],
+ "q013|openai/whisper-large-v3-turbo": [
+  "hf_licensed"
+ ],
+ "q013|dkubeio/DKube-asr-hinglish-v1-0.8B": [
+  "ours"
+ ],
+ "q013|Deepro713/whisper-large-v3-turbo-hinglish": [
+  "ours",
+  "naive"
+ ],
+ "q013|chiragbhatheja/whisper-hindi2hinglish-swift-ONNX": [
+  "naive"
+ ],
+ "q013|happyman11/TacRFC-wav2vec2-xlsr53": [
+  "keyword"
+ ],
+ "q013|darelphilip/hinglish-toxicity-classifier": [
+  "naive"
+ ],
+ "q013|happyman11/TacRFC-whisper-base": [
+  "keyword"
+ ],
+ "q013|WhissleAI/STT-hinglish-loans-ONNX": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q013|openai/whisper-small": [
+  "hf_licensed"
+ ],
+ "q015|ArchCoder/whisper-small-hindi-lora": [
+  "keyword"
+ ],
+ "q015|amn-raw/parakeet-hi-v2": [
+  "naive"
+ ],
+ "q015|openai/whisper-small": [
+  "hf_licensed"
+ ],
+ "q015|ranjan-prabhat/whisper-small-hi": [
+  "keyword"
+ ],
+ "q015|md-ahtisham/hindi-asr-phi4-mm": [
+  "naive"
+ ],
+ "q015|openai/whisper-tiny": [
+  "hf_licensed"
+ ],
+ "q015|openai/whisper-large-v3": [
+  "hf_licensed"
+ ],
+ "q015|moorlee/qwen3-asr-0.6b-hinglish-openslr104-v2": [
+  "keyword"
+ ],
+ "q015|Deepro713/whisper-large-v3-turbo-hinglish": [
+  "keyword"
+ ],
+ "q015|BuzzASR/hindi": [
+  "ours"
+ ],
+ "q015|martin-mwiti/whisper-small-hi-lora-r32-alpha64-20241231": [
+  "ours",
+  "naive"
+ ],
+ "q015|openai/whisper-base": [
+  "hf_licensed"
+ ],
+ "q015|dkubeio/DKube-asr-hinglish-v1-0.8B": [
+  "ours",
+  "naive"
+ ],
+ "q015|SakshiRathi77/wav2vec2-large-xlsr-300m-hi-kagglex": [
+  "ours",
+  "naive"
+ ],
+ "q015|nalini2799/CDAC_hindispeechrecognition": [
+  "keyword"
+ ],
+ "q015|VED-G/whisper-small-mucs-hindi-v2": [
+  "ours"
+ ],
+ "q015|mistralai/Voxtral-Mini-4B-Realtime-2602": [
+  "hf_licensed"
+ ],
+ "q017|yash17366392/Fine-Tuned_Helsinki_model": [
+  "naive"
+ ],
+ "q017|Swekerr/eng2hindi": [
+  "naive",
+  "keyword"
+ ],
+ "q017|aiproject-2025/english-hindi-odia-translator": [
+  "keyword"
+ ],
+ "q017|ai4bharat/indictrans2-en-indic-dist-200M": [
+  "hf_licensed"
+ ],
+ "q017|DireDreadlord/Vakya-Mini-100M": [
+  "ours"
+ ],
+ "q017|priyadip/en-hi-transformer": [
+  "naive",
+  "keyword"
+ ],
+ "q017|ViuAI/ViuTranslate": [
+  "naive"
+ ],
+ "q017|facebook/nllb-200-distilled-600M": [
+  "hf_licensed"
+ ],
+ "q017|axondendriteplus/LegalLoRA-IndicTrans2-en_indic": [
+  "keyword"
+ ],
+ "q017|sag-9755/Fine_Tune_MarianMT_English_to_Hindi": [
+  "ours",
+  "keyword"
+ ],
+ "q017|DireDreadlord/Vakya-Mini-Extended-100M": [
+  "ours"
+ ],
+ "q017|Helsinki-NLP/opus-mt-en-hi": [
+  "ours"
+ ],
+ "q017|Sams200/opus-mt-en-hi": [
+  "ours"
+ ],
+ "q017|ai4bharat/indictrans2-en-indic-1B": [
+  "hf_licensed"
+ ],
+ "q017|facebook/nllb-200-3.3B": [
+  "hf_licensed"
+ ],
+ "q017|facebook/nllb-200-distilled-1.3B": [
+  "hf_licensed"
+ ],
+ "q017|kd13/nano-translate-v2": [
+  "naive"
+ ],
+ "q022|Mungert/HY-MT1.5-1.8B-GGUF": [
+  "keyword"
+ ],
+ "q022|Yaser77/mbart-en-te": [
+  "naive"
+ ],
+ "q022|Helsinki-NLP/opus-mt-mul-en": [
+  "hf_licensed"
+ ],
+ "q022|tencent/Hy-MT2-30B-A3B-GGUF": [
+  "hf_licensed"
+ ],
+ "q022|tencent/HY-MT1.5-7B-GGUF": [
+  "keyword"
+ ],
+ "q022|SagarVelamuri/InLegalTrans-En2Indic-FineTuned-Tel-Hin": [
+  "naive"
+ ],
+ "q022|tencent/HY-MT1.5-1.8B-GGUF": [
+  "keyword"
+ ],
+ "q022|tencent/Hy-MT2-1.8B": [
+  "hf_licensed"
+ ],
+ "q022|hima06varshini/TeluguTranslatica": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q022|gvaishnavi/bilingual-translation": [
+  "naive"
+ ],
+ "q022|tencent/Hy-MT2-7B": [
+  "hf_licensed"
+ ],
+ "q022|VijayChandra/english-to-telugu-translator-nllb": [
+  "keyword"
+ ],
+ "q022|vijaysarathy/indictrans2-indic-en-multilingual-ft": [
+  "ours"
+ ],
+ "q022|WindstormLabs/origin-Helsinki-NLP-opus-mt-en-dra": [
+  "ours"
+ ],
+ "q022|JSCreatorPro/offline-cpu-marianmt": [
+  "ours"
+ ],
+ "q022|Helsinki-NLP/opus-mt-en-dra": [
+  "ours"
+ ],
+ "q022|google/madlad400-3b-mt": [
+  "hf_licensed"
+ ],
+ "q022|anithasoma/nllb-finetuned-telugu": [
+  "naive"
+ ],
+ "q023|ManiKumarAdapala/Gemma3-En2Indic-NMT-270M": [
+  "keyword"
+ ],
+ "q023|HPLT/translate-ur-en-v2.0-hplt_opus": [
+  "ours",
+  "naive"
+ ],
+ "q023|ai4bharat/indictrans2-en-indic-1B": [
+  "hf_licensed"
+ ],
+ "q023|Helsinki-NLP/opus-mt-ur-en": [
+  "ours"
+ ],
+ "q023|facebook/nllb-200-3.3B": [
+  "hf_licensed"
+ ],
+ "q023|facebook/nllb-200-distilled-1.3B": [
+  "hf_licensed"
+ ],
+ "q023|facebook/nllb-200-distilled-600M": [
+  "hf_licensed"
+ ],
+ "q023|HPLT/translate-en-ur-v2.0-hplt": [
+  "naive"
+ ],
+ "q023|mishbahul11/nerds-nits-indictrans2-en-ur-finetuned-wmt2026": [
+  "keyword"
+ ],
+ "q023|ayeshasadiq025/biobert-medical-urdu-decoder": [
+  "keyword"
+ ],
+ "q023|HPLT/translate-ur-en-v2.0-hplt": [
+  "ours",
+  "naive"
+ ],
+ "q023|samiulhaq/iwslt-bt-en-ur": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q023|samiulhaq/iwslt-bt-ur-en": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q023|ai4bharat/indictrans2-en-indic-dist-200M": [
+  "hf_licensed"
+ ],
+ "q024|Satwik11/gemma-2b-mt-Hindi-Fintuned": [
+  "naive"
+ ],
+ "q024|Vikrantyadav11234/NMT_multilingual_12": [
+  "keyword"
+ ],
+ "q024|Helsinki-NLP/opus-mt-fr-en": [
+  "hf_licensed"
+ ],
+ "q024|theharshithh/open-sarika": [
+  "naive"
+ ],
+ "q024|google-t5/t5-base": [
+  "hf_licensed"
+ ],
+ "q024|Helsinki-NLP/opus-mt-nl-en": [
+  "hf_licensed"
+ ],
+ "q024|ai4bharat/indic-conformer-600m-multilingual": [
+  "naive"
+ ],
+ "q024|google-t5/t5-small": [
+  "hf_licensed"
+ ],
+ "q024|Helsinki-NLP/opus-mt-de-en": [
+  "hf_licensed"
+ ],
+ "q024|sagnikdas-ml/sarvam-translate": [
+  "keyword"
+ ],
+ "q024|onnx-community/sarvam-translate-onnx": [
+  "keyword"
+ ],
+ "q024|Genius1237/xlm-roberta-large-tydip": [
+  "naive"
+ ],
+ "q024|AkshitaS/bhasha-embed-v0": [
+  "naive"
+ ],
+ "q024|cstr/madlad400-3b-mt-GGUF": [
+  "keyword"
+ ],
+ "q024|Prince-1/sarvam-translate-onnx": [
+  "keyword"
+ ],
+ "q025|onnx-community/sarvam-translate-onnx": [
+  "keyword"
+ ],
+ "q025|Helsinki-NLP/opus-mt-tc-bible-big-deu_eng_fra_por_spa-ine": [
+  "ours"
+ ],
+ "q025|HPLT/translate-gu-en-v2.0-hplt_opus": [
+  "naive"
+ ],
+ "q025|HPLT/translate-gu-en-v2.0-hplt": [
+  "naive"
+ ],
+ "q025|ManiKumarAdapala/Gemma3-En2Indic-NMT-270M": [
+  "ours"
+ ],
+ "q025|ai4bharat/indictrans2-en-indic-dist-200M": [
+  "hf_licensed"
+ ],
+ "q025|HPLT/translate-en-gu-v2.0-hplt": [
+  "naive",
+  "keyword"
+ ],
+ "q025|str33t/madlad400-3b-mt-en-dv-news-v1-GGUF": [
+  "naive"
+ ],
+ "q025|WindstormLabs/origin-Helsinki-NLP-opus-mt-iir-en": [
+  "ours"
+ ],
+ "q025|WindstormLabs/origin-Helsinki-NLP-opus-mt-tc-bible-big-deu_eng_fra_por_spa-ine": [
+  "ours"
+ ],
+ "q025|facebook/nllb-200-distilled-1.3B": [
+  "hf_licensed"
+ ],
+ "q025|facebook/nllb-200-3.3B": [
+  "hf_licensed"
+ ],
+ "q025|alphaZimuth/Hy-MT2-30B-A3B-APEX-GGUF": [
+  "keyword"
+ ],
+ "q025|HPLT/translate-en-gu-v2.0-hplt_opus": [
+  "naive"
+ ],
+ "q025|Prince-1/sarvam-translate-onnx": [
+  "keyword"
+ ],
+ "q025|facebook/nllb-200-distilled-600M": [
+  "hf_licensed"
+ ],
+ "q025|ai4bharat/indictrans2-en-indic-1B": [
+  "hf_licensed"
+ ],
+ "q025|Vikrantyadav11234/NMT_multilingual_12": [
+  "keyword"
+ ],
+ "q025|Helsinki-NLP/opus-mt-iir-en": [
+  "ours"
+ ],
+ "q028|michaelfeil/ct2fast-opus-mt-en-de": [
+  "naive",
+  "keyword"
+ ],
+ "q028|HPLT/translate-en-gu-v2.0-hplt_opus": [
+  "naive"
+ ],
+ "q028|Helsinki-NLP/opus-mt-tc-bible-big-gmw-en": [
+  "ours"
+ ],
+ "q028|Helsinki-NLP/opus-mt-tc-big-gmw-gmw": [
+  "ours"
+ ],
+ "q028|google-t5/t5-base": [
+  "hf_licensed"
+ ],
+ "q028|cstr/opus-mt-de-en-GGUF": [
+  "ours"
+ ],
+ "q028|google-t5/t5-large": [
+  "hf_licensed"
+ ],
+ "q028|Helsinki-NLP/opus-mt-de-en": [
+  "hf_licensed"
+ ],
+ "q028|google-t5/t5-3b": [
+  "hf_licensed"
+ ],
+ "q028|yanolja/YanoljaNEXT-Rosetta-4B": [
+  "keyword"
+ ],
+ "q028|google-t5/t5-small": [
+  "hf_licensed"
+ ],
+ "q028|HPLT/translate-gu-en-v2.0-hplt": [
+  "naive"
+ ],
+ "q028|yanolja/YanoljaNEXT-Rosetta-20B": [
+  "keyword"
+ ],
+ "q028|Heng666/madlad400-3b-mt-ct2": [
+  "ours"
+ ],
+ "q028|HPLT/translate-gu-en-v2.0-hplt_opus": [
+  "naive"
+ ],
+ "q028|HPLT/translate-en-gu-v2.0-hplt": [
+  "naive"
+ ],
+ "q028|Helsinki-NLP/opus-mt-en-de": [
+  "ours",
+  "keyword"
+ ],
+ "q028|yanolja/YanoljaNEXT-Rosetta-12B": [
+  "keyword"
+ ],
+ "q029|Helsinki-NLP/opus-mt-ml-en": [
+  "ours"
+ ],
+ "q029|Navneeth017/nllb-1.3b-en-ml-ct2": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q029|HPLT/translate-ml-en-v2.0-hplt": [
+  "ours",
+  "naive"
+ ],
+ "q029|facebook/nllb-200-3.3B": [
+  "hf_licensed"
+ ],
+ "q029|ai4bharat/indictrans2-en-indic-dist-200M": [
+  "hf_licensed"
+ ],
+ "q029|HPLT/translate-ml-en-v2.0-hplt_opus": [
+  "ours",
+  "naive"
+ ],
+ "q029|ai4bharat/indictrans2-en-indic-1B": [
+  "hf_licensed"
+ ],
+ "q029|facebook/nllb-200-distilled-1.3B": [
+  "hf_licensed"
+ ],
+ "q029|ltguoj/CeyNews-category-infoxlm-large": [
+  "naive"
+ ],
+ "q029|Sams200/opus-mt-ml-en": [
+  "ours"
+ ],
+ "q029|facebook/nllb-200-distilled-600M": [
+  "hf_licensed"
+ ],
+ "q029|nandakishoresaic/indian-news-translator": [
+  "keyword"
+ ],
+ "q029|endurasolution/aksharakuppy_English-Malayalam-Translate": [
+  "keyword"
+ ],
+ "q029|Muhammed-sheheen/NLLB_FINETUNIG": [
+  "keyword"
+ ],
+ "q029|kurianbenoy/kde_en_ml_translation_model": [
+  "naive",
+  "keyword"
+ ],
+ "q031|Cortiqa/guard-a40M": [
+  "keyword"
+ ],
+ "q031|clapAI/mmBERT-small-multilingual-sentiment": [
+  "ours"
+ ],
+ "q031|pascalrai/hinglish-twitter-roberta-base-sentiment": [
+  "ours"
+ ],
+ "q031|vashuag/HindiEmotion": [
+  "ours",
+  "naive"
+ ],
+ "q031|Keshav0av/HinSpam-spam-detection": [
+  "ours"
+ ],
+ "q031|autopilot-ai/EthicalEye": [
+  "hf_licensed"
+ ],
+ "q031|agentlans/multilingual-e5-small-aligned-sentiment": [
+  "ours",
+  "keyword"
+ ],
+ "q031|marshal-yash/gujlish-sentiment-analysis": [
+  "naive"
+ ],
+ "q031|Sousan12/multilingual-sentiment-xlmr-onnx": [
+  "keyword"
+ ],
+ "q031|chaoliangUNSW/Jev-Style-0.8B-Decision-v3-GGUF": [
+  "hf_licensed"
+ ],
+ "q031|LondonStory/txlm-roberta-hindi-sentiment": [
+  "naive"
+ ],
+ "q031|lxyuan/distilbert-base-multilingual-cased-sentiments-student": [
+  "hf_licensed"
+ ],
+ "q031|amber-tech/bert-multilingual-passage-reranking-msmarco": [
+  "hf_licensed"
+ ],
+ "q031|ShivamSharma8168/hindi-sentiment-model": [
+  "naive"
+ ],
+ "q031|luluw/Roberta-devangari-script-classification": [
+  "keyword"
+ ],
+ "q031|shae2977/xlm-roberta-hinglish-sentiment-analysis": [
+  "naive"
+ ],
+ "q031|Captain-1337/CrudeBERT": [
+  "keyword"
+ ],
+ "q031|convaiinnovations/laya-multilingual": [
+  "hf_licensed"
+ ],
+ "q032|l3cube-pune/MarathiSentiment": [
+  "ours"
+ ],
+ "q032|amber-tech/bert-multilingual-passage-reranking-msmarco": [
+  "hf_licensed"
+ ],
+ "q032|SargeDev/Solar-JEV-Gemma-embed-2-GGUF": [
+  "keyword"
+ ],
+ "q032|n24q02m/Qwen3-Reranker-0.6B-ONNX": [
+  "keyword"
+ ],
+ "q032|shravan37/kavach-scam-classifier": [
+  "keyword"
+ ],
+ "q032|cstr/glotlid-GGUF": [
+  "keyword"
+ ],
+ "q032|nlpodyssey/bert-multilingual-uncased-geo-countries-headlines": [
+  "hf_licensed"
+ ],
+ "q032|Maxthemacaque/onnx-gte-multilingual-base": [
+  "naive"
+ ],
+ "q032|autopilot-ai/EthicalEye": [
+  "hf_licensed"
+ ],
+ "q032|mesolitica/sentiment-analysis-nanot5-small-malaysian-cased": [
+  "ours"
+ ],
+ "q032|Alibaba-NLP/gte-multilingual-base": [
+  "naive"
+ ],
+ "q032|l3cube-pune/hate-bert-hasoc-marathi": [
+  "ours"
+ ],
+ "q032|ibraheemmoosa/xlmindic-base-multiscript-soham": [
+  "ours"
+ ],
+ "q032|soprasteria/gte-multilingual-base": [
+  "naive"
+ ],
+ "q032|yankexe/gte-multilingual-base-air-gapped": [
+  "naive"
+ ],
+ "q032|ibraheemmoosa/xlmindic-base-uniscript-soham": [
+  "ours"
+ ],
+ "q032|cis-lmu/glotlid": [
+  "hf_licensed"
+ ],
+ "q032|nareyko/genivara-pii-nano": [
+  "keyword"
+ ],
+ "q032|classla/multilingual-IPTC-news-topic-classifier": [
+  "hf_licensed"
+ ],
+ "q032|alphaedge-ai/clip-ViT-B-32-multilingual-v1-mr-32768": [
+  "naive"
+ ],
+ "q035|autopilot-ai/EthicalEye": [
+  "hf_licensed"
+ ],
+ "q035|unitary/multilingual-toxic-xlm-roberta": [
+  "keyword"
+ ],
+ "q035|onnx-community/unbiased-toxic-roberta-ONNX": [
+  "keyword"
+ ],
+ "q035|amber-tech/bert-multilingual-passage-reranking-msmarco": [
+  "hf_licensed"
+ ],
+ "q035|nlpodyssey/bert-multilingual-uncased-geo-countries-headlines": [
+  "hf_licensed"
+ ],
+ "q035|GhadeerALbadani/mmbert-Multilingual_detection_of_hate_speech": [
+  "keyword"
+ ],
+ "q035|ehzawad/fastconformer-ctc-large-bn-BD": [
+  "naive"
+ ],
+ "q035|ehzawad/canary-1b-v2-bn-BD": [
+  "naive"
+ ],
+ "q035|unitary/toxic-bert": [
+  "keyword"
+ ],
+ "q035|abirmondalind/bert-base-multilingual-cased-hate-speech-ben-hin": [
+  "ours"
+ ],
+ "q035|kingshukroy/xlm-roberta-base-hate-speech-ben-hin": [
+  "ours"
+ ],
+ "q035|ehzawad/Voxtral-Small-24B-2507-bn-BD": [
+  "naive"
+ ],
+ "q035|convaiinnovations/laya-multilingual": [
+  "hf_licensed"
+ ],
+ "q035|ehzawad/whisper-large-v3-turbo-bn-BD": [
+  "naive"
+ ],
+ "q035|kingshukroy/distilbert-base-multilingual-cased-hate-speech-ben-hin": [
+  "ours"
+ ],
+ "q035|abirmondalind/bert-base-multilingual-uncased-hate-speech-ben-hin": [
+  "ours"
+ ],
+ "q035|ehzawad/fastconformer-hybrid-rnnt-ctc-large-bn-BD": [
+  "naive"
+ ],
+ "q035|kingshukroy/twhin-bert-base-hate-speech-ben-hin": [
+  "ours"
+ ],
+ "q035|cardiffnlp/twitter-roberta-base-hate": [
+  "keyword"
+ ],
+ "q035|lokas/spam-usernames-classifier": [
+  "hf_licensed"
+ ],
+ "q036|SamLowe/roberta-base-go_emotions": [
+  "hf_licensed"
+ ],
+ "q036|ProsusAI/finbert": [
+  "hf_licensed"
+ ],
+ "q036|Mr-DS-ML-85/SyFox": [
+  "keyword"
+ ],
+ "q036|boltuix/bert-lite": [
+  "ours"
+ ],
+ "q036|Nebulixlabs/Quantum-Classifier-Calibrated": [
+  "ours"
+ ],
+ "q036|mrm8488/bert-tiny-finetuned-enron-spam-detection": [
+  "naive"
+ ],
+ "q036|Keshav0av/HinSpam-spam-detection": [
+  "naive"
+ ],
+ "q036|sifat-febo/banglish-ontor": [
+  "ours"
+ ],
+ "q036|BAAI/bge-reranker-base": [
+  "hf_licensed"
+ ],
+ "q036|distilbert/distilbert-base-uncased-finetuned-sst-2-english": [
+  "hf_licensed"
+ ],
+ "q036|AbhinavMaurya/SpamShield": [
+  "keyword"
+ ],
+ "q036|onnx-community/phishing-scam-detector-base-ONNX": [
+  "naive",
+  "keyword"
+ ],
+ "q036|mrm8488/bert-tiny-finetuned-sms-spam-detection": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q036|boltuix/bert-emotion": [
+  "ours"
+ ],
+ "q036|Horizon-Labs/phishing-scam-detector-base": [
+  "naive"
+ ],
+ "q036|meta-llama/Prompt-Guard-86M": [
+  "hf_licensed"
+ ],
+ "q036|shravan37/kavach-scam-classifier": [
+  "keyword"
+ ],
+ "q037|tabularisai/multilingual-emotion-classification": [
+  "ours",
+  "naive"
+ ],
+ "q037|lxyuan/distilbert-base-multilingual-cased-sentiments-student": [
+  "hf_licensed"
+ ],
+ "q037|abhiprd2000/hindi-sentiment-model": [
+  "ours",
+  "naive"
+ ],
+ "q037|ShivamSharma8168/hindi-sentiment-model": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q037|Zeolit/lettuce-thymos-26m-v1": [
+  "keyword"
+ ],
+ "q037|samarthruckstar/xlm_hindi_english_emoClss": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q037|onnx-community/distilbert-multilingual-toxicity-classifier-ONNX": [
+  "hf_licensed"
+ ],
+ "q037|vashuag/HindiEmotion": [
+  "ours",
+  "naive"
+ ],
+ "q037|livekit/turn-detector": [
+  "hf_licensed"
+ ],
+ "q037|saksham-joshi/sentivox-muril-goemotions": [
+  "keyword"
+ ],
+ "q037|cardiffnlp/twitter-roberta-base-emotion": [
+  "keyword"
+ ],
+ "q037|papluca/xlm-roberta-base-language-detection": [
+  "hf_licensed"
+ ],
+ "q037|cis-lmu/glotlid": [
+  "hf_licensed"
+ ],
+ "q039|tuklu/SASCv2": [
+  "keyword"
+ ],
+ "q039|livekit/turn-detector": [
+  "hf_licensed"
+ ],
+ "q039|marshal-yash/gujlish-sentiment-analysis": [
+  "ours",
+  "naive"
+ ],
+ "q039|Mayurkhalse/muril-sarcasm-detector": [
+  "keyword"
+ ],
+ "q039|tsmaitry/devica-toxicity-xlmr-large": [
+  "keyword"
+ ],
+ "q039|airzipm/sentiment-analysis-muril-v2": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q039|lxyuan/distilbert-base-multilingual-cased-sentiments-student": [
+  "hf_licensed"
+ ],
+ "q039|cis-lmu/glotlid": [
+  "hf_licensed"
+ ],
+ "q039|tuklu/SASC": [
+  "keyword"
+ ],
+ "q039|onnx-community/distilbert-multilingual-toxicity-classifier-ONNX": [
+  "hf_licensed"
+ ],
+ "q039|papluca/xlm-roberta-base-language-detection": [
+  "hf_licensed"
+ ],
+ "q039|rohanrajpal/bert-base-en-hi-codemix-cased": [
+  "ours",
+  "naive"
+ ],
+ "q039|shae2977/xlm-roberta-hinglish-sentiment-analysis": [
+  "ours",
+  "naive"
+ ],
+ "q039|pankajbiswas6/hinglish-hate-speech-bilstm": [
+  "ours",
+  "naive"
+ ],
+ "q042|ibm-granite/granite-guardian-hap-38m": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q042|distilbert/distilbert-base-uncased-finetuned-sst-2-english": [
+  "hf_licensed"
+ ],
+ "q042|lxyuan/distilbert-base-multilingual-cased-sentiments-student": [
+  "hf_licensed"
+ ],
+ "q042|JungleLee/bert-toxic-comment-classification": [
+  "ours"
+ ],
+ "q042|autotrust/GEV-26B-Decide": [
+  "hf_licensed"
+ ],
+ "q042|autotrust/JEV-35B": [
+  "hf_licensed"
+ ],
+ "q042|nicholasKluge/ToxiGuardrail": [
+  "ours"
+ ],
+ "q042|vincentoh/deberta-v3-xsmall-l0-bouncer": [
+  "ours"
+ ],
+ "q042|Horizon-Labs/multilingual-toxicity-base": [
+  "naive"
+ ],
+ "q042|ibm-granite/granite-guardian-hap-125m": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q042|onnx-community/unbiased-toxic-roberta-ONNX": [
+  "keyword"
+ ],
+ "q042|unitary/toxic-bert": [
+  "keyword"
+ ],
+ "q042|Horizon-Labs/multilingual-toxicity-small": [
+  "naive"
+ ],
+ "q042|unitary/unbiased-toxic-roberta": [
+  "keyword"
+ ],
+ "q042|protectai/deberta-v3-base-prompt-injection-v2": [
+  "hf_licensed"
+ ],
+ "q042|HikmaAI/hikmaai-xlm-roberta-large-toxicity": [
+  "naive"
+ ],
+ "q043|cis-lmu/glotlid": [
+  "hf_licensed"
+ ],
+ "q043|classla/multilingual-IPTC-news-topic-classifier": [
+  "hf_licensed"
+ ],
+ "q043|samarthramesh/gaperon-mmbert-tamil": [
+  "naive"
+ ],
+ "q043|agentlans/multilingual-e5-small-aligned-quality": [
+  "ours"
+ ],
+ "q043|autopilot-ai/EthicalEye": [
+  "hf_licensed"
+ ],
+ "q043|XSY/albert-base-v2-fakenews-discriminator": [
+  "keyword"
+ ],
+ "q043|convaiinnovations/laya-multilingual": [
+  "hf_licensed"
+ ],
+ "q043|jy46604790/Fake-News-Bert-Detect": [
+  "keyword"
+ ],
+ "q043|agentlans/multilingual-e5-small-aligned-readability": [
+  "ours"
+ ],
+ "q043|govtech/lionguard-2-lite": [
+  "naive"
+ ],
+ "q043|manasyy/malayalam-fake-news-detector-muril": [
+  "naive"
+ ],
+ "q043|Emerald7664/laya-multilingual-onnx": [
+  "keyword"
+ ],
+ "q043|hillbyte/Indic-Lite": [
+  "keyword"
+ ],
+ "q043|soyelmismo/laya-multilingual-onnx": [
+  "keyword"
+ ],
+ "q043|mangalathkedar/indic-profanity-detector-xlm-roberta": [
+  "naive"
+ ],
+ "q043|adisyonist/14-allergens-0.1B": [
+  "ours"
+ ],
+ "q043|JanSchachtschabel/m2v-gte-multilingual-768": [
+  "ours"
+ ],
+ "q043|arafatfahim/bangla-news-topic-classifier": [
+  "naive"
+ ],
+ "q043|agentlans/multilingual-e5-small-aligned-sentiment": [
+  "ours"
+ ],
+ "q043|amber-tech/bert-multilingual-passage-reranking-msmarco": [
+  "hf_licensed"
+ ],
+ "q045|google/electra-base-discriminator": [
+  "hf_licensed"
+ ],
+ "q045|ai4bharat/IndicNER": [
+  "naive"
+ ],
+ "q045|IAMCB/indic-transcribe-core": [
+  "naive"
+ ],
+ "q045|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2": [
+  "hf_licensed"
+ ],
+ "q045|amn-raw/parakeet-indic-v1": [
+  "keyword"
+ ],
+ "q045|BAAI/bge-small-en-v1.5": [
+  "hf_licensed"
+ ],
+ "q045|dnivra26/muril-lang-id-v7": [
+  "keyword"
+ ],
+ "q045|MWirelabs/ne-lid": [
+  "naive",
+  "keyword"
+ ],
+ "q045|bodhan-ai/indic-transcribe-core": [
+  "naive"
+ ],
+ "q045|Vikrantyadav11234/NMT_multilingual_12": [
+  "keyword"
+ ],
+ "q045|sentence-transformers/all-MiniLM-L6-v2": [
+  "hf_licensed"
+ ],
+ "q045|adidsh/indic-transcribe-flex-int8-onnx": [
+  "naive"
+ ],
+ "q045|cross-encoder/ms-marco-MiniLM-L6-v2": [
+  "hf_licensed"
+ ],
+ "q045|pruthwik/ilid-muril-model": [
+  "keyword"
+ ],
+ "q046|l3cube-pune/me-lid-roberta": [
+  "ours"
+ ],
+ "q046|Horizon-Labs/punctuation-restoration-base": [
+  "hf_licensed"
+ ],
+ "q046|benjamin/wtp-bert-tiny": [
+  "ours"
+ ],
+ "q046|djagatiya/ner-roberta-base-ontonotesv5-englishv4": [
+  "keyword"
+ ],
+ "q046|thenlpresearcher/shalaka_fd_indictrans2-en-indic-dist-200M_finetuned_eng_Latn_to_mar_Deva": [
+  "naive"
+ ],
+ "q046|lfcc/bert-portuguese-ner": [
+  "keyword"
+ ],
+ "q046|vaibhav006/indic-ner-muril-naamapadam": [
+  "naive"
+ ],
+ "q046|filip-w/gliner-multi-pii-onnx": [
+  "keyword"
+ ],
+ "q046|benjamin/wtp-bert-mini": [
+  "ours"
+ ],
+ "q046|IreNkweke/bert-finetuned-ner-ontonotes5": [
+  "naive",
+  "keyword"
+ ],
+ "q046|theanugrah/muril-indic-ner": [
+  "keyword",
+  "hf_licensed"
+ ],
+ "q046|SIRIS-Lab/citation-parser-ENTITY": [
+  "ours",
+  "hf_licensed"
+ ],
+ "q046|l3cube-pune/marathi-social-ner": [
+  "naive"
+ ],
+ "q046|Rishabh157/multiconer-multilingual-ner-mdeberta": [
+  "naive"
+ ],
+ "q046|Horizon-Labs/punctuation-restoration-small": [
+  "hf_licensed"
+ ],
+ "q046|stanfordnlp/stanza-mr": [
+  "hf_licensed"
+ ],
+ "q046|benjamin/wtp-canine-s-6l-no-adapters": [
+  "ours"
+ ],
+ "q048|mrm8488/distilbert-base-multi-cased-finetuned-typo-detection": [
+  "keyword"
+ ],
+ "q048|SIRIS-Lab/citation-parser-ENTITY": [
+  "hf_licensed"
+ ],
+ "q048|Ambareeshkumar/BERT-Tamil": [
+  "keyword"
+ ],
+ "q048|Horizon-Labs/punctuation-restoration-small": [
+  "hf_licensed"
+ ],
+ "q048|prachuryyaIITG/SampurNER_Tamil_IndicBERTv2": [
+  "ours"
+ ],
+ "q048|Babelscape/wikineural-multilingual-ner": [
+  "keyword"
+ ],
+ "q048|vasista22/whisper-tamil-small": [
+  "naive"
+ ],
+ "q048|JairamKanna/armms-xlsr": [
+  "naive"
+ ],
+ "q048|tamilnlpSLIIT/whisper-ta": [
+  "naive"
+ ],
+ "q048|ai4bharat/IndicNER": [
+  "ours"
+ ],
+ "q048|Lokeshwaran/xlm-roberta-base-fintuned-panx-ta-hi": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q048|theanugrah/muril-indic-ner": [
+  "ours",
+  "hf_licensed"
+ ],
+ "q048|Horizon-Labs/punctuation-restoration-base": [
+  "hf_licensed"
+ ],
+ "q048|prachuryyaIITG/APTFiNER_Tamil_MuRIL": [
+  "ours"
+ ],
+ "q048|Davlan/bert-base-multilingual-cased-ner-hrl": [
+  "keyword"
+ ],
+ "q048|vasista22/whisper-tamil-medium": [
+  "naive"
+ ],
+ "q048|stanfordnlp/stanza-ta": [
+  "hf_licensed"
+ ],
+ "q050|OpenMed/OpenMed-PII-Telugu-ClinicalBGE-Large-335M-v1": [
+  "ours"
+ ],
+ "q050|LocalAI-io/privacy-filter-multilingual-GGUF": [
+  "hf_licensed"
+ ],
+ "q050|akhila56/swecha-telangana-asr-base-model": [
+  "naive"
+ ],
+ "q050|Horizon-Labs/punctuation-restoration-small": [
+  "hf_licensed"
+ ],
+ "q050|saiprathap-k-r/SGPT": [
+  "naive"
+ ],
+ "q050|stanfordnlp/stanza-te": [
+  "hf_licensed"
+ ],
+ "q050|neuronsbyisshu/indicbert-hi-ner-naamapadam": [
+  "ours",
+  "keyword"
+ ],
+ "q050|OpenMed/OpenMed-PII-Telugu-ClinicalE5-Base-109M-v1": [
+  "ours"
+ ],
+ "q050|OpenMed/privacy-filter-multilingual": [
+  "hf_licensed"
+ ],
+ "q050|OpenMed/privacy-filter-multilingual-v2": [
+  "hf_licensed"
+ ],
+ "q050|urchade/gliner_large-v2": [
+  "keyword"
+ ],
+ "q050|jyothisanjay/swecha-telangana-asr-base-model": [
+  "naive"
+ ],
+ "q050|nicolauduran45/affilgood-ner-multilingual-v2": [
+  "keyword"
+ ],
+ "q050|ROG-7/muril-indic-ner-explainable-crf": [
+  "ours"
+ ],
+ "q050|SIRIS-Lab/affilgood-NER-multilingual": [
+  "keyword"
+ ],
+ "q050|chandanaau/distilbert-telugu-ner": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q050|HPLT/translate-te-en-v2.0-hplt": [
+  "naive"
+ ],
+ "q051|Ar86Bat/multilang-pii-ner": [
+  "naive"
+ ],
+ "q051|flair/ner-english-large": [
+  "ours"
+ ],
+ "q051|lfcc/bert-portuguese-ner": [
+  "keyword"
+ ],
+ "q051|Jean-Baptiste/roberta-large-ner-english": [
+  "ours"
+ ],
+ "q051|chrisdepallan/ner-skills-distilbert": [
+  "keyword"
+ ],
+ "q051|spacy/en_core_web_sm": [
+  "keyword"
+ ],
+ "q051|spacy/en_core_web_lg": [
+  "keyword"
+ ],
+ "q051|gravitee-io/bert-small-pii-detection": [
+  "hf_licensed"
+ ],
+ "q051|onnx-community/multilang-pii-ner-ONNX": [
+  "naive"
+ ],
+ "q051|dslim/bert-base-NER": [
+  "hf_licensed"
+ ],
+ "q051|rohin30n/armour-ai-ner": [
+  "ours"
+ ],
+ "q051|StanfordAIMI/stanford-deidentifier-base": [
+  "hf_licensed"
+ ],
+ "q051|IreNkweke/bert-finetuned-ner-ontonotes5": [
+  "naive",
+  "keyword"
+ ],
+ "q051|pierre-tassel/rapido-ner-entity": [
+  "ours"
+ ],
+ "q051|segment-any-text/sat-3l-sm": [
+  "hf_licensed"
+ ],
+ "q051|Babelscape/wikineural-multilingual-ner": [
+  "hf_licensed"
+ ],
+ "q051|splynx/multilang-pii-ner-ONNX": [
+  "naive"
+ ],
+ "q051|flair/ner-english-ontonotes-large": [
+  "ours",
+  "naive"
+ ],
+ "q055|SIRIS-Lab/citation-parser-ENTITY": [
+  "ours"
+ ],
+ "q055|onnx-community/bert-base-multilingual-cased-ner-hrl-ONNX": [
+  "keyword"
+ ],
+ "q055|benjamin/wtp-canine-s-1l-no-adapters": [
+  "ours"
+ ],
+ "q055|segment-any-text/sat-3l-sm": [
+  "hf_licensed"
+ ],
+ "q055|filip-w/gliner-multi-pii-onnx": [
+  "keyword"
+ ],
+ "q055|benjamin/wtp-canine-s-3l-no-adapters": [
+  "ours"
+ ],
+ "q055|segment-any-text/sat-1l-sm": [
+  "hf_licensed"
+ ],
+ "q055|benjamin/wtp-canine-s-9l-no-adapters": [
+  "ours"
+ ],
+ "q055|gomyk/gte-student-gte_L4_uniform_distilled": [
+  "naive"
+ ],
+ "q055|nlpie/clinical-distilbert-i2b2-2010": [
+  "keyword"
+ ],
+ "q055|djagatiya/ner-roberta-base-ontonotesv5-englishv4": [
+  "keyword"
+ ],
+ "q055|51la5/roberta-large-NER": [
+  "hf_licensed"
+ ],
+ "q055|UX4567/Speak-English-AI-3B-v1.0": [
+  "naive"
+ ],
+ "q055|segment-any-text/sat-12l-sm": [
+  "hf_licensed"
+ ],
+ "q055|minuva/MiniLMv2-toxic-jigsaw-onnx": [
+  "naive"
+ ],
+ "q055|lfcc/bert-portuguese-ner": [
+  "keyword"
+ ],
+ "q055|abidanoaman/urdu-asr-distilled-base-enhanced": [
+  "naive"
+ ],
+ "q055|FacebookAI/xlm-roberta-large-finetuned-conll03-english": [
+  "hf_licensed"
+ ],
+ "q055|benjamin/wtp-canine-s-6l-no-adapters": [
+  "ours"
+ ],
+ "q055|MichaelHuang/muril_base_cased_urdu_ner": [
+  "naive"
+ ],
+ "q056|sagorsarker/mbert-bengali-ner": [
+  "naive"
+ ],
+ "q056|prachuryyaIITG/SampurNER_Punjabi_IndicBERTv2": [
+  "ours"
+ ],
+ "q056|Horizon-Labs/punctuation-restoration-small": [
+  "hf_licensed"
+ ],
+ "q056|nlpie/clinical-distilbert-i2b2-2010": [
+  "keyword"
+ ],
+ "q056|Davlan/xlm-roberta-base-wikiann-ner": [
+  "keyword"
+ ],
+ "q056|theanugrah/muril-indic-ner": [
+  "ours",
+  "naive",
+  "hf_licensed"
+ ],
+ "q056|pierre-tassel/rapido-ner-entity": [
+  "ours"
+ ],
+ "q056|vaibhav006/indic-ner-muril-naamapadam": [
+  "ours",
+  "naive",
+  "keyword",
+  "hf_licensed"
+ ],
+ "q056|Horizon-Labs/punctuation-restoration-base": [
+  "hf_licensed"
+ ],
+ "q056|oliverguhr/fullstop-punctuation-multilingual-sonar-base": [
+  "keyword"
+ ],
+ "q056|Lokeshwaran/xlm-roberta-base-fintuned-panx-ta-hi": [
+  "naive"
+ ],
+ "q056|ai4bharat/IndicNER": [
+  "ours"
+ ],
+ "q056|oliverguhr/fullstop-punctuation-multilang-large": [
+  "keyword"
+ ],
+ "q056|SIRIS-Lab/citation-parser-ENTITY": [
+  "hf_licensed"
+ ],
+ "q056|CAMeL-Lab/bert-base-arabic-camelbert-mix-ner": [
+  "naive"
+ ],
+ "q057|vaibhav006/indic-ner-muril-naamapadam": [
+  "naive"
+ ],
+ "q057|Rishabh157/multiconer-multilingual-ner-mdeberta": [
+  "ours"
+ ],
+ "q057|OpenMed/OpenMed-NER-PharmaDetect-SuperClinical-434M": [
+  "hf_licensed"
+ ],
+ "q057|Babelscape/wikineural-multilingual-ner": [
+  "keyword"
+ ],
+ "q057|gravitee-io/bert-small-pii-detection": [
+  "hf_licensed"
+ ],
+ "q057|ai4bharat/IndicNER": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q057|rohin30n/armour-ai-ner": [
+  "ours",
+  "naive"
+ ],
+ "q057|openai/privacy-filter": [
+  "hf_licensed"
+ ],
+ "q057|chandanaau/distilbert-telugu-ner": [
+  "ours",
+  "keyword"
+ ],
+ "q057|microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank": [
+  "hf_licensed"
+ ],
+ "q057|knowledgator/gliner-x-small": [
+  "ours"
+ ],
+ "q057|OpenMed/OpenMed-NER-ChemicalDetect-ModernMed-149M": [
+  "hf_licensed"
+ ],
+ "q057|MichaelHuang/muril_base_cased_urdu_ner_2.0": [
+  "keyword"
+ ],
+ "q057|MichaelHuang/muril_base_cased_hindi_ner": [
+  "naive",
+  "keyword"
+ ],
+ "q057|Archit-01/indic-asr-multi": [
+  "naive"
+ ],
+ "q058|OpenMed/OpenMed-PII-Hindi-BiomedBERT-Base-110M-v1": [
+  "ours"
+ ],
+ "q058|samarthramesh/gaperon-mmbert-hindi": [
+  "naive"
+ ],
+ "q058|LocalAI-io/privacy-filter-multilingual-GGUF": [
+  "hf_licensed"
+ ],
+ "q058|OpenMed/OpenMed-PII-Hindi-BioClinicalBERT-Base-110M-v1": [
+  "ours"
+ ],
+ "q058|OpenMed/OpenMed-PII-Hindi-ClinicalE5-Base-109M-v1": [
+  "ours"
+ ],
+ "q058|knowledgator/gliner-x-large": [
+  "hf_licensed"
+ ],
+ "q058|OpenMed/privacy-filter-multilingual-v2": [
+  "hf_licensed"
+ ],
+ "q058|alphaedge-ai/clip-ViT-B-32-multilingual-v1-hi-16384": [
+  "naive"
+ ],
+ "q058|OpenMed/OpenMed-PII-Hindi-ClinicalE5-Small-33M-v1": [
+  "ours"
+ ],
+ "q058|hiteshwadhwani/pii-model-indic-v1": [
+  "ours"
+ ],
+ "q058|Om-7387/Hindi_Tokenizer": [
+  "keyword"
+ ],
+ "q058|athrvk/gpu-sankhya": [
+  "keyword"
+ ],
+ "q058|specialv/whisper-small-merged-hi-en": [
+  "naive"
+ ],
+ "q058|anchpop/lexide-parsley": [
+  "keyword"
+ ],
+ "q058|navnav98/xlmr-comi-pos": [
+  "naive"
+ ],
+ "q058|stanfordnlp/stanza-hi": [
+  "hf_licensed"
+ ],
+ "q058|LingoIITGN/COMI-LINGUA-POS": [
+  "naive",
+  "keyword"
+ ],
+ "q058|OpenMed/privacy-filter-multilingual": [
+  "hf_licensed"
+ ],
+ "q058|Francesco-A/BiomedNLP-PubMedBERT-base-uncased-abstract-bc5cdr-ner-v1": [
+  "keyword"
+ ],
+ "q061|DeepMostInnovations/hindi-embedding-foundational-model": [
+  "ours",
+  "keyword"
+ ],
+ "q061|AkshitaS/bhasha-embed-v0": [
+  "keyword"
+ ],
+ "q061|sentence-transformers/paraphrase-multilingual-mpnet-base-v2": [
+  "hf_licensed"
+ ],
+ "q061|vivekkopthsd/taxrag-embedding-granite-97m-multilingual": [
+  "ours",
+  "naive"
+ ],
+ "q061|convaiinnovations/hindi-embedding-foundational-model": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q061|convaiinnovations/hindi-embedding-model-final": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q061|Alibaba-NLP/gte-multilingual-base": [
+  "hf_licensed"
+ ],
+ "q061|anuragwagh0/hinglish-minilm": [
+  "naive"
+ ],
+ "q061|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2": [
+  "hf_licensed"
+ ],
+ "q061|DeepMostInnovations/hindi-embedding-foundational-model-10B": [
+  "ours",
+  "naive",
+  "keyword"
+ ],
+ "q061|Snowflake/snowflake-arctic-embed-l-v2.0": [
+  "hf_licensed"
+ ],
+ "q061|nomic-ai/nomic-embed-text-v2-moe": [
+  "hf_licensed"
+ ],
+ "q062|intfloat/multilingual-e5-base": [
+  "hf_licensed"
+ ],
+ "q062|HPLT/translate-mr-en-v2.0-hplt": [
+  "naive"
+ ],
+ "q062|ObversaryStudiosOrg/Nemotron-3-Embed-8B-BF16": [
+  "ours"
+ ],
+ "q062|l3cube-pune/indic-sentence-similarity-sbert": [
+  "keyword"
+ ],
+ "q062|magibu/embeddingmagibu-200m": [
+  "keyword"
+ ],
+ "q062|l3cube-pune/indic-sentence-bert-nli": [
+  "keyword"
+ ],
+ "q062|anuragwagh0/marathlish-minilm": [
+  "ours",
+  "naive"
+ ],
+ "q062|vivekkopthsd/taxrag-embedding-granite-97m-multilingual": [
+  "naive"
+ ],
+ "q062|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2": [
+  "hf_licensed"
+ ],
+ "q062|nvidia/Nemotron-3-Embed-8B-BF16": [
+  "ours"
+ ],
+ "q062|intfloat/multilingual-e5-small": [
+  "hf_licensed"
+ ],
+ "q062|Arsh9210/Nemotron-3-Embed-8B-BF16": [
+  "ours"
+ ],
+ "q062|tylerl0208/Nemotron-3-Embed-8B-BF16": [
+  "ours"
+ ],
+ "q062|sentence-transformers/paraphrase-multilingual-mpnet-base-v2": [
+  "hf_licensed"
+ ],
+ "q062|Snowflake/snowflake-arctic-embed-l-v2.0": [
+  "hf_licensed"
+ ],
+ "q062|hotchpotch/bekko-static-embedding-v1": [
+  "keyword"
+ ],
+ "q062|Blaxzter/LaBSE-sentence-embeddings": [
+  "keyword"
+ ],
+ "q062|AkshitaS/bhasha-embed-v0": [
+  "naive"
+ ],
+ "q062|HPLT/translate-mr-en-v2.0-hplt_opus": [
+  "naive"
+ ],
+ "q064|sentence-transformers/LaBSE": [
+  "hf_licensed"
+ ],
+ "q064|upskyy/e5-large-korean": [
+  "ours"
+ ],
+ "q064|janisrebekahv/finetuned-colloquial-tamil": [
+  "naive"
+ ],
+ "q064|l3cube-pune/tamil-sentence-bert-nli": [
+  "ours",
+  "keyword"
+ ],
+ "q064|JairamKanna/armms-xlsr": [
+  "naive"
+ ],
+ "q064|Qdrant/bm25": [
+  "hf_licensed"
+ ],
+ "q064|tamilnlpSLIIT/whisper-ta": [
+  "naive"
+ ],
+ "q064|Snowflake/snowflake-arctic-embed-l-v2.0": [
+  "hf_licensed"
+ ],
+ "q064|l3cube-pune/tamil-sentence-similarity-sbert": [
+  "ours",
+  "keyword"
+ ],
+ "q064|vasista22/whisper-tamil-medium": [
+  "naive"
+ ],
+ "q064|nomic-ai/nomic-embed-text-v2-moe": [
+  "hf_licensed"
+ ],
+ "q064|vishnu-n/Morgan-Tanglish-v7": [
+  "keyword"
+ ],
+ "q064|Tamil-ai/tamil-embed-base": [
+  "ours",
+  "naive"
+ ],
+ "q064|Alibaba-NLP/gte-multilingual-base": [
+  "hf_licensed"
+ ],
+ "q064|l3cube-pune/indic-sentence-bert-nli": [
+  "keyword"
+ ],
+ "q064|l3cube-pune/indic-sentence-similarity-sbert": [
+  "keyword"
+ ],
+ "q064|emonnsl/embed_model": [
+  "ours"
+ ],
+ "q065|SIRIS-Lab/affilgood-dense-retriever": [
+  "keyword"
+ ],
+ "q065|MoralHazard/NSFW-GIST-small": [
+  "keyword"
+ ],
+ "q065|l3cube-pune/telugu-sentence-bert-nli": [
+  "ours"
+ ],
+ "q065|clarin-pl/combo-seg-xlm-roberta-base-telugu-mtg-ud2.17": [
+  "naive"
+ ],
+ "q065|emonnsl/embed_model": [
+  "ours"
+ ],
+ "q065|VijayChandra/english-to-telugu-translator-nllb": [
+  "naive"
+ ],
+ "q065|Msobhi/Persian_Sentence_Embedding_v3": [
+  "ours"
+ ],
+ "q065|MoralHazard/GISTsmall": [
+  "keyword"
+ ],
+ "q065|HPLT/translate-te-en-v2.0-hplt_opus": [
+  "naive"
+ ],
+ "q065|Alibaba-NLP/gte-multilingual-base": [
+  "hf_licensed"
+ ],
+ "q065|intfloat/multilingual-e5-base": [
+  "hf_licensed"
+ ],
+ "q065|l3cube-pune/telugu-sentence-similarity-sbert": [
+  "ours"
+ ],
+ "q065|Jaume/gemma-2b-embeddings": [
+  "keyword"
+ ],
+ "q065|nomic-ai/nomic-embed-text-v2-moe": [
+  "hf_licensed"
+ ],
+ "q065|l3cube-pune/marathi-paraphrase-detection-bert": [
+  "naive"
+ ],
+ "q065|Snowflake/snowflake-arctic-embed-l-v2.0": [
+  "hf_licensed"
+ ],
+ "q065|intfloat/multilingual-e5-small": [
+  "hf_licensed"
+ ],
+ "q065|HarishMaths/Hotel-Policy-Embedding": [
+  "keyword"
+ ],
+ "q065|dbhaskarganesh/TinyLlama1BTeluguFineTuneModel": [
+  "naive"
+ ],
+ "q065|aloobun/indic-mxbai-L8-embed": [
+  "ours"
+ ],
+ "q068|gchhablani/wav2vec2-large-xlsr-gu": [
+  "naive"
+ ],
+ "q068|vasista22/whisper-gujarati-medium": [
+  "naive"
+ ],
+ "q068|setu4993/LEALLA-small": [
+  "ours",
+  "keyword"
+ ],
+ "q068|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2": [
+  "hf_licensed"
+ ],
+ "q068|vasista22/whisper-gujarati-small": [
+  "naive"
+ ],
+ "q068|setu4993/LEALLA-base": [
+  "ours",
+  "keyword"
+ ],
+ "q068|intfloat/multilingual-e5-small": [
+  "hf_licensed"
+ ],
+ "q068|intfloat/multilingual-e5-base": [
+  "hf_licensed"
+ ],
+ "q068|Snowflake/snowflake-arctic-embed-l-v2.0": [
+  "hf_licensed"
+ ],
+ "q068|jinaai/jina-embeddings-v5-text-nano-retrieval-GGUF": [
+  "keyword"
+ ],
+ "q068|univo-models/static-similarity-mrl-multilingual-int8-128": [
+  "ours"
+ ],
+ "q068|MenteEAI/mentee-embed-v2": [
+  "naive"
+ ],
+ "q068|alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-16384": [
+  "ours"
+ ],
+ "q068|jinaai/jina-embeddings-v5-text-small-retrieval-GGUF": [
+  "keyword"
+ ],
+ "q068|alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-32768": [
+  "ours"
+ ],
+ "q068|jinaai/jina-embeddings-v5-text-nano-text-matching-GGUF": [
+  "keyword"
+ ],
+ "q068|1rsh/wav2vec2-large-xlsr-gu-kenlm": [
+  "naive"
+ ],
+ "q068|sentence-transformers/paraphrase-multilingual-mpnet-base-v2": [
+  "hf_licensed"
+ ],
+ "q070|Teradata/snowflake-arctic-embed-m-v2.0": [
+  "keyword"
+ ],
+ "q070|nomic-ai/nomic-embed-text-v2-moe": [
+  "hf_licensed"
+ ],
+ "q070|HPLT/translate-ml-en-v2.0-hplt_opus": [
+  "naive"
+ ],
+ "q070|HPLT/translate-en-ml-v2.0-hplt": [
+  "naive"
+ ],
+ "q070|Snowflake/snowflake-arctic-embed-l-v2.0": [
+  "hf_licensed"
+ ],
+ "q070|Jaume/gte-multilingual-base-no-network": [
+  "ours"
+ ],
+ "q070|Teradata/snowflake-arctic-embed-l-v2.0": [
+  "keyword"
+ ],
+ "q070|vivekkopthsd/taxrag-embedding-granite-97m-multilingual": [
+  "naive"
+ ],
+ "q070|HPLT/translate-en-ml-v2.0-hplt_opus": [
+  "naive"
+ ],
+ "q070|Alibaba-NLP/gte-multilingual-base": [
+  "hf_licensed"
+ ],
+ "q070|Teradata/gte-multilingual-base": [
+  "ours"
+ ],
+ "q070|victormuryn/use-dropout-pt": [
+  "keyword"
+ ],
+ "q070|emonnsl/embed_model": [
+  "ours"
+ ],
+ "q070|Snowflake/snowflake-arctic-embed-m-v2.0": [
+  "hf_licensed"
+ ],
+ "q070|karmx/Llama-Karmx-Indic-Embedding-bge-m3": [
+  "keyword"
+ ],
+ "q070|HPLT/translate-ml-en-v2.0-hplt": [
+  "naive"
+ ],
+ "q070|victormuryn/use-generated-pt": [
+  "keyword"
+ ],
+ "q070|eswardivi/tamal-sentence-bert-nli": [
+  "ours"
+ ],
+ "q070|sentence-transformers/LaBSE": [
+  "hf_licensed"
+ ],
+ "q070|Blaxzter/LaBSE-sentence-embeddings": [
+  "ours"
+ ],
+ "q071|PartAI/Tooka-SBERT-V2-Large": [
+  "naive"
+ ],
+ "q071|brahmairesearch/slx-v0.1": [
+  "keyword"
+ ],
+ "q071|mlx-community/all-MiniLM-L6-v2-bf16": [
+  "ours"
+ ],
+ "q071|PartAI/Tooka-SBERT-V2-Small": [
+  "naive"
+ ],
+ "q071|nomic-ai/nomic-embed-text-v1.5": [
+  "hf_licensed"
+ ],
+ "q071|onnx-community/embeddinggemma-300m-ONNX": [
+  "keyword"
+ ],
+ "q071|bisectgroup/BiCA-small": [
+  "naive"
+ ],
+ "q071|mlx-community/all-MiniLM-L6-v2-4bit": [
+  "ours"
+ ],
+ "q071|johnnyboycurtis/ModernBERT-small": [
+  "ours"
+ ],
+ "q071|intfloat/multilingual-e5-small": [
+  "hf_licensed"
+ ],
+ "q071|thoddnn/all-MiniLM-L6-v2-4bit": [
+  "ours"
+ ],
+ "q071|upskyy/e5-small-korean": [
+  "naive"
+ ],
+ "q071|sentence-transformers/all-mpnet-base-v2": [
+  "hf_licensed"
+ ],
+ "q071|axiotic/ogma-mini": [
+  "keyword"
+ ],
+ "q071|sentence-transformers/all-MiniLM-L6-v2": [
+  "hf_licensed"
+ ],
+ "q071|flax-sentence-embeddings/multi-qa_v1-MiniLM-L6-cls_dot": [
+  "keyword"
+ ],
+ "q071|FastFlowLM/Embedding-Gemma-300M-NPU2": [
+  "keyword"
+ ],
+ "q071|NeuML/bert-tiny-sts-last-pooling": [
+  "ours"
+ ],
+ "q071|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2": [
+  "hf_licensed"
+ ],
+ "q071|sentence-transformers-testing/all-nli-bert-tiny-dense": [
+  "naive"
+ ],
+ "q072|nomic-ai/nomic-embed-text-v2-moe": [
+  "hf_licensed"
+ ],
+ "q072|l3cube-pune/punjabi-sentence-bert-nli": [
+  "ours"
+ ],
+ "q072|hrusheekeshsawarkar/indic-sentence-bert-nli-matryoshka": [
+  "ours"
+ ],
+ "q072|DeepMostInnovations/hindi-embedding-foundational-model-10B": [
+  "naive"
+ ],
+ "q072|l3cube-pune/punjabi-sentence-similarity-sbert": [
+  "ours"
+ ],
+ "q072|karmx/Llama-Karmx-Indic-Embedding-bge-m3": [
+  "ours"
+ ],
+ "q072|sentence-transformers/bert-large-nli-max-tokens": [
+  "keyword"
+ ],
+ "q072|Snowflake/snowflake-arctic-embed-l-v2.0": [
+  "hf_licensed"
+ ],
+ "q072|Alibaba-NLP/gte-multilingual-base": [
+  "hf_licensed"
+ ],
+ "q072|Snowflake/snowflake-arctic-embed-m-v2.0": [
+  "hf_licensed"
+ ],
+ "q072|sentence-transformers/bert-base-nli-max-tokens": [
+  "keyword"
+ ],
+ "q072|DeepMostInnovations/hindi-embedding-foundational-model": [
+  "naive"
+ ],
+ "q072|sentence-transformers/bert-base-nli-stsb-mean-tokens": [
+  "keyword"
+ ],
+ "q072|partex-nv/Llama-3.1-8B-VaaniSetu-EN2PA": [
+  "naive"
+ ],
+ "q072|sentence-transformers/bert-base-nli-mean-tokens": [
+  "keyword"
+ ],
+ "q072|sentence-transformers/LaBSE": [
+  "hf_licensed"
+ ],
+ "q072|sentence-transformers/bert-large-nli-cls-token": [
+  "keyword"
+ ],
+ "q072|istiaqfuad/triBne-e5-large": [
+  "naive"
+ ],
+ "q072|istiaqfuad/triBne-e5-small": [
+  "naive"
+ ],
+ "q072|judicialmind/KCC-Embed-0.6B": [
+  "ours"
+ ]
+}

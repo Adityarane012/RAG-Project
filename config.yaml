@@ -1,10 +1,68 @@
 # Single config file (D21). Changing embedding.model means re-indexing everything.
-snapshot_date: null          # set when a data snapshot is cut, e.g. 2026-10-23; shown in the UI
+# Data snapshot (D21): normalized metadata, attached to a GitHub Release. The raw API cache
+# stays local. `python -m src.snapshot build` prints the values to paste here.
+snapshot_date: 2026-10-21       # shown in the UI
+snapshot_sha256: 3c887c9a733c58a4fc64d129c40530299c2ad13eb4113cef9ad2b860b6034160   # checked by src.snapshot.load_snapshot
+snapshot_url: null           # the GitHub Release asset
+
+# LLM models are pinned here (D7); the env vars GROQ_MODEL / OLLAMA_MODEL override them.
+# Final only after the 20-query extraction test (docs/testing-strategy.md section 6).
+llm:
+  groq_model: openai/gpt-oss-20b
+  groq_fallback_model: openai/gpt-oss-120b    # tried once on a rate-limit error (own rate-limit bucket; llama-3.1-8b-instant is not on this account)
+  reasoning_effort: low                       # gpt-oss only. Measured 2026-10-21: ~163 completion tokens vs ~820 at the default, same extraction results
+  ollama_model: qwen2.5:7b-instruct           # ~4.7 GB at Q4, needs ~8 GB RAM
+  ollama_model_small: qwen2.5:3b              # for 8 GB laptops (set OLLAMA_MODEL to use it)
+  ollama_num_ctx: 8192                        # Ollama's default context is small and silently truncates long prompts
+  # Per-minute token budgets of the pinned models on the free tier. Calls wait until the last 60 s
+  # have room. gpt-oss-20b: Groq docs; llama-3.1-8b-instant: third-party table, confirm in the console.
+  # A model not listed here is not throttled. 0 also disables throttling.
+  tpm:                                        # confirmed from x-ratelimit-limit-tokens on 2026-10-21
+    openai/gpt-oss-20b: 8000
+    openai/gpt-oss-120b: 8000
+  output_reserve_tokens: 1000                 # assumed reply size (incl. reasoning) counted against the budget; each call is then corrected to the real usage
+  extract_output_reserve_tokens: 300          # extraction replies are small JSON (measured ~160 tokens at low effort)
+  max_wait_seconds: 30                        # wait this long on a 'retry-after' hint, else go to the fallback model
+
+# What goes into the explanation prompt (D17). Tokens are estimated with src/tokens.py.
+explain:
+  chunks_per_model: 4          # up to this many passages per model, from distinct sections where possible
+  max_prompt_tokens: 5000      # whole prompt; leaves headroom under 8,000 tokens/min for the reply and an extraction call
+  min_tokens_per_chunk: 80     # fewer passages are kept before any passage is trimmed below this
+  max_tokens_per_chunk: 450    # a chunk is never longer than this (the embedding limit)
+  block_overhead_tokens: 40    # the <card_section> wrapper, counted conservatively
+  fixed_overhead_tokens: 200   # system prompt + instructions + answer scaffolding
 
 embedding:
   model: intfloat/multilingual-e5-large
   dim: 1024
   max_section_tokens: 450    # model limit is ~507
+  backend: pinecone          # pinecone (hosted) | local (sentence-transformers) (hosted multilingual-e5-large, same model).
+                             # Set EMBED_BACKEND to override. Both give the same embedding space, but never mix them in one namespace.
+  hosted_batch: 96           # Pinecone's per-request input limit for this model
+  cache_dir: data/embeddings # vectors cached by content hash: a rebuild into a fresh namespace re-embeds nothing
+  max_chunks_per_model: 4    # measured 2026-10-21: uncapped, the corpus is ~8.7 chunks/model (~85k chunks, ~6.5M tokens)
+  # Sections that add tokens but no retrieval value (auto-generated Trainer cards, citations, boilerplate).
+  # A chunk is dropped when its heading CONTAINS one of these (case-insensitive).
+  drop_sections:
+    - training hyperparameters
+    - training procedure
+    - training results
+    - framework versions
+    - citation
+    - bibtex
+    - acknowledg
+    - contact
+    - authors
+    - environmental impact
+    - compute infrastructure
+    - hardware
+    - software
+    - glossary
+    - table of contents
+    - model card authors
+    - model card contact
+    - more information
 
 corpus:                      # D5, D6
   tasks:
@@ -16,6 +74,10 @@ corpus:                      # D5, D6
   top_n_per_task: 1000
   indic_langs: [hi, mr, bn, ta, te, gu, kn, ml, pa, ur]
 
+vector_store:                # where retrieval reads from. Pinecone is the production store (D4); `local` is an exact
+  backend: local             # in-process stand-in with identical query/filter semantics (src/localindex.py) for when
+  local_dir: data/localindex # Pinecone's data plane is unreachable. Env INDEX_BACKEND overrides. Evaluation output says which was used.
+
 pinecone:
   index: hf-model-finder
   namespace: prod            # experiments use exp-<name> (D21)
@@ -24,7 +86,10 @@ retrieval:                   # D18
   k_chunks: 50
   k_chunks_max: 400
   top_models: 5
-  reranker: pinecone         # pinecone | local (bge-reranker-v2-m3), see D9
+  verify_pool: 100           # models verified before the top_models cut, so verified passes can outrank unknowns (D12)
+  reranker: pinecone         # pinecone (hosted bge-reranker-v2-m3, works on this plan, tiny monthly quota, cached) | local | none (D9)
+  rerank_cache_dir: data/rerank_cache
+  local_reranker_model: BAAI/bge-reranker-v2-m3
 
 size_words_mb:               # D18: the LLM maps a word to a key, code supplies the number
   tiny: 100
@@ -46,3 +111,6 @@ adapt:                       # D14
 graph:                       # D15
   max_clarifying_questions: 2
   max_relax_retries: 1
+
+replay:                      # recorded demo runs (D21, docs/demo-runbook.md)
+  dir: demo/cache

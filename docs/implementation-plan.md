@@ -1,202 +1,118 @@
-# Detailed implementation plan
+# Implementation plan (single person, to Oct 30)
 
-Status as of **2026-10-21 (day 6 of 14)**. The original schedule in
-[PROJECT.md §8](PROJECT.md) started on 2026-10-16, so the code-complete date is
-**2026-10-29**. Edge cases for every work package are catalogued in
-[testing-strategy.md](testing-strategy.md); IDs like `E-NORM-3` refer to it.
+Status as of **2026-10-21 (evening)**. One person (the project owner) completes the project; the AI assistant wrote and ran
+everything that can run from the cloud session. What is left is **human work**: labelling, hand-scoring, rehearsal and the
+write-up. This file says what is done, what remains, in what order, and what to cut if time runs short.
 
-## 1. Where we are
+Companion docs: [PROJECT.md](PROJECT.md) (what), [decisions.md](decisions.md) (why), [architecture.md](architecture.md) (how),
+[testing-strategy.md](testing-strategy.md), [evaluation-plan.md](evaluation-plan.md), [data-pipeline.md](data-pipeline.md),
+[data-notes.md](data-notes.md) (every live measurement), [demo-runbook.md](demo-runbook.md), [development.md](development.md).
 
-### Built and unit-tested offline (95 tests, no network)
+## 1. Done
 
-License/rights map · D20 size rule · language normalisation · multilingual-map seed ·
-`verify` (incl. direction, notes, size words) · Pinecone filters · chunk→model grouping ·
-card cleaning · section chunking · vector building · guidance layer · build-on estimates ·
-D17 delimiters + citation filter · LLM validation + cache · LangGraph pipeline (stub deps) ·
-eval metrics · resumable ingest (mocked HTTP) · Streamlit renderer.
-
-### Not built, or never run against a live service
-
-| Gap | Blocks |
+| Area | State |
 |---|---|
-| `ingest` has never touched the real Hub; field names in `normalize_record` are from documentation, not a live response | everything downstream |
-| Nothing is in Pinecone yet (`index.main()` is a stub) | retrieval, demo |
-| `app.get_graph()` is not wired (embedder, Pinecone, reranker, `llm.explain`) | the demo |
-| Reranker choice (D9) not made; neither Pinecone-hosted nor `bge-reranker-v2-m3` integrated | retrieval quality |
-| Check-a-model lookup (D23) is a placeholder | demo item 5 |
-| `eval/queries.jsonl` not written; baselines not built | all of evaluation |
-| Groq/Ollama never called; JSON-mode and accuracy unmeasured (D7) | extraction trust |
-| Demo "offline mode" (D21) not designed: see WP9 | demo resilience |
+| Verification core | `normalize`, `verify`, `retrieve.build_filter` (D12), license map (extended from the real data), D20 size rule, languages, directions, multilingual map |
+| Data | 9,764 models fetched, canonical base ids, snapshot cut (sha256 in `config.yaml`), data-quality report in [data-notes.md](data-notes.md) |
+| Index | 29,665 chunks embedded (hosted `multilingual-e5-large`, 2.49M tokens, cached) and upserted to Pinecone `prod`; the same corpus in an exact local index |
+| Live checks | Pinecone filter semantics E-RET-9..12 pass; hosted rerank works (truncation fix); Groq limits measured; poisoned-card test passes |
+| Pipeline | LangGraph with variants ours / naive / keyword; verifies a pool of 100 models before showing 5; retrieval and explanation use the user's own words; deterministic extraction backstop |
+| UI | Editable intent, side-by-side comparison, check-a-model, glossary, build-on, Try-it with an honest caveat |
+| Evaluation | 100 queries (committed before tuning), 23-case extraction set, five systems, harness, **outputs frozen as v2 (G4)**, ablation without reranker, run on live Pinecone, blind relevance sheet (40 queries, 686 pairs), faithfulness sheet (28 explanations), labelling and scoring tools with reports |
+| Demo | Recorded against Pinecone (`demo/cache/`), replay verified with the network broken |
+| Tests | About 300, offline |
 
-### Verification checklist from decisions.md (all still open)
+## 2. Headline results so far (v2, 75 normal queries; full tables in `eval/results/results-v2.md`)
 
-Model counts per task · Pinecone Starter limits and reranking · Groq rate limits ·
-NLLB-200 license · Ollama on a laptop · `$or` filter on a 10-vector index ·
-`base_model` coverage · `param_count` availability · HF Hub UI filters ·
-`model-index` coverage.
+| System | Violation % | Unknown % | Fully verified % |
+|---|---|---|---|
+| ours | 0.0 | 16.7 | 83.3 |
+| naive RAG | 50.4 | 20.5 | 29.1 |
+| keyword + filters | 0.0 | 62.0 | 38.0 |
+| HF Hub, basic filters | 32.8 | 13.6 | 53.6 |
+| HF Hub, licensed filters | 25.9 | 14.7 | 59.5 |
 
-## 2. Critical path
+Ours never recommends a failing model by construction (D2), so the comparison that matters is *fully verified* and, once
+labelled, *relevance*: the keyword baseline also never violates but is ⚠️ on 62% of what it returns. Clarification: ours asked
+on 100% of the 15 vague queries. "Impossible" queries cannot be proved impossible (unknown-size and unknown-language models
+never fail), so the abstention metric is defined on the 12 queries where no model in the corpus fully passes: ours shows the
+no-verified-model banner on all 12 and never claims verification, while the baselines recommend violators on 63 to 75% of
+their results. The abstain and relax paths exist and are tested, but are not reachable on this corpus (see §6).
 
-```
-WP1 live checks ─► WP2 ingest run ─► WP3 index build ─► WP5 wire graph ─► WP9 demo
-                                        │                  ▲
-WP4 query set (write BEFORE tuning) ────┴─► WP6 baselines ─► WP7 eval run ─► WP8 write-up
-```
+## 3. Remaining work (you), in order
 
-Two items are urgent regardless of who owns what:
-
-1. **Write the query set (WP4) before any retrieval experiment.** D11 requires it to exist
-   before tuning. The first time someone adjusts `k`, a threshold, or a prompt while
-   looking at results, the set is contaminated. The author must be the teammate *not*
-   building the pipeline.
-2. **Run the day-1 live checks (WP1).** Three of them can invalidate design assumptions
-   (D12's `$or`, D8's token budget, D9's reranker availability).
-
-## 3. Suggested roles
-
-D11 forces one constraint: the person who writes the evaluation queries must not be
-building the pipeline. A reasonable split for three people (adjust to taste):
-
-| Role | Owns | Work packages |
-|---|---|---|
-| **A: Data** | Hub access, metadata, index | WP1 (HF/Pinecone checks), WP2, WP3 |
-| **B: Pipeline** | LLM, retrieval, graph | WP1 (Groq/Ollama), WP5, WP6 (naive RAG), WP9 wiring |
-| **C: Evaluation & UI** *(writes queries; does **not** build retrieval)* | Query set, labels, baselines, UI polish | WP4, WP6 (keyword + HF Hub), WP7, WP8, UI part of WP9 |
-
-Everyone must be able to explain the whole graph and defend D2 in the viva.
-
-## 4. Work packages
-
-Each package lists goal, tasks, acceptance criteria and the edge cases that must be
-covered before it is "done". Dates assume the 2026-10-29 code-complete target.
-
-### WP1: Live checks · day 6–7 (Oct 21–22) · A + B
-
-**Goal:** replace documentation-based assumptions with observed behaviour.
-
-| Task | Command / action | Acceptance |
-|---|---|---|
-| Model counts per task | `python -m src.ingest counts` | Per-task and total counts printed; compare to the ~5–8k estimate; record in `docs/data-notes.md` |
-| Live Hub response shape | `curl "https://huggingface.co/api/models/<id>?blobs=true&cardData=true"` for 5 varied models (ASR, translation, a gated model, a model with no card, a multilingual one) | Save as fixtures in `tests/fixtures/`; confirm `siblings[].size`, `safetensors.total`, `cardData.{language,license,base_model,model-index}` exist as `normalize_record` assumes |
-| Pinecone `$or` semantics | 10-vector throw-away index: some vectors without `size_mb` | `{"$or":[{"size_mb":{"$lte":500}},{"size_status":{"$eq":"unknown"}}]}` returns exactly the small ones **plus** the unknowns; `$in` on a list field matches any element; `$and` of two `$or`s works (**E-RET-9..11**) |
-| Pinecone plan | Console / list-models API | Record inference-token limit and whether hosted reranking is available → decides D9 |
-| Groq | 20 extraction queries | JSON parse rate and constraint accuracy measured (spec: testing-strategy §6); rate limits recorded |
-| Ollama | Same 20 queries on a team laptop | Passes the same test; latency recorded |
-| NLLB-200 license | Model card | Confirm CC-BY-NC (demo item 2 depends on it) |
-| Task-guide links | Open the five URLs in `guide.TASK_GUIDES` | All resolve, or fix them |
-| Embedding speed | Embed 200 real cards with `multilingual-e5-large` on CPU and on Colab GPU | Chunks/sec known → decides where WP3 runs |
-| Token budget | Tokenise 50 Indic cards with the real e5 tokenizer | Compare with `index.approx_tokens`; adjust the estimate if sections exceed ~507 tokens (**E-IDX-4**) |
-
-### WP2: Ingestion run · day 7–8 (Oct 22–23) · A
-
-**Goal:** a complete raw cache of ~5–8k models.
-
-- Run `python -m src.ingest fetch` (resumable; safe to interrupt and restart).
-- Inspect `data/raw/failed.jsonl`; decide per model whether to retry or drop.
-- Cut a snapshot: `data/snapshot-<date>/records.jsonl` of `normalize_record` output, and
-  set `snapshot_date` in `config.yaml`.
-- Produce the **data-quality report** (counts, not prose): % `size_status=unknown`,
-  % `commercial=unknown`, % `language_status=unknown`, % with `base_model`, % with
-  `param_count`, % `doc_quality=minimal`, license-string histogram (top 30, to find
-  unmapped licenses), `language` token histogram (to find spellings the normaliser misses).
-
-**Acceptance:** raw cache complete except logged failures; report written to
-`docs/data-notes.md`; the license and language histograms reviewed and the maps extended
-(**E-NORM-1..14**). *Cut rule:* if `base_model` coverage is very low, drop lineage from the
-demo (PROJECT §9).
-
-### WP3: Index build · day 8–9 (Oct 23–24) · A
-
-- Implement `index.main()`: iterate raw cache → `build_vectors` → batch embed → `upsert`
-  into namespace `exp-<name>`; promote to `prod` deliberately.
-- Choose and wire the reranker (D9).
-- Re-run the Pinecone semantics checks (WP1) against the real index.
-
-**Acceptance:** vector count = sum of chunks; a spot check of 10 models shows identical
-non-chunk metadata on every chunk; a filtered query for each constraint type returns only
-allowed rows plus unknowns; re-running `main()` is idempotent (same ids overwrite).
-Edge cases: **E-IDX-1..13**.
-
-### WP4: Query set · day 6–8 (start now) · C
-
-**Goal:** `eval/queries.jsonl`, ~120 queries, before any tuning. Spec in
-[evaluation-plan.md](evaluation-plan.md#2-query-set).
-
-**Acceptance:** schema validates with `eval.metrics.load_queries`; the mix matches the spec
-(≥10 impossible, ≥15 vague, ~20 from classmates); the file is committed **before** the
-first retrieval experiment (git history is the evidence).
-
-### WP5: Wire the graph · day 8–10 (Oct 23–25) · B
-
-- `app.get_graph()`: build `Deps` — `fetch` via `retrieve.pinecone_fetch`, `rerank`,
-  `explain=llm.explain`, `lineage_index` from the snapshot, `card_data` from the raw cache.
-- Make the shown intent **editable** (D13): the UI writes edits into `overrides`.
-- Check-a-model lookup (D23): snapshot first; live fetch + `normalize_record` as *Should*.
-- Poisoned-card test (D17): 3 synthetic cards in a **separate** index, assert table and
-  explanation unaffected (spec: testing-strategy §7).
-
-**Acceptance:** all five demo queries run end to end from the UI; clarify and relax loops
-work with the caps; every edge case in **E-GRAPH-\*** and **E-APP-\*** has a test.
-
-### WP6: Baselines · day 9–11 (Oct 24–26) · B (naive RAG), C (keyword, HF Hub)
-
-Definitions in [evaluation-plan.md §4](evaluation-plan.md#4-baselines-d19). The naive RAG
-baseline reuses the same index, embeddings, reranker and LLM with filters and `verify`
-disabled, so it is not a strawman. Run the HF Hub baseline **once** and save the results;
-the Hub changes.
-
-### WP7: Evaluation run · day 10–12 (Oct 25–27) · C (+ B for fixes)
-
-Run everything with `eval/run_eval.py` (to be implemented once WP5/6 exist); relevance
-labels (~50 queries), faithfulness check (~30 answers), "Try it" smoke test (~20 models),
-latency log. Produce the results table and the one number-backed tuning choice
-(section vs fixed-size chunking). **Acceptance:** the table regenerates from
-snapshot + `config.yaml` + one command (D21).
-
-### WP8: Write-up and viva prep · day 12–14 (Oct 27–29) · all
-
-Results, limitations ([security-and-limitations.md](security-and-limitations.md)), the
-viva Q&A (PROJECT §10). Verify the results reproduce from a clean checkout.
-
-### WP9: Demo hardening · day 11–14 (Oct 26–29) · B + C
-
-- Polish: tooltips wired into the UI, disclaimer, snapshot date, example queries.
-- **Offline demo mode (decision needed).** D21 says the demo works offline, but retrieval
-  needs Pinecone and query embedding. Caching only the LLM (already done) is not enough.
-  Proposal: record the final graph `State` for each planned demo query to
-  `demo/cache/<hash>.json` and add a "replay" switch in `get_graph()`. Costs about half a day.
-- Rehearse the Ollama switch end to end ([demo-runbook.md](demo-runbook.md)).
-
-**Acceptance:** two full rehearsals, one with Wi-Fi off.
-
-## 5. Calendar (re-baselined)
-
-| Day | Date | A: Data | B: Pipeline | C: Eval & UI |
+| # | Task | Time | How | When |
 |---|---|---|---|---|
-| 6 | Oct 21 | WP1 Hub + Pinecone checks | WP1 Groq/Ollama checks | **WP4 start writing queries** |
-| 7 | Oct 22 | WP2 ingest run | WP5 `get_graph` skeleton, reranker choice | WP4 |
-| 8 | Oct 23 | WP2 snapshot + quality report | WP5 | WP4 done, committed |
-| 9 | Oct 24 | WP3 index build | WP5 editable intent, check-a-model | WP6 keyword baseline |
-| 10 | Oct 25 | WP3 `prod` promote | WP5 poisoned-card test; WP6 naive RAG | WP6 HF Hub baseline (run once) |
-| 11 | Oct 26 | Map extensions from the report | Fix failure cases | WP7 labels |
-| 12 | Oct 27 | – | Relax/lineage polish | WP7 run + results table |
-| 13 | Oct 28 | WP8 | WP9 replay mode, code freeze | WP8, WP9 |
-| 14 | Oct 29 | Rehearse | Rehearse (incl. Ollama) | Rehearse |
+| H1 | **Relevance labelling, pass 1**: 686 pairs over 40 queries | about 4 h, in sittings | `streamlit run eval/label_app.py`, Pass 1. It saves every click. Do **not** open `eval/labels/_key.json` | Oct 22 to Oct 24 |
+| H2 | **Faithfulness scoring**: 28 explanations | about 1.5 h | `streamlit run eval/faithfulness_app.py` | Oct 24 |
+| H3 | **Relevance, pass 2**: repeat on 15 random queries, at least 24 h after pass 1 | about 1.5 h | label app, Pass 2 | Oct 25 or later |
+| H4 | Numbers for the write-up | 5 min | `python -m eval.relevance_report`, `python -m eval.faithfulness_report` | after H1 to H3 |
+| H5 | Rehearse twice: live, and `REPLAY=1` with Wi-Fi off; take screenshots | about 2 h | [demo-runbook.md](demo-runbook.md) | Oct 27 to Oct 29 |
+| H6 | Write-up (format not decided yet) | your time | content sources: `eval/results/*.md`, [data-notes.md](data-notes.md), [security-and-limitations.md](security-and-limitations.md), [eval/seen.md](../eval/seen.md) | Oct 26 to Oct 29 |
+| H7 | Attach `data/snapshot-2026-10-21/records.jsonl.gz` to a GitHub Release and put its URL in `config.yaml: snapshot_url` | 15 min | GitHub web UI | any time |
+| H8 | **Rotate the Groq, Hugging Face and Pinecone keys** after Oct 30 (they were pasted into the chat) | 10 min | provider dashboards | after the project |
 
-## 6. If we fall further behind
+**Single-labeller caveat (say it in the write-up).** One person wrote the queries, will label the results and has seen the
+system, so labels may lean toward it. Mitigations in place: labels are blind (no system names, shuffled, union of four systems'
+top 5); outputs are frozen before labelling; pass 2 measures self-consistency. The kappa reported is **test-retest agreement of
+one labeller, not inter-annotator agreement**.
 
-Cut in this order (from PROJECT §8): reported metrics (D24) → live fetch in check-a-model →
-memory estimate → lineage → relax-and-retry → tooltips.
-**Never cut:** constraint verification, `modifiable`, shown intent, the clarifying loop,
-Try it, the naive-RAG baseline, the faithfulness check, evaluation.
+## 4. Gates and rules
 
-## 7. Definition of done (whole project)
+| Gate | State |
+|---|---|
+| G1 queries committed before tuning | met |
+| G2 snapshot cut, report written | met |
+| G3 `prod` live, one filtered query per constraint type correct | met (Pinecone semantics check, 4 of 4) |
+| G4 evaluation outputs frozen before labelling | met: commit `6881683` (results v2); later commits add tools and a Pinecone re-run, not changes to the labelled outputs |
+| G5 demo recorded | met (`demo/cache/`). Re-record if the index or config changes |
+| G6 two rehearsals | open (H5) |
 
-- [ ] All five demo queries work from the UI with live services **and** in replay mode
-- [ ] `pytest` green; live-service checks (WP1) recorded in `docs/data-notes.md`
-- [ ] Results table regenerates from snapshot + `config.yaml` + one command
-- [ ] Constraint violation rate @5 reported for all four systems on the same queries
-- [ ] Poisoned-card test passes
-- [ ] Ollama switch rehearsed
-- [ ] `docs/` matches the code (architecture §11 deviations list reviewed)
-- [ ] Decisions still marked *Proposed* (D2, D3, D8, D9, D10, D11) confirmed by the team
+**After G4 do not change** retrieval, ranking, prompts, models or config values: the labels depend on the frozen outputs. If you
+must, re-run `python -m eval.run_eval --tag v3 --label 40`, which makes a new blind sheet and **invalidates labels already given**.
+Every evaluation query used for debugging is listed in [eval/seen.md](../eval/seen.md).
+
+## 5. Budgets (measured)
+
+| Resource | Limit | Used so far |
+|---|---|---|
+| Groq tokens per day (`gpt-oss-20b`) | 200,000 | extraction about 500 per call; explanation 1,345 to 2,778; about 3,300 per explained query. The 28-item faithfulness set and the demo are cached |
+| Groq tokens per minute | 8,000 | the throttle settles against real usage |
+| Pinecone hosted embedding | not published | 2.49M tokens for the whole corpus; rebuilds are free (cache) |
+| Pinecone storage/reads | Starter | 29,665 vectors; the evaluation and demo used a few thousand read units |
+
+## 6. Findings that shape the write-up
+
+- **Verified models are invisible to semantic search** (direction, size, license are not in the card text). Verifying a pool of 100 and then cutting to 5 raised fully verified answers from 72% to 83% (v1 to v2) and fixed the translation queries.
+- **The extractor's `soft_query` is fragile** ("permissive license" replaced the topic), so every system searches with the user's own words.
+- **27% of models have unknown size** (GGUF-only, ONNX-only, no standard weights): ⚠️ by design, not guessed.
+- **Direction is known for only 380 models** (`opus-mt-*` names); most translation answers show direction ⚠️.
+- **Abstain/relax are unreachable here**: unknown-size (27%) and unknown-language (13%) models always remain, so an impossible request ends as an all-⚠️ answer with the banner (the behaviour you chose).
+- **Try-it**: 10 of 18 small models ran the template; MLX, quantized, corrupt or custom-code models need other tooling (the UI says so).
+- **A named permissive license** (Apache/MIT/BSD/"permissive") is read as commercial + modifiable, an approximation shown in "We understood".
+
+## 7. Risks
+
+| Risk | Mitigation |
+|---|---|
+| Labelling takes longer than 4 h | Label by query: a partially labelled sheet still gives complete queries (the report counts only fully labelled queries, for every system alike) |
+| Single-labeller bias | stated; blind sheet; pass 2 |
+| Live demo fails (Wi-Fi, quota) | `REPLAY=1` with the recorded runs; Groq fallback model; local index (`INDEX_BACKEND=local`) |
+| Config or index changed after G4/G5 | re-run and re-record; labels must be redone |
+
+## 8. Cut ladder (in this order if time runs short)
+
+1. Faithfulness 28 -> 20 items.
+2. Pass 2 on 15 -> 10 queries.
+3. Label 40 -> 30 queries (the report uses only fully labelled queries).
+4. Skip the second rehearsal.
+
+Already cut: D24 reported metrics and live fetch in check-a-model; the reranker ablation is reported on latency only (relevance
+impact is not measured because the ablation outputs are not in the labelled sheet).
+
+## 9. Definition of done
+
+- Relevance pass 1 and the repeat pass done; `eval/results/relevance.md` and `faithfulness.md` generated.
+- Demo rehearsed twice (live and replay).
+- Write-up content assembled from the result files (format decided later).
+- Keys rotated.

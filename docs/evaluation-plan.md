@@ -23,7 +23,7 @@ Implements D11 (metrics) and D19 (baselines). Automatic metrics are in
 | Slice | Count | Author | Notes |
 |---|---|---|---|
 | Normal | ~75 | teammate **not** building the pipeline | spread over the 5 tasks and ≥6 Indic languages; mix of size, rights, language, direction constraints |
-| Impossible | ~10 | same | no model can satisfy all constraints (e.g. Marathi ASR under 10 MB, commercial and modifiable; a CC-BY-ND-only niche); confirmed impossible against the snapshot |
+| Impossible | ~10 | same | **verifiably** impossible: every model in the snapshot gets a known ❌ (e.g. Marathi ASR under 10 MB, commercial and modifiable). Check each with `eval.metrics.verifiably_impossible(records, constraints)`; if a model is only ⚠️ the query measures missing data, so rewrite it |
 | Vague (beginner) | ~15 | same | missing task ("I want a Hindi model"), no constraints, jargon-free phrasing |
 | Classmates | ~20 | classmates who have never seen the system | any kind; reduces author bias |
 
@@ -39,6 +39,11 @@ Rules:
   queries; the first group makes violation rate trivially zero and must be reported
   separately (E-MET-3).
 
+**Single-author note (2026-10-21).** The set was written by the person who also builds the system,
+before any retrieval experiment, and committed first (gate G1). It has 100 queries (75 normal, 15
+vague, 10 impossible), not ~120: there are no classmate queries. This is a bias the write-up must
+state; the freeze and the "seen" list are the mitigations, not a cure.
+
 ## 3. Metrics
 
 All computed by re-verifying each system's top-5 with `verify.verify` against the query's
@@ -48,8 +53,8 @@ parsed constraints, so one definition of "violation" is applied to every system.
 |---|---|---|
 | **Violation rate @5** | recommended models (top 5/query) with ≥1 ❌ ÷ all recommended | `violation_rate_at_k` |
 | **% unknown @5** | models with no ❌ but ≥1 ⚠️ ÷ all recommended | `unknown_rate_at_k` |
-| **Relevance @5** | graded match to the soft preference (see §5) | manual, ~50 queries |
-| **Abstention accuracy** | on impossible queries, share where the outcome is `abstain` or `relax` | `abstention_accuracy` |
+| **Relevance @5** | graded match to the soft preference (see §5) | manual, 40 queries by default (D11 says ~50; see the implementation plan, decision 1) |
+| **Abstention accuracy** | on impossible queries, share where the outcome is `abstain` or `relax`. The system abstains only when **every** candidate has a known ❌; a result set of only ⚠️ is shown with the "No model fully verified" banner and is *not* an abstention | `abstention_accuracy` |
 | **Clarification rate** | on vague queries, share where the outcome is `clarify` | `clarification_rate` |
 | **`modifiable` correctness** | shown value equals the license map | `modifiable_correctness` |
 | **Explanation faithfulness** | share of explanation claims supported by the cited card text | manual on ~30 answers, or RAGAS |
@@ -63,9 +68,9 @@ nor a violation (D12).
 
 | System | Definition |
 |---|---|
-| **Naive RAG** | same index, embeddings, reranker and LLM; **no metadata filters, no verification** (task-only filtering is not allowed either) |
-| **Keyword + filters** | BM25 over card text with the same metadata filters as ours |
-| **HF Hub filters** | the Hub's own task / language / license filters plus its search; run **once**, results saved to `eval/baselines/` because the Hub changes |
+| **Naive RAG** | same index, embeddings, reranker and LLM; **no metadata filters, no verification** (task-only filtering is not allowed either). Built by B as a configuration flag on the pipeline |
+| **Keyword + filters** | BM25 over card text with the same metadata filters as ours. Built by B as a configuration flag |
+| **HF Hub filters** | the Hub's own task / language / license filters plus its search; run **once by C** (scripted through the Hub API's own filters with 5 manual spot-checks in the website; see the implementation plan, decision 2), results saved to `eval/baselines/` because the Hub changes |
 | **Ours** | the full graph |
 
 For baselines, "the query's parsed constraints" come from the same `extract_constraints`
@@ -78,9 +83,7 @@ prompt tuning beyond what ours also received.
 
 ## 5. Manual labelling
 
-**Relevance @5** (~50 queries). Two labellers where possible; one sheet row per
-(query, model). Grade against the *soft preference only* (hard constraints are scored
-automatically):
+**Relevance @5, single-person protocol (current).** There is one labeller, the project owner, on **40 queries** (not 50). The unit labelled is the *union* of each query's top-5 across ours, naive, keyword and the licensed Hub baseline: 686 pairs, about 4 hours. The sheet is exported by `python -m eval.run_eval --label 40` (stratified by task, reproducible), blind (no system names, shuffled), with the system key in a separate file that the labeller does not open. Label with `streamlit run eval/label_app.py`. Grade the *purpose* of the request only (hard constraints are scored automatically):
 
 | Grade | Meaning |
 |---|---|
@@ -88,28 +91,50 @@ automatically):
 | 1 | Plausible: right task/language, no evidence on the preference |
 | 0 | Does not suit |
 
-Report mean grade@5 and the share of queries with at least one grade-2 model. Label blind
-to which system produced the list (shuffle systems together). Report inter-labeller
-agreement on a shared subset of ~10 queries.
+Report mean grade@5 and the share of queries with at least one grade-2 model, per system (`python -m eval.relevance_report`; only
+fully labelled queries count, for every system alike). **Agreement is test-retest of one labeller**: at least 24 hours later, repeat
+15 random queries (the page hides the first grades), and report Cohen's kappa from `eval.metrics.cohens_kappa`, quadratic-weighted
+and unweighted. This measures self-consistency, not inter-annotator agreement, and the write-up must say so. A single labeller who
+also wrote the queries and built the system can favour it; the blind sheet, the frozen outputs (G4) and the repeat pass are the
+mitigations, not a cure.
 
-**Faithfulness** (~30 answers). For each explanation, split into claims; mark each
-*supported* / *unsupported* / *contradicted* by the cited `card_section`. Report the share
-supported and list the unsupported claims.
+**Faithfulness** (28 explanations; one random explained model per query, from `python -m scripts.make_faithfulness_set`), scored **by hand** with
+`streamlit run eval/faithfulness_app.py`: count the factual claims and how many the shown card passages support (a true claim
+the passages do not state is unsupported). Report the share of claims supported and of explanations with every claim supported
+(`python -m eval.faithfulness_report`). RAGAS is not used: it adds an LLM judge, which is another component that can fail.
+
+**Abstention.** "Verifiably impossible" queries cannot be built (a model with unknown size or language never fails, D12). The metric is
+defined on the queries for which no model in the corpus fully passes (12 of 85 normal and impossible queries in v2): ours must not claim
+verification there, and the table reports each system's violation rate on that slice. The abstain and relax paths are tested but not
+reachable on this corpus.
 
 ## 6. Ablations and design justification
 
 - **Four-system table** (D19) on the full query set.
-- At least one **tuning choice backed by a number**: relevance@5 with section chunking vs
-  fixed-size chunking (same index otherwise). Optionally reranker on/off.
+- One ablation was run: reranker off (`results-v2-ablation-no-reranker.md`): the verification metrics are unchanged and latency
+  falls from about 1.3 s to 0.2 s. Its relevance effect is **not measured** (its outputs are not in the labelled sheet). A chunking
+  ablation was cut. The design choices backed by a number are the verify pool (fully verified 72% to 83%) and the extraction
+  backstop (87% to 100% on the extraction set, a tuning-set figure).
 - Slice the results: by task, by slice (§2), and Indic vs non-Indic queries.
 
 ## 7. Reproducibility (D21)
 
-`eval/run_eval.py` (to be implemented in WP7) must regenerate the results table from
+`eval/run_eval.py` (to be implemented in Phase 5, tasks 5.3 and 5.7) must regenerate the results table from
 **snapshot + `config.yaml` + the query set** with one command, writing
 `eval/results/<snapshot-date>.md`. Record: snapshot date, config hash, git commit,
 LLM provider/model, reranker. Cache LLM responses (already automatic) so a rerun is
 deterministic.
+
+## 7b. Staying inside the free-tier limits
+
+Groq's free tier for `gpt-oss-20b` is 8,000 tokens/minute and 200,000/day (about 30 fully
+explained queries a day, see [architecture.md §7.0](architecture.md#70-staying-inside-free-tier-token-limits)).
+So: (1) the automatic metrics (violation, unknown, abstention, clarification) need **no
+explanations**; run them with `Deps.explain = None`, which costs ~1K tokens a query (about 120K for
+the whole set, one day). (2) Generate explanations only for the ~30–50 answers that are hand-checked
+for faithfulness, over two days or on Ollama. (3) Shard long runs across teammates' own accounts
+(limits are per organization, not per key). (4) The response cache means a rerun costs nothing, so
+**never change a prompt or model mid-evaluation** without accepting a full re-run.
 
 ## 8. Results table template
 
