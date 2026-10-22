@@ -12,9 +12,9 @@ def test_app_renders_and_explains_when_there_is_no_index_instead_of_crashing(tmp
     at = AppTest.from_file(APP, default_timeout=30).run()
     assert not at.exception
     assert any("not legal" in c.value for c in at.caption)
-    assert len(at.tabs) == 2
+    assert len(at.tabs) == 3
     at.text_input(key="query").set_value("Marathi NER").run()
-    at.button[-1].click().run()  # "Search"
+    next(b for b in at.button if b.label == "Search").click().run()
     assert not at.exception
     assert any("Search is unavailable" in e.value for e in at.error)
 
@@ -91,7 +91,7 @@ def test_replay_mode_serves_a_recorded_run_with_no_live_services(tmp_path, monke
     at = AppTest.from_file(APP, default_timeout=30).run()
     assert any("Replay mode" in c.value for c in at.caption)
     at.text_input(key="query").set_value("Marathi NER").run()
-    at.button[-1].click().run()
+    next(b for b in at.button if b.label == "Search").click().run()
     assert not at.exception
     assert any("recorded" in i.value for i in at.info)
     assert any("org/recorded" in m.value for m in at.markdown)
@@ -102,7 +102,7 @@ def test_replay_mode_explains_a_missing_recording(tmp_path, monkeypatch):
     monkeypatch.setenv("REPLAY_DIR", str(tmp_path))
     at = AppTest.from_file(APP, default_timeout=30).run()
     at.text_input(key="query").set_value("never recorded").run()
-    at.button[-1].click().run()
+    next(b for b in at.button if b.label == "Search").click().run()
     assert not at.exception
     assert any("RECORD=1" in w.value for w in at.warning)
 
@@ -131,7 +131,7 @@ def test_editing_the_parsed_intent_sends_validated_overrides(tmp_path, monkeypat
     monkeypatch.setenv("REPLAY_DIR", str(tmp_path))
     at = AppTest.from_file(APP, default_timeout=30).run()
     at.text_input(key="query").set_value("Marathi NER").run()
-    at.button[-1].click().run()
+    next(b for b in at.button if b.label == "Search").click().run()
     assert not at.exception and at.selectbox(key="edit-task").value == "token-classification"      # the editor shows what was parsed
     assert at.multiselect(key="edit-langs").value == ["mr"] and at.number_input(key="edit-size").value == 500
     assert at.checkbox(key="edit-comm").value is True and at.checkbox(key="edit-mod").value is False
@@ -156,7 +156,7 @@ def test_side_by_side_shows_ours_without_failures_and_naive_with_them(tmp_path, 
     at = AppTest.from_file(APP, default_timeout=30).run()
     at.text_input(key="query").set_value("Marathi NER").run()
     at.checkbox(key="compare").check().run()
-    at.button[-1].click().run()
+    next(b for b in at.button if b.label == "Search").click().run()
     assert not at.exception
     md = " ".join(m.value for m in at.markdown)
     assert "Ours (filters + verification)" in md and "Naive RAG (same index" in md

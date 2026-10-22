@@ -40,11 +40,11 @@ LANG_BY_NAME = {name.lower(): code for code, name in LANG_NAMES.items()}
 LANG_BY_NAME.update({"bangla": "bn", "panjabi": "pa", "oriya": "or", "हिंदी": "hi", "हिन्दी": "hi", "मराठी": "mr",
                      "meitei": "mni", "বাংলা": "bn", "தமிழ்": "ta", "తెలుగు": "te"})
 
-# D13: 4-5 example queries on the start screen, one per task.
+# D13: 4-5 example queries on the start screen, balanced across English and Indic.
 EXAMPLE_QUERIES = [
-    "Small sentiment model for Hindi I can use in a commercial app",
+    "Fast English speech recognition under 500 MB",
+    "English sentiment analysis for product reviews that I can use commercially",
     "Commercial Hindi to Marathi translation",
-    "Marathi NER model under 500 MB for noisy social-media text",
     "Speech recognition for Tamil under 1 GB",
     "Sentence embeddings for Bengali that I can modify and sell",
 ]

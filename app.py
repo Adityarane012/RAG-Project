@@ -235,6 +235,69 @@ def render_check_tab() -> None:
         render_build_on(result["report"])
 
 
+EXAMPLE_CATEGORIES = {
+    "🎙️ Automatic Speech Recognition (ASR)": [
+        ("Fast English speech recognition under 500 MB", "Lightweight English Whisper models suitable for laptops"),
+        ("Speech recognition for Tamil under 1 GB", "Tamil regional Whisper fine-tune with sub-1GB constraint"),
+        ("Kannada speech recognition trained on noisy real-world recordings", "Acoustically robust ASR for real-world audio"),
+        ("Speech to text for Gujarati, commercial use allowed, under 1 GB", "Commercial license + size constraint for Gujarati"),
+    ],
+    "💬 Text Classification & Sentiment Analysis": [
+        ("English sentiment analysis for product reviews that I can use commercially", "E-commerce customer review sentiment with commercial rights"),
+        ("Twitter emotion detection model for commercial use", "Social media multi-class emotion classification"),
+        ("Small sentiment model for Hindi I can use in a commercial app", "Lightweight Hindi sentiment classifier with Apache-2.0"),
+        ("Bengali text classification for customer reviews", "Customer support sentiment in Bengali"),
+    ],
+    "🔍 Sentence Similarity & Semantic Search": [
+        ("Fast English sentence embeddings under 200 MB for semantic search", "Sub-200 MB embedding models for fast document search"),
+        ("Sentence embeddings for Bengali that I can modify and sell", "Commercial and modifiable embeddings for Bengali"),
+        ("Hindi sentence similarity model under 500 MB", "Compact Hindi semantic search model"),
+        ("Multilingual Indic sentence similarity covering 10+ languages", "Cross-lingual similarity across Indic scripts"),
+    ],
+    "🌐 Machine Translation": [
+        ("English to French translation under 500 MB", "Lightweight European translation model"),
+        ("Commercial Hindi to Marathi translation", "Directionally verified cross-lingual Indic translation"),
+        ("English to Hindi machine translation under 500 MB", "English-to-Hindi localization under 500 MB"),
+        ("Urdu to English translation I can use in a product", "Commercial product translation for customer support"),
+    ],
+    "🏷️ Named Entity Recognition (NER)": [
+        ("English named entity recognition model with permissive license", "Standard English CoNLL-03 NER with Apache/MIT license"),
+        ("Marathi NER model under 500 MB for noisy social-media text", "Social media token classification under 500 MB"),
+        ("Tamil token classification model for news articles", "Regional token classification for news corpora"),
+        ("Telugu named entity recognition I can deploy commercially", "Production-ready commercial NER"),
+    ],
+    "⚡ Edge & Low-Resource Deployment (< 300 MB)": [
+        ("Tiny English speech-to-text model under 150 MB for mobile", "Edge Whisper Tiny on-device model"),
+        ("Lightweight Hindi sentiment analysis under 200 MB", "On-device classification for edge devices"),
+        ("Tamil speech-to-text under 500 MB that handles phone call audio", "Embedded telephony speech recognition"),
+    ],
+    "🔄 Interactive & Constraint Demos": [
+        ("I want a Hindi model", "Tests Ambiguity Clarification: asks user to pick a task"),
+        ("Hindi to Marathi translation under 1 MB", "Tests Relaxation: suggests relaxing impossible 1 MB constraint"),
+        ("Tamil NER model I can fine-tune", "Tests Modifiability & 'Build on it' adaptation guide"),
+    ],
+}
+
+
+def render_examples_tab() -> None:
+    st.markdown("### 💡 Browse Example Queries by Task & Capability")
+    st.caption("Click **'Use query ↗️'** next to any example to populate the search bar and run constraint verification immediately in the **Search** tab.")
+
+    selected = st.session_state.get("query", "")
+    if selected:
+        st.info(f"Currently loaded: **{selected}** — *switch to the **Search** tab to see verified results.*")
+
+    for cat_name, queries in EXAMPLE_CATEGORIES.items():
+        st.markdown(f"#### {cat_name}")
+        for q, desc in queries:
+            c1, c2 = st.columns([3, 1])
+            c1.markdown(f"**{q}**  \n*{desc}*")
+            if c2.button("Use query ↗️", key=f"cat-ex-{q}"):
+                _fresh(q)
+                st.rerun()
+        st.divider()
+
+
 def main() -> None:
     st.set_page_config(page_title="HF Model Finder", page_icon="🔎")
     st.title("HF Model Finder")
@@ -244,13 +307,14 @@ def main() -> None:
     if mode_from_env() == "replay":
         st.caption("Replay mode: showing recorded runs, no live services.")
 
-    search_tab, check_tab = st.tabs(["Search", "Check a model"])
+    search_tab, examples_tab, check_tab = st.tabs(["Search", "Examples", "Check a model"])
 
     with search_tab:
         st.write("Try an example:")
         for example in EXAMPLE_QUERIES:
             if st.button(example, key=f"ex-{example}"):
                 _fresh(example)
+        st.caption("💡 Looking for more tasks and categories? Browse 25+ diverse queries in the **Examples** tab above.")
         query = st.text_input("Describe the model you need", key="query")
         compare = st.checkbox("Compare with naive RAG", key="compare",
                               help="Runs the same request with no filters and no verification, to show what the checks change.")
@@ -296,6 +360,9 @@ def main() -> None:
                 render_state(state)
             st.divider()
             render_intent_editor(state.get("constraints") or {})
+
+    with examples_tab:
+        render_examples_tab()
 
     with check_tab:
         render_check_tab()
