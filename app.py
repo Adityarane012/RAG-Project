@@ -24,7 +24,8 @@ DISCLAIMER = ("Rights are read from each model's *declared* license. This is not
 ROW_LABELS = {"task": "Task", "languages": "Language", "direction": "Direction", "size": "Size",
               "commercial": "Commercial use", "modifiable": "Modifiable"}
 HELP = {"commercial": TOOLTIPS["commercial"], "modifiable": TOOLTIPS["modifiable"], "size": TOOLTIPS["size"]}
-LEGEND = "✅ passes · ❌ fails · ⚠️ unknown (the card or metadata doesn't say; we don't guess)"
+ICON_DISPLAY = {"pass": "pass", "fail": "❌ fail", "unknown": "⚠️ unknown"}
+LEGEND = "pass · ❌ fails · ⚠️ unknown (the card or metadata doesn't say; we don't guess)"
 
 
 @st.cache_resource
@@ -73,7 +74,7 @@ def _fresh(query: str | None = None) -> None:
 
 
 def render_table(result: dict) -> None:
-    rows = {ROW_LABELS[k]: f"{ICON[v]} {v}" for k, v in result["table"].items()}
+    rows = {ROW_LABELS[k]: ICON_DISPLAY.get(v, v) for k, v in result["table"].items()}
     st.table(rows)
     for note in result["notes"]:
         st.caption(f"⚠️ {note}")
@@ -103,7 +104,9 @@ def render_intent_editor(constraints: dict) -> None:
 
 def render_plain(state: dict, limit: int = 5) -> None:
     """A baseline's output: whatever retrieval returned, with every verdict shown (including ❌)."""
-    for r in state.get("results", [])[:limit]:
+    for i, r in enumerate(state.get("results", [])[:limit]):
+        if i > 0:
+            st.divider()
         st.markdown(f"**[{r['model_id']}](https://huggingface.co/{r['model_id']})**")
         render_table(r)
 
@@ -144,12 +147,21 @@ def render_state(state: dict) -> None:
     if state.get("explain_error"):
         st.warning("Explanations are unavailable right now; the verified table below is unaffected.")
     st.caption(LEGEND)
-    for result in (r for r in state["results"] if r["overall"] != "fail"):
+    models_to_show = [r for r in state["results"] if r["overall"] != "fail"]
+    for i, result in enumerate(models_to_show):
+        if i > 0:
+            st.divider()
         mid = result["model_id"]
         st.markdown(f"### [{mid}](https://huggingface.co/{mid})")
-        render_table(result)
         if mid in explanations:
-            st.write(explanations[mid]["text"])
+            col_table, col_desc = st.columns([1, 1], gap="large")
+            with col_table:
+                render_table(result)
+            with col_desc:
+                st.markdown("##### 📝 Card Summary & Evidence")
+                st.write(explanations[mid]["text"])
+        else:
+            render_table(result)
         report = reports.get(mid)
         if report:
             with st.expander("Try it"):
@@ -171,7 +183,8 @@ def render_build_on(report: dict) -> None:
     mem = report["memory"]
     if mem["status"] == "pass":
         for name, m in mem["methods"].items():
-            st.write(f"{name}: ≥ {m['gb']} GB {ICON[m['fits']]} on a {mem['reference_gpu_gb']} GB GPU")
+            fit_icon = "" if m["fits"] == "pass" else f"{ICON[m['fits']]} "
+            st.write(f"{name}: ≥ {m['gb']} GB {fit_icon}on a {mem['reference_gpu_gb']} GB GPU")
         st.caption("Lower bound; excludes activations.")
     else:
         st.write("⚠️ Parameter count unknown, so no memory estimate.")
@@ -216,7 +229,7 @@ def render_check_tab() -> None:
     st.table(result["facts"])
     if result["table"]:
         st.caption(LEGEND)
-        st.table({ROW_LABELS[k]: f"{ICON[v]} {v}" for k, v in result["table"].items()})
+        st.table({ROW_LABELS[k]: ICON_DISPLAY.get(v, v) for k, v in result["table"].items()})
     st.caption(DISCLAIMER)
     with st.expander("Build on it", expanded=True):
         render_build_on(result["report"])
@@ -246,30 +259,40 @@ def main() -> None:
         if query and st.button("Search"):
             _fresh()
         if query and action:
-            try:
-                graph = get_graph()
-            except Exception as e:  # no index built yet, missing keys, ...: say what is missing instead of a traceback
-                st.error(f"Search is unavailable: {e}")
-                graph = None
-            if graph is not None:
-                carried = {}
-                if action == "followup" and "state" in st.session_state:
-                    prev = st.session_state["state"]
-                    carried = {k: prev[k] for k in ("clarifications_asked", "relax_count") if k in prev}
-                request = {"query": query, "overrides": st.session_state.get("overrides", {}), **carried}
+            import time
+
+            t0 = time.time()
+            est_time = "~5–8s" if compare else "~3–5s"
+            with st.spinner(f"⏳ Searching & verifying models against constraints... (Estimated time: {est_time})"):
                 try:
-                    st.session_state["state"] = graph.invoke(request)
-                    if compare:
-                        st.session_state["naive_state"] = get_graph("naive").invoke(request)
-                except MissingRecording as e:
-                    st.warning(str(e))
+                    graph = get_graph()
+                except Exception as e:  # no index built yet, missing keys, ...: say what is missing instead of a traceback
+                    st.error(f"Search is unavailable: {e}")
+                    graph = None
+                if graph is not None:
+                    carried = {}
+                    if action == "followup" and "state" in st.session_state:
+                        prev = st.session_state["state"]
+                        carried = {k: prev[k] for k in ("clarifications_asked", "relax_count") if k in prev}
+                    request = {"query": query, "overrides": st.session_state.get("overrides", {}), **carried}
+                    try:
+                        st.session_state["state"] = graph.invoke(request)
+                        if compare:
+                            st.session_state["naive_state"] = get_graph("naive").invoke(request)
+                        st.session_state["elapsed"] = time.time() - t0
+                    except MissingRecording as e:
+                        st.warning(str(e))
         if "state" in st.session_state:
             state = st.session_state["state"]
+            elapsed = st.session_state.get("elapsed")
+            if elapsed is not None:
+                st.caption(f"⏱️ Search completed in **{elapsed:.1f}s** (estimated ~{'5–8s' if compare else '3–5s'})")
             if compare and "naive_state" in st.session_state:
                 st.info(state["intent"])
                 render_compare(state, st.session_state["naive_state"])
             else:
                 render_state(state)
+            st.divider()
             render_intent_editor(state.get("constraints") or {})
 
     with check_tab:
