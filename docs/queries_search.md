@@ -12,29 +12,48 @@ The underlying corpus contains **9,764 Hugging Face models** and **29,665 indexe
 ---
 
 ## Table of Contents
-1. [Top Showcase & Demo Queries](#1-top-showcase--demo-queries)
-2. [Task-Specific Queries by Language](#2-task-specific-queries-by-language)
+1. [Standard English & Everyday Industry Models](#1-standard-english--everyday-industry-models)
+2. [Top Showcase & Demo Queries (Indic & Multi-Constraint)](#2-top-showcase--demo-queries-indic--multi-constraint)
+3. [Task-Specific Queries by Language](#3-task-specific-queries-by-language)
    - [Speech Recognition (ASR)](#speech-recognition-asr)
    - [Machine Translation](#machine-translation)
    - [Named Entity Recognition (NER)](#named-entity-recognition-ner)
    - [Text Classification & Sentiment](#text-classification--sentiment)
    - [Sentence Similarity & Embeddings](#sentence-similarity--embeddings)
-3. [Constraint & License Test Queries](#3-constraint--license-test-queries)
+4. [Constraint & License Test Queries](#4-constraint--license-test-queries)
    - [Strict Commercial Use](#strict-commercial-use)
    - [Permissive Open-Source (MIT / Apache 2.0)](#permissive-open-source-mit--apache-20)
    - [Modifiable / Fine-Tunable Only](#modifiable--fine-tunable-only)
    - [Edge & Low-Memory (< 500 MB / Laptop-Friendly)](#edge--low-memory--500-mb--laptop-friendly)
-4. [Native Script Queries (Devanagari & Indic)](#4-native-script-queries-devanagari--indic)
-5. [Interactive Edge Cases](#5-interactive-edge-cases)
+5. [Native Script Queries (Devanagari & Indic)](#5-native-script-queries-devanagari--indic)
+6. [Interactive Edge Cases](#6-interactive-edge-cases)
    - [Clarification Triggers (Vague Queries)](#clarification-triggers-vague-queries)
    - [Relaxation Triggers (Impossible / Over-Constrained)](#relaxation-triggers-impossible--over-constrained)
    - [Naive RAG Contrast Queries (Baseline Flaws)](#naive-rag-contrast-queries-baseline-flaws)
-6. [Model ID Verification ("Check a Model" Tab)](#6-model-id-verification-check-a-model-tab)
-7. [How to Run & Test These Queries](#7-how-to-run--test-these-queries)
+7. [Model ID Verification ("Check a Model" Tab)](#7-model-id-verification-check-a-model-tab)
+8. [How to Run & Test These Queries](#8-how-to-run--test-these-queries)
 
 ---
 
-## 1. Top Showcase & Demo Queries
+## 1. Standard English & Everyday Industry Models
+
+While the research paper highlights Indic and low-resource constraints (where metadata is notoriously messy), **the index includes the top 1,000 global models per task by downloads** on Hugging Face (Whisper, RoBERTa, BERT, MiniLM, ModernBERT, Opus-MT, etc.). 
+
+Use these "normal" everyday English queries to test standard production workloads:
+
+| Query | Target Task | Expected Verified Models | Key Check |
+|---|---|---|---|
+| `Fast English speech recognition under 500 MB` | `automatic-speech-recognition` | `Open4bits/whisper-base-f16`, `Open4bits/whisper-tiny-f16`, `aufklarer/Nemotron-3.5-ASR...` | Size constraint (<500 MB) + English ASR verification |
+| `English sentiment analysis for product reviews that I can use commercially` | `text-classification` | `tabularisai/robust-sentiment-analysis`, `cirimus/modernbert-base-go-emotions`, `nlptown/bert...` | Apache-2.0 / MIT commercial pass; rejects non-commercial models |
+| `Fast English sentence embeddings under 200 MB for semantic search` | `sentence-similarity` | `yrrhall/gemma-student-gemma_emb_mrl_distilled_128d`, `axiotic/ogma-small` | Sub-200 MB size limit + dense embedding retrieval |
+| `English named entity recognition model with permissive license` | `token-classification` | `dslim/bert-base-NER`, `dbmdz/bert-large-cased-finetuned-conll03-english` | CoNLL-03 token classification + Apache/MIT license |
+| `English to French translation under 500 MB` | `translation` | `Helsinki-NLP/opus-mt-en-fr` | Directional `en -> fr` mapping + lightweight weight check |
+| `Twitter emotion detection model for commercial use` | `text-classification` | `cardiffnlp/twitter-roberta-base-emotion-latest` | Social media text classification + commercial rights |
+| `Customer support intent classification model, commercial use` | `text-classification` | `modernbert-base`, `distilbert` sentiment & intent | Commercial pass + text classification |
+
+---
+
+## 2. Top Showcase & Demo Queries (Indic & Multi-Constraint)
 
 These queries demonstrate key features during presentations and live evaluation:
 
