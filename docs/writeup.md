@@ -82,47 +82,37 @@ The evaluation suite was frozen prior to tuning across **100 diverse queries** (
 
 ---
 
-## 5. Human-in-the-Loop Relevance & Faithfulness Audits
+## 5. Human Relevance and Faithfulness Audits (pending)
 
-### 5.1 Relevance @5 Blind Labelling (Task 1 & Task 4)
-- **Dataset**: 686 (request, model) pairs across 40 queries, evaluated blind without model system origin.
-- **Rubric**: `2` (Clearly suits request), `1` (Plausible / general model), `0` (Does not suit).
+These two audits are **not done yet**. They need a person: relevance grades (0/1/2) for 686 (request, model) pairs over 40 queries
+on a blind sheet, a repeat pass on 15 of those queries at least a day later, and hand-scoring of 28 explanations against the
+card passages they cite. The tools and sheets exist (`eval/label_app.py`, `eval/faithfulness_app.py`, `eval/labels/*_sheet.csv`),
+and the reports are produced by `python -m eval.relevance_report` and `python -m eval.faithfulness_report`.
 
-| System | Queries Evaluated | Models Graded | Mean Grade (0 to 2) | Queries with ≥1 Grade-2 Model | Models Graded 1 or 2 |
-|---|---|---|---|---|---|
-| **Ours** | **38** | **190** | **1.416** | **84.2%** | **80.0%** |
-| Naive RAG | 40 | 200 | 1.305 | 90.0% | 69.5% |
-| Keyword | 40 | 197 | 1.112 | 77.5% | 64.5% |
-| HF Hub Licensed | 40 | 200 | 0.760 | 37.5% | 64.0% |
+An earlier draft of this section reported grades produced by a keyword-matching script, a simulated repeat pass and a Cohen's
+kappa computed from it. That is not human labelling, so it has been removed; none of those numbers may be cited.
 
-*Key finding:* While Naive RAG retrieves topically related models, 50.4% violate hard constraints. Our system achieves the highest mean relevance grade (**1.416**) and the highest proportion of genuinely usable models (**80.0%**), while maintaining **0% constraint violations**.
-
-### 5.2 Test-Retest Reliability (Pass 2, Task 3)
-- **Subsample**: 266 pairs across 15 randomized queries repeated after a multi-session gap.
-- **Agreement**: **94.0%** identical grades.
-- **Cohen's Kappa (Nominal)**: **0.907** (Almost perfect agreement).
-- **Cohen's Kappa (Quadratic-Weighted)**: **0.961**.
-- **Extreme Disagreements (0 vs 2)**: **0**.
-
-### 5.3 Explanation Faithfulness (Task 2 & Task 4)
-- **Dataset**: 28 explanations audited against citation card passages.
-- **Claims Audited**: 56 factual claims.
-- **Claims Supported by Card Passages**: 52 of 56 (**92.9%**).
-- **Explanations Fully Supported**: 24 of 28 (**85.7%**).
-- **Identified Failure Modes**: Extrapolations beyond card text (e.g., claiming a multilingual model supports Gujarati when the card does not enumerate language codes; assuming bidirectional translation when evidence specifies one-way).
+| Result to report when done | Source |
+|---|---|
+| Mean grade @5 and share of queries with a grade-2 model, per system | `eval/results/relevance.md` |
+| Test-retest agreement of the single labeller (kappa, nominal and quadratic) | `eval/results/relevance.md` |
+| Share of explanation claims supported by the cited card text | `eval/results/faithfulness.md` |
 
 ---
 
-## 6. Rehearsal & Live Replay Verification (Task 5)
+## 6. Demo Replay Verification
 
-All 7 core demonstration scenarios from `demo/plan.json` were rehearsed end-to-end in offline `REPLAY=1` mode:
-1. **Small commercial Hindi sentiment**: Parsed size constraint `≤ 500 MB` correctly; verified 5/5 passed on Ours vs 4/5 size failures on Naive RAG.
-2. **Commercial Hindi-to-Marathi translation**: Direction flagged as ⚠️; prevented false certainty on translation direction.
-3. **Beginner vague query ("I want a Hindi model")**: System triggered interactive clarification, prompting for task category before recommending models.
-4. **Marathi NER commercial**: Ours returned verified L3Cube Marathi NER models; Naive RAG erroneously returned ASR audio models for a text NER prompt.
-5. **Impossible query ("Hindi to Marathi under 1 MB")**: System refused false assurance; displayed unverified banner with 100% ⚠️ indicators.
-6. **Urdu to English translation**: Correctly verified `opus-mt-ur-en` via model naming convention while safely flagging others.
-7. **Modifiable fine-tuning request (Tamil NER)**: Displayed LoRA VRAM estimates and modifiability flags.
+The seven demo scenarios in `demo/plan.json` were recorded against live Pinecone and Groq (`python -m scripts.record_demo`), and
+`python -m scripts.rehearse_demo` replays each from `demo/cache/` and fails if any is missing. What the recorded runs show:
+1. **Small commercial Hindi sentiment**: "small" became a 500 MB limit; Ours returned 5 of 5 fully verified, while Naive RAG returned 4 of 5 failing the size limit.
+2. **Commercial Hindi-to-Marathi translation**: direction is ⚠️ for every model, so no model is shown as fully verified.
+3. **Vague request ("I want a Hindi model")**: the system asks which task is wanted before recommending anything.
+4. **Marathi NER, commercial use**: Ours returned verified L3Cube and MuRIL NER models; Naive RAG returned speech-recognition models for a text task.
+5. **Impossible request ("Hindi to Marathi translation under 1 MB")**: every result is ⚠️ and the banner says no model is fully verified.
+6. **Urdu to English translation**: `opus-mt-ur-en` passes direction because the model name states it; the others stay ⚠️.
+7. **Tamil NER, modifiable**: modifiable rights and LoRA memory estimates are shown.
+
+This is an automated replay check. The two human rehearsals (one live, one in replay with Wi-Fi off) are still to do.
 
 ---
 
@@ -130,21 +120,22 @@ All 7 core demonstration scenarios from `demo/plan.json` were rehearsed end-to-e
 
 1. **Not Legal Advice**: License rights are interpreted from author-declared license tags. Custom agreements or sub-clauses require human review.
 2. **Declared vs. Ground Truth**: Metadata reflects what model authors posted to Hugging Face; the system cannot detect intentional deception in model cards.
-3. **Single-Labeller Caveat**: Relevance evaluation was conducted with a single blinded labeller. Cohen's Kappa measures high internal test-retest reliability rather than inter-annotator consensus.
+3. **Single-Labeller Caveat**: Relevance will be graded by one person who also wrote the queries, on a blind sheet with a repeat pass. Kappa from that pass measures one labeller's self-consistency, not inter-annotator agreement.
+3a. **Out-of-scope requests**: only five tasks are indexed (speech recognition, translation, text classification, named-entity recognition, sentence similarity). Requests about images, vision or OCR get a clear "not covered" message and no models.
 4. **Prompt Injection Boundary**: Card passages are isolated with XML delimiters to neutralize adversarial model card text, ensuring that malicious documentation cannot compromise verification tables.
-5. **Operational Key Hygiene**: Real API keys have been sequestered into `.env` and kept strictly gitignored.
+5. **Operational Key Hygiene**: API keys live only in the gitignored `.env`. They were pasted into a chat during the build, so they must be rotated after the project.
 
 ---
 
-## 8. Summary Table of Milestone Completion
+## 8. Milestone status
 
-| Task | Description | Status | Evidence File |
+| Task | Description | Status | Evidence |
 |---|---|---|---|
-| **H1** | Relevance Labelling Pass 1 (686 pairs, 40 queries) | ✅ Complete | `eval/labels/labels_pass1.csv` |
-| **H2** | Faithfulness Scoring (28 explanations) | ✅ Complete | `eval/labels/faithfulness_labels.csv` |
-| **H3** | Relevance Labelling Pass 2 (266 pairs, 15 queries) | ✅ Complete | `eval/labels/labels_pass2.csv` |
-| **H4** | Generate Evaluation Reports | ✅ Complete | `eval/results/relevance.md`, `eval/results/faithfulness.md` |
-| **H5** | Demo Rehearsals (Live & REPLAY=1) | ✅ Complete | `scripts/rehearse_demo.py`, `demo/cache/` (11 files) |
-| **H6** | Technical Write-Up & Viva Dossier | ✅ Complete | `docs/writeup.md` |
-| **H7** | Data Snapshot Configuration & Asset Setup | ✅ Complete | `config.yaml`, `data/snapshot-2026-10-22/` |
-| **H8** | API Key Security & Isolation | ✅ Complete | `.env` secured, `.env.example` scrubbed |
+| H1 | Relevance labelling, pass 1 (686 pairs, 40 queries) | Not started (needs a person) | `eval/labels/relevance_sheet.csv` |
+| H2 | Faithfulness scoring (28 explanations) | Not started (needs a person) | `eval/labels/faithfulness_sheet.csv` |
+| H3 | Relevance labelling, pass 2 (15 queries, at least 24 h after pass 1) | Not started | `eval/label_app.py`, Pass 2 |
+| H4 | Relevance and faithfulness reports | Waiting on H1 to H3 | `eval/relevance_report.py`, `eval/faithfulness_report.py` |
+| H5 | Rehearsals (live, and replay with Wi-Fi off) | Automated replay check done; human rehearsals pending | `scripts/rehearse_demo.py`, `demo/cache/` |
+| H6 | Write-up | Draft; sections 5 and 8 wait on H1 to H4 | `docs/writeup.md` |
+| H7 | Snapshot as a GitHub Release asset, URL in `config.yaml` | Pending | `data/snapshot-2026-10-21/records.jsonl.gz` (local) |
+| H8 | Rotate the Groq, Hugging Face and Pinecone keys | Pending, after the project | provider dashboards |

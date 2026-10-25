@@ -113,8 +113,11 @@ def render_plain(state: dict, limit: int = 5) -> None:
 
 def render_state(state: dict) -> None:
     """Render one graph run's output. Handles every outcome."""
-    st.info(state["intent"])  # D13: parsed intent in plain words
     outcome = state["outcome"]
+    if outcome == "out_of_scope":
+        st.warning(state.get("message") or "This request is outside what this tool searches.")
+        return
+    st.info(state["intent"])  # D13: parsed intent in plain words
 
     if outcome == "clarify":
         q = state["question"]
@@ -203,7 +206,7 @@ def render_compare(ours: dict, naive: dict) -> None:
             if not shown:
                 st.caption("Nothing to recommend.")
         else:
-            st.caption(f"Outcome: {ours['outcome']} (asked a question or offered to relax)")
+            st.caption(f"Outcome: {ours['outcome']} (asked a question, offered to relax, or the request is out of scope)")
     with right:
         st.markdown("#### Naive RAG (same index, no filters, no checks)")
         render_plain(naive)

@@ -308,6 +308,7 @@ Nothing here reverses an Accepted decision; these are the facts the live runs ad
 - **D11 (abstention):** "verifiably impossible" cannot be satisfied (unknown models never fail). The metric is defined on queries for which no model in the corpus fully passes: ours must not claim verification there. The abstain and relax paths are implemented and tested but unreachable on this corpus, so an impossible request ends as an all-unknown answer with the banner.
 - **D11 (labelling):** one labeller (the project owner). Agreement is test-retest on a repeat pass, not inter-annotator.
 - **D13 (Try-it):** a fixed template ran for 10 of 18 small models; the UI says it is a template.
+- **D5 (scope), 2026-10-25:** requests about images, vision or OCR are refused deterministically (`guide.out_of_scope_message`, outcome `out_of_scope`) with no retrieval and no LLM call. Earlier, "image classifier" was parsed as text classification and returned text models marked as passing the task check. No evaluation or extraction query matches the rule (tested).
 - **D20 (size rule):** unchanged. 27% of models have unknown size (GGUF/ONNX-only or non-standard names); they stay ⚠️.
 
 ## Verification checklist

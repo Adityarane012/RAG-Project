@@ -40,6 +40,25 @@ LANG_BY_NAME = {name.lower(): code for code, name in LANG_NAMES.items()}
 LANG_BY_NAME.update({"bangla": "bn", "panjabi": "pa", "oriya": "or", "हिंदी": "hi", "हिन्दी": "hi", "मराठी": "mr",
                      "meitei": "mni", "বাংলা": "bn", "தமிழ்": "ta", "తెలుగు": "te"})
 
+# Modalities and tasks the index does not cover (D5: five tasks). Without this, "image classifier" was read as
+# text-classification and the user got text models marked as passing the task check. "segmentation" alone is NOT here:
+# word / sentence segmentation is a text task; only the image kinds are. "video" alone is not either (ASR for video lectures).
+_OUT_OF_SCOPE = re.compile(
+    r"\b(?:images?|photos?|pictures?|ocr|computer vision|object detection|face recognition|pose estimation|depth estimation|"
+    r"(?:semantic|instance|panoptic|medical) segmentation|text[- ]to[- ]image|image[- ]to[- ]text|diffusion|"
+    r"video (?:classification|generation|understanding|detection))\b", re.I)
+SCOPE_SUMMARY = ("speech recognition, translation, text classification (e.g. sentiment), named-entity recognition "
+                 "(token classification) and sentence similarity")
+
+
+def out_of_scope_message(query: str) -> str | None:
+    """A plain-words refusal when the request is about something we do not index, else None."""
+    if _OUT_OF_SCOPE.search(query or ""):
+        return (f"This tool only searches models for {SCOPE_SUMMARY}. Image, vision and OCR models are not covered, "
+                "so we show nothing rather than a model for a different task. Try the Hugging Face model search for those.")
+    return None
+
+
 # D13: 4-5 example queries on the start screen, balanced across English and Indic.
 EXAMPLE_QUERIES = [
     "Fast English speech recognition under 500 MB",

@@ -51,3 +51,12 @@ def test_a_step_that_does_not_produce_the_expected_followup_is_flagged_not_silen
     plan = {"steps": [{"name": "x", "query": "q", "clarify_choice": "translation"}, {"name": "y", "query": "q2", "accept_relax": True}]}
     report = run_plan(plan, {"ours": G(lambda r: {"outcome": "answer", "results": []})}, tmp_path, log=lambda *a: None)
     assert all("warning" in r for r in report) and "expected a 'clarify'" in report[0]["warning"]
+
+
+def test_the_committed_recording_replays_every_demo_step_without_network(monkeypatch, capsys):
+    from scripts import rehearse_demo
+
+    monkeypatch.setenv("REPLAY", "1")
+    n = len(json.loads((Path(__file__).resolve().parent.parent / "demo" / "plan.json").read_text(encoding="utf-8"))["steps"])
+    assert rehearse_demo.main() == 0
+    assert f"{n} of {n} steps replayed cleanly" in capsys.readouterr().out

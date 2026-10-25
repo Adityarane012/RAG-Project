@@ -280,3 +280,31 @@ def test_explanations_are_asked_to_relate_the_cards_to_the_users_own_words():
     s = g.invoke({"query": "a Marathi NER model with a permissive license"})
     assert seen["soft"] == "a Marathi NER model with a permissive license"
     assert s["constraints"]["soft_query"] == "permissive license"          # the parsed intent itself is unchanged
+
+
+def test_out_of_scope_requests_are_refused_with_no_retrieval_llm_call_or_wrong_models():
+    # live finding: "image classifier" was parsed as text-classification and text models were shown as passing the task check
+    for variant in ("ours", "naive", "keyword"):
+        g, seen = make_variant(variant, FULL, [chunk("a/b", 0.9)])
+        s = g.invoke({"query": "I need an image classifier I can use commercially"})
+        assert s["outcome"] == "out_of_scope" and "image" in s["message"].lower() and not s.get("results")
+        assert seen["texts"] == [] and seen["rerank"] == 0          # nothing was retrieved
+
+
+def test_the_out_of_scope_check_does_not_misfire_on_text_and_speech_requests():
+    from src.guide import out_of_scope_message
+    for q in ("Indic word segmentation model", "sentence segmentation for Hindi", "transcribe video lectures in Tamil",
+              "Hindi speech recognition", "Hindi sentiment model", "Marathi NER model"):
+        assert out_of_scope_message(q) is None, q
+    for q in ("image segmentation model for medical scans", "object detection for traffic cameras", "I need an image classifier",
+              "OCR for Hindi documents", "text to image diffusion model", "computer vision model", "semantic segmentation of photos"):
+        assert out_of_scope_message(q), q
+
+
+def test_no_evaluation_or_extraction_query_is_out_of_scope():
+    import json
+    from src.guide import out_of_scope_message
+    for path in ("eval/queries.jsonl", "eval/extraction_test.jsonl"):
+        for line in open(path, encoding="utf-8"):
+            q = json.loads(line)["query"]
+            assert out_of_scope_message(q) is None, q
