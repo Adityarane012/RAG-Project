@@ -3,7 +3,7 @@
 
 **Date:** October 2026  
 **Repository:** [Adityarane012/RAG-Project](https://github.com/Adityarane012/RAG-Project)  
-**Corpus Snapshot:** 9,764 models · 29,665 indexed chunks · Snapshot date: `2026-10-21`  
+**Corpus Snapshot:** 15,991 models over 11 tasks · 48,179 indexed chunks · Snapshot date: `2026-10-25` (the evaluated five-task corpus: 9,764 models · 29,665 chunks · `2026-10-21`)  
 **Production Index:** Pinecone hosted index (`hf-model-finder`, `prod` namespace, 1,024-dim `multilingual-e5-large`)
 
 ---
@@ -47,7 +47,7 @@ graph TD
 
 ## 3. Data Pipeline & Corpus Statistics
 
-- **Corpus Scope**: 9,764 unique models across 5 core NLP/speech tasks (`automatic-speech-recognition`, `translation`, `text-classification`, `token-classification`, `sentence-similarity`), prioritizing the top 1,000 models per task by downloads plus all Indic-tagged models.
+- **Corpus Scope**: 9,764 unique models across the 5 original NLP/speech tasks, evaluated in §4 and §5; on 2026-10-25 six tasks were added (image classification, object detection, image segmentation, text generation, summarization, question answering; 6,227 models), checked by smoke queries and the demo and not part of the 100-query evaluation. The original tasks are `automatic-speech-recognition`, `translation`, `text-classification`, `token-classification`, `sentence-similarity`, sampled as the top 1,000 models per task by downloads plus all Indic-tagged models.
 - **Total Chunks**: 29,665 chunks (mean 3.0 chunks per model after stripping boilerplate sections like training hyperparameters, bibtex, and citations).
 - **Data Quality & Unknowns**:
   - **Unknown Size**: 27.2% (2,652 models) — primarily GGUF-only, ONNX-only, or non-standard weights.
@@ -137,7 +137,7 @@ This is an automated replay check. The two human rehearsals (one live, one in re
 1. **Not Legal Advice**: License rights are interpreted from author-declared license tags. Custom agreements or sub-clauses require human review.
 2. **Declared vs. Ground Truth**: Metadata reflects what model authors posted to Hugging Face; the system cannot detect intentional deception in model cards.
 3. **LLM-judged labels**: relevance and faithfulness were graded by Claude agents, not humans; the agreement figure is between two LLM passes. See §5.
-3a. **Out-of-scope requests**: only five tasks are indexed (speech recognition, translation, text classification, named-entity recognition, sentence similarity). Requests about images, vision or OCR get a clear "not covered" message and no models.
+3a. **Scope**: eleven tasks are indexed. Requests about image or music generation, captioning, OCR, text-to-speech or video get a clear "not covered" message and no models. The hosted reranker's monthly quota is used up, so uncached searches are not reranked (the page says so).
 4. **Prompt Injection Boundary**: Card passages are isolated with XML delimiters to neutralize adversarial model card text, ensuring that malicious documentation cannot compromise verification tables.
 5. **Operational Key Hygiene**: API keys live only in the gitignored `.env`. They were pasted into a chat during the build, so they must be rotated after the project.
 

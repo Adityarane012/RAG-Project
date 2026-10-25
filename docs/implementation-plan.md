@@ -12,8 +12,8 @@ Companion docs: [PROJECT.md](PROJECT.md) (what), [decisions.md](decisions.md) (w
 | Area | State |
 |---|---|
 | Verification core | `normalize`, `verify`, `retrieve.build_filter` (D12), license map (extended from the real data), D20 size rule, languages, directions, multilingual map |
-| Data | 9,764 models fetched, canonical base ids, snapshot cut (sha256 in `config.yaml`), data-quality report in [data-notes.md](data-notes.md) |
-| Index | 29,665 chunks embedded (hosted `multilingual-e5-large`, 2.49M tokens, cached) and upserted to Pinecone `prod`; the same corpus in an exact local index |
+| Data | 15,991 models over 11 tasks (9,764 over the original five, plus six tasks added 2026-10-25), canonical base ids, snapshot cut (sha256 in `config.yaml`), data-quality report in [data-notes.md](data-notes.md) |
+| Index | 48,179 chunks over 11 tasks (hosted `multilingual-e5-large`, 4.05M tokens, cached) upserted to Pinecone `prod`; the same corpus in an exact local index. The five-task corpus is reproducible as namespace `eval5` (`docs/evaluation-plan.md` §9) |
 | Live checks | Pinecone filter semantics E-RET-9..12 pass; hosted rerank works (truncation fix); Groq limits measured; poisoned-card test passes |
 | Pipeline | LangGraph with variants ours / naive / keyword; verifies a pool of 100 models before showing 5; retrieval and explanation use the user's own words; deterministic extraction backstop |
 | UI | Editable intent, side-by-side comparison, check-a-model, glossary, build-on, Try-it with an honest caveat |
@@ -77,7 +77,8 @@ Every evaluation query used for debugging is listed in [eval/seen.md](../eval/se
 | Groq tokens per day (`gpt-oss-20b`) | 200,000 | extraction about 500 per call; explanation 1,345 to 2,778; about 3,300 per explained query. The 28-item faithfulness set and the demo are cached |
 | Groq tokens per minute | 8,000 | the throttle settles against real usage |
 | Pinecone hosted embedding | not published | 2.49M tokens for the whole corpus; rebuilds are free (cache) |
-| Pinecone storage/reads | Starter | 29,665 vectors; the evaluation and demo used a few thousand read units |
+| Pinecone storage/reads | Starter | 48,179 vectors; the evaluation and demo used a few thousand read units |
+| Pinecone hosted rerank | 500 requests a month | **Used up on 2026-10-25.** Uncached queries are not reranked (the UI says so); `RERANKER=local` is the fallback; resets next month |
 
 ## 6. Findings that shape the write-up
 

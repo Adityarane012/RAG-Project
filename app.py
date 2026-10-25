@@ -118,6 +118,9 @@ def render_state(state: dict) -> None:
         st.warning(state.get("message") or "This request is outside what this tool searches.")
         return
     st.info(state["intent"])  # D13: parsed intent in plain words
+    if state.get("rerank_skipped"):
+        st.caption("Reranking was unavailable for this search (the hosted reranker's monthly quota is used up), so results are ordered "
+                   "by text similarity only. The pass / fail / unknown checks are not affected.")
 
     if outcome == "clarify":
         q = state["question"]
@@ -169,8 +172,9 @@ def render_state(state: dict) -> None:
         if report:
             with st.expander("Try it"):
                 st.code(report["try_it"] or "", language="python")
-                st.caption("A standard template, not tested on this model. It suits ordinary Hugging Face weights; MLX, GGUF, "
-                           "quantized or custom-code models need their own runtime. The model page says which.")
+                st.caption("A standard template, not tested on this model. It suits ordinary Hugging Face weights with a recent transformers "
+                           "(image models also need timm or torchvision); MLX, GGUF, quantized or custom-code models need their own "
+                           "runtime. The model page says which.")
                 st.markdown(f"[Open the model page]({report['model_page']})")
             with st.expander("Build on it"):
                 render_build_on(report)
@@ -274,9 +278,21 @@ EXAMPLE_CATEGORIES = {
         ("Lightweight Hindi sentiment analysis under 200 MB", "On-device classification for edge devices"),
         ("Tamil speech-to-text under 500 MB that handles phone call audio", "Embedded telephony speech recognition"),
     ],
+    "🖼️ Vision (images)": [
+        ("Image classification model for plant diseases", "Sort photos into categories"),
+        ("I need an image classifier I can use commercially", "Image classification with a commercial license"),
+        ("Object detection for traffic cameras, small", "Find and locate objects in images, small size"),
+        ("Image segmentation model for medical scans", "Outline regions of images"),
+        ("Segment satellite images, I can fine-tune it", "Segmentation you are allowed to modify"),
+    ],
+    "✍️ Text Generation, Summarization & Question Answering": [
+        ("Small language model for text generation I can fine-tune", "A compact model you can build on"),
+        ("Summarization model for news articles, commercial use", "Summarize long text with commercial rights"),
+        ("Question answering model over a passage, under 500 MB", "Answer questions from a given text"),
+    ],
     "🔄 Interactive & Constraint Demos": [
         ("I want a Hindi model", "Tests Ambiguity Clarification: asks user to pick a task"),
-        ("Hindi to Marathi translation under 1 MB", "Tests Relaxation: suggests relaxing impossible 1 MB constraint"),
+        ("Hindi to Marathi translation under 1 MB", "An impossible request: nothing can be verified, so every result is ⚠️ with a banner"),
         ("Tamil NER model I can fine-tune", "Tests Modifiability & 'Build on it' adaptation guide"),
     ],
 }
@@ -361,8 +377,9 @@ def main() -> None:
                 render_compare(state, st.session_state["naive_state"])
             else:
                 render_state(state)
-            st.divider()
-            render_intent_editor(state.get("constraints") or {})
+            if state.get("outcome") != "out_of_scope":      # nothing was understood, so there is nothing to edit
+                st.divider()
+                render_intent_editor(state.get("constraints") or {})
 
     with examples_tab:
         render_examples_tab()

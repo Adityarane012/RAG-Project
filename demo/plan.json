@@ -32,6 +32,19 @@
   {
    "name": "7. build on it: modifiable fine-tuning request",
    "query": "Tamil NER model I can fine-tune"
+  },
+  {
+   "name": "8. vision is covered: an image classifier with a commercial license",
+   "query": "I need an image classifier I can use commercially"
+  },
+  {
+   "name": "9. summarization with commercial rights",
+   "query": "Summarization model for news articles, commercial use"
+  },
+  {
+   "name": "10. out of scope: text-to-image is refused, with nothing shown",
+   "query": "Text to image diffusion model",
+   "expect": "out_of_scope"
   }
  ]
 }

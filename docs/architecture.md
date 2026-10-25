@@ -26,7 +26,7 @@ Changing `embedding.model` in `config.yaml` means re-indexing everything.
                 OFFLINE (run once per snapshot)                          ONLINE (per query)
  ┌───────────────────────────────────────────────────┐   ┌────────────────────────────────────────────────┐
  │ HF Hub API                                         │   │ user query ─► [extract] ─► clarify? ─► END     │
- │   │ list_models (5 tasks × (top-1000 ∪ Indic))     │   │                  │ (≤2 questions, UI re-invokes)│
+ │   │ list_models (11 tasks × (top-1000 ∪ Indic, where language applies))     │   │                  │ (≤2 questions, UI re-invokes)│
  │   ▼                                                │   │                  ▼                              │
  │ ingest.py ──► data/raw/<id>.json + .md (cached)    │   │            [retrieve] Pinecone filter + ANN     │
  │   ▼                                                │   │                  ▼  ~50 chunks (widen to ≥5 models)
@@ -296,7 +296,7 @@ memory-estimate constants, loop caps. Secrets live only in `.env` (see
 | Reranker default | Pinecone-hosted `bge-reranker-v2-m3` (API version 2024-10, `truncate: END`), cached; local model is the fallback | The plan check passed (D9); the hosted call is free of local weights, which the sandbox cannot download |
 | Search text | The user's own query, for every system; `soft_query` only selects explanation evidence | Live finding: the extractor turned "small Gujarati classifier with a permissive license" into "permissive license" and retrieval returned only license sections |
 | Verification pool | 100 models are verified, then the top 5 are shown (`retrieval.verify_pool`) | Live finding: semantic search cannot see "direction known", so verified `opus-mt-en-hi` never reached the top 5 (D12 says passes outrank unknowns) |
-| Embeddings (D8) | Pinecone-hosted `multilingual-e5-large`, content-hash cached; 29,665 chunks cost about 2.49M tokens | No local weights needed; the cache decouples embedding from upserting |
+| Embeddings (D8) | Pinecone-hosted `multilingual-e5-large`, content-hash cached; 48,179 chunks (11 tasks) cost about 4.05M tokens in all | No local weights needed; the cache decouples embedding from upserting |
 | Vector store | `LocalIndex` (exact brute force, Pinecone filter semantics) is the default store (`vector_store.backend: local`) | The sandbox cannot reach the Pinecone data plane; `pinecone` backend is implemented and selected by config |
 | Groq models | `openai/gpt-oss-20b`, fallback `openai/gpt-oss-120b`, `reasoning_effort: low` | `llama-3.1-8b-instant` is not on the account; reasoning tokens otherwise dominate the 8,000 TPM budget |
 | Extraction backstop | Deterministic fill-in for size, rights, single-category task, language names and named permissive licenses (`llm.backstop_constraints`) | The 120b fallback silently dropped constraints; a named permissive license is read as commercial + modifiable (an approximation shown in "We understood") |

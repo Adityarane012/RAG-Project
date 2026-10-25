@@ -39,11 +39,18 @@ differ slightly (approximate search, model nondeterminism); say so if it does.
 | 5 | **Impossible:** *"Hindi to Marathi translation under 1 MB."* | Nothing can be verified, so every result is ⚠️ (size unknown) and the banner says no model is fully verified. The system does not invent an answer | 5 results, all ⚠️, banner shown |
 | 6 | *"Urdu to English translation I can use in a product."* | `opus-mt-ur-en` states its direction in its name, so direction is ✅; the others are ⚠️ | 2 fully verified, 3 ⚠️ |
 | 7 | **Build on it:** *"Tamil NER model I can fine-tune."*, expand a model | modifiable right, "fine-tune of …", LoRA estimate (a lower bound), task-guide link | 5 of 5 pass |
-| 8 | **Check a model:** paste a model id in the "Check a model" tab | Instant rights table, no retrieval | not part of the recording; rehearse live |
-| 9 | Close on the results table | Violation, unknown, fully verified for the five systems (`eval/results/results-v2.md`) | ours 0.0 / 16.7 / 83.3 |
+| 8 | *"I need an image classifier I can use commercially."* | Vision is covered now. Ours returns 5 of 5 fully verified image classifiers (ResNet, Swin, BEiT families) with commercial rights checked | Recorded with the local reranker (hosted quota used up) |
+| 9 | *"Summarization model for news articles, commercial use."* | Another new task: summarization models with a commercial license, with cited card passages | Recorded with the local reranker |
+| 10 | *"Text to image diffusion model."* | Out of scope: a clear "not covered" message and no models, not a wrong answer | `out_of_scope`, no results |
+| 11 | **Check a model:** paste a model id in the "Check a model" tab | Instant rights table, no retrieval | not part of the recording; rehearse live |
+| 12 | Close on the results table | Violation, unknown, fully verified for the five systems (`eval/results/results-v2.md`) | ours 0.0 / 16.7 / 83.3 |
 
 Talking points to have ready: why verification is in code (D2); what ⚠️ means (D3/D12);
 the disclaimer (not legal advice); the prompt-injection defence and its limits (D17).
+
+**Rerank quota (2026-10-25).** The hosted reranker's monthly limit (500 requests) is used up, so any query that is not in the recording is
+not reranked live and the page says so. Recorded and replayed queries are unaffected. For a live rehearsal with new queries use
+`RERANKER=local streamlit run app.py` (about 100 s to load the model once, then about 20 s a query), or stay with the recorded steps.
 
 ## 4. Failure playbook
 

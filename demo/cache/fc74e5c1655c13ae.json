@@ -1,0 +1,23 @@
+{
+ "input": {
+  "query": "Text to image diffusion model",
+  "overrides": {}
+ },
+ "state": {
+  "query": "Text to image diffusion model",
+  "overrides": {},
+  "constraints": {
+   "task": null,
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Text to image diffusion model"
+  },
+  "intent": "",
+  "outcome": "out_of_scope",
+  "message": "This tool only searches models for speech recognition, translation, text classification (e.g. sentiment), named-entity recognition, sentence similarity, image classification, object detection, image segmentation, text generation, summarization and question answering. Image or music generation, captioning, OCR, text-to-speech and video models are not covered, so we show nothing rather than a model for a different task. Try the Hugging Face model search for those."
+ }
+}

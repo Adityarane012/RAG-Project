@@ -132,11 +132,23 @@ def done_models(namespace: str) -> set[str]:
     return set(p.read_text(encoding="utf-8").split("\n")) - {""} if p.exists() else set()
 
 
-def prepare_all(raw_dir: Path | None = None, limit: int | None = None) -> list[dict]:
-    """Prepared chunks for every cached model, in a stable order."""
+FIVE_TASKS = ("automatic-speech-recognition", "translation", "text-classification", "token-classification", "sentence-similarity")
+
+
+def prepare_all(raw_dir: Path | None = None, limit: int | None = None, tasks: tuple[str, ...] | None = None) -> list[dict]:
+    """Prepared chunks for every cached model, in a stable order.
+
+    `tasks` (or the env var CORPUS_TASKS, comma-separated, or "five" for the five tasks of the original corpus) keeps only
+    chunks of those tasks. The frozen evaluation (v2) was run on the five-task corpus; this reproduces it exactly.
+    """
     import json
+    import os
 
     from src import ingest
+
+    if tasks is None and os.getenv("CORPUS_TASKS"):
+        env = os.environ["CORPUS_TASKS"].strip()
+        tasks = FIVE_TASKS if env == "five" else tuple(t.strip() for t in env.split(",") if t.strip())
 
     raw_dir = raw_dir or ingest.RAW_DIR
     cpath = raw_dir / "_canonical_ids.json"
@@ -145,7 +157,8 @@ def prepare_all(raw_dir: Path | None = None, limit: int | None = None) -> list[d
     paths = sorted(p for p in raw_dir.glob("*.json") if not p.name.startswith("_") and p.with_suffix(".md").exists())
     for p in paths[:limit]:
         raw = json.loads(p.read_text(encoding="utf-8"))
-        out += prepare_model(raw, p.with_suffix(".md").read_text(encoding="utf-8"), canonical)
+        chunks = prepare_model(raw, p.with_suffix(".md").read_text(encoding="utf-8"), canonical)
+        out += [c for c in chunks if tasks is None or c["metadata"].get("task") in tasks]
     return out
 
 

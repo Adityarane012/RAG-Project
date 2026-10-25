@@ -23,7 +23,7 @@ These are the non-goals and honest limits. Say them before a reviewer does.
   wrong, a license can have exceptions, and `conditional` means "read the terms".
 - **Declared ≠ true.** Size, languages, base model and license are as accurate as the card
   and Hub metadata. We mark gaps as unknown; we cannot detect lies.
-- **A sample of the Hub, not the Hub.** 9,764 models over five tasks, as of the snapshot
+- **A sample of the Hub, not the Hub.** 15,991 models over eleven tasks (9,764 over the original five), as of the snapshot
   date shown in the UI. Newer or off-scope models (e.g. `text-generation`) are absent.
 - **Not a leaderboard.** Author-reported `model-index` scores are shown as *unverified* and
   never used for ranking (D24).
@@ -42,7 +42,8 @@ These are the non-goals and honest limits. Say them before a reviewer does.
 - **Embedding models are under-covered.** An "embedding model" request maps to
   `sentence-similarity`, but many embedding models are tagged `feature-extraction`, which is out
   of scope (D5). Expect missing results there.
-- **Only five tasks are covered** (speech recognition, translation, text classification, named-entity recognition, sentence similarity). A request about images, vision or OCR gets a "not covered" message and no models; before this was added, "image classifier" was read as text classification and text models were shown as passing the task check (found on 2026-10-25). Other tasks outside the five (for example text generation or `feature-extraction` embeddings) are not detected the same way: they may be clarified or mapped to the nearest task, so check the "We understood" line.
+- **Eleven tasks are covered**: speech recognition, translation, text classification, named-entity recognition, sentence similarity, image classification, object detection, image segmentation, text generation, summarization and question answering. Requests about image or music generation, captioning, OCR, text-to-speech or video get a "not covered" message and no models (before 2026-10-25 "image classifier" was read as text classification and text models were shown as passing the task check). Other tasks (for example `feature-extraction` embeddings, audio classification, zero-shot classification) are not detected the same way: they may be clarified or mapped to the nearest task, so check the "We understood" line. Only the original five tasks are in the 100-query evaluation; the six added tasks are checked by smoke queries and the demo.
+- **The hosted reranker has a monthly request limit** (500). When it is used up, uncached searches are not reranked: results keep text-similarity order, the page says so, and the pass / fail / unknown checks are unaffected. The local reranker (`RERANKER=local`) is the fallback for recording.
 - **A named permissive license is an approximation.** "Apache", "MIT", "BSD" or "permissive license" in a request becomes commercial + modifiable; there is no constraint on the license id itself, and the parsed intent shows what was understood.
 - **Try-it is a template.** It ran for 10 of 18 small models in our smoke test; MLX, GGUF, quantized or custom-code models need their own runtime. The UI says so.
 - **Impossible requests do not abstain.** A model with unknown size or language never fails (D12), so there is always something left to show: the answer is all ⚠️ with a banner that says no model is fully verified. The abstain and relax paths exist and are tested but are not reachable on this corpus.

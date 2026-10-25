@@ -3,6 +3,26 @@
 Everything in the other docs that says "verify" or "measure" ends up here as a dated line. All measurements are from
 **2026-10-21**, run from the cloud session. "Not run" means the check could not be made from there (reason given).
 
+## Scope extension to 11 tasks (2026-10-25)
+
+Added image-classification, object-detection, image-segmentation, text-generation, summarization and question-answering
+(`config.yaml: corpus.tasks`). Everything below was measured on 2026-10-25.
+
+| Measure | Result |
+|---|---|
+| Candidates per task (`python -m src.ingest counts`) | image-classification 1,000 · object-detection 1,000 · image-segmentation 1,000 · text-generation 1,000 (a first attempt that added every Indic-tagged model gave 6,105, so the Indic sample is skipped for text-generation and the vision tasks) · summarization 1,015 · question-answering 1,077 |
+| Fetch | 6,092 candidates; 1 logged failure. Fetched with `--tasks` so the original corpus was not re-listed |
+| Snapshot | 15,991 records (sha256 `45814b8c7c15f569e2b558e7b0ae56a77f6835223500a69ab8937f2f443b8fa8`, date 2026-10-25). **All 9,764 original records are byte-identical** in the new snapshot |
+| Index | 48,179 chunks (15,990 models; one card had no fetched text). Hosted embedding total 4.05M tokens (the extension used 1.56M). Upserted to Pinecone `prod`: `describe_index_stats` = 48,179 vectors |
+| Frozen evaluation unchanged | With the five-task corpus restored (`CORPUS_TASKS=five`, namespace `eval5`, parses pinned with `--parsed eval/results/frozen_parses_v2.json`) all 100 queries give the **identical top-5 lists** for ours, naive and keyword as v2 (`eval/results/raw-v2-repro.json`). On the full 11-task index ours is also identical on all 100 queries (the task filter excludes the new models); naive RAG changed on 68 queries and keyword on 46, because naive has no filter and BM25 statistics moved (`raw-v2-extended.json`). The labelled v2 results are therefore for the five-task corpus |
+| Extraction prompt drift | The prompt gained six task hints and a rule that generic phrases ("Indian languages") give no language. Re-parsing the 100 evaluation queries changed 4: q045 now `text-classification` (was: ask), q030 "not too big" now small, q063 lost a redundant size word, q085 "build something" now modifiable. q024 and q057 ("covering Indian languages") first became 8 and 12 specific languages; the prompt rule fixed them. q076 ("I want a Hindi model") first became `text-generation`; a deterministic guard now accepts `text-generation` only with a generation cue. All 15 vague queries still ask a question |
+| Extraction set | 29 cases (6 new for the new tasks): with the backstop 100% exact match (0 silent drops); LLM alone 90% (5 silent drops, all filled in by the deterministic backstop). Tuning-set figures, not a generalisation estimate |
+| Backstop | Image requests no longer become text tasks ("image classifier" is `image-classification`); vision words suppress text-labelling task words |
+| Guide links | The six new fine-tuning guide URLs all return 200 |
+| Hosted rerank quota | **Reached: 500 requests per month** (495 units used). New queries are not reranked and the UI says so. Local reranker (same model) measured: 103 s to load, 43 s for 100 chunks on a CPU, so it is capped at 40 chunks (about 20 s). For "object detection for traffic cameras" the unreranked top results were thermal, drone and stamp detectors; reranked, they were YOLO and VisDrone vehicle detectors and a traffic-accident detector |
+| Try-it smoke, transformers 4.57 + timm + torchvision (`eval/results/tryit_smoke_transformers4.json`) | 20 of 32 ran: image-classification 3/3, object-detection 2/3, image-segmentation 2/3, text-generation 3/3, summarization 2/3, question-answering 3/3, token-classification 3/3, text-classification 1/3, sentence-similarity 1/3, translation 0/2, speech recognition 0/3. Failures: MLX or quantized weights, a corrupt safetensors file, custom code, missing `sentencepiece`, tokenizers that need a newer transformers |
+| Try-it smoke, transformers 5.20 without the extras (`eval/results/tryit_smoke_new_tasks.json`) | 6 of 18 on the new tasks: summarization and question answering are not available in the transformers 5 `pipeline`; image models need `timm` / `torchvision` |
+
 ## Live checks
 
 | Check | Result |
@@ -29,7 +49,7 @@ Everything in the other docs that says "verify" or "measure" ends up here as a d
 | NLLB-200 licence card, `TASK_GUIDES` URLs | Not run |
 | Ollama | Not run (no Ollama in the sandbox); the provider code is tested with fakes |
 
-## Data-quality report (snapshot 2026-10-21)
+## Data-quality report (the original five-task snapshot, 2026-10-21; the 11-task snapshot is 2026-10-25)
 
 Snapshot: `data/snapshot-2026-10-21/records.jsonl.gz`, sha256 `3c887c9a733c58a4fc64d129c40530299c2ad13eb4113cef9ad2b860b6034160`
 (recorded in `config.yaml`). Rebuild with `python -m src.snapshot build`; the build is deterministic.

@@ -29,7 +29,14 @@ def check_step(step: dict, ours: ReplayGraph, naive: ReplayGraph) -> list[str]:
             follow = ours.invoke({"query": step["query"], "overrides": {state["question"]["field"]: step["clarify_choice"]},
                                   "clarifications_asked": state.get("clarifications_asked", 1)})
             state, line = follow, line + f" -> after choosing {step['clarify_choice']}: {follow['outcome']}"
-    if state["outcome"] == "answer":
+    expected = step.get("expect")
+    if expected:                       # a step that is meant to end in something other than an answer
+        if state["outcome"] != expected:
+            problems.append(f"expected {expected}, got {state['outcome']}")
+        elif expected == "out_of_scope" and (state.get("results") or not state.get("message")):
+            problems.append("an out-of-scope step must show a message and no models")
+        line += f" | {(state.get('message') or '')[:70]}"
+    elif state["outcome"] == "answer":
         counts = Counter(r["overall"] for r in state["results"])
         line += f" | {len(state['results'])} models {dict(counts)} | fully verified: {state.get('fully_verified')}"
         if not state["results"]:

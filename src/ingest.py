@@ -22,6 +22,7 @@ import requests
 from src.config import CFG
 
 TASKS = tuple(CFG["corpus"]["tasks"])
+LANGUAGE_FREE = tuple(CFG["corpus"].get("language_free_tasks", []))
 INDIC_LANGS = tuple(CFG["corpus"]["indic_langs"])
 TOP_N = CFG["corpus"]["top_n_per_task"]
 RAW_DIR = Path("data/raw")
@@ -37,7 +38,7 @@ def candidate_ids(api, tasks=TASKS) -> dict[str, set[str]]:
     out: dict[str, set[str]] = {}
     for task in tasks:
         ids = {m.id for m in api.list_models(pipeline_tag=task, sort="downloads", limit=TOP_N)}
-        for lang in INDIC_LANGS:
+        for lang in () if task in LANGUAGE_FREE else INDIC_LANGS:     # vision tasks have no language to sample by
             # language codes are plain Hub tags, so they go through `filter` (list_models has no `language` argument)
             ids |= {m.id for m in api.list_models(pipeline_tag=task, filter=lang)}
         out[task] = ids
@@ -171,7 +172,13 @@ def main(argv: list[str]) -> None:
     from huggingface_hub import HfApi
 
     cmd = argv[0] if argv else "counts"
-    per_task = candidate_ids(HfApi())
+    tasks = TASKS
+    if "--tasks" in argv:                      # fetch only these tasks (keeps already-fetched corpora untouched)
+        tasks = tuple(t.strip() for t in argv[argv.index("--tasks") + 1].split(","))
+        unknown = [t for t in tasks if t not in TASKS]
+        if unknown:
+            raise SystemExit(f"--tasks: not in config corpus.tasks: {unknown}")
+    per_task = candidate_ids(HfApi(), tasks)
     all_ids = set().union(*per_task.values())
     for task, ids in per_task.items():
         print(f"{task:32s} {len(ids):6d}")

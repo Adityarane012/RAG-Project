@@ -55,8 +55,8 @@ python -m src.check_env          # verifies the setup without printing any secre
 
 ## Status (2026-10-21)
 
-Built, run against the live services, and evaluated. 9,764 models fetched, 29,665 chunks embedded and
-upserted to Pinecone (and an exact local index), 100 evaluation queries run through five systems, outputs frozen.
+Built, run against the live services, and evaluated. 15,991 models fetched over **11 tasks** (the original 9,764 over five, plus image classification, object detection, image segmentation, text generation, summarization and question answering added on 2026-10-25), 48,179 chunks embedded and
+upserted to Pinecone (and an exact local index), 100 evaluation queries run through five systems on the original five-task corpus (reproducible, see docs/evaluation-plan.md §9), outputs frozen.
 On the 75 normal queries the full system recommends no model that fails a constraint, 83% of its
 recommendations are fully verified (naive RAG: 29%), and the Hub's own filters violate a constraint on 26 to 33%.
 Numbers: [eval/results/results-v2.md](eval/results/results-v2.md). Data notes and live checks:

@@ -54,6 +54,7 @@ class State(TypedDict, total=False):
     explain_error: str | None
     outcome: str              # answer | clarify | relax | abstain | out_of_scope
     message: str | None       # why, for out_of_scope
+    rerank_skipped: bool      # True when the reranker's quota was exhausted and results keep vector order
 
 
 @dataclass
@@ -132,18 +133,17 @@ def build_graph(deps: Deps, variant: str = "ours"):
                                         {} if variant == "naive" else state["constraints"], top_n=pool_size)}
 
     def rerank(state: State) -> State:
-        matches = state["matches"]
+        matches, skipped = state["matches"], False
         if variant != "keyword":
             try:
                 matches = deps.rerank(state["query"], matches)
             except Exception as e:
                 from src.rerank import RerankQuotaExceeded
 
-                if isinstance(e, RerankQuotaExceeded):
-                    pass
-                else:
+                if not isinstance(e, RerankQuotaExceeded):
                     raise
-        return {"candidates": group_by_model(matches, pool_size)}
+                skipped = True        # the hosted reranker's monthly quota is used up: keep vector order, and say so
+        return {"candidates": group_by_model(matches, pool_size), "rerank_skipped": skipped}
 
     def verify_node(state: State) -> State:
         c = state["constraints"]

@@ -188,12 +188,26 @@ def render_out_of_scope():
     from app import render_state
     from src.guide import out_of_scope_message
 
-    render_state({"intent": "", "outcome": "out_of_scope", "message": out_of_scope_message("an image segmentation model")})
+    render_state({"intent": "", "outcome": "out_of_scope", "message": out_of_scope_message("a text to speech model")})
 
 
 def test_an_out_of_scope_request_shows_a_clear_message_and_no_models():
     at = AppTest.from_function(render_out_of_scope, default_timeout=30).run()
     assert not at.exception
     warnings = " ".join(w.value for w in at.warning)
-    assert "only searches models for" in warnings and "Image, vision and OCR" in warnings
+    assert "only searches models for" in warnings and "text-to-speech" in warnings
     assert not at.info and not at.table and not at.expander      # no "we understood" line, no model tables
+
+
+def render_rerank_skipped():
+    from app import render_state
+
+    render_state({"intent": "x", "outcome": "answer", "fully_verified": True, "rerank_skipped": True,
+                  "results": [{"model_id": "org/m", "table": {"task": "pass"}, "overall": "pass", "notes": []}],
+                  "reports": [], "explanations": []})
+
+
+def test_the_app_says_when_reranking_was_skipped():
+    at = AppTest.from_function(render_rerank_skipped, default_timeout=30).run()
+    assert not at.exception
+    assert any("Reranking was unavailable" in c.value for c in at.caption)

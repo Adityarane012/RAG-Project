@@ -89,3 +89,31 @@ def test_indic_language_names_seen_in_the_corpus_are_recognised():
     assert backstop_constraints("Santali speech recognition model", c())["langs"] == ["sat"]
     assert backstop_constraints("Maithili sentiment classifier", c())["langs"] == ["mai"]
     assert backstop_constraints("Meitei ASR", c())["langs"] == ["mni"]
+
+
+@pytest.mark.parametrize("q,task", [("I need an image classifier I can use commercially", "image-classification"),
+                                    ("classify photos of food", "image-classification"),
+                                    ("object detection for traffic cameras", "object-detection"),
+                                    ("segment satellite images", "image-segmentation"),
+                                    ("medical image segmentation model", "image-segmentation"),
+                                    ("summarize news articles", "summarization"),
+                                    ("answer questions from a passage", "question-answering"),
+                                    ("a chatbot I can modify", "text-generation")])
+def test_new_task_keywords_fill_a_missing_task_and_an_image_request_is_never_a_text_task(q, task):
+    assert backstop_constraints(q, c())["task"] == task
+
+
+def test_ambiguous_new_task_requests_still_ask():
+    assert backstop_constraints("detect objects and segment images", c())["task"] is None      # two vision tasks: ask
+    assert backstop_constraints("Hindi sentiment model", c())["task"] == "text-classification"  # old behaviour unchanged
+
+
+@pytest.mark.parametrize("q", ["I want a Hindi model", "I need a model for Tamil", "something for Kannada"])
+def test_a_vague_request_the_llm_guessed_as_text_generation_is_asked_again(q):
+    assert backstop_constraints(q, c(task="text-generation"))["task"] is None
+
+
+@pytest.mark.parametrize("q", ["small language model for text generation", "a chatbot I can modify", "model to write stories in Hindi",
+                               "an instruction-tuned LLM", "a Gemma-sized assistant"])
+def test_a_real_generation_request_keeps_text_generation(q):
+    assert backstop_constraints(q, c(task="text-generation"))["task"] == "text-generation"

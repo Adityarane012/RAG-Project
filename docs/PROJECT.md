@@ -48,7 +48,7 @@ Semantic search over the Hub already exists (davanstrien's hub-semantic-search M
 
 | In | Out |
 |---|---|
-| 5 tasks: ASR, translation, text-classification, token-classification, sentence-similarity (D5) | `text-generation` (stretch only) |
+| 11 tasks (D5, extended 2026-10-25): ASR, translation, text-classification, token-classification, sentence-similarity, image-classification, object-detection, image-segmentation, text-generation, summarization, question-answering | Image or music generation, captioning, OCR, text-to-speech, video (refused with a clear message); running or chatting with a model (D22) |
 | Top ~1,000 models per task + all Indic-tagged models, ~5–8k total (D6) | Datasets, Spaces, the full Hub, quantized variants (D20) |
 | Constraints: size, commercial use, modification rights, language, task | Ranking by benchmark scores (shown unverified only, D24) |
 | Beginner guidance: shown intent, examples, "Try it", tooltips, clarifying questions (D13) | RAG over fine-tuning tutorials |
@@ -87,7 +87,7 @@ The pipeline is implemented as a **LangGraph graph** (D15). The two loops (clari
 
 | Stage | Responsibility | Tooling |
 |---|---|---|
-| Ingest | Pull metadata and cards for the 5 tasks; cache raw responses, resumable (D21) | `huggingface_hub` |
+| Ingest | Pull metadata and cards for the 11 tasks; cache raw responses, resumable (D21) | `huggingface_hub` |
 | Clean | Strip front matter, badges, HTML, code blocks; metadata fallback chunk for sparse cards (D20) | Python |
 | Normalize | `size_mb` (D20 rule), `param_count`, `commercial`, `modifiable`, `languages`, `multilingual`, `base_model`, `doc_quality` | Python, license map, multilingual map |
 | Chunk | Split cards by section (≤ ~450 tokens) | Python |

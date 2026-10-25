@@ -283,21 +283,24 @@ def test_explanations_are_asked_to_relate_the_cards_to_the_users_own_words():
 
 
 def test_out_of_scope_requests_are_refused_with_no_retrieval_llm_call_or_wrong_models():
-    # live finding: "image classifier" was parsed as text-classification and text models were shown as passing the task check
+    # live finding (2026-10-25): "image classifier" was parsed as text-classification and text models were shown as passing the task
+    # check. Image classification is covered now; generation, captioning, OCR and speech synthesis are not, and must be refused.
     for variant in ("ours", "naive", "keyword"):
         g, seen = make_variant(variant, FULL, [chunk("a/b", 0.9)])
-        s = g.invoke({"query": "I need an image classifier I can use commercially"})
-        assert s["outcome"] == "out_of_scope" and "image" in s["message"].lower() and not s.get("results")
+        s = g.invoke({"query": "I need a text to image diffusion model I can use commercially"})
+        assert s["outcome"] == "out_of_scope" and "not covered" in s["message"] and not s.get("results")
         assert seen["texts"] == [] and seen["rerank"] == 0          # nothing was retrieved
 
 
-def test_the_out_of_scope_check_does_not_misfire_on_text_and_speech_requests():
+def test_the_out_of_scope_check_does_not_misfire_on_covered_requests():
     from src.guide import out_of_scope_message
     for q in ("Indic word segmentation model", "sentence segmentation for Hindi", "transcribe video lectures in Tamil",
-              "Hindi speech recognition", "Hindi sentiment model", "Marathi NER model"):
+              "Hindi speech recognition", "Hindi sentiment model", "Marathi NER model", "image classification model for plants",
+              "object detection for traffic cameras", "image segmentation for medical scans", "summarize news articles",
+              "a small language model", "question answering over a passage"):
         assert out_of_scope_message(q) is None, q
-    for q in ("image segmentation model for medical scans", "object detection for traffic cameras", "I need an image classifier",
-              "OCR for Hindi documents", "text to image diffusion model", "computer vision model", "semantic segmentation of photos"):
+    for q in ("OCR for Hindi documents", "text to image diffusion model", "image captioning model", "text to speech in Tamil",
+              "generate images from prompts", "face recognition model", "video classification model", "voice cloning"):
         assert out_of_scope_message(q), q
 
 
@@ -308,3 +311,24 @@ def test_no_evaluation_or_extraction_query_is_out_of_scope():
         for line in open(path, encoding="utf-8"):
             q = json.loads(line)["query"]
             assert out_of_scope_message(q) is None, q
+
+
+def test_a_reranker_quota_error_keeps_vector_order_and_says_so_while_other_errors_still_raise():
+    from src.rerank import RerankQuotaExceeded
+
+    pool = [chunk("a/one", 0.9), chunk("b/two", 0.8)]
+
+    def quota(q, m):
+        raise RerankQuotaExceeded("monthly limit")
+
+    deps = Deps(extract=lambda q: dict(FULL), fetch=lambda t, f, k: pool[:k], rerank=quota, explain=None)
+    s = build_graph(deps).invoke({"query": "q"})
+    assert s["rerank_skipped"] is True and [r["model_id"] for r in s["results"]] == ["a/one", "b/two"]
+
+    def broken(q, m):
+        raise RuntimeError("HTTP 400")
+
+    with pytest.raises(RuntimeError):
+        build_graph(Deps(extract=lambda q: dict(FULL), fetch=lambda t, f, k: pool[:k], rerank=broken, explain=None)).invoke({"query": "q"})
+    ok = build_graph(Deps(extract=lambda q: dict(FULL), fetch=lambda t, f, k: pool[:k], rerank=lambda q, m: m, explain=None)).invoke({"query": "q"})
+    assert ok["rerank_skipped"] is False
