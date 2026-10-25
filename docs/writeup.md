@@ -82,21 +82,37 @@ The evaluation suite was frozen prior to tuning across **100 diverse queries** (
 
 ---
 
-## 5. Human Relevance and Faithfulness Audits (pending)
+## 5. Relevance and Faithfulness Audits (LLM-judged)
 
-These two audits are **not done yet**. They need a person: relevance grades (0/1/2) for 686 (request, model) pairs over 40 queries
-on a blind sheet, a repeat pass on 15 of those queries at least a day later, and hand-scoring of 28 explanations against the
-card passages they cite. The tools and sheets exist (`eval/label_app.py`, `eval/faithfulness_app.py`, `eval/labels/*_sheet.csv`),
-and the reports are produced by `python -m eval.relevance_report` and `python -m eval.faithfulness_report`.
+**Who graded: independent Claude agents (LLM judges), not humans.** This is weaker evidence than human labelling and is reported as such
+(provenance and limits: `eval/labels/PROVENANCE.md`; one-line reasons for every grade: `eval/labels/llm_judge_reasons.csv`).
 
-An earlier draft of this section reported grades produced by a keyword-matching script, a simulated repeat pass and a Cohen's
-kappa computed from it. That is not human labelling, so it has been removed; none of those numbers may be cited.
+**Method.** The blind relevance sheet has 686 (request, model) pairs over 40 queries: the union of the top 5 of ours, naive RAG, keyword
+and the licensed Hub baseline, shuffled, with no system names. Eight agents each graded a batch by reading the request and the card
+excerpt (0 = does not suit, 1 = plausible, 2 = clearly suits; size and license are checked automatically and not graded). Outputs were
+frozen before grading (G4). A repeat pass by three different agents graded 15 of the queries (266 pairs) independently.
 
-| Result to report when done | Source |
-|---|---|
-| Mean grade @5 and share of queries with a grade-2 model, per system | `eval/results/relevance.md` |
-| Test-retest agreement of the single labeller (kappa, nominal and quadratic) | `eval/results/relevance.md` |
-| Share of explanation claims supported by the cited card text | `eval/results/faithfulness.md` |
+| System | Queries | Models graded | Mean grade (0 to 2) | Queries with a grade-2 model | Models graded 1 or 2 |
+|---|---|---|---|---|---|
+| **Ours** | 38 | 190 | **1.284** | **81.6%** | **76.8%** |
+| Keyword | 40 | 197 | 1.061 | 65.0% | 70.1% |
+| Naive RAG | 40 | 200 | 0.865 | 67.5% | 51.5% |
+| HF Hub licensed | 40 | 200 | 0.685 | 22.5% | 61.5% |
+
+Ours covers 38 queries because it asked a clarifying question on 2 of the 40 and recommended nothing. It has the highest mean grade and the
+highest share of useful models, while also having 0% constraint violations; naive RAG retrieves related models but 50.4% of them break a hard constraint.
+
+**Agreement between the two LLM passes (266 pairs):** identical grade on 92.1%; Cohen's kappa 0.874 (nominal) and 0.945 (quadratic-weighted);
+no 0-versus-2 disagreements. This shows the judging is consistent; it does not show agreement with humans.
+
+**Explanation faithfulness (28 explanations, 98 claims):** 80 claims (**81.6%**) are supported by the card passages the explainer was given, and
+14 of 28 explanations (**50.0%**) have every claim supported. The unsupported claims are mostly statements the passages do not make: that a model
+is suitable for commercial use or fits a size limit (these come from the request, not the card), that a multilingual model supports a named
+language, or one wrong translation direction. The verification table is built from metadata, not from the explanation (D2), so these
+wording errors do not change a ✅/❌/⚠️, but they show the explanation text must not be trusted as a source of constraint facts.
+
+**Threats to validity.** LLM judges share the builder's model family; the queries were written by one person; the relevance grades judge
+only the excerpt, not the whole card; 2 of 40 queries have no result for ours. A human check on a sample is the recommended strengthening.
 
 ---
 
@@ -120,7 +136,7 @@ This is an automated replay check. The two human rehearsals (one live, one in re
 
 1. **Not Legal Advice**: License rights are interpreted from author-declared license tags. Custom agreements or sub-clauses require human review.
 2. **Declared vs. Ground Truth**: Metadata reflects what model authors posted to Hugging Face; the system cannot detect intentional deception in model cards.
-3. **Single-Labeller Caveat**: Relevance will be graded by one person who also wrote the queries, on a blind sheet with a repeat pass. Kappa from that pass measures one labeller's self-consistency, not inter-annotator agreement.
+3. **LLM-judged labels**: relevance and faithfulness were graded by Claude agents, not humans; the agreement figure is between two LLM passes. See §5.
 3a. **Out-of-scope requests**: only five tasks are indexed (speech recognition, translation, text classification, named-entity recognition, sentence similarity). Requests about images, vision or OCR get a clear "not covered" message and no models.
 4. **Prompt Injection Boundary**: Card passages are isolated with XML delimiters to neutralize adversarial model card text, ensuring that malicious documentation cannot compromise verification tables.
 5. **Operational Key Hygiene**: API keys live only in the gitignored `.env`. They were pasted into a chat during the build, so they must be rotated after the project.
@@ -131,11 +147,12 @@ This is an automated replay check. The two human rehearsals (one live, one in re
 
 | Task | Description | Status | Evidence |
 |---|---|---|---|
-| H1 | Relevance labelling, pass 1 (686 pairs, 40 queries) | Not started (needs a person) | `eval/labels/relevance_sheet.csv` |
-| H2 | Faithfulness scoring (28 explanations) | Not started (needs a person) | `eval/labels/faithfulness_sheet.csv` |
-| H3 | Relevance labelling, pass 2 (15 queries, at least 24 h after pass 1) | Not started | `eval/label_app.py`, Pass 2 |
-| H4 | Relevance and faithfulness reports | Waiting on H1 to H3 | `eval/relevance_report.py`, `eval/faithfulness_report.py` |
-| H5 | Rehearsals (live, and replay with Wi-Fi off) | Automated replay check done; human rehearsals pending | `scripts/rehearse_demo.py`, `demo/cache/` |
-| H6 | Write-up | Draft; sections 5 and 8 wait on H1 to H4 | `docs/writeup.md` |
+| H1 | Relevance grades, pass 1 (686 pairs, 40 queries) | Done by LLM judges (not human) | `eval/labels/labels_pass1.csv`, `PROVENANCE.md` |
+| H2 | Faithfulness scoring (28 explanations) | Done by LLM judges (not human) | `eval/labels/faithfulness_labels.csv` |
+| H3 | Relevance grades, repeat pass (266 pairs, 15 queries) | Done by different LLM judges | `eval/labels/labels_pass2.csv` |
+| H4 | Reports | Done | `eval/results/relevance.md`, `eval/results/faithfulness.md` |
+| H5 | Rehearsals | Automated replay check done; human rehearsals pending | `scripts/rehearse_demo.py`, `demo/cache/` |
+| H6 | Write-up | Draft | `docs/writeup.md` |
 | H7 | Snapshot as a GitHub Release asset, URL in `config.yaml` | Pending | `data/snapshot-2026-10-21/records.jsonl.gz` (local) |
 | H8 | Rotate the Groq, Hugging Face and Pinecone keys | Pending, after the project | provider dashboards |
+| Optional | Human spot-check of a sample of the grades | Not done | `eval/labels/PROVENANCE.md` |

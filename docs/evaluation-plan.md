@@ -83,7 +83,7 @@ prompt tuning beyond what ours also received.
 
 ## 5. Manual labelling
 
-**Relevance @5, single-person protocol (current).** There is one labeller, the project owner, on **40 queries** (not 50). The unit labelled is the *union* of each query's top-5 across ours, naive, keyword and the licensed Hub baseline: 686 pairs, about 4 hours. The sheet is exported by `python -m eval.run_eval --label 40` (stratified by task, reproducible), blind (no system names, shuffled), with the system key in a separate file that the labeller does not open. Label with `streamlit run eval/label_app.py`. Grade the *purpose* of the request only (hard constraints are scored automatically):
+**Relevance @5, protocol as run (2026-10-25).** Grades were made by **independent Claude agents (LLM judges), not humans** (see `eval/labels/PROVENANCE.md`), on **40 queries** (not 50); the text below describes the human protocol, which a person can still run on a sample to validate these grades. The unit labelled is the *union* of each query's top-5 across ours, naive, keyword and the licensed Hub baseline: 686 pairs, about 4 hours. The sheet is exported by `python -m eval.run_eval --label 40` (stratified by task, reproducible), blind (no system names, shuffled), with the system key in a separate file that the labeller does not open. Label with `streamlit run eval/label_app.py`. Grade the *purpose* of the request only (hard constraints are scored automatically):
 
 | Grade | Meaning |
 |---|---|

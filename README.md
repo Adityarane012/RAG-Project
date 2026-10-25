@@ -62,8 +62,11 @@ recommendations are fully verified (naive RAG: 29%), and the Hub's own filters v
 Numbers: [eval/results/results-v2.md](eval/results/results-v2.md). Data notes and live checks:
 [docs/data-notes.md](docs/data-notes.md).
 
-Still to do (human): relevance labelling and faithfulness scoring (`streamlit run eval/label_app.py`,
-`streamlit run eval/faithfulness_app.py`), rehearsal, write-up. See [docs/implementation-plan.md](docs/implementation-plan.md).
+Relevance and faithfulness were graded by independent Claude agents (LLM judges, not humans): ours has the highest mean relevance grade
+(1.28, against 1.06 keyword, 0.87 naive and 0.69 for the Hub filters) and 81.6% of explanation claims are supported by the cited card text
+([eval/results/relevance.md](eval/results/relevance.md), [eval/results/faithfulness.md](eval/results/faithfulness.md),
+[eval/labels/PROVENANCE.md](eval/labels/PROVENANCE.md)). Still to do (yours): rehearse the demo, finish the write-up
+([docs/writeup.md](docs/writeup.md)), attach the snapshot to a Release, rotate the keys. See [docs/implementation-plan.md](docs/implementation-plan.md).
 
 ## Run
 
