@@ -55,15 +55,18 @@ python -m src.check_env          # verifies the setup without printing any secre
 
 ## Status (2026-10-21)
 
-Built, run against the live services, and evaluated. 9,764 models fetched, 29,665 chunks embedded and
-upserted to Pinecone (and an exact local index), 100 evaluation queries run through five systems, outputs frozen.
+Built, run against the live services, and evaluated. 15,991 models fetched over **11 tasks** (the original 9,764 over five, plus image classification, object detection, image segmentation, text generation, summarization and question answering added on 2026-10-25), 48,179 chunks embedded and
+upserted to Pinecone (and an exact local index), 100 evaluation queries run through five systems on the original five-task corpus (reproducible, see docs/evaluation-plan.md §9), outputs frozen.
 On the 75 normal queries the full system recommends no model that fails a constraint, 83% of its
 recommendations are fully verified (naive RAG: 29%), and the Hub's own filters violate a constraint on 26 to 33%.
 Numbers: [eval/results/results-v2.md](eval/results/results-v2.md). Data notes and live checks:
 [docs/data-notes.md](docs/data-notes.md).
 
-Still to do (human): relevance labelling and faithfulness scoring (`streamlit run eval/label_app.py`,
-`streamlit run eval/faithfulness_app.py`), rehearsal, write-up. See [docs/implementation-plan.md](docs/implementation-plan.md).
+Relevance and faithfulness were graded by independent Claude agents (LLM judges, not humans): ours has the highest mean relevance grade
+(1.28, against 1.06 keyword, 0.87 naive and 0.69 for the Hub filters) and 81.6% of explanation claims are supported by the cited card text
+([eval/results/relevance.md](eval/results/relevance.md), [eval/results/faithfulness.md](eval/results/faithfulness.md),
+[eval/labels/PROVENANCE.md](eval/labels/PROVENANCE.md)). Still to do (yours): rehearse the demo, finish the write-up
+([docs/writeup.md](docs/writeup.md)), attach the snapshot to a Release, rotate the keys. See [docs/implementation-plan.md](docs/implementation-plan.md).
 
 ## Run
 

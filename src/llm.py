@@ -30,8 +30,13 @@ for a Hugging Face model. Reply with JSON only, using exactly these keys:
   "task": one of {tasks}, or null. Hints: sentiment/topic/spam -> text-classification;
           names/entities/NER -> token-classification; speech-to-text/transcription ->
           automatic-speech-recognition; embeddings/semantic similarity/sentence vectors ->
-          sentence-similarity. If the task is unclear use null; never guess.
-  "langs": list of ISO 639-1 codes, or []
+          sentence-similarity; classify photos/pictures -> image-classification; find/locate objects, bounding
+          boxes -> object-detection; segment/mask/outline regions of images -> image-segmentation; write or
+          generate text, chat, language model -> text-generation; summarize -> summarization; answer
+          questions from a passage -> question-answering. An image request is never a text task.
+          If the task is unclear use null; never guess.
+  "langs": list of ISO 639-1 codes for the languages the user NAMES, or []. A generic phrase such as "Indian languages",
+          "regional languages" or "multilingual" names no specific language: use []
   "direction": [source, target] ISO codes for a translation request that names a direction, else null
   "max_size_mb": a number in MEGABYTES ONLY if the user gave an explicit size (1 GB = 1000 MB), else null
   "size_word": one of {size_words} if the user used a vague size word, else null. Never invent a number.
@@ -282,7 +287,16 @@ _TASK_WORDS = {
     "token-classification": re.compile(r"\bner\b|named[- ]entit|entity|entities|part[- ]of[- ]speech|\bpos\b|find names", re.I),
     "text-classification": re.compile(r"sentiment|classif|\bspam\b|toxic|emotion|hate speech|topic", re.I),
     "sentence-similarity": re.compile(r"embedding|semantic search|sentence similarity|paraphrase|\bsimilarity\b", re.I),
+    "image-classification": re.compile(r"image classif|classify (?:images?|photos?|pictures?)|(?:image|photo|picture) (?:recogni|categor)|\bimagenet\b", re.I),
+    "object-detection": re.compile(r"object detect|detect (?:objects?|cars?|people|faces)|bounding box|\byolo\b", re.I),
+    "image-segmentation": re.compile(r"(?:image|semantic|instance|panoptic|medical|satellite) segmentation|segment(?:ing)? (?:\w+ ){0,2}(?:images?|photos?|pictures?|scenes?)", re.I),
+    "text-generation": re.compile(r"text generation|generate text|language model|\bllm\b|chat ?bot|chat model|instruction[- ]tuned|write (?:stories|code|text)", re.I),
+    "summarization": re.compile(r"summari[sz]", re.I),
+    "question-answering": re.compile(r"question[- ]answering|answer(?:ing)? questions|\bqa\b|reading comprehension", re.I),
 }
+_GENERATION_CUE = re.compile(r"\bgenerat|\bwrite\b|\bwriting\b|\bchat|assistant|\bgpt\b|completion|\bstory|\bstories|\bpoem|\bcopilot\b|\bllama\b|\bmistral\b|\bqwen\b|\bgemma\b", re.I)
+_VISION = {"image-classification", "object-detection", "image-segmentation"}
+_TEXT_LABELLING = {"text-classification", "token-classification", "sentence-similarity"}
 
 
 def backstop_constraints(query: str, c: dict) -> dict:
@@ -295,6 +309,11 @@ def backstop_constraints(query: str, c: dict) -> dict:
     out = dict(c)
     if _INJECTION.search(query):
         return out
+    # "text-generation" is the catch-all an LLM reaches for when a vague request only says "a model" ("I want a Hindi model" came
+    # back as text-generation after the new tasks were added). Accept it only when the request has a generation cue; otherwise
+    # leave the task empty so the user is asked what the model should do.
+    if out["task"] == "text-generation" and not (_TASK_WORDS["text-generation"].search(query) or _GENERATION_CUE.search(query)):
+        out["task"] = None
     if out["max_size_mb"] is None:
         m = _SIZE.search(query)
         if m:
@@ -313,6 +332,8 @@ def backstop_constraints(query: str, c: dict) -> dict:
         out["modifiable"] = out["modifiable"] or True
     if out["task"] is None:
         hits = [t for t, rx in _TASK_WORDS.items() if rx.search(query)]
+        if any(h in _VISION for h in hits):           # "image classifier" is not text classification
+            hits = [h for h in hits if h not in _TEXT_LABELLING]
         if len(hits) == 1:                       # two or more categories: ambiguous, so ask the user instead
             out["task"] = hits[0]
     words = [w.strip(".,;:!?()\"'") .lower() for w in query.split()]

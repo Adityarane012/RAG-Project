@@ -1,59 +1,74 @@
-"""Rehearsal verification: replay every query from demo/plan.json offline and report results."""
+"""Replay every query in demo/plan.json from demo/cache/ and check it, with no network and no LLM.
+
+    REPLAY=1 python -m scripts.rehearse_demo
+
+This is an automated check that the recording is complete and sensible. It is NOT a human rehearsal. Exits non-zero if any
+step is missing from the cache or lacks the outcome the plan expects.
+"""
 
 from __future__ import annotations
 
 import json
+import sys
+from collections import Counter
 from pathlib import Path
+
 from src.replay import ReplayGraph
 
-def rehearse():
-    plan_path = Path("demo/plan.json")
-    plan = json.loads(plan_path.read_text(encoding="utf-8"))
-    
-    rg_ours = ReplayGraph(mode="replay", variant="ours")
-    rg_naive = ReplayGraph(mode="replay", variant="naive")
-    
-    print("=" * 60)
-    print("DEMO REHEARSAL (Offline REPLAY=1 Mode)")
-    print("=" * 60)
-    
+
+def check_step(step: dict, ours: ReplayGraph, naive: ReplayGraph) -> list[str]:
+    """Replay one plan step; return a list of problems (empty means fine)."""
+    problems = []
+    request = {"query": step["query"], "overrides": {}}
+    state = ours.invoke(request)
+    line = f"  ours: {state['outcome']}"
+    if step.get("clarify_choice"):
+        if state["outcome"] != "clarify":
+            problems.append(f"expected a clarifying question, got {state['outcome']}")
+        else:
+            follow = ours.invoke({"query": step["query"], "overrides": {state["question"]["field"]: step["clarify_choice"]},
+                                  "clarifications_asked": state.get("clarifications_asked", 1)})
+            state, line = follow, line + f" -> after choosing {step['clarify_choice']}: {follow['outcome']}"
+    expected = step.get("expect")
+    if expected:                       # a step that is meant to end in something other than an answer
+        if state["outcome"] != expected:
+            problems.append(f"expected {expected}, got {state['outcome']}")
+        elif expected == "out_of_scope" and (state.get("results") or not state.get("message")):
+            problems.append("an out-of-scope step must show a message and no models")
+        line += f" | {(state.get('message') or '')[:70]}"
+    elif state["outcome"] == "answer":
+        counts = Counter(r["overall"] for r in state["results"])
+        line += f" | {len(state['results'])} models {dict(counts)} | fully verified: {state.get('fully_verified')}"
+        if not state["results"]:
+            problems.append("answer with no models")
+    elif not step.get("clarify_choice"):
+        problems.append(f"unexpected outcome {state['outcome']}")
+    print(line)
+    if step.get("compare"):
+        other = naive.invoke(request)
+        counts = Counter(r["overall"] for r in other.get("results", []))
+        print(f"  naive: {len(other.get('results', []))} models {dict(counts)}")
+        if not other.get("results"):
+            problems.append("naive comparison is empty")
+    return problems
+
+
+def main() -> int:
+    plan = json.loads(Path("demo/plan.json").read_text(encoding="utf-8"))
+    ours, naive = ReplayGraph(mode="replay", variant="ours"), ReplayGraph(mode="replay", variant="naive")
+    failures = 0
     for i, step in enumerate(plan["steps"], 1):
-        print(f"\nStep {i}: {step['name']}")
-        print(f"Query: \"{step['query']}\"")
-        
-        # Invoke ours
-        res_ours = rg_ours.invoke({"query": step["query"], "overrides": {}})
-        outcome = res_ours.get("outcome")
-        print(f"  [Ours] Outcome: {outcome}")
-        
-        if outcome == "clarify":
-            choice = step.get("clarify_choice")
-            print(f"  [Ours] Clarifying question asked: {res_ours.get('question', {}).get('question')}")
-            print(f"  [Ours] Presenter selects: {choice}")
-            res_clarified = rg_ours.invoke({
-                "query": step["query"],
-                "overrides": {"task": choice},
-                "clarifications_asked": 1
-            })
-            print(f"  [Ours after clarify] Models returned: {len(res_clarified.get('results', []))}")
-            for m in res_clarified.get("results", [])[:3]:
-                print(f"     - {m.get('model_id')}: status={m.get('status')}")
-        elif outcome == "answer":
-            results = res_ours.get("results", [])
-            print(f"  [Ours] Models returned: {len(results)}")
-            for m in results[:3]:
-                print(f"     - {m.get('model_id')}: status={m.get('status')} | verified={m.get('verified')}")
-                
-        if step.get("compare"):
-            res_naive = rg_naive.invoke({"query": step["query"], "overrides": {}})
-            naive_models = res_naive.get("results", [])
-            print(f"  [Naive RAG Comparison] Models returned: {len(naive_models)}")
-            for m in naive_models[:3]:
-                print(f"     - {m.get('model_id')}: status={m.get('status')} | verified={m.get('verified')}")
-                
-    print("\n" + "=" * 60)
-    print("All 7 demo rehearsal steps successfully verified in REPLAY=1 mode with ZERO network requests!")
-    print("=" * 60)
+        print(f"Step {i}: {step['name']}\n  query: {step['query']!r}")
+        try:
+            problems = check_step(step, ours, naive)
+        except Exception as e:      # a step that was never recorded raises here
+            problems = [f"{type(e).__name__}: {e}"]
+        for p in problems:
+            print(f"  PROBLEM: {p}")
+        failures += bool(problems)
+    print(f"\n{len(plan['steps']) - failures} of {len(plan['steps'])} steps replayed cleanly from demo/cache/ (no network used).")
+    return 1 if failures else 0
+
 
 if __name__ == "__main__":
-    rehearse()
+    sys.exit(main())

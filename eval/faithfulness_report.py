@@ -41,8 +41,8 @@ def summarise(scored: dict[str, dict]) -> dict:
             "unsupported_notes": [(k, v["note"]) for k, v in scored.items() if v["supported"] < v["claims"] and v["note"]]}
 
 
-def render(s: dict) -> str:
-    L = ["# Explanation faithfulness (hand-scored)", "",
+def render(s: dict, who: str = "one human scorer") -> str:
+    L = [f"# Explanation faithfulness (scored by {who})", "",
          f"- explanations scored: **{s['items']}**; factual claims checked: {s['claims']}; supported by the shown card passages: {s['supported']}",
          f"- claims supported: **{s['claims_supported_pct']}%**",
          f"- explanations with every claim supported: **{s['explanations_fully_supported_pct']}%**", ""]
@@ -52,6 +52,7 @@ def render(s: dict) -> str:
 
 
 if __name__ == "__main__":
-    text = render(summarise(load()))
+    who_file = Path("eval/labels/labeller.txt")
+    text = render(summarise(load()), who_file.read_text(encoding="utf-8").strip() if who_file.exists() else "one human scorer")
     Path("eval/results/faithfulness.md").write_text(text, encoding="utf-8")
     print(text)

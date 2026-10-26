@@ -31,7 +31,10 @@ def test_retest_agreement_is_reported_as_self_consistency():
     assert r["items"] == 4 and r["same_grade_pct"] == 75.0 and r["big_disagreements_0_vs_2"] == 1
     assert retest(a, {}) is None
     md = render(per_system({"q1|a": 2, "q1|b": 1}, KEY), r)
-    assert "not inter-annotator agreement" in md and "Test-retest" in md
+    assert "not agreement between independent humans" in md and "Agreement between the two grading passes" in md
+    assert "graded by one human labeller" in md
+    llm_md = render(per_system({"q1|a": 2, "q1|b": 1}, KEY), r, "independent Claude agents (LLM judges), not humans")
+    assert "graded by independent Claude agents (LLM judges), not humans" in llm_md and "Both passes were made by: independent Claude agents" in llm_md
 
 
 def make_sheet(tmp_path):

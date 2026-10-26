@@ -17,7 +17,11 @@ Not evaluation queries (made up for smoke tests, free to use): "small Gujarati t
 permissive license", "Marathi named entity recognition model I can use commercially", "Hindi to English translation
 model under 300 MB", "Tamil speech recognition that I can fine-tune, small", "Kannada sentiment classifier with an MIT
 license", "Odia named entity recognition model for news text, free to modify", "Assamese speech recognition, small
-and commercial", "Nepali sentence similarity model I can modify", "Sinhala speech recognition model, commercial use".
+and commercial", "Nepali sentence similarity model I can modify", "Sinhala speech recognition model, commercial use",
+"image segmentation model for medical scans", "I need an image classifier I can use commercially", "object detection model for traffic cameras",
+"image classification model for plant diseases", "segment satellite images", "small language model for text generation I can fine-tune",
+"summarization model for news articles, commercial use", "question answering model over a passage, under 500 MB", "a chatbot model I can modify",
+"classify photos of food", "text to image diffusion model".
 
 Two design findings came from smoke queries, not from evaluation queries:
 1. The hosted reranker rejected Indic chunks longer than 1,024 tokens (`parameters.truncate = END`).

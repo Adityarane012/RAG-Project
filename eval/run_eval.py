@@ -268,6 +268,9 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--tag", default="v1")
     ap.add_argument("--label", type=int, default=0, help="export a blind relevance sheet for N sampled queries")
     ap.add_argument("--limit", type=int, help="only the first N queries (smoke test)")
+    ap.add_argument("--namespace", help="index namespace to read (default: config pinecone.namespace)")
+    ap.add_argument("--parsed", help="JSON file of pinned parses ({id: constraints}, or a raw-<tag>.json with a 'parsed' key): "
+                                     "evaluate with these instead of calling the extractor, so a later prompt change cannot move the results")
     args = ap.parse_args(argv)
 
     from huggingface_hub import HfApi
@@ -281,9 +284,13 @@ def main(argv: list[str] | None = None) -> None:
     systems = args.systems.split(",")
     queries = load_queries("eval/queries.jsonl")[: args.limit]
     parsed, bad = {}, []
+    pinned = None
+    if args.parsed:
+        pinned = json.loads(Path(args.parsed).read_text(encoding="utf-8"))
+        pinned = pinned.get("parsed", pinned)
     for q in queries:
         try:
-            parsed[q["id"]] = llm.extract_constraints(q["query"])
+            parsed[q["id"]] = pinned[q["id"]] if pinned is not None else llm.extract_constraints(q["query"])
         except Exception as e:                                         # LLM down or not JSON: the query is skipped, visibly
             bad.append((q["id"], str(e)[:80]))
     queries = [q for q in queries if q["id"] in parsed]
@@ -293,7 +300,7 @@ def main(argv: list[str] | None = None) -> None:
     shared_kw = baselines.KeywordIndex(prepare_all()) if "keyword" in systems else None
     for s in systems:
         if s in GRAPH_SYSTEMS:
-            graphs[s] = build_pipeline(s, explain=False, keyword=shared_kw, extract=lambda text, _p={q["query"]: parsed[q["id"]] for q in queries}: dict(_p[text]))
+            graphs[s] = build_pipeline(s, namespace=args.namespace, explain=False, keyword=shared_kw, extract=lambda text, _p={q["query"]: parsed[q["id"]] for q in queries}: dict(_p[text]))
     api = HfApi()
     extra = Path("data/raw_extra")
     extra.mkdir(parents=True, exist_ok=True)

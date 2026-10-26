@@ -2,7 +2,7 @@
 
 This catalog lists queries for testing, demonstrating, and evaluating **HF Model Finder** (Constraint-Verified RAG for Hugging Face Models). 
 
-The underlying corpus contains **9,764 Hugging Face models** and **29,665 indexed chunks** across 5 primary tasks:
+The underlying corpus contains **15,991 Hugging Face models** and **48,179 indexed chunks** across 11 tasks (the 5 original tasks below, plus image classification, object detection, image segmentation, text generation, summarization and question answering, added 2026-10-25; the catalog below was written for the original five):
 1. `automatic-speech-recognition` (Speech-to-Text)
 2. `translation` (Machine Translation)
 3. `token-classification` (Named Entity Recognition / NER)

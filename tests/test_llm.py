@@ -7,7 +7,7 @@ from src.llm import clean_constraints, escape_card_text, filter_citations, wrap_
 
 
 def test_clean_constraints_rejects_off_schema_output():
-    out = clean_constraints({"task": "text-generation", "langs": ["HI", 5, ""], "max_size_mb": "500",
+    out = clean_constraints({"task": "text-to-image", "langs": ["HI", 5, ""], "max_size_mb": "500",
                              "size_word": "gigantic", "commercial": "yes", "direction": ["hi"]}, "q")
     assert out == {"task": None, "langs": ["hi"], "direction": None, "max_size_mb": None, "size_word": None,
                    "commercial": None, "modifiable": None, "soft_query": "q"}

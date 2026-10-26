@@ -19,11 +19,13 @@ from src.config import CFG
 
 
 class LocalReranker:
-    def __init__(self, scorer=None, model_name: str | None = None):
-        """`scorer(pairs) -> list[float]` is injectable for tests; by default a
-        sentence-transformers CrossEncoder is loaded lazily on first use."""
+    def __init__(self, scorer=None, model_name: str | None = None, max_docs: int = 40):
+        """`scorer(pairs) -> list[float]` is injectable for tests; by default a sentence-transformers CrossEncoder is loaded
+        lazily on first use. On a CPU it scores about 2 chunks a second, so only the `max_docs` best chunks by vector score are
+        reranked (about 20 s a query); the rest keep their vector order below them."""
         self._scorer = scorer
         self._model_name = model_name or CFG["retrieval"]["local_reranker_model"]
+        self.max_docs = max_docs
 
     def _score(self, pairs: list[tuple[str, str]]) -> list[float]:
         if self._scorer is None:
@@ -35,9 +37,13 @@ class LocalReranker:
     def __call__(self, query: str, matches: list[dict]) -> list[dict]:
         if not matches:
             return []
-        scores = self._score([(query, m["metadata"].get("text", "")) for m in matches])
-        reranked = [{**m, "score": s, "retrieval_score": m["score"]} for m, s in zip(matches, scores)]
-        return sorted(reranked, key=lambda m: m["score"], reverse=True)
+        head = sorted(matches, key=lambda m: m["score"], reverse=True)[: self.max_docs]
+        tail = [m for m in matches if all(m is not h for h in head)]
+        scores = self._score([(query, m["metadata"].get("text", "")) for m in head])
+        reranked = sorted(({**m, "score": s, "retrieval_score": m["score"]} for m, s in zip(head, scores)),
+                          key=lambda m: m["score"], reverse=True)
+        floor = (reranked[-1]["score"] if reranked else 0.0) - 1.0       # never reranked: stays below every reranked chunk
+        return reranked + [{**m, "score": floor, "retrieval_score": m["score"]} for m in tail]
 
 
 class RerankQuotaExceeded(RuntimeError):

@@ -21,3 +21,9 @@
 {"id": "x21", "query": "BSD licensed Punjabi speech recognition", "expect": {"task": "automatic-speech-recognition", "langs": ["pa"], "commercial": true, "modifiable": true}}
 {"id": "x22", "query": "Maithili sentiment classifier", "expect": {"task": "text-classification", "langs": ["mai"]}}
 {"id": "x23", "query": "text classifier for Kannada under a permissive licence", "expect": {"task": "text-classification", "langs": ["kn"], "commercial": true, "modifiable": true}}
+{"id": "x24", "query": "image classification model for plant diseases", "expect": {"task": "image-classification"}}
+{"id": "x25", "query": "object detection for traffic cameras, small", "expect": {"task": "object-detection", "size_word": "small"}}
+{"id": "x26", "query": "segment satellite images", "expect": {"task": "image-segmentation"}}
+{"id": "x27", "query": "small language model for text generation I can fine-tune", "expect": {"task": "text-generation", "modifiable": true, "size_word": "small"}}
+{"id": "x28", "query": "summarization model for news articles, commercial use", "expect": {"task": "summarization", "commercial": true}}
+{"id": "x29", "query": "question answering model over a passage, under 500 MB", "expect": {"task": "question-answering", "max_size_mb": 500}}

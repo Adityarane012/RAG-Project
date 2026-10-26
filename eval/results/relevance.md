@@ -1,18 +1,18 @@
-# Relevance @5 (hand-labelled, blind)
+# Relevance @5 (blind; graded by independent Claude agents (LLM judges), not humans)
 
-Queries fully labelled: **40 of 40**. One labeller; grades 0/1/2 against the purpose of the request (size and license are checked automatically, not graded).
+Queries fully graded: **40 of 40**. Grades 0/1/2 against the purpose of the request (size and license are checked automatically, not graded).
 
 | System | Queries | Models graded | Mean grade | Queries with a grade-2 model % | Models graded 1 or 2 % |
 |---|---|---|---|---|---|
-| hf_licensed | 40 | 200 | 0.76 | 37.5 | 64.0 |
-| keyword | 40 | 197 | 1.112 | 77.5 | 64.5 |
-| naive | 40 | 200 | 1.305 | 90.0 | 69.5 |
-| ours | 38 | 190 | 1.416 | 84.2 | 80.0 |
+| hf_licensed | 40 | 200 | 0.685 | 22.5 | 61.5 |
+| keyword | 40 | 197 | 1.061 | 65.0 | 70.1 |
+| naive | 40 | 200 | 0.865 | 67.5 | 51.5 |
+| ours | 38 | 190 | 1.284 | 81.6 | 76.8 |
 
-## Test-retest agreement (same labeller, repeat pass)
+## Agreement between the two grading passes
 
-- items graded twice: 266; identical grade on **94.0%**
-- Cohen's kappa: nominal **0.907**, quadratic-weighted **0.961**
+- items graded twice: 266; identical grade on **92.1%**
+- Cohen's kappa: nominal **0.874**, quadratic-weighted **0.945**
 - 0-versus-2 disagreements: 0
 
-This is self-consistency of one labeller, not inter-annotator agreement.
+Both passes were made by: independent Claude agents (LLM judges), not humans. This is agreement between two independent passes by the same kind of grader (test-retest of one labeller, or two LLM passes), not agreement between independent humans.

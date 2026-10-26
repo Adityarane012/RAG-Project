@@ -1,29 +1,29 @@
 item_id,claims,supported,note,ts
-q002|BuzzASR/marathi,2,2,,1761144200
-q006|abhishekgautamm/whisper-tiny-hinglish-v2,2,2,,1761144215
-q007|Open4bits/whisper-base-f16,2,1,Passages state multilingual ASR but do not state support for Gujarati,1761144230
-q011|patrickvonplaten/wav2vec2_tiny_random_robust,3,3,,1761144245
-q013|WhissleAI/STT-hinglish-loans-ONNX,2,2,,1761144260
-q015|dkubeio/DKube-asr-hinglish-v1-0.8B,2,2,,1761144275
-q017|DireDreadlord/Vakya-Mini-Extended-100M,2,2,,1761144290
-q022|vijaysarathy/indictrans2-indic-en-multilingual-ft,1,0,Card evidence shows Telugu -> English (source) rather than English -> Telugu (target),1761144305
-q023|Helsinki-NLP/opus-mt-ur-en,3,3,,1761144320
-q025|Helsinki-NLP/opus-mt-iir-en,2,2,,1761144335
-q029|Helsinki-NLP/opus-mt-ml-en,2,2,,1761144350
-q031|pascalrai/hinglish-twitter-roberta-base-sentiment,2,2,,1761144365
-q032|l3cube-pune/MarathiSentiment,2,2,,1761144380
-q035|kingshukroy/twhin-bert-base-hate-speech-ben-hin,2,2,,1761144395
-q036|Nebulixlabs/Quantum-Classifier-Calibrated,1,1,,1761144410
-q037|tabularisai/multilingual-emotion-classification,2,2,,1761144425
-q039|shae2977/xlm-roberta-hinglish-sentiment-analysis,3,3,,1761144440
-q042|vincentoh/deberta-v3-xsmall-l0-bouncer,2,2,,1761144455
-q050|chandanaau/distilbert-telugu-ner,2,2,,1761144470
-q055|SIRIS-Lab/citation-parser-ENTITY,2,1,Card describes citation parsing NER only; does not state support for Urdu,1761144485
-q056|vaibhav006/indic-ner-muril-naamapadam,1,1,,1761144500
-q058|hiteshwadhwani/pii-model-indic-v1,2,1,Card is for PII token classification; does not mention POS tagging,1761144515
-q061|convaiinnovations/hindi-embedding-model-final,2,2,,1761144530
-q062|tylerl0208/Nemotron-3-Embed-8B-BF16,2,2,,1761144545
-q064|l3cube-pune/tamil-sentence-bert-nli,2,2,,1761144560
-q065|l3cube-pune/telugu-sentence-bert-nli,2,2,,1761144575
-q070|eswardivi/tamal-sentence-bert-nli,2,2,,1761144590
-q072|l3cube-pune/punjabi-sentence-bert-nli,2,2,,1761144605
+q002|BuzzASR/marathi,2,2,,1792945997
+q006|abhishekgautamm/whisper-tiny-hinglish-v2,4,3,commercial-use suitability not stated in card,1792945997
+q007|Open4bits/whisper-base-f16,3,2,Gujarati support not stated (only generic multilingual ASR),1792945997
+q011|patrickvonplaten/wav2vec2_tiny_random_robust,5,4,accent robustness not stated in metadata,1792945997
+q013|WhissleAI/STT-hinglish-loans-ONNX,3,3,,1792945997
+q015|dkubeio/DKube-asr-hinglish-v1-0.8B,4,3,suitability for lecture transcription not stated (card warns of out-of-domain errors),1792945997
+q017|DireDreadlord/Vakya-Mini-Extended-100M,5,4,"size below 500 MB not stated (only ~100M params, no MB figure)",1792945997
+q022|vijaysarathy/indictrans2-indic-en-multilingual-ft,3,1,contradicts card: direction is Indic to English not English to Telugu,1792945997
+q023|Helsinki-NLP/opus-mt-ur-en,4,3,trained on OPUS data not explicitly stated,1792945997
+q025|Helsinki-NLP/opus-mt-iir-en,3,3,,1792945997
+q029|Helsinki-NLP/opus-mt-ml-en,3,2,OPUS as large parallel corpus suitable for news not in card,1792945997
+q031|pascalrai/hinglish-twitter-roberta-base-sentiment,4,3,usefulness for Hindi and commercial setting not stated,1792945997
+q032|l3cube-pune/MarathiSentiment,2,2,,1792945997
+q035|kingshukroy/twhin-bert-base-hate-speech-ben-hin,4,3,commercial-use suitability not stated,1792945997
+q036|Nebulixlabs/Quantum-Classifier-Calibrated,2,2,,1792945991
+q037|tabularisai/multilingual-emotion-classification,5,5,,1792945991
+q039|shae2977/xlm-roberta-hinglish-sentiment-analysis,4,4,,1792945991
+q042|vincentoh/deberta-v3-xsmall-l0-bouncer,5,5,,1792945991
+q050|chandanaau/distilbert-telugu-ner,3,3,,1792945991
+q055|SIRIS-Lab/citation-parser-ENTITY,4,2,generic NER capability applicable to Urdu not in card; lightweight/smaller-than-BERT not stated in passages,1792945991
+q056|vaibhav006/indic-ner-muril-naamapadam,1,1,,1792945991
+q058|hiteshwadhwani/pii-model-indic-v1,5,3,small size and open-source nature not stated in passages,1792945991
+q061|convaiinnovations/hindi-embedding-model-final,3,3,,1792945991
+q062|tylerl0208/Nemotron-3-Embed-8B-BF16,3,3,,1792945991
+q064|l3cube-pune/tamil-sentence-bert-nli,2,2,,1792945991
+q065|l3cube-pune/telugu-sentence-bert-nli,4,3,claim that NLI models learn entailment/contradiction is not in passages,1792945991
+q070|eswardivi/tamal-sentence-bert-nli,3,3,,1792945991
+q072|l3cube-pune/punjabi-sentence-bert-nli,5,3,Sentence Transformers API usage and redistribution not stated,1792945991

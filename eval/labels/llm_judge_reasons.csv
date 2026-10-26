@@ -1,0 +1,953 @@
+pass,pair_id,grade,reason
+1,q002|openai/whisper-large-v3,1,multilingual Whisper; Marathi plausible but not specific
+1,q002|Hemantrao/wav2vec2-large-xls-r-300m-hindi_marathi-code-switching-experimentx1,1,Hindi-Marathi code-switched ASR; partial fit
+1,q002|handy-computer/whisper-medium-gguf,1,multilingual Whisper conversion; Marathi plausible
+1,q002|openai/whisper-tiny,1,multilingual Whisper; Marathi plausible but weak
+1,q002|gchhablani/wav2vec2-large-xlsr-mr,2,Marathi fine-tuned wav2vec2 ASR
+1,q002|espnet/marathi_lrec2020,2,Marathi ESPnet ASR model
+1,q002|jiviai/audioX-north-v1,2,Indic ASR explicitly supporting Marathi
+1,q002|OpenVoiceOS/ai4bharat-indicconformer-mr-onnx,2,Marathi ASR ONNX export
+1,q002|openai/whisper-base,1,multilingual Whisper; Marathi plausible but weak
+1,q002|ekacare/parrotlet-a-2.5-pro,1,Marathi among languages but medical-domain ASR
+1,q002|openai/whisper-small,1,multilingual Whisper; Marathi plausible
+1,q002|gchhablani/wav2vec2-large-xlsr-mr-3,2,Marathi fine-tuned wav2vec2 ASR
+1,q002|BuzzASR/marathi,2,Marathi-specialized Whisper ASR
+1,q002|BettySara/whisper-large-v3-malayalam-FT,0,Malayalam model not Marathi
+1,q002|salesken/Hindi-FastConformer-Streaming-ASR,0,Hindi model not Marathi
+1,q002|omkar9896/indic-transcribe-openvino-int8,1,Indic multilingual ASR; Marathi likely but unstated
+1,q002|ai4bharat/indicconformer_stt_mr_hybrid_ctc_rnnt_large,2,Marathi IndicConformer ASR
+1,q002|jeswinjestin/sherpa-onnx-nemo-ctc-indicconformer-malayalam,0,Malayalam model not Marathi
+1,q004|TurjoDutta5555/whisper-small-bengali-15DB-1e5,2,Bengali Whisper ASR
+1,q004|sha1779/Faster_BengaliRegionalASR,2,Bengali regional ASR CTranslate2
+1,q004|openai/whisper-base,1,multilingual Whisper; Bengali plausible
+1,q004|arijitx/wav2vec2-xls-r-300m-bengali,2,Bengali wav2vec2 ASR with WER
+1,q004|ehzawad/Qwen3-ASR-1.7B-bn-BD,2,Bengali ASR model
+1,q004|faysal-star/LoRA_bengaliAI_tugstugi_bengaliai-asr_whisper-medium,2,Bengali long-form ASR
+1,q004|openai/whisper-tiny,1,multilingual Whisper; Bengali plausible
+1,q004|openai/whisper-small,1,multilingual Whisper; Bengali plausible
+1,q004|openai/whisper-large-v3,1,multilingual Whisper; Bengali plausible
+1,q004|Tmanna/whisper-bengali-final,2,Bengali Whisper ASR
+1,q004|Eusha22/faster-whisper-bangla-lora,2,Bangla faster-whisper ASR
+1,q004|ehzawad/whisper-large-v3-turbo-bn-BD,2,Bengali Whisper ASR
+1,q004|ARTPARK-IISc/whisper-medium-vaani-bengali,2,name shows Bengali Whisper ASR
+1,q004|barnobarno666/Whisper-medium-bangla,2,Bengali Whisper ASR
+1,q004|ehzawad/Voxtral-Small-24B-2507-bn-BD,2,Bengali ASR model
+1,q004|SayedShaun/bangla-wav2vec2,2,Bengali wav2vec2 ASR
+1,q006|mistralai/Voxtral-Mini-4B-Realtime-2602,1,multilingual realtime ASR; Hindi plausible
+1,q006|adalat-ai/whisper-small-hi-rmft,2,small Hindi Whisper ASR
+1,q006|adalat-ai/whisper-small-hi-high-lr,2,small Hindi Whisper ASR
+1,q006|abhishekgautamm/whisper-tiny-hinglish-v2,1,tiny Hindi but romanized Hinglish output
+1,q006|openai/whisper-base,1,small multilingual Whisper; Hindi plausible
+1,q006|Harveenchadha/hindi_model_with_lm_vakyansh,2,Hindi ASR by name
+1,q006|openai/whisper-large-v3,1,multilingual Whisper; Hindi plausible but large
+1,q006|abhishekgautamm/whisper-tiny-hinglish,1,tiny Hindi but romanized Hinglish output
+1,q006|openai/whisper-small,1,multilingual Whisper; Hindi plausible
+1,q006|SakshiRathi77/wav2vec2-large-xlsr-300m-hi-kagglex,2,Hindi ASR with Common Voice
+1,q006|openai/whisper-tiny,1,small multilingual Whisper; Hindi plausible
+1,q006|specialv/whisper-small-merged-hi-en,2,small Whisper tuned for Hindi
+1,q006|martin-mwiti/whisper-small-hi-lora-r32-alpha64-20241231,2,small Hindi Whisper ASR
+1,q006|Mr-Sunglasses/whisperkit-coreml,1,CoreML Whisper conversions incl Hindi-Hinglish variant
+1,q006|joshuavinith/whisper-small-hindi,2,small Hindi Whisper ASR
+1,q006|abhishekgautamm/whisper-tiny-hinglish-ct2,1,tiny Hindi but romanized Hinglish output
+1,q007|vasista22/whisper-gujarati-base,2,Gujarati Whisper ASR
+1,q007|microsoft/speecht5_asr,0,English LibriSpeech ASR not Gujarati
+1,q007|COIL-D/translate-nllb-hindi-gujarati,0,translation not speech recognition
+1,q007|openai/whisper-base,1,multilingual Whisper; Gujarati plausible
+1,q007|alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-32768,0,CLIP embedding model not ASR
+1,q007|princetunes/whisper-small-gujarati-talpada,2,Gujarati Whisper ASR
+1,q007|Archit-01/indic-asr-multi,2,Indic ASR explicitly listing Gujarati
+1,q007|pathslash/whisper-small-gujarati,2,Gujarati Whisper ASR
+1,q007|HPLT/translate-gu-en-v2.0-hplt_opus,0,translation not speech recognition
+1,q007|Open4bits/whisper-base-f16,1,multilingual Whisper; Gujarati plausible
+1,q007|Open4bits/whisper-tiny-f16,1,multilingual Whisper; Gujarati plausible
+1,q007|WhissleAI/speech-tagger_gujlish_wav2vec2_meta,2,English-Gujarati ASR model
+1,q007|openai/whisper-small,1,multilingual Whisper; Gujarati plausible
+1,q007|handy-computer/whisper-medium-gguf,1,multilingual Whisper; Gujarati plausible
+1,q007|alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-16384,0,CLIP embedding model not ASR
+1,q007|kazuto098/indic-transcribe-core-int4-onnx,1,25 Indian languages ASR; Gujarati likely unstated
+1,q007|openai/whisper-large-v3,1,multilingual Whisper; Gujarati plausible
+1,q007|openai/whisper-tiny,1,multilingual Whisper; Gujarati plausible
+1,q007|aitestinguserpg/whisper-small-gujarati-coreml,2,Gujarati Whisper ASR CoreML
+1,q007|vasista22/whisper-gujarati-small,2,Gujarati Whisper ASR
+1,q009|adalat-ai/whisper-small-ml-high-lr,2,Malayalam Whisper ASR
+1,q009|BettySara/betty-malayalam-whisper-large-v3-qlora-r32,2,Malayalam Whisper ASR adapter
+1,q009|openai/whisper-tiny,1,multilingual Whisper; Malayalam plausible
+1,q009|adalat-ai/whisper-medium-ml-high-lr,2,medium Malayalam Whisper ASR
+1,q009|gvs/wav2vec2-large-xlsr-malayalam,2,Malayalam wav2vec2 ASR
+1,q009|adalat-ai/ct2-whisper-medium-ml-rmft,2,medium Malayalam Whisper ASR CT2
+1,q009|openai/whisper-base,1,multilingual Whisper; Malayalam plausible
+1,q009|adalat-ai/whisper-small-ml-rmft,2,Malayalam Whisper ASR
+1,q009|openai/whisper-small,1,multilingual Whisper; Malayalam plausible
+1,q009|BettySara/whisper-large-v3-malayalam-FT,2,Malayalam Whisper ASR
+1,q009|openai/whisper-large-v3,1,multilingual Whisper; Malayalam plausible
+1,q009|adalat-ai/whisper-medium-ml-rmft,2,medium Malayalam Whisper ASR
+1,q011|mistralai/Voxtral-Mini-4B-Realtime-2602,1,Multilingual realtime ASR; English likely supported; no accent evidence
+1,q011|openai/whisper-large-v3,2,Robust multilingual ASR including English; strong generalisation across accents
+1,q011|abhishekgautamm/whisper-tiny-hinglish,1,Tiny Whisper for Hinglish; partly English but romanized Hindi focus
+1,q011|FunAudioLLM/Fun-ASR-Nano-2512,1,Multilingual small ASR; English plausible but no accent evidence
+1,q011|AIArchiveInfo/Fun-ASR-MLT-Nano-2512,1,Multilingual small ASR; English plausible but no accent evidence
+1,q011|FunAudioLLM/Fun-ASR-MLT-Nano-2512,1,Multilingual small ASR; English plausible but no accent evidence
+1,q011|qqceqqq/Fun-ASR-Nano-2512,1,31-language ASR; English plausible but no accent evidence
+1,q011|aitytech/Whisper-Base-MLX-FP16,2,Small Whisper base ASR for on-device use; English supported
+1,q011|David19930/whisper-small-hi,0,Hindi fine-tune of Whisper small; not an English-focused model
+1,q011|openai/whisper-base,2,Small Whisper ASR; generalises well across domains and English
+1,q011|futo-org/asr4all-s,1,Small streaming ASR for edge; language not stated in excerpt
+1,q011|abhishekgautamm/whisper-tiny-hinglish-ct2,1,Hinglish tiny Whisper export; only partly English
+1,q011|aitytech/Whisper-Small-MLX-FP16,2,Small Whisper ASR for on-device use; English supported
+1,q011|NCAIR1/NigerianAccentedEnglish,2,Whisper small fine-tuned for Nigerian accented English ASR
+1,q011|facebook/wav2vec2-base-960h,2,Small English ASR model trained on Librispeech
+1,q011|openai/whisper-small,2,Small Whisper ASR; robust generalisation including English
+1,q011|aitytech/Whisper-Tiny-MLX-FP16,2,Small Whisper tiny ASR; English supported
+1,q011|patrickvonplaten/wav2vec2_tiny_random_robust,0,Random test model with no real purpose
+1,q011|FL33TW00D-HF/whisper-small,2,Whisper small conversion; English ASR suitable
+1,q013|openai/whisper-large-v3,1,Multilingual ASR covering Hindi and English; no code-mixing evidence
+1,q013|Systran/faster-whisper-small,1,Generic multilingual Whisper conversion; no code-mixing evidence
+1,q013|epoch-discovery/ep-hindi-asr,2,Hindi ASR with a Mixed head for Hindi-English output
+1,q013|Trelis/tara,2,Hindi and mixed-code Hinglish ASR model
+1,q013|happyman11/TacRFC-fastconformer,2,Code-switched Hindi-English ASR fine-tune; radio domain
+1,q013|shujaAK/whisper-medium-hindi-hinglish-asr-fine-tuned,2,Whisper fine-tuned for Hindi and code-mixed Hinglish ASR
+1,q013|MahmoudAshraf/mms-300m-1130-forced-aligner,0,Forced alignment tool not speech recognition
+1,q013|openai/whisper-large-v3-turbo,1,Generic multilingual ASR; no code-mixing evidence
+1,q013|dkubeio/DKube-asr-hinglish-v1-0.8B,2,Whisper fine-tune for code-switched Hindi-English ASR
+1,q013|Deepro713/whisper-large-v3-turbo-hinglish,2,Whisper fine-tune for code-switched Hindi-English ASR
+1,q013|chiragbhatheja/whisper-hindi2hinglish-swift-ONNX,2,Whisper base fine-tuned for code-switched Hinglish ASR
+1,q013|happyman11/TacRFC-wav2vec2-xlsr53,2,Code-switched Hindi-English CTC ASR fine-tune
+1,q013|darelphilip/hinglish-toxicity-classifier,0,Text toxicity classifier not speech recognition
+1,q013|happyman11/TacRFC-whisper-base,2,Whisper base fine-tuned for code-switched Hindi-English ASR
+1,q013|WhissleAI/STT-hinglish-loans-ONNX,2,Hindi-English code-mixed conversational ASR model
+1,q013|openai/whisper-small,1,Generic multilingual ASR; no code-mixing evidence
+1,q015|ArchCoder/whisper-small-hindi-lora,2,Hindi ASR LoRA on Whisper small; easy to fine-tune further
+1,q015|amn-raw/parakeet-hi-v2,2,Hindi and Hinglish ASR; call-centre data not lectures
+1,q015|openai/whisper-small,1,Multilingual base suited to fine-tuning; not Hindi specific
+1,q015|ranjan-prabhat/whisper-small-hi,2,Hindi ASR fine-tune of Whisper small
+1,q015|md-ahtisham/hindi-asr-phi4-mm,2,Hindi ASR fine-tune on IndicVoices
+1,q015|openai/whisper-tiny,1,Multilingual base suited to fine-tuning; not Hindi specific
+1,q015|openai/whisper-large-v3,1,Multilingual base covering Hindi; no lecture evidence
+1,q015|moorlee/qwen3-asr-0.6b-hinglish-openslr104-v2,2,Hindi-English spoken lectures and tutorials ASR
+1,q015|Deepro713/whisper-large-v3-turbo-hinglish,1,Hinglish ASR; partly fits Hindi lectures
+1,q015|BuzzASR/hindi,2,Monolingual Hindi ASR from Whisper large-v3
+1,q015|martin-mwiti/whisper-small-hi-lora-r32-alpha64-20241231,2,Hindi ASR LoRA fine-tune of Whisper small
+1,q015|openai/whisper-base,1,Multilingual base suited to fine-tuning; not Hindi specific
+1,q015|dkubeio/DKube-asr-hinglish-v1-0.8B,1,Hinglish ASR; partly fits Hindi lectures
+1,q015|SakshiRathi77/wav2vec2-large-xlsr-300m-hi-kagglex,2,Hindi wav2vec2 ASR on Common Voice
+1,q015|nalini2799/CDAC_hindispeechrecognition,2,Hindi speech-to-text model
+1,q015|VED-G/whisper-small-mucs-hindi-v2,2,Hindi-English classroom lecture ASR fine-tune
+1,q015|mistralai/Voxtral-Mini-4B-Realtime-2602,1,Multilingual realtime ASR likely including Hindi; not lecture specific
+1,q017|yash17366392/Fine-Tuned_Helsinki_model,2,English-Hindi MarianMT fine-tune
+1,q017|Swekerr/eng2hindi,2,English to Hindi translation model
+1,q017|aiproject-2025/english-hindi-odia-translator,2,IndicTrans2 fine-tune with English to Hindi target
+1,q017|ai4bharat/indictrans2-en-indic-dist-200M,2,Distilled IndicTrans2 English to Indic including Hindi
+1,q017|DireDreadlord/Vakya-Mini-100M,2,Lightweight English to Hindi translation model
+1,q017|priyadip/en-hi-transformer,2,English to Hindi Transformer translation
+1,q017|ViuAI/ViuTranslate,2,English-Hindi NMT model of about 500M
+1,q017|facebook/nllb-200-distilled-600M,1,Multilingual translation covering Hindi; no specific excerpt evidence
+1,q017|axondendriteplus/LegalLoRA-IndicTrans2-en_indic,2,English-Hindi LoRA translation model; legal domain
+1,q017|sag-9755/Fine_Tune_MarianMT_English_to_Hindi,2,MarianMT English-Hindi fine-tune
+1,q017|DireDreadlord/Vakya-Mini-Extended-100M,2,Lightweight English to Hindi translation model
+1,q017|Helsinki-NLP/opus-mt-en-hi,2,OPUS-MT English to Hindi
+1,q017|Sams200/opus-mt-en-hi,2,CTranslate2 build of opus-mt-en-hi
+1,q017|ai4bharat/indictrans2-en-indic-1B,2,IndicTrans2 English to Indic including Hindi
+1,q017|facebook/nllb-200-3.3B,1,Multilingual translation covering Hindi; no specific excerpt evidence
+1,q017|facebook/nllb-200-distilled-1.3B,1,Multilingual translation covering Hindi; no specific excerpt evidence
+1,q017|kd13/nano-translate-v2,2,LSTM English to Hindi translation model
+1,q022|Mungert/HY-MT1.5-1.8B-GGUF,1,Multilingual MT GGUF; Telugu support not shown in excerpt
+1,q022|Yaser77/mbart-en-te,2,mBART English to Telugu translation
+1,q022|Helsinki-NLP/opus-mt-mul-en,0,Wrong direction: multilingual to English
+1,q022|tencent/Hy-MT2-30B-A3B-GGUF,1,Multilingual MT; Telugu support not shown in excerpt
+1,q022|tencent/HY-MT1.5-7B-GGUF,1,Multilingual MT; Telugu support not shown in excerpt
+1,q022|SagarVelamuri/InLegalTrans-En2Indic-FineTuned-Tel-Hin,2,English to Telugu translation; legal domain fine-tune
+1,q022|tencent/HY-MT1.5-1.8B-GGUF,1,Multilingual MT; Telugu support not shown in excerpt
+1,q022|tencent/Hy-MT2-1.8B,1,Multilingual MT; Telugu support not shown in excerpt
+1,q022|hima06varshini/TeluguTranslatica,2,English to Telugu NMT model
+1,q022|gvaishnavi/bilingual-translation,2,English to Telugu translation model
+1,q022|tencent/Hy-MT2-7B,1,Multilingual MT; Telugu support not shown in excerpt
+1,q022|VijayChandra/english-to-telugu-translator-nllb,2,NLLB-600M fine-tuned English to Telugu
+1,q022|vijaysarathy/indictrans2-indic-en-multilingual-ft,0,Wrong direction: Indic to English
+1,q022|WindstormLabs/origin-Helsinki-NLP-opus-mt-en-dra,2,English to Dravidian incl Telugu
+1,q022|JSCreatorPro/offline-cpu-marianmt,1,English to multiple languages; Telugu possible but generic
+1,q022|Helsinki-NLP/opus-mt-en-dra,2,English to Dravidian languages including Telugu
+1,q022|google/madlad400-3b-mt,1,Massively multilingual MT; Telugu likely but not shown
+1,q022|anithasoma/nllb-finetuned-telugu,2,NLLB fine-tuned for English to colloquial Telugu
+1,q023|ManiKumarAdapala/Gemma3-En2Indic-NMT-270M,0,English to Indic: wrong direction
+1,q023|HPLT/translate-ur-en-v2.0-hplt_opus,2,Urdu to English MT exactly
+1,q023|ai4bharat/indictrans2-en-indic-1B,0,English to Indic: wrong direction
+1,q023|Helsinki-NLP/opus-mt-ur-en,2,Urdu to English MT exactly
+1,q023|facebook/nllb-200-3.3B,1,Multilingual MT; Urdu plausible but not shown
+1,q023|facebook/nllb-200-distilled-1.3B,1,Multilingual MT; Urdu plausible but not shown
+1,q023|facebook/nllb-200-distilled-600M,1,Multilingual MT; Urdu plausible but not shown
+1,q023|HPLT/translate-en-ur-v2.0-hplt,0,English to Urdu: wrong direction
+1,q023|mishbahul11/nerds-nits-indictrans2-en-ur-finetuned-wmt2026,1,English-Urdu bidirectional claim but built as English to Urdu leg
+1,q023|ayeshasadiq025/biobert-medical-urdu-decoder,0,Medical English to Urdu: wrong direction
+1,q023|HPLT/translate-ur-en-v2.0-hplt,2,Urdu to English MT exactly
+1,q023|samiulhaq/iwslt-bt-en-ur,0,English to Urdu: wrong direction
+1,q023|samiulhaq/iwslt-bt-ur-en,2,Urdu to English MT exactly
+1,q023|ai4bharat/indictrans2-en-indic-dist-200M,0,English to Indic: wrong direction
+1,q024|Satwik11/gemma-2b-mt-Hindi-Fintuned,1,Translation but only English to Hindi not multilingual Indian
+1,q024|Vikrantyadav11234/NMT_multilingual_12,2,Indian languages to and from English multilingual NMT
+1,q024|Helsinki-NLP/opus-mt-fr-en,0,French to English: not Indian languages
+1,q024|theharshithh/open-sarika,0,Speech recognition model not text translation
+1,q024|google-t5/t5-base,0,General English T5 not Indian-language translation
+1,q024|Helsinki-NLP/opus-mt-nl-en,0,Dutch to English: not Indian languages
+1,q024|ai4bharat/indic-conformer-600m-multilingual,0,ASR speech model not translation
+1,q024|google-t5/t5-small,0,General English T5 not Indian-language translation
+1,q024|Helsinki-NLP/opus-mt-de-en,0,German to English: not Indian languages
+1,q024|sagnikdas-ml/sarvam-translate,2,Translation across 22 Indian languages
+1,q024|onnx-community/sarvam-translate-onnx,2,Sarvam-Translate 22 Indian languages ONNX
+1,q024|Genius1237/xlm-roberta-large-tydip,0,Politeness classifier not translation
+1,q024|AkshitaS/bhasha-embed-v0,0,Embedding model not translation
+1,q024|cstr/madlad400-3b-mt-GGUF,1,Massively multilingual MT likely covers Indian languages; not stated
+1,q024|Prince-1/sarvam-translate-onnx,2,Sarvam-Translate 22 Indian languages ONNX
+1,q025|onnx-community/sarvam-translate-onnx,2,22 Indian languages incl. Gujarati translation
+1,q025|Helsinki-NLP/opus-mt-tc-bible-big-deu_eng_fra_por_spa-ine,1,Into Indo-European languages; Gujarati possible but unshown
+1,q025|HPLT/translate-gu-en-v2.0-hplt_opus,0,Gujarati to English: wrong direction
+1,q025|HPLT/translate-gu-en-v2.0-hplt,0,Gujarati to English: wrong direction
+1,q025|ManiKumarAdapala/Gemma3-En2Indic-NMT-270M,1,English to 14 Indic languages; Gujarati likely but list cut
+1,q025|ai4bharat/indictrans2-en-indic-dist-200M,2,English to 22 Indian languages incl. Gujarati
+1,q025|HPLT/translate-en-gu-v2.0-hplt,2,English to Gujarati MT exactly
+1,q025|str33t/madlad400-3b-mt-en-dv-news-v1-GGUF,0,English to Dhivehi fine-tune: wrong language
+1,q025|WindstormLabs/origin-Helsinki-NLP-opus-mt-iir-en,0,Indo-Iranian to English: wrong direction
+1,q025|WindstormLabs/origin-Helsinki-NLP-opus-mt-tc-bible-big-deu_eng_fra_por_spa-ine,1,Into Indo-European languages; Gujarati possible but unshown
+1,q025|facebook/nllb-200-distilled-1.3B,1,Multilingual MT; Gujarati plausible but not shown
+1,q025|facebook/nllb-200-3.3B,1,Multilingual MT; Gujarati plausible but not shown
+1,q025|alphaZimuth/Hy-MT2-30B-A3B-APEX-GGUF,1,Multilingual MT quantization; Gujarati unshown
+1,q025|HPLT/translate-en-gu-v2.0-hplt_opus,2,English to Gujarati MT exactly
+1,q025|Prince-1/sarvam-translate-onnx,2,22 Indian languages incl. Gujarati translation
+1,q025|facebook/nllb-200-distilled-600M,1,Multilingual MT; Gujarati plausible but not shown
+1,q025|ai4bharat/indictrans2-en-indic-1B,2,English to 22 Indian languages incl. Gujarati
+1,q025|Vikrantyadav11234/NMT_multilingual_12,1,English to Indian languages; Gujarati not confirmed
+1,q025|Helsinki-NLP/opus-mt-iir-en,0,Indo-Iranian to English: wrong direction
+1,q028|michaelfeil/ct2fast-opus-mt-en-de,0,English to German: wrong direction
+1,q028|HPLT/translate-en-gu-v2.0-hplt_opus,0,English to Gujarati: wrong language pair
+1,q028|Helsinki-NLP/opus-mt-tc-bible-big-gmw-en,2,West Germanic (incl. German) to English
+1,q028|Helsinki-NLP/opus-mt-tc-big-gmw-gmw,1,West Germanic to West Germanic; German to English possible
+1,q028|google-t5/t5-base,0,General T5; translates English to German not reverse
+1,q028|cstr/opus-mt-de-en-GGUF,2,German to English Opus-MT GGUF
+1,q028|google-t5/t5-large,0,General T5; translates English to German not reverse
+1,q028|Helsinki-NLP/opus-mt-de-en,2,German to English MT exactly
+1,q028|google-t5/t5-3b,0,General T5; translates English to German not reverse
+1,q028|yanolja/YanoljaNEXT-Rosetta-4B,1,Multilingual translation LLM; German unconfirmed
+1,q028|google-t5/t5-small,0,General T5; translates English to German not reverse
+1,q028|HPLT/translate-gu-en-v2.0-hplt,0,Gujarati to English: wrong language
+1,q028|yanolja/YanoljaNEXT-Rosetta-20B,1,Multilingual JSON translation LLM; German unconfirmed
+1,q028|Heng666/madlad400-3b-mt-ct2,2,Multilingual MT incl. German and English; apache-2.0
+1,q028|HPLT/translate-gu-en-v2.0-hplt_opus,0,Gujarati to English: wrong language
+1,q028|HPLT/translate-en-gu-v2.0-hplt,0,English to Gujarati: wrong language pair
+1,q028|Helsinki-NLP/opus-mt-en-de,0,English to German: wrong direction
+1,q028|yanolja/YanoljaNEXT-Rosetta-12B,1,Multilingual translation LLM; German unconfirmed
+1,q029|Helsinki-NLP/opus-mt-ml-en,2,Malayalam to English MT
+1,q029|Navneeth017/nllb-1.3b-en-ml-ct2,0,English to Malayalam: wrong direction
+1,q029|HPLT/translate-ml-en-v2.0-hplt,2,Malayalam to English MT
+1,q029|facebook/nllb-200-3.3B,1,Multilingual MT; Malayalam plausible no news evidence
+1,q029|ai4bharat/indictrans2-en-indic-dist-200M,0,English to Indic: wrong direction
+1,q029|HPLT/translate-ml-en-v2.0-hplt_opus,2,Malayalam to English MT
+1,q029|ai4bharat/indictrans2-en-indic-1B,0,English to Indic: wrong direction
+1,q029|facebook/nllb-200-distilled-1.3B,1,Multilingual MT; Malayalam plausible no news evidence
+1,q029|ltguoj/CeyNews-category-infoxlm-large,0,News classifier not translation
+1,q029|Sams200/opus-mt-ml-en,2,Malayalam to English CTranslate2 MT
+1,q029|facebook/nllb-200-distilled-600M,1,Multilingual MT; Malayalam plausible no news evidence
+1,q029|nandakishoresaic/indian-news-translator,1,News translator into 10 languages; Malayalam source unclear
+1,q029|endurasolution/aksharakuppy_English-Malayalam-Translate,1,Bidirectional English-Malayalam NMT; no news evidence
+1,q029|Muhammed-sheheen/NLLB_FINETUNIG,0,English to Malayalam: wrong direction
+1,q029|kurianbenoy/kde_en_ml_translation_model,0,English to Malayalam KDE: wrong direction
+1,q031|Cortiqa/guard-a40M,0,LLM security firewall not sentiment
+1,q031|clapAI/mmBERT-small-multilingual-sentiment,1,small multilingual sentiment; Hindi plausible but unconfirmed
+1,q031|pascalrai/hinglish-twitter-roberta-base-sentiment,1,Hinglish sentiment; romanized code-mixed not pure Hindi
+1,q031|vashuag/HindiEmotion,1,Hindi but emotion not sentiment
+1,q031|Keshav0av/HinSpam-spam-detection,0,spam detection not sentiment
+1,q031|autopilot-ai/EthicalEye,0,harmful content flagging not sentiment
+1,q031|agentlans/multilingual-e5-small-aligned-sentiment,1,small multilingual sentiment; Hindi not confirmed
+1,q031|marshal-yash/gujlish-sentiment-analysis,1,Gujarati/Hindi code-mixed sentiment; partly fits
+1,q031|Sousan12/multilingual-sentiment-xlmr-onnx,1,multilingual sentiment; Hindi only zero-shot and Hinglish
+1,q031|chaoliangUNSW/Jev-Style-0.8B-Decision-v3-GGUF,0,decision model unrelated to Hindi sentiment
+1,q031|LondonStory/txlm-roberta-hindi-sentiment,2,Hindi Devanagari sentiment classifier
+1,q031|lxyuan/distilbert-base-multilingual-cased-sentiments-student,1,small multilingual sentiment; Hindi not shown
+1,q031|amber-tech/bert-multilingual-passage-reranking-msmarco,0,passage reranker not sentiment
+1,q031|ShivamSharma8168/hindi-sentiment-model,2,Hindi sentiment positive/neutral/negative
+1,q031|luluw/Roberta-devangari-script-classification,0,script classification not sentiment
+1,q031|shae2977/xlm-roberta-hinglish-sentiment-analysis,1,Hinglish sentiment in Roman script; partial fit
+1,q031|Captain-1337/CrudeBERT,0,English crude oil headline sentiment
+1,q031|convaiinnovations/laya-multilingual,1,generic multilingual decision model; sentiment possible but unspecific
+1,q032|l3cube-pune/MarathiSentiment,2,Marathi sentiment model
+1,q032|amber-tech/bert-multilingual-passage-reranking-msmarco,0,passage reranker
+1,q032|SargeDev/Solar-JEV-Gemma-embed-2-GGUF,0,decision probe embedding unrelated
+1,q032|n24q02m/Qwen3-Reranker-0.6B-ONNX,0,reranker not sentiment
+1,q032|shravan37/kavach-scam-classifier,0,scam classifier not sentiment
+1,q032|cstr/glotlid-GGUF,0,language identification
+1,q032|nlpodyssey/bert-multilingual-uncased-geo-countries-headlines,0,geographic headline classification
+1,q032|Maxthemacaque/onnx-gte-multilingual-base,0,embedding model not sentiment
+1,q032|autopilot-ai/EthicalEye,0,harmful content flagging not Marathi sentiment
+1,q032|mesolitica/sentiment-analysis-nanot5-small-malaysian-cased,0,Malay sentiment wrong language
+1,q032|Alibaba-NLP/gte-multilingual-base,0,embedding model not sentiment
+1,q032|l3cube-pune/hate-bert-hasoc-marathi,0,Marathi hate speech wrong task
+1,q032|ibraheemmoosa/xlmindic-base-multiscript-soham,0,Bangla news classification
+1,q032|soprasteria/gte-multilingual-base,0,embedding model not sentiment
+1,q032|yankexe/gte-multilingual-base-air-gapped,0,embedding model not sentiment
+1,q032|ibraheemmoosa/xlmindic-base-uniscript-soham,0,Bangla news classification
+1,q032|cis-lmu/glotlid,0,language identification
+1,q032|nareyko/genivara-pii-nano,0,PII detection
+1,q032|classla/multilingual-IPTC-news-topic-classifier,0,news topic classification other languages
+1,q032|alphaedge-ai/clip-ViT-B-32-multilingual-v1-mr-32768,0,CLIP text encoder not sentiment
+1,q035|autopilot-ai/EthicalEye,1,harmful content classifier; Bengali support unknown
+1,q035|unitary/multilingual-toxic-xlm-roberta,1,multilingual toxicity; Bengali not evidenced
+1,q035|onnx-community/unbiased-toxic-roberta-ONNX,0,English toxicity only
+1,q035|amber-tech/bert-multilingual-passage-reranking-msmarco,0,passage reranker
+1,q035|nlpodyssey/bert-multilingual-uncased-geo-countries-headlines,0,geographic headline classification
+1,q035|GhadeerALbadani/mmbert-Multilingual_detection_of_hate_speech,1,21-language hate speech; Bengali plausible
+1,q035|ehzawad/fastconformer-ctc-large-bn-BD,0,speech recognition not hate speech
+1,q035|ehzawad/canary-1b-v2-bn-BD,0,speech recognition not hate speech
+1,q035|unitary/toxic-bert,0,English toxicity
+1,q035|abirmondalind/bert-base-multilingual-cased-hate-speech-ben-hin,2,Bengali and Hindi hate speech classifier
+1,q035|kingshukroy/xlm-roberta-base-hate-speech-ben-hin,2,Bengali and Hindi hate speech classifier
+1,q035|ehzawad/Voxtral-Small-24B-2507-bn-BD,0,speech recognition not hate speech
+1,q035|convaiinnovations/laya-multilingual,1,generic multilingual decision model; unspecific
+1,q035|ehzawad/whisper-large-v3-turbo-bn-BD,0,speech recognition not hate speech
+1,q035|kingshukroy/distilbert-base-multilingual-cased-hate-speech-ben-hin,2,Bengali and Hindi hate speech classifier
+1,q035|abirmondalind/bert-base-multilingual-uncased-hate-speech-ben-hin,2,Bengali and Hindi hate speech classifier
+1,q035|ehzawad/fastconformer-hybrid-rnnt-ctc-large-bn-BD,0,speech recognition not hate speech
+1,q035|kingshukroy/twhin-bert-base-hate-speech-ben-hin,2,Bengali and Hindi hate speech classifier
+1,q035|cardiffnlp/twitter-roberta-base-hate,0,English hate speech
+1,q035|lokas/spam-usernames-classifier,0,username spam classifier
+1,q036|SamLowe/roberta-base-go_emotions,0,emotion classification not spam
+1,q036|ProsusAI/finbert,0,financial sentiment
+1,q036|Mr-DS-ML-85/SyFox,1,multi-domain decision engine including spam; unspecific
+1,q036|boltuix/bert-lite,0,generic lightweight BERT not spam-specific
+1,q036|Nebulixlabs/Quantum-Classifier-Calibrated,1,tiny 1M model fine-tuned on spam dataset; language unclear
+1,q036|mrm8488/bert-tiny-finetuned-enron-spam-detection,1,tiny English spam but email not SMS
+1,q036|Keshav0av/HinSpam-spam-detection,1,Hinglish SMS spam; not English
+1,q036|sifat-febo/banglish-ontor,0,Banglish perception layer not spam
+1,q036|BAAI/bge-reranker-base,0,reranker
+1,q036|distilbert/distilbert-base-uncased-finetuned-sst-2-english,0,sentiment not spam
+1,q036|AbhinavMaurya/SpamShield,1,multilingual spam detection; SMS English not confirmed
+1,q036|onnx-community/phishing-scam-detector-base-ONNX,1,phishing/scam detector; related to spam
+1,q036|mrm8488/bert-tiny-finetuned-sms-spam-detection,2,tiny BERT on SMS spam
+1,q036|boltuix/bert-emotion,0,emotion detection
+1,q036|Horizon-Labs/phishing-scam-detector-base,2,flags spam and scams in SMS; multilingual
+1,q036|meta-llama/Prompt-Guard-86M,0,prompt attack detection
+1,q036|shravan37/kavach-scam-classifier,1,scam SMS classifier incl English; scam not spam
+1,q037|tabularisai/multilingual-emotion-classification,2,multilingual emotion model listing Hindi
+1,q037|lxyuan/distilbert-base-multilingual-cased-sentiments-student,1,multilingual sentiment not emotion
+1,q037|abhiprd2000/hindi-sentiment-model,1,Hindi sentiment not emotion
+1,q037|ShivamSharma8168/hindi-sentiment-model,1,Hindi tweets sentiment not emotion
+1,q037|Zeolit/lettuce-thymos-26m-v1,1,multilingual GoEmotions; Hindi not confirmed
+1,q037|samarthruckstar/xlm_hindi_english_emoClss,2,Hindi multi-label emotion classifier
+1,q037|onnx-community/distilbert-multilingual-toxicity-classifier-ONNX,0,toxicity not emotion
+1,q037|vashuag/HindiEmotion,2,Hindi emotion classifier
+1,q037|livekit/turn-detector,0,end-of-utterance detection
+1,q037|saksham-joshi/sentivox-muril-goemotions,1,MuRIL emotion model trained on English GoEmotions
+1,q037|cardiffnlp/twitter-roberta-base-emotion,0,English tweet emotion wrong language
+1,q037|papluca/xlm-roberta-base-language-detection,0,language identification
+1,q037|cis-lmu/glotlid,0,language identification
+1,q039|tuklu/SASCv2,0,Hinglish hate speech detection; wrong task
+1,q039|livekit/turn-detector,0,End-of-utterance detection for voice AI; unrelated
+1,q039|marshal-yash/gujlish-sentiment-analysis,2,Hinglish and Gujlish sentiment on MuRIL; direct fit
+1,q039|Mayurkhalse/muril-sarcasm-detector,1,Hinglish sarcasm detection; related but not sentiment
+1,q039|tsmaitry/devica-toxicity-xlmr-large,0,Toxicity classifier; wrong task
+1,q039|airzipm/sentiment-analysis-muril-v2,2,3-class sentiment for English Hindi and Hinglish
+1,q039|lxyuan/distilbert-base-multilingual-cased-sentiments-student,1,Multilingual sentiment; no Hinglish evidence
+1,q039|cis-lmu/glotlid,0,Language identification; wrong task
+1,q039|tuklu/SASC,0,Hinglish hate speech detection; wrong task
+1,q039|onnx-community/distilbert-multilingual-toxicity-classifier-ONNX,0,Toxicity classifier; wrong task
+1,q039|papluca/xlm-roberta-base-language-detection,0,Language detection; wrong task
+1,q039|rohanrajpal/bert-base-en-hi-codemix-cased,2,Hinglish sentiment fine-tuned on SAIL 2017
+1,q039|shae2977/xlm-roberta-hinglish-sentiment-analysis,2,Hinglish sentiment XLM-R; direct fit
+1,q039|pankajbiswas6/hinglish-hate-speech-bilstm,0,Hinglish hate speech; wrong task
+1,q042|ibm-granite/granite-guardian-hap-38m,2,Lightweight English toxicity classifier
+1,q042|distilbert/distilbert-base-uncased-finetuned-sst-2-english,0,Sentiment model not toxicity
+1,q042|lxyuan/distilbert-base-multilingual-cased-sentiments-student,0,Multilingual sentiment not toxicity
+1,q042|JungleLee/bert-toxic-comment-classification,2,English toxic comment BERT on Kaggle data
+1,q042|autotrust/GEV-26B-Decide,0,Large decision model; not a toxicity classifier
+1,q042|autotrust/JEV-35B,0,Large decision model; not a toxicity classifier
+1,q042|nicholasKluge/ToxiGuardrail,2,English RoBERTa toxicity scorer
+1,q042|vincentoh/deberta-v3-xsmall-l0-bouncer,1,Lightweight safe vs harmful classifier; broader than toxicity
+1,q042|Horizon-Labs/multilingual-toxicity-base,2,Toxic comment classifier covering English
+1,q042|ibm-granite/granite-guardian-hap-125m,2,English toxicity classifier guardrail
+1,q042|onnx-community/unbiased-toxic-roberta-ONNX,2,ONNX toxic comment RoBERTa
+1,q042|unitary/toxic-bert,2,Detoxify toxic comment classifier
+1,q042|Horizon-Labs/multilingual-toxicity-small,2,Small toxic comment classifier incl. English
+1,q042|unitary/unbiased-toxic-roberta,2,Detoxify toxic comment classifier
+1,q042|protectai/deberta-v3-base-prompt-injection-v2,0,Prompt injection detection; wrong task
+1,q042|HikmaAI/hikmaai-xlm-roberta-large-toxicity,1,Multilingual toxicity includes English; large not lightweight
+1,q043|cis-lmu/glotlid,0,Language identification; wrong task
+1,q043|classla/multilingual-IPTC-news-topic-classifier,1,News topic classifier; trained on other languages not Malayalam
+1,q043|samarthramesh/gaperon-mmbert-tamil,0,Tamil text quality classifier
+1,q043|agentlans/multilingual-e5-small-aligned-quality,0,Text quality assessment; wrong task
+1,q043|autopilot-ai/EthicalEye,0,Ethical content flagging; not news categories
+1,q043|XSY/albert-base-v2-fakenews-discriminator,0,English fake news detector
+1,q043|convaiinnovations/laya-multilingual,1,Multilingual typed-question classifier; possible but unevidenced for Malayalam news
+1,q043|jy46604790/Fake-News-Bert-Detect,0,English fake news detector
+1,q043|agentlans/multilingual-e5-small-aligned-readability,0,Readability assessment; wrong task
+1,q043|govtech/lionguard-2-lite,0,Content moderation; no Malayalam
+1,q043|manasyy/malayalam-fake-news-detector-muril,1,Malayalam news but fake/real not category
+1,q043|Emerald7664/laya-multilingual-onnx,1,Multilingual decision classifier; unevidenced for news categories
+1,q043|hillbyte/Indic-Lite,0,Indic LID and sentiment suite; no news category
+1,q043|soyelmismo/laya-multilingual-onnx,1,Multilingual decision classifier; unevidenced for news categories
+1,q043|mangalathkedar/indic-profanity-detector-xlm-roberta,0,Malayalam profanity detection; wrong task
+1,q043|adisyonist/14-allergens-0.1B,0,Food allergen model; unrelated
+1,q043|JanSchachtschabel/m2v-gte-multilingual-768,0,Static embedding model; not a classifier
+1,q043|arafatfahim/bangla-news-topic-classifier,0,Bangla news topics; wrong language
+1,q043|agentlans/multilingual-e5-small-aligned-sentiment,0,Sentiment model; wrong task
+1,q043|amber-tech/bert-multilingual-passage-reranking-msmarco,0,Passage reranker; wrong task
+1,q045|google/electra-base-discriminator,0,Generic English pretrained encoder
+1,q045|ai4bharat/IndicNER,0,NER not language identification
+1,q045|IAMCB/indic-transcribe-core,0,Speech recognition; wrong task
+1,q045|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2,0,Sentence embeddings; wrong task
+1,q045|amn-raw/parakeet-indic-v1,0,Speech recognition; wrong task
+1,q045|BAAI/bge-small-en-v1.5,0,English embeddings; wrong task
+1,q045|dnivra26/muril-lang-id-v7,2,Language ID for 17 Indian languages incl. romanized
+1,q045|MWirelabs/ne-lid,1,Language ID but only Northeast India languages
+1,q045|bodhan-ai/indic-transcribe-core,0,Speech recognition; wrong task
+1,q045|Vikrantyadav11234/NMT_multilingual_12,0,Translation model; wrong task
+1,q045|sentence-transformers/all-MiniLM-L6-v2,0,English embeddings; wrong task
+1,q045|adidsh/indic-transcribe-flex-int8-onnx,0,Speech recognition; wrong task
+1,q045|cross-encoder/ms-marco-MiniLM-L6-v2,0,Passage reranker; wrong task
+1,q045|pruthwik/ilid-muril-model,2,MuRIL fine-tuned for Indian language identification
+1,q046|l3cube-pune/me-lid-roberta,0,Marathi-English language identification; wrong task
+1,q046|Horizon-Labs/punctuation-restoration-base,0,Punctuation restoration; wrong task
+1,q046|benjamin/wtp-bert-tiny,0,Sentence segmentation; wrong task
+1,q046|djagatiya/ner-roberta-base-ontonotesv5-englishv4,0,English NER; wrong language
+1,q046|thenlpresearcher/shalaka_fd_indictrans2-en-indic-dist-200M_finetuned_eng_Latn_to_mar_Deva,0,English-Marathi translation; wrong task
+1,q046|lfcc/bert-portuguese-ner,0,Portuguese NER; wrong language
+1,q046|vaibhav006/indic-ner-muril-naamapadam,1,Marathi NER MuRIL; no social-media evidence
+1,q046|filip-w/gliner-multi-pii-onnx,1,Multilingual PII NER; Marathi and social text unevidenced
+1,q046|benjamin/wtp-bert-mini,0,Sentence segmentation; wrong task
+1,q046|IreNkweke/bert-finetuned-ner-ontonotes5,0,English NER; wrong language
+1,q046|theanugrah/muril-indic-ner,1,Marathi-capable Indic NER ONNX; no social-media evidence
+1,q046|SIRIS-Lab/citation-parser-ENTITY,0,Citation parsing NER; unrelated
+1,q046|l3cube-pune/marathi-social-ner,2,Marathi NER trained on social media data
+1,q046|Rishabh157/multiconer-multilingual-ner-mdeberta,1,Multilingual noisy-text NER; Marathi coverage unclear
+1,q046|Horizon-Labs/punctuation-restoration-small,0,Punctuation restoration; wrong task
+1,q046|stanfordnlp/stanza-mr,1,Marathi Stanza pipeline; NER and social text unclear
+1,q046|benjamin/wtp-canine-s-6l-no-adapters,0,Sentence segmentation; wrong task
+1,q048|mrm8488/distilbert-base-multi-cased-finetuned-typo-detection,0,Typo detection task not Tamil NER
+1,q048|SIRIS-Lab/citation-parser-ENTITY,0,Citation parsing NER; unrelated domain and language
+1,q048|Ambareeshkumar/BERT-Tamil,2,Tamil NER fine-tuned mBERT on WikiANN
+1,q048|Horizon-Labs/punctuation-restoration-small,0,Punctuation restoration not NER
+1,q048|prachuryyaIITG/SampurNER_Tamil_IndicBERTv2,2,Tamil fine-grained NER on IndicBERTv2
+1,q048|Babelscape/wikineural-multilingual-ner,1,Multilingual NER but Tamil not evidenced
+1,q048|vasista22/whisper-tamil-small,0,Tamil speech recognition not NER
+1,q048|JairamKanna/armms-xlsr,0,Tamil speech model not NER
+1,q048|tamilnlpSLIIT/whisper-ta,0,Tamil ASR not NER
+1,q048|ai4bharat/IndicNER,2,NER for 11 Indian languages including Tamil
+1,q048|Lokeshwaran/xlm-roberta-base-fintuned-panx-ta-hi,2,Tamil and Hindi NER on PAN-X
+1,q048|theanugrah/muril-indic-ner,1,Indic NER but ONNX int8 build; Tamil not explicit
+1,q048|Horizon-Labs/punctuation-restoration-base,0,Punctuation restoration not NER
+1,q048|prachuryyaIITG/APTFiNER_Tamil_MuRIL,2,Tamil fine-grained NER on MuRIL
+1,q048|Davlan/bert-base-multilingual-cased-ner-hrl,0,NER for languages excluding Tamil
+1,q048|vasista22/whisper-tamil-medium,0,Tamil ASR not NER
+1,q048|stanfordnlp/stanza-ta,1,Tamil Stanza pipeline; NER not clearly included
+1,q050|OpenMed/OpenMed-PII-Telugu-ClinicalBGE-Large-335M-v1,1,Telugu PII token classification; entity-like but PII-specific
+1,q050|LocalAI-io/privacy-filter-multilingual-GGUF,1,Multilingual PII tagger in GGUF; Telugu uncertain
+1,q050|akhila56/swecha-telangana-asr-base-model,0,Telugu speech recognition not NER
+1,q050|Horizon-Labs/punctuation-restoration-small,0,Punctuation restoration not NER
+1,q050|saiprathap-k-r/SGPT,0,Incoherent metadata; no real Telugu NER evidence
+1,q050|stanfordnlp/stanza-te,1,Telugu Stanza pipeline; NER not clearly included
+1,q050|neuronsbyisshu/indicbert-hi-ner-naamapadam,1,Hindi NER with zero-shot Telugu transfer
+1,q050|OpenMed/OpenMed-PII-Telugu-ClinicalE5-Base-109M-v1,1,Telugu PII token classification; PII-specific
+1,q050|OpenMed/privacy-filter-multilingual,1,Multilingual PII extraction; Telugu plausibly covered
+1,q050|OpenMed/privacy-filter-multilingual-v2,1,Multilingual PII extraction; Telugu plausibly covered
+1,q050|urchade/gliner_large-v2,1,General zero-shot NER; Telugu support unclear
+1,q050|jyothisanjay/swecha-telangana-asr-base-model,0,Telugu speech recognition not NER
+1,q050|nicolauduran45/affilgood-ner-multilingual-v2,1,Multilingual NER but affiliation-specific domain
+1,q050|ROG-7/muril-indic-ner-explainable-crf,1,MuRIL NER for low-resource Indic languages; Telugu unconfirmed
+1,q050|SIRIS-Lab/affilgood-NER-multilingual,1,Multilingual NER but affiliation-specific domain
+1,q050|chandanaau/distilbert-telugu-ner,2,Telugu NER on Naamapadam
+1,q050|HPLT/translate-te-en-v2.0-hplt,0,Translation model not NER
+1,q051|Ar86Bat/multilang-pii-ner,1,English PII NER; not legal-specific
+1,q051|flair/ner-english-large,1,General English NER; plausible for legal text
+1,q051|lfcc/bert-portuguese-ner,0,Portuguese archival NER wrong language
+1,q051|Jean-Baptiste/roberta-large-ner-english,1,General English NER; no legal evidence
+1,q051|chrisdepallan/ner-skills-distilbert,0,Resume skills NER unrelated domain
+1,q051|spacy/en_core_web_sm,1,General English pipeline with NER
+1,q051|spacy/en_core_web_lg,1,General English pipeline with NER
+1,q051|gravitee-io/bert-small-pii-detection,1,English PII detection; partial fit
+1,q051|onnx-community/multilang-pii-ner-ONNX,1,PII NER including English; not legal-specific
+1,q051|dslim/bert-base-NER,1,General English NER
+1,q051|rohin30n/armour-ai-ner,0,Hinglish financial conversations NER
+1,q051|StanfordAIMI/stanford-deidentifier-base,0,Radiology deidentification domain
+1,q051|IreNkweke/bert-finetuned-ner-ontonotes5,1,English OntoNotes NER with dates and orgs
+1,q051|pierre-tassel/rapido-ner-entity,1,Multilingual NER; English plausible no legal evidence
+1,q051|segment-any-text/sat-3l-sm,0,Sentence segmentation not NER
+1,q051|Babelscape/wikineural-multilingual-ner,1,Multilingual NER including English
+1,q051|splynx/multilang-pii-ner-ONNX,1,PII NER including English; not legal-specific
+1,q051|flair/ner-english-ontonotes-large,1,English 18-class NER; plausible for legal
+1,q055|SIRIS-Lab/citation-parser-ENTITY,0,Citation parsing not Urdu NER
+1,q055|onnx-community/bert-base-multilingual-cased-ner-hrl-ONNX,0,NER for languages excluding Urdu
+1,q055|benjamin/wtp-canine-s-1l-no-adapters,0,Sentence segmentation not NER
+1,q055|segment-any-text/sat-3l-sm,0,Sentence segmentation not NER
+1,q055|filip-w/gliner-multi-pii-onnx,1,Multilingual PII NER; Urdu uncertain
+1,q055|benjamin/wtp-canine-s-3l-no-adapters,0,Sentence segmentation not NER
+1,q055|segment-any-text/sat-1l-sm,0,Sentence segmentation not NER
+1,q055|benjamin/wtp-canine-s-9l-no-adapters,0,Sentence segmentation not NER
+1,q055|gomyk/gte-student-gte_L4_uniform_distilled,0,Sentence encoder not NER
+1,q055|nlpie/clinical-distilbert-i2b2-2010,0,English clinical NER wrong language
+1,q055|djagatiya/ner-roberta-base-ontonotesv5-englishv4,0,English-only NER
+1,q055|51la5/roberta-large-NER,1,XLM-R English CoNLL NER; cross-lingual only
+1,q055|UX4567/Speak-English-AI-3B-v1.0,0,Hindi-English translator not NER
+1,q055|segment-any-text/sat-12l-sm,0,Sentence segmentation not NER
+1,q055|minuva/MiniLMv2-toxic-jigsaw-onnx,0,Toxicity classifier not NER
+1,q055|lfcc/bert-portuguese-ner,0,Portuguese NER wrong language
+1,q055|abidanoaman/urdu-asr-distilled-base-enhanced,0,Urdu speech recognition not NER
+1,q055|FacebookAI/xlm-roberta-large-finetuned-conll03-english,1,XLM-R English NER; Urdu only by transfer
+1,q055|benjamin/wtp-canine-s-6l-no-adapters,0,Sentence segmentation not NER
+1,q055|MichaelHuang/muril_base_cased_urdu_ner,2,Urdu NER on MuRIL
+1,q056|sagorsarker/mbert-bengali-ner,0,Bengali NER wrong language
+1,q056|prachuryyaIITG/SampurNER_Punjabi_IndicBERTv2,2,Punjabi fine-grained NER on IndicBERTv2
+1,q056|Horizon-Labs/punctuation-restoration-small,0,Punctuation restoration not NER
+1,q056|nlpie/clinical-distilbert-i2b2-2010,0,English clinical NER wrong language
+1,q056|Davlan/xlm-roberta-base-wikiann-ner,2,WikiANN NER covering Punjabi
+1,q056|theanugrah/muril-indic-ner,1,Indic NER ONNX build; Punjabi not explicit
+1,q056|pierre-tassel/rapido-ner-entity,1,Multilingual NER; Punjabi not evidenced
+1,q056|vaibhav006/indic-ner-muril-naamapadam,2,MuRIL NER explicitly covering Punjabi
+1,q056|Horizon-Labs/punctuation-restoration-base,0,Punctuation restoration not NER
+1,q056|oliverguhr/fullstop-punctuation-multilingual-sonar-base,0,Punctuation prediction not NER
+1,q056|Lokeshwaran/xlm-roberta-base-fintuned-panx-ta-hi,0,Tamil and Hindi NER; not Punjabi
+1,q056|ai4bharat/IndicNER,2,Indian-language NER including Punjabi
+1,q056|oliverguhr/fullstop-punctuation-multilang-large,0,Punctuation prediction not NER
+1,q056|SIRIS-Lab/citation-parser-ENTITY,0,Citation parsing not Punjabi NER
+1,q056|CAMeL-Lab/bert-base-arabic-camelbert-mix-ner,0,Arabic NER wrong language
+1,q057|vaibhav006/indic-ner-muril-naamapadam,2,Indic NER on Marathi Punjabi Telugu with MuRIL
+1,q057|Rishabh157/multiconer-multilingual-ner-mdeberta,1,Multilingual NER 12+ languages; Indian coverage not shown
+1,q057|OpenMed/OpenMed-NER-PharmaDetect-SuperClinical-434M,0,English biomedical chemical NER
+1,q057|Babelscape/wikineural-multilingual-ner,0,Multilingual NER but European languages only
+1,q057|gravitee-io/bert-small-pii-detection,0,English PII detection
+1,q057|ai4bharat/IndicNER,2,NER for 11 Indian languages
+1,q057|rohin30n/armour-ai-ner,1,Hinglish financial NER; narrow domain and partial Indian coverage
+1,q057|openai/privacy-filter,0,PII masking not Indian-language NER
+1,q057|chandanaau/distilbert-telugu-ner,1,Telugu-only NER; one Indian language
+1,q057|microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank,0,Prompt compression token classification not NER
+1,q057|knowledgator/gliner-x-small,1,Multilingual GLiNER NER; Indian languages unconfirmed
+1,q057|OpenMed/OpenMed-NER-ChemicalDetect-ModernMed-149M,0,English chemical biomedical NER
+1,q057|MichaelHuang/muril_base_cased_urdu_ner_2.0,1,Urdu NER with MuRIL; single language
+1,q057|MichaelHuang/muril_base_cased_hindi_ner,1,Hindi NER with MuRIL; single language
+1,q057|Archit-01/indic-asr-multi,0,Speech recognition not NER
+1,q058|OpenMed/OpenMed-PII-Hindi-BiomedBERT-Base-110M-v1,0,Hindi PII detection not POS tagging
+1,q058|samarthramesh/gaperon-mmbert-hindi,0,Hindi text quality classifier not POS
+1,q058|LocalAI-io/privacy-filter-multilingual-GGUF,0,PII token classification not POS
+1,q058|OpenMed/OpenMed-PII-Hindi-BioClinicalBERT-Base-110M-v1,0,Hindi PII detection not POS tagging
+1,q058|OpenMed/OpenMed-PII-Hindi-ClinicalE5-Base-109M-v1,0,Hindi PII detection not POS tagging
+1,q058|knowledgator/gliner-x-large,0,Generic NER not POS tagging
+1,q058|OpenMed/privacy-filter-multilingual-v2,0,PII extraction not POS tagging
+1,q058|alphaedge-ai/clip-ViT-B-32-multilingual-v1-hi-16384,0,CLIP embedding model not POS
+1,q058|OpenMed/OpenMed-PII-Hindi-ClinicalE5-Small-33M-v1,0,Hindi PII detection not POS tagging
+1,q058|hiteshwadhwani/pii-model-indic-v1,0,PII detection not POS tagging
+1,q058|Om-7387/Hindi_Tokenizer,0,Tokenizer not POS tagger
+1,q058|athrvk/gpu-sankhya,0,Number shorthand extraction not POS
+1,q058|specialv/whisper-small-merged-hi-en,0,Speech recognition not POS
+1,q058|anchpop/lexide-parsley,1,POS parser in 12 languages; Hindi unconfirmed
+1,q058|navnav98/xlmr-comi-pos,1,Hindi-English code-mixed POS but marked testing only
+1,q058|stanfordnlp/stanza-hi,2,Stanza Hindi pipeline includes POS tagging
+1,q058|LingoIITGN/COMI-LINGUA-POS,1,Hinglish POS tagger; code-mixed and 8B not small
+1,q058|OpenMed/privacy-filter-multilingual,0,PII extraction not POS tagging
+1,q058|Francesco-A/BiomedNLP-PubMedBERT-base-uncased-abstract-bc5cdr-ner-v1,0,English biomedical NER
+1,q061|DeepMostInnovations/hindi-embedding-foundational-model,2,Hindi-specific sentence embedding model
+1,q061|AkshitaS/bhasha-embed-v0,2,Hindi and Romanized Hindi embedding model
+1,q061|sentence-transformers/paraphrase-multilingual-mpnet-base-v2,1,Multilingual sentence embeddings; Hindi plausible not shown
+1,q061|vivekkopthsd/taxrag-embedding-granite-97m-multilingual,1,English/Hindi embeddings but tax-domain retrieval tuned
+1,q061|convaiinnovations/hindi-embedding-foundational-model,2,Hindi-specific sentence embedding model
+1,q061|convaiinnovations/hindi-embedding-model-final,2,Hindi-specific sentence embedding model
+1,q061|Alibaba-NLP/gte-multilingual-base,1,Multilingual embedding model; Hindi plausible
+1,q061|anuragwagh0/hinglish-minilm,1,Hinglish romanized sentence embeddings; partial fit
+1,q061|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2,1,Multilingual sentence embeddings; Hindi plausible
+1,q061|DeepMostInnovations/hindi-embedding-foundational-model-10B,2,Hindi-specific sentence embedding model
+1,q061|Snowflake/snowflake-arctic-embed-l-v2.0,1,Multilingual embedding model; Hindi plausible
+1,q061|nomic-ai/nomic-embed-text-v2-moe,1,Multilingual embedding model; Hindi plausible
+1,q062|intfloat/multilingual-e5-base,1,Multilingual embeddings; Marathi plausible not shown
+1,q062|HPLT/translate-mr-en-v2.0-hplt,0,Translation model not embeddings
+1,q062|ObversaryStudiosOrg/Nemotron-3-Embed-8B-BF16,1,Multilingual embedding model; Marathi unconfirmed
+1,q062|l3cube-pune/indic-sentence-similarity-sbert,2,Indic SBERT covering Marathi and English
+1,q062|magibu/embeddingmagibu-200m,0,Turkish-focused embedding model
+1,q062|l3cube-pune/indic-sentence-bert-nli,2,Indic SBERT covering Marathi and English
+1,q062|anuragwagh0/marathlish-minilm,2,Marathi-English code-mixed sentence embeddings
+1,q062|vivekkopthsd/taxrag-embedding-granite-97m-multilingual,0,English/Hindi tax-domain embeddings; not Marathi
+1,q062|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2,1,Multilingual embeddings; Marathi plausible
+1,q062|nvidia/Nemotron-3-Embed-8B-BF16,1,Multilingual embedding model; Marathi unconfirmed
+1,q062|intfloat/multilingual-e5-small,1,Multilingual embeddings; Marathi plausible not shown
+1,q062|Arsh9210/Nemotron-3-Embed-8B-BF16,1,Multilingual embedding model; Marathi unconfirmed
+1,q062|tylerl0208/Nemotron-3-Embed-8B-BF16,1,Multilingual embedding model; Marathi unconfirmed
+1,q062|sentence-transformers/paraphrase-multilingual-mpnet-base-v2,1,Multilingual embeddings; Marathi plausible
+1,q062|Snowflake/snowflake-arctic-embed-l-v2.0,1,Multilingual embedding model; Marathi plausible
+1,q062|hotchpotch/bekko-static-embedding-v1,1,Multilingual static embeddings; Marathi unconfirmed
+1,q062|Blaxzter/LaBSE-sentence-embeddings,1,LaBSE 109 languages; Marathi plausible
+1,q062|AkshitaS/bhasha-embed-v0,0,Hindi and English embeddings; not Marathi
+1,q062|HPLT/translate-mr-en-v2.0-hplt_opus,0,Translation model not embeddings
+1,q064|sentence-transformers/LaBSE,1,Multilingual sentence encoder covering Tamil; finetunable
+1,q064|upskyy/e5-large-korean,0,Korean fine-tune
+1,q064|janisrebekahv/finetuned-colloquial-tamil,0,English-to-Tamil translation not similarity
+1,q064|l3cube-pune/tamil-sentence-bert-nli,2,Tamil SBERT sentence embeddings
+1,q064|JairamKanna/armms-xlsr,0,Tamil speech model
+1,q064|Qdrant/bm25,0,Language-agnostic BM25 not Tamil similarity model
+1,q064|tamilnlpSLIIT/whisper-ta,0,Tamil speech recognition
+1,q064|Snowflake/snowflake-arctic-embed-l-v2.0,1,Multilingual embedding model; Tamil plausible
+1,q064|l3cube-pune/tamil-sentence-similarity-sbert,2,Tamil SBERT fine-tuned on STS
+1,q064|vasista22/whisper-tamil-medium,0,Tamil speech recognition
+1,q064|nomic-ai/nomic-embed-text-v2-moe,1,Multilingual embedding model; Tamil plausible
+1,q064|vishnu-n/Morgan-Tanglish-v7,1,Romanised Tamil-English embeddings; partial fit
+1,q064|Tamil-ai/tamil-embed-base,2,Tamil-specialized sentence embedding model
+1,q064|Alibaba-NLP/gte-multilingual-base,1,Multilingual embedding model; Tamil plausible
+1,q064|l3cube-pune/indic-sentence-bert-nli,2,Indic SBERT including Tamil
+1,q064|l3cube-pune/indic-sentence-similarity-sbert,2,Indic STS SBERT including Tamil
+1,q064|emonnsl/embed_model,0,Bangla sentence embedding model
+1,q065|SIRIS-Lab/affilgood-dense-retriever,0,Affiliation retrieval embedder; no Telugu evidence
+1,q065|MoralHazard/NSFW-GIST-small,0,Generic English-style embedder; no Telugu support shown
+1,q065|l3cube-pune/telugu-sentence-bert-nli,2,Telugu SBERT sentence embeddings suited to paraphrase similarity
+1,q065|clarin-pl/combo-seg-xlm-roberta-base-telugu-mtg-ud2.17,0,Telugu sentence segmentation/tokenisation; wrong task
+1,q065|emonnsl/embed_model,0,Bangla sentence embedding; wrong language
+1,q065|VijayChandra/english-to-telugu-translator-nllb,0,English-to-Telugu translation; wrong task
+1,q065|Msobhi/Persian_Sentence_Embedding_v3,0,Persian embedding model; wrong language
+1,q065|MoralHazard/GISTsmall,0,Generic embedder with no Telugu evidence
+1,q065|HPLT/translate-te-en-v2.0-hplt_opus,0,Telugu-English translation; wrong task
+1,q065|Alibaba-NLP/gte-multilingual-base,1,Multilingual embedder; Telugu plausible but not evidenced
+1,q065|intfloat/multilingual-e5-base,1,Multilingual embedder; plausible for Telugu similarity
+1,q065|l3cube-pune/telugu-sentence-similarity-sbert,2,Telugu SBERT fine-tuned on STS; fits paraphrase detection
+1,q065|Jaume/gemma-2b-embeddings,1,Generic embedder; Telugu support unclear
+1,q065|nomic-ai/nomic-embed-text-v2-moe,1,Multilingual embedder; Telugu plausible
+1,q065|l3cube-pune/marathi-paraphrase-detection-bert,0,Paraphrase detection but for Marathi
+1,q065|Snowflake/snowflake-arctic-embed-l-v2.0,1,Multilingual embedder; Telugu plausible
+1,q065|intfloat/multilingual-e5-small,1,Multilingual embedder; plausible for Telugu
+1,q065|HarishMaths/Hotel-Policy-Embedding,0,Hotel-domain embedder; no Telugu
+1,q065|dbhaskarganesh/TinyLlama1BTeluguFineTuneModel,0,Telugu story generation LLM; wrong task
+1,q065|aloobun/indic-mxbai-L8-embed,1,Indic embedder including English-Telugu pairs; partial fit
+1,q068|gchhablani/wav2vec2-large-xlsr-gu,0,Gujarati speech recognition; not text embedding
+1,q068|vasista22/whisper-gujarati-medium,0,Gujarati ASR; wrong task
+1,q068|setu4993/LEALLA-small,2,Lightweight multilingual sentence embeddings covering 109 languages
+1,q068|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2,1,Small multilingual embedder; Gujarati plausible not evidenced
+1,q068|vasista22/whisper-gujarati-small,0,Gujarati ASR; wrong task
+1,q068|setu4993/LEALLA-base,2,Lightweight multilingual sentence embeddings covering 109 languages
+1,q068|intfloat/multilingual-e5-small,1,Small multilingual embedder; Gujarati plausible
+1,q068|intfloat/multilingual-e5-base,1,Multilingual embedder; Gujarati plausible but not tiny
+1,q068|Snowflake/snowflake-arctic-embed-l-v2.0,1,Multilingual embedder; large rather than lightweight
+1,q068|jinaai/jina-embeddings-v5-text-nano-retrieval-GGUF,1,Small multilingual embedder; Gujarati not evidenced
+1,q068|univo-models/static-similarity-mrl-multilingual-int8-128,1,Tiny multilingual static embeddings; Gujarati not evidenced
+1,q068|MenteEAI/mentee-embed-v2,0,Arabic/English/Urdu embedder; no Gujarati
+1,q068|alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-16384,1,Gujarati-trimmed small CLIP text encoder; image-text focus
+1,q068|jinaai/jina-embeddings-v5-text-small-retrieval-GGUF,1,Multilingual embedder; Gujarati not evidenced
+1,q068|alphaedge-ai/clip-ViT-B-32-multilingual-v1-gu-32768,1,Gujarati-trimmed small CLIP text encoder; image-text focus
+1,q068|jinaai/jina-embeddings-v5-text-nano-text-matching-GGUF,1,Small multilingual embedder; Gujarati not evidenced
+1,q068|1rsh/wav2vec2-large-xlsr-gu-kenlm,0,Gujarati speech recognition; not text embedding
+1,q068|sentence-transformers/paraphrase-multilingual-mpnet-base-v2,1,Multilingual embedder; Gujarati plausible but not lightweight
+1,q070|Teradata/snowflake-arctic-embed-m-v2.0,1,Multilingual embedder; Malayalam plausible
+1,q070|nomic-ai/nomic-embed-text-v2-moe,1,Multilingual embedder; Malayalam plausible
+1,q070|HPLT/translate-ml-en-v2.0-hplt_opus,0,Malayalam-English translation; wrong task
+1,q070|HPLT/translate-en-ml-v2.0-hplt,0,English-Malayalam translation; wrong task
+1,q070|Snowflake/snowflake-arctic-embed-l-v2.0,1,Multilingual embedder; Malayalam plausible
+1,q070|Jaume/gte-multilingual-base-no-network,1,Mirror of multilingual GTE; Malayalam plausible
+1,q070|Teradata/snowflake-arctic-embed-l-v2.0,1,Multilingual embedder; Malayalam plausible
+1,q070|vivekkopthsd/taxrag-embedding-granite-97m-multilingual,0,English/Hindi tax-domain embedder; no Malayalam
+1,q070|HPLT/translate-en-ml-v2.0-hplt_opus,0,English-Malayalam translation; wrong task
+1,q070|Alibaba-NLP/gte-multilingual-base,1,Multilingual embedder; Malayalam plausible
+1,q070|Teradata/gte-multilingual-base,1,Multilingual embedder; Malayalam plausible
+1,q070|victormuryn/use-dropout-pt,0,Ukrainian sentence embeddings; wrong language
+1,q070|emonnsl/embed_model,0,Bangla sentence embedding; wrong language
+1,q070|Snowflake/snowflake-arctic-embed-m-v2.0,1,Multilingual embedder; Malayalam plausible
+1,q070|karmx/Llama-Karmx-Indic-Embedding-bge-m3,2,Indic embedder explicitly covering Malayalam
+1,q070|HPLT/translate-ml-en-v2.0-hplt,0,Malayalam-English translation; wrong task
+1,q070|victormuryn/use-generated-pt,0,Ukrainian sentence embeddings; wrong language
+1,q070|eswardivi/tamal-sentence-bert-nli,2,Merge of Malayalam sentence-BERT NLI models
+1,q070|sentence-transformers/LaBSE,1,Multilingual sentence embedder covering 109 languages
+1,q070|Blaxzter/LaBSE-sentence-embeddings,1,LaBSE copy; 109 languages incl. Malayalam plausible
+1,q071|PartAI/Tooka-SBERT-V2-Large,0,Persian-oriented large model; not tiny English
+1,q071|brahmairesearch/slx-v0.1,1,384-dim sentence similarity model; English and size unclear
+1,q071|mlx-community/all-MiniLM-L6-v2-bf16,2,Tiny English MiniLM sentence embedder
+1,q071|PartAI/Tooka-SBERT-V2-Small,0,Persian-oriented model; not English
+1,q071|nomic-ai/nomic-embed-text-v1.5,1,English embedder but not tiny
+1,q071|onnx-community/embeddinggemma-300m-ONNX,1,Compact on-device embedder but 300M and multilingual
+1,q071|bisectgroup/BiCA-small,1,Small gte-small fine-tune; English plausible
+1,q071|mlx-community/all-MiniLM-L6-v2-4bit,2,Tiny quantized English MiniLM embedder
+1,q071|johnnyboycurtis/ModernBERT-small,1,Small English embedder but flagged legacy and not recommended
+1,q071|intfloat/multilingual-e5-small,1,Small embedder but multilingual rather than English-specific
+1,q071|thoddnn/all-MiniLM-L6-v2-4bit,2,Tiny quantized English MiniLM embedder
+1,q071|upskyy/e5-small-korean,0,Korean fine-tune; wrong language
+1,q071|sentence-transformers/all-mpnet-base-v2,1,Good English similarity but not tiny
+1,q071|axiotic/ogma-mini,2,3.5M-parameter English embedder built for edge deployment
+1,q071|sentence-transformers/all-MiniLM-L6-v2,2,Classic tiny English sentence similarity model
+1,q071|flax-sentence-embeddings/multi-qa_v1-MiniLM-L6-cls_dot,1,Small English QA-search MiniLM; similarity fit partial
+1,q071|FastFlowLM/Embedding-Gemma-300M-NPU2,1,On-device embedder but 300M and multilingual
+1,q071|NeuML/bert-tiny-sts-last-pooling,0,Test model for pooling
+1,q071|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2,1,Small multilingual similarity model; not English-specific
+1,q071|sentence-transformers-testing/all-nli-bert-tiny-dense,1,Tiny English NLI-tuned test model
+1,q072|nomic-ai/nomic-embed-text-v2-moe,1,Multilingual embedder; Punjabi plausible
+1,q072|l3cube-pune/punjabi-sentence-bert-nli,2,Punjabi SBERT sentence embeddings
+1,q072|hrusheekeshsawarkar/indic-sentence-bert-nli-matryoshka,1,Indic SBERT variant; Punjabi plausible not evidenced
+1,q072|DeepMostInnovations/hindi-embedding-foundational-model-10B,0,Hindi-specific embeddings; wrong language
+1,q072|l3cube-pune/punjabi-sentence-similarity-sbert,2,Punjabi SBERT fine-tuned for sentence similarity
+1,q072|karmx/Llama-Karmx-Indic-Embedding-bge-m3,2,Indic embedder explicitly covering Punjabi
+1,q072|sentence-transformers/bert-large-nli-max-tokens,0,Deprecated English NLI embedder
+1,q072|Snowflake/snowflake-arctic-embed-l-v2.0,1,Multilingual embedder; Punjabi plausible
+1,q072|Alibaba-NLP/gte-multilingual-base,1,Multilingual embedder; Punjabi plausible
+1,q072|Snowflake/snowflake-arctic-embed-m-v2.0,1,Multilingual embedder; Punjabi plausible
+1,q072|sentence-transformers/bert-base-nli-max-tokens,0,Deprecated English NLI embedder
+1,q072|DeepMostInnovations/hindi-embedding-foundational-model,0,Hindi-specific embeddings; wrong language
+1,q072|sentence-transformers/bert-base-nli-stsb-mean-tokens,0,Deprecated English NLI embedder
+1,q072|partex-nv/Llama-3.1-8B-VaaniSetu-EN2PA,0,English-to-Punjabi translation; wrong task
+1,q072|sentence-transformers/bert-base-nli-mean-tokens,0,Deprecated English NLI embedder
+1,q072|sentence-transformers/LaBSE,1,Multilingual sentence embedder with 109 languages
+1,q072|sentence-transformers/bert-large-nli-cls-token,0,Deprecated English NLI embedder
+1,q072|istiaqfuad/triBne-e5-large,0,Bangla/Banglish/English embedder; wrong language
+1,q072|istiaqfuad/triBne-e5-small,0,Bangla/Banglish/English embedder; wrong language
+1,q072|judicialmind/KCC-Embed-0.6B,0,Domain-specific embedder with no Punjabi evidence
+2,q011|openai/whisper-large-v3,2,Robust multilingual ASR incl English; strong generalisation
+2,q025|ai4bharat/indictrans2-en-indic-dist-200M,2,English to Indic incl Gujarati; distilled small
+2,q024|Helsinki-NLP/opus-mt-nl-en,0,Dutch to English only; no Indian languages
+2,q017|priyadip/en-hi-transformer,2,Dedicated English to Hindi transformer
+2,q024|onnx-community/sarvam-translate-onnx,2,Translation across 22 Indian languages
+2,q024|Vikrantyadav11234/NMT_multilingual_12,2,Indian languages to and from English translation
+2,q025|Helsinki-NLP/opus-mt-tc-bible-big-deu_eng_fra_por_spa-ine,1,English to Indo-European group; Gujarati plausible but unconfirmed
+2,q011|aitytech/Whisper-Base-MLX-FP16,2,Small Whisper base ASR; English capable
+2,q017|DireDreadlord/Vakya-Mini-Extended-100M,2,Lightweight en-hi translation model
+2,q011|abhishekgautamm/whisper-tiny-hinglish-ct2,1,Small Whisper but Hindi/Hinglish romanized; English ASR partial fit
+2,q017|facebook/nllb-200-distilled-600M,2,NLLB covers English to Hindi
+2,q025|facebook/nllb-200-distilled-600M,2,NLLB covers English to Gujarati
+2,q025|ManiKumarAdapala/Gemma3-En2Indic-NMT-270M,2,English to 14 Indic languages small model
+2,q011|David19930/whisper-small-hi,1,Whisper small fine-tune for Hindi; English use uncertain
+2,q024|Prince-1/sarvam-translate-onnx,2,Translation across 22 Indian languages
+2,q017|DireDreadlord/Vakya-Mini-100M,2,Lightweight en-hi translation model
+2,q025|WindstormLabs/origin-Helsinki-NLP-opus-mt-tc-bible-big-deu_eng_fra_por_spa-ine,1,English to Indo-European group; Gujarati plausible but unconfirmed
+2,q017|yash17366392/Fine-Tuned_Helsinki_model,2,Fine-tuned opus-mt English Hindi translation
+2,q029|ai4bharat/indictrans2-en-indic-1B,0,English to Indic direction; wrong for Malayalam to English
+2,q025|alphaZimuth/Hy-MT2-30B-A3B-APEX-GGUF,1,General multilingual MT quantization; Gujarati support not shown
+2,q024|Helsinki-NLP/opus-mt-de-en,0,German to English only
+2,q029|facebook/nllb-200-distilled-1.3B,2,NLLB supports Malayalam to English
+2,q029|HPLT/translate-ml-en-v2.0-hplt_opus,2,Dedicated Malayalam to English model
+2,q011|futo-org/asr4all-s,1,Small streaming ASR; language not stated in excerpt
+2,q024|Genius1237/xlm-roberta-large-tydip,0,Politeness classifier not translation
+2,q011|abhishekgautamm/whisper-tiny-hinglish,1,Tiny Whisper for Hinglish; partial English fit
+2,q025|ai4bharat/indictrans2-en-indic-1B,2,English to Indic incl Gujarati
+2,q025|Helsinki-NLP/opus-mt-iir-en,0,Indo-Iranian to English; wrong direction
+2,q024|AkshitaS/bhasha-embed-v0,0,Embedding model not translation
+2,q017|facebook/nllb-200-distilled-1.3B,2,NLLB covers English to Hindi
+2,q029|ltguoj/CeyNews-category-infoxlm-large,0,News category classifier not translation
+2,q029|Helsinki-NLP/opus-mt-ml-en,2,Dedicated Malayalam to English model
+2,q011|facebook/wav2vec2-base-960h,1,Small English ASR on Librispeech; no accent evidence
+2,q029|HPLT/translate-ml-en-v2.0-hplt,2,Dedicated Malayalam to English model
+2,q011|AIArchiveInfo/Fun-ASR-MLT-Nano-2512,1,Multilingual small ASR; English and accents unconfirmed
+2,q029|Muhammed-sheheen/NLLB_FINETUNIG,0,English to Malayalam; wrong direction
+2,q011|openai/whisper-small,2,Small robust Whisper ASR
+2,q025|WindstormLabs/origin-Helsinki-NLP-opus-mt-iir-en,0,Indo-Iranian to English; wrong direction
+2,q017|Sams200/opus-mt-en-hi,2,CTranslate2 opus-mt English to Hindi
+2,q024|ai4bharat/indic-conformer-600m-multilingual,0,Speech recognition not translation
+2,q017|ViuAI/ViuTranslate,2,English Hindi NMT model
+2,q029|endurasolution/aksharakuppy_English-Malayalam-Translate,1,Bidirectional en-ml model; news domain unsupported
+2,q011|mistralai/Voxtral-Mini-4B-Realtime-2602,2,Multilingual realtime transcription incl English
+2,q029|kurianbenoy/kde_en_ml_translation_model,0,English to Malayalam; wrong direction
+2,q011|FunAudioLLM/Fun-ASR-Nano-2512,1,Nano ASR; English support likely but unstated
+2,q011|aitytech/Whisper-Tiny-MLX-FP16,2,Tiny Whisper ASR for on-device
+2,q029|nandakishoresaic/indian-news-translator,1,Multilingual news translator; Malayalam to English unconfirmed
+2,q017|sag-9755/Fine_Tune_MarianMT_English_to_Hindi,2,MarianMT English Hindi fine-tune
+2,q025|str33t/madlad400-3b-mt-en-dv-news-v1-GGUF,0,English to Dhivehi fine-tune; wrong language
+2,q029|Sams200/opus-mt-ml-en,2,CTranslate2 Malayalam to English
+2,q011|NCAIR1/NigerianAccentedEnglish,2,Whisper small tuned for accented English
+2,q024|google-t5/t5-base,0,T5 lacks Indian language translation
+2,q029|facebook/nllb-200-distilled-600M,2,NLLB supports Malayalam to English
+2,q017|Swekerr/eng2hindi,2,English to Hindi translation model
+2,q029|facebook/nllb-200-3.3B,2,NLLB supports Malayalam to English
+2,q017|ai4bharat/indictrans2-en-indic-dist-200M,2,English to Indic incl Hindi; small distilled
+2,q011|qqceqqq/Fun-ASR-Nano-2512,1,Multilingual ASR 31 languages; English accents unconfirmed
+2,q017|kd13/nano-translate-v2,2,Small English to Hindi seq2seq translator
+2,q017|Helsinki-NLP/opus-mt-en-hi,2,Dedicated English to Hindi model
+2,q017|aiproject-2025/english-hindi-odia-translator,1,IndicTrans2 tuned on Odia; Hindi supported partly
+2,q024|google-t5/t5-small,0,T5 lacks Indian language translation
+2,q025|HPLT/translate-gu-en-v2.0-hplt,0,Gujarati to English; wrong direction
+2,q025|HPLT/translate-en-gu-v2.0-hplt,2,Dedicated English to Gujarati model
+2,q011|openai/whisper-base,2,Small Whisper ASR
+2,q025|Vikrantyadav11234/NMT_multilingual_12,1,Indian languages translation; Gujarati not confirmed
+2,q024|theharshithh/open-sarika,0,Speech recognition model for three languages
+2,q011|FL33TW00D-HF/whisper-small,2,Whisper small conversion for ASR
+2,q017|ai4bharat/indictrans2-en-indic-1B,2,English to Indic incl Hindi
+2,q011|aitytech/Whisper-Small-MLX-FP16,2,Small Whisper ASR on Apple Silicon
+2,q029|Navneeth017/nllb-1.3b-en-ml-ct2,0,English to Malayalam; wrong direction
+2,q024|Satwik11/gemma-2b-mt-Hindi-Fintuned,1,English to Hindi only; not broad Indian coverage
+2,q011|patrickvonplaten/wav2vec2_tiny_random_robust,0,Random test model
+2,q025|HPLT/translate-en-gu-v2.0-hplt_opus,2,Dedicated English to Gujarati model
+2,q017|axondendriteplus/LegalLoRA-IndicTrans2-en_indic,2,English Hindi legal fine-tune of IndicTrans2
+2,q029|ai4bharat/indictrans2-en-indic-dist-200M,0,English to Indic; wrong direction
+2,q024|sagnikdas-ml/sarvam-translate,2,Translation across 22 Indian languages
+2,q025|facebook/nllb-200-distilled-1.3B,2,NLLB covers English to Gujarati
+2,q024|Helsinki-NLP/opus-mt-fr-en,0,French to English only
+2,q025|onnx-community/sarvam-translate-onnx,2,Translation covering Gujarati among 22 languages
+2,q025|facebook/nllb-200-3.3B,2,NLLB covers English to Gujarati
+2,q025|Prince-1/sarvam-translate-onnx,2,Translation covering Gujarati among 22 languages
+2,q017|facebook/nllb-200-3.3B,2,NLLB covers English to Hindi
+2,q011|FunAudioLLM/Fun-ASR-MLT-Nano-2512,1,Multilingual nano ASR; English accents unconfirmed
+2,q025|HPLT/translate-gu-en-v2.0-hplt_opus,0,Gujarati to English; wrong direction
+2,q024|cstr/madlad400-3b-mt-GGUF,2,MADLAD-400 multilingual MT covering Indian languages
+2,q042|distilbert/distilbert-base-uncased-finetuned-sst-2-english,0,Sentiment model not toxicity classifier
+2,q032|ibraheemmoosa/xlmindic-base-multiscript-soham,0,Bangla news classification not Marathi sentiment
+2,q031|LondonStory/txlm-roberta-hindi-sentiment,2,Hindi sentiment classifier directly matches
+2,q035|convaiinnovations/laya-multilingual,1,Multilingual decision model; no evidence of Bengali hate speech
+2,q031|Keshav0av/HinSpam-spam-detection,0,Spam detection not sentiment
+2,q032|classla/multilingual-IPTC-news-topic-classifier,0,News topics in other languages not Marathi sentiment
+2,q031|Captain-1337/CrudeBERT,0,English financial headline sentiment not Hindi
+2,q031|chaoliangUNSW/Jev-Style-0.8B-Decision-v3-GGUF,0,Decision model unrelated to Hindi sentiment
+2,q043|samarthramesh/gaperon-mmbert-tamil,0,Tamil text-quality scorer not Malayalam news category
+2,q035|abirmondalind/bert-base-multilingual-cased-hate-speech-ben-hin,2,Bengali and Hindi hate speech classifier
+2,q043|autopilot-ai/EthicalEye,0,Ethics/toxicity flagging not Malayalam news categories
+2,q035|ehzawad/fastconformer-ctc-large-bn-BD,0,Bengali speech recognition not hate speech text
+2,q043|arafatfahim/bangla-news-topic-classifier,0,Bangla news topics wrong language for Malayalam
+2,q043|cis-lmu/glotlid,0,Language identification not news classification
+2,q032|nlpodyssey/bert-multilingual-uncased-geo-countries-headlines,0,Geographic headline classification not sentiment
+2,q043|mangalathkedar/indic-profanity-detector-xlm-roberta,0,Malayalam profanity detection not news category
+2,q035|kingshukroy/distilbert-base-multilingual-cased-hate-speech-ben-hin,2,Bengali and Hindi hate speech classifier
+2,q042|unitary/toxic-bert,2,English toxic comment classifier
+2,q032|SargeDev/Solar-JEV-Gemma-embed-2-GGUF,0,Decision embedding probe unrelated to Marathi sentiment
+2,q043|amber-tech/bert-multilingual-passage-reranking-msmarco,0,Passage reranker not classifier
+2,q035|abirmondalind/bert-base-multilingual-uncased-hate-speech-ben-hin,2,Bengali and Hindi hate speech classifier
+2,q031|autopilot-ai/EthicalEye,0,Ethics flagging not Hindi sentiment
+2,q035|unitary/multilingual-toxic-xlm-roberta,1,Multilingual toxicity; Bengali coverage not shown
+2,q043|agentlans/multilingual-e5-small-aligned-sentiment,0,Sentiment not news category
+2,q035|unitary/toxic-bert,0,English-only toxicity not Bengali
+2,q032|cstr/glotlid-GGUF,0,Language identification not sentiment
+2,q035|nlpodyssey/bert-multilingual-uncased-geo-countries-headlines,0,Geo headline classification not hate speech
+2,q043|adisyonist/14-allergens-0.1B,0,Food allergen model unrelated
+2,q035|ehzawad/whisper-large-v3-turbo-bn-BD,0,Bengali speech recognition not hate speech
+2,q032|alphaedge-ai/clip-ViT-B-32-multilingual-v1-mr-32768,0,CLIP embedding model not sentiment
+2,q043|jy46604790/Fake-News-Bert-Detect,0,English fake news detection not Malayalam categories
+2,q032|Maxthemacaque/onnx-gte-multilingual-base,0,Embedding model not sentiment classifier
+2,q042|ibm-granite/granite-guardian-hap-38m,2,Lightweight English toxicity classifier
+2,q035|ehzawad/canary-1b-v2-bn-BD,0,Bengali speech recognition not hate speech
+2,q032|amber-tech/bert-multilingual-passage-reranking-msmarco,0,Passage reranker not sentiment
+2,q043|agentlans/multilingual-e5-small-aligned-readability,0,Readability scoring not news category
+2,q035|autopilot-ai/EthicalEye,1,Toxicity/harm classifier; Bengali support unclear
+2,q042|vincentoh/deberta-v3-xsmall-l0-bouncer,1,Small safety classifier; harmful rather than specifically toxic comments
+2,q043|JanSchachtschabel/m2v-gte-multilingual-768,0,Static embedding model not classifier
+2,q032|n24q02m/Qwen3-Reranker-0.6B-ONNX,0,Reranker not sentiment model
+2,q031|marshal-yash/gujlish-sentiment-analysis,1,Gujarati/Hindi code-mixed sentiment; partly fits
+2,q043|XSY/albert-base-v2-fakenews-discriminator,0,English fake news not Malayalam categories
+2,q042|unitary/unbiased-toxic-roberta,2,English toxic comment classifier
+2,q031|lxyuan/distilbert-base-multilingual-cased-sentiments-student,1,Small multilingual sentiment; Hindi not confirmed in excerpt
+2,q031|agentlans/multilingual-e5-small-aligned-sentiment,1,Small multilingual sentiment; Hindi not confirmed
+2,q035|amber-tech/bert-multilingual-passage-reranking-msmarco,0,Passage reranker not hate speech
+2,q043|classla/multilingual-IPTC-news-topic-classifier,0,News topics but languages exclude Malayalam
+2,q043|Emerald7664/laya-multilingual-onnx,1,Multilingual classification model; Malayalam news not evidenced
+2,q042|ibm-granite/granite-guardian-hap-125m,2,English toxicity classifier
+2,q032|l3cube-pune/MarathiSentiment,2,Marathi sentiment model
+2,q042|HikmaAI/hikmaai-xlm-roberta-large-toxicity,2,Multilingual toxicity classifier including English
+2,q043|hillbyte/Indic-Lite,1,Indic toolkit with sentiment and LID; news category unclear
+2,q042|nicholasKluge/ToxiGuardrail,2,English toxicity scoring model
+2,q035|GhadeerALbadani/mmbert-Multilingual_detection_of_hate_speech,1,Multilingual hate speech; Bengali coverage unconfirmed
+2,q035|cardiffnlp/twitter-roberta-base-hate,0,English tweet hate speech not Bengali
+2,q032|shravan37/kavach-scam-classifier,0,Scam detection not sentiment
+2,q042|JungleLee/bert-toxic-comment-classification,2,English toxic comment classifier
+2,q032|nareyko/genivara-pii-nano,0,PII detection unrelated to sentiment
+2,q032|soprasteria/gte-multilingual-base,0,Embedding model not sentiment
+2,q032|Alibaba-NLP/gte-multilingual-base,0,Embedding model not sentiment
+2,q042|Horizon-Labs/multilingual-toxicity-base,2,Toxic comment classifier covering English
+2,q031|luluw/Roberta-devangari-script-classification,0,Script classification not sentiment
+2,q032|ibraheemmoosa/xlmindic-base-uniscript-soham,0,Bangla news classification not Marathi sentiment
+2,q042|onnx-community/unbiased-toxic-roberta-ONNX,2,ONNX English toxic comment classifier
+2,q035|ehzawad/fastconformer-hybrid-rnnt-ctc-large-bn-BD,0,Bengali speech recognition not hate speech
+2,q032|mesolitica/sentiment-analysis-nanot5-small-malaysian-cased,0,Malaysian sentiment; wrong language
+2,q043|manasyy/malayalam-fake-news-detector-muril,1,Malayalam news but real/fake rather than category
+2,q031|clapAI/mmBERT-small-multilingual-sentiment,2,Small multilingual sentiment across 16+ languages
+2,q042|Horizon-Labs/multilingual-toxicity-small,2,Small toxic comment classifier covering English
+2,q031|pascalrai/hinglish-twitter-roberta-base-sentiment,1,Hinglish tweet sentiment; romanized code-mixed partial fit
+2,q043|convaiinnovations/laya-multilingual,1,Multilingual classification model; Malayalam news not evidenced
+2,q035|onnx-community/unbiased-toxic-roberta-ONNX,0,English toxicity not Bengali
+2,q031|ShivamSharma8168/hindi-sentiment-model,2,Hindi sentiment classifier
+2,q032|l3cube-pune/hate-bert-hasoc-marathi,0,Marathi hate speech not sentiment
+2,q032|cis-lmu/glotlid,0,Language identification not sentiment
+2,q043|soyelmismo/laya-multilingual-onnx,1,Multilingual classification model; Malayalam news not evidenced
+2,q031|Cortiqa/guard-a40M,0,AI security firewall not sentiment
+2,q043|agentlans/multilingual-e5-small-aligned-quality,0,Text quality scoring not news category
+2,q035|kingshukroy/twhin-bert-base-hate-speech-ben-hin,2,Bengali and Hindi hate speech classifier
+2,q035|ehzawad/Voxtral-Small-24B-2507-bn-BD,0,Bengali speech recognition not hate speech
+2,q031|vashuag/HindiEmotion,1,Hindi emotion classification; close to sentiment
+2,q042|autotrust/GEV-26B-Decide,0,Large decision model not toxicity classifier
+2,q031|amber-tech/bert-multilingual-passage-reranking-msmarco,0,Passage reranker not sentiment
+2,q032|autopilot-ai/EthicalEye,0,Ethics flagging not Marathi sentiment
+2,q035|kingshukroy/xlm-roberta-base-hate-speech-ben-hin,2,Bengali and Hindi hate speech classifier
+2,q043|govtech/lionguard-2-lite,0,Content moderation for other languages not news category
+2,q042|lxyuan/distilbert-base-multilingual-cased-sentiments-student,0,Sentiment not toxicity
+2,q035|lokas/spam-usernames-classifier,0,Username spam classifier not hate speech
+2,q042|autotrust/JEV-35B,0,Large decision model not toxicity classifier
+2,q031|shae2977/xlm-roberta-hinglish-sentiment-analysis,1,Hinglish sentiment; Hindi romanized partial fit
+2,q032|yankexe/gte-multilingual-base-air-gapped,0,Embedding model not sentiment
+2,q031|Sousan12/multilingual-sentiment-xlmr-onnx,1,Multilingual sentiment; Hindi only tested zero-shot
+2,q042|protectai/deberta-v3-base-prompt-injection-v2,0,Prompt injection detection not toxicity
+2,q031|convaiinnovations/laya-multilingual,1,Multilingual decision model; Hindi sentiment plausible
+2,q045|google/electra-base-discriminator,0,English pretrained encoder; not language identification
+2,q048|mrm8488/distilbert-base-multi-cased-finetuned-typo-detection,0,Typo detection; not Tamil NER
+2,q070|Snowflake/snowflake-arctic-embed-l-v2.0,1,Multilingual embedding model; Malayalam not evidenced
+2,q045|dnivra26/muril-lang-id-v7,2,Language ID for 17 Indian languages
+2,q058|samarthramesh/gaperon-mmbert-hindi,0,Text-quality classifier; not POS tagging
+2,q048|Lokeshwaran/xlm-roberta-base-fintuned-panx-ta-hi,2,Tamil and Hindi NER on PAN-X
+2,q045|IAMCB/indic-transcribe-core,0,Speech recognition; not language identification text model
+2,q070|Teradata/snowflake-arctic-embed-m-v2.0,1,Multilingual embedding; Malayalam not evidenced
+2,q046|djagatiya/ner-roberta-base-ontonotesv5-englishv4,0,English NER; wrong language
+2,q045|pruthwik/ilid-muril-model,2,MuRIL language identification for Indian languages
+2,q058|navnav98/xlmr-comi-pos,1,Hindi-English code-mixed POS; marked not production ready
+2,q045|Vikrantyadav11234/NMT_multilingual_12,0,Translation model; not language identification
+2,q045|BAAI/bge-small-en-v1.5,0,English embedding model
+2,q058|hiteshwadhwani/pii-model-indic-v1,0,PII detection; not POS tagging
+2,q046|lfcc/bert-portuguese-ner,0,Portuguese NER; wrong language
+2,q046|SIRIS-Lab/citation-parser-ENTITY,0,Citation parsing NER; unrelated
+2,q070|karmx/Llama-Karmx-Indic-Embedding-bge-m3,2,Indic embeddings explicitly covering Malayalam
+2,q046|thenlpresearcher/shalaka_fd_indictrans2-en-indic-dist-200M_finetuned_eng_Latn_to_mar_Deva,0,English-Marathi translation; not NER
+2,q048|vasista22/whisper-tamil-small,0,Tamil speech recognition; not NER
+2,q070|HPLT/translate-ml-en-v2.0-hplt,0,Translation model; not embeddings
+2,q048|Davlan/bert-base-multilingual-cased-ner-hrl,0,NER but languages exclude Tamil
+2,q058|OpenMed/OpenMed-PII-Hindi-BioClinicalBERT-Base-110M-v1,0,Hindi PII detection; not POS tagging
+2,q070|Blaxzter/LaBSE-sentence-embeddings,1,LaBSE 109-language sentence embeddings; Malayalam not named
+2,q046|benjamin/wtp-bert-tiny,0,Sentence segmentation; not NER
+2,q070|HPLT/translate-en-ml-v2.0-hplt,0,Translation model; not embeddings
+2,q070|Jaume/gte-multilingual-base-no-network,1,Multilingual embedding mirror; Malayalam not evidenced
+2,q048|Babelscape/wikineural-multilingual-ner,0,Multilingual NER without Tamil
+2,q058|Francesco-A/BiomedNLP-PubMedBERT-base-uncased-abstract-bc5cdr-ner-v1,0,English biomedical NER
+2,q045|cross-encoder/ms-marco-MiniLM-L6-v2,0,English passage reranker
+2,q058|anchpop/lexide-parsley,1,POS tagging in 12 languages; Hindi not confirmed
+2,q046|benjamin/wtp-canine-s-6l-no-adapters,0,Sentence segmentation; not NER
+2,q058|OpenMed/privacy-filter-multilingual-v2,0,PII extraction; not POS tagging
+2,q048|JairamKanna/armms-xlsr,0,Tamil speech model; not NER
+2,q048|ai4bharat/IndicNER,2,NER for 11 Indian languages including Tamil
+2,q046|benjamin/wtp-bert-mini,0,Sentence segmentation; not NER
+2,q048|theanugrah/muril-indic-ner,1,Indic NER MuRIL ONNX; Tamil not stated
+2,q070|Teradata/snowflake-arctic-embed-l-v2.0,1,Multilingual embedding; Malayalam not evidenced
+2,q046|l3cube-pune/marathi-social-ner,2,Marathi NER trained on social media text
+2,q046|Horizon-Labs/punctuation-restoration-small,0,Punctuation restoration; not NER
+2,q058|stanfordnlp/stanza-hi,2,Stanza Hindi pipeline including POS tagging
+2,q058|knowledgator/gliner-x-large,0,Zero-shot NER; not POS tagging
+2,q048|Horizon-Labs/punctuation-restoration-base,0,Punctuation restoration; not NER
+2,q046|IreNkweke/bert-finetuned-ner-ontonotes5,0,English NER; wrong language
+2,q048|prachuryyaIITG/APTFiNER_Tamil_MuRIL,2,Tamil fine-grained NER on MuRIL
+2,q070|Snowflake/snowflake-arctic-embed-m-v2.0,1,Multilingual embedding; Malayalam not evidenced
+2,q045|bodhan-ai/indic-transcribe-core,0,Speech recognition; not language identification text model
+2,q058|OpenMed/OpenMed-PII-Hindi-BiomedBERT-Base-110M-v1,0,Hindi PII detection; not POS tagging
+2,q058|specialv/whisper-small-merged-hi-en,0,Speech recognition; not POS tagging
+2,q058|OpenMed/OpenMed-PII-Hindi-ClinicalE5-Base-109M-v1,0,Hindi PII detection; not POS tagging
+2,q045|ai4bharat/IndicNER,0,NER; not language identification
+2,q046|l3cube-pune/me-lid-roberta,0,Marathi-English language ID; not NER
+2,q046|Horizon-Labs/punctuation-restoration-base,0,Punctuation restoration; not NER
+2,q070|sentence-transformers/LaBSE,1,LaBSE 109-language embeddings; Malayalam not named
+2,q048|prachuryyaIITG/SampurNER_Tamil_IndicBERTv2,2,Tamil fine-grained NER on IndicBERTv2
+2,q070|eswardivi/tamal-sentence-bert-nli,2,Merged Malayalam sentence-BERT embeddings
+2,q048|Ambareeshkumar/BERT-Tamil,2,Tamil NER fine-tuned on WikiANN
+2,q070|nomic-ai/nomic-embed-text-v2-moe,1,Multilingual embeddings; Malayalam not evidenced
+2,q070|victormuryn/use-dropout-pt,0,Ukrainian sentence embeddings
+2,q046|theanugrah/muril-indic-ner,1,Indic NER; Marathi and social media not stated
+2,q058|Om-7387/Hindi_Tokenizer,0,Tokenizer; not POS tagging model
+2,q070|HPLT/translate-en-ml-v2.0-hplt_opus,0,Translation model; not embeddings
+2,q058|athrvk/gpu-sankhya,0,Number shorthand extractor; not POS tagging
+2,q046|stanfordnlp/stanza-mr,1,Stanza Marathi pipeline; NER and social media unconfirmed
+2,q070|victormuryn/use-generated-pt,0,Ukrainian sentence embeddings
+2,q045|sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2,0,Sentence embeddings; not language identification
+2,q070|Alibaba-NLP/gte-multilingual-base,1,Multilingual embedding; Malayalam not evidenced
+2,q048|Horizon-Labs/punctuation-restoration-small,0,Punctuation restoration; not NER
+2,q058|LingoIITGN/COMI-LINGUA-POS,1,Hinglish POS tagging; code-mixed and 8B LLM
+2,q058|OpenMed/OpenMed-PII-Hindi-ClinicalE5-Small-33M-v1,0,Hindi PII detection; not POS tagging
+2,q070|HPLT/translate-ml-en-v2.0-hplt_opus,0,Translation model; not embeddings
+2,q048|stanfordnlp/stanza-ta,1,Stanza Tamil pipeline; NER support unconfirmed
+2,q058|OpenMed/privacy-filter-multilingual,0,PII extraction; not POS tagging
+2,q058|LocalAI-io/privacy-filter-multilingual-GGUF,0,PII extraction; not POS tagging
+2,q058|alphaedge-ai/clip-ViT-B-32-multilingual-v1-hi-16384,0,CLIP embeddings; not POS tagging
+2,q046|vaibhav006/indic-ner-muril-naamapadam,2,NER for Marathi Punjabi Telugu with MuRIL
+2,q070|vivekkopthsd/taxrag-embedding-granite-97m-multilingual,0,English/Hindi tax retrieval embeddings; no Malayalam
+2,q045|amn-raw/parakeet-indic-v1,0,Speech recognition model; not text language ID
+2,q070|emonnsl/embed_model,0,Bengali sentence embeddings
+2,q046|Rishabh157/multiconer-multilingual-ner-mdeberta,1,Multilingual noisy-text NER; Marathi not evidenced
+2,q070|Teradata/gte-multilingual-base,1,Multilingual embedding; Malayalam not evidenced
+2,q048|SIRIS-Lab/citation-parser-ENTITY,0,Citation parsing NER; unrelated
+2,q048|tamilnlpSLIIT/whisper-ta,0,Tamil speech recognition; not NER
+2,q046|filip-w/gliner-multi-pii-onnx,1,Multilingual PII NER; Marathi and social media unconfirmed
+2,q048|vasista22/whisper-tamil-medium,0,Tamil speech recognition; not NER
+2,q045|sentence-transformers/all-MiniLM-L6-v2,0,English sentence embeddings
+2,q045|adidsh/indic-transcribe-flex-int8-onnx,0,Speech recognition; not text language ID
+2,q045|MWirelabs/ne-lid,1,Language ID but only Northeast India languages

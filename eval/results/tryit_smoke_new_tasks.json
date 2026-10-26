@@ -1,0 +1,150 @@
+{
+ "models": 18,
+ "passed": 6,
+ "results": [
+  {
+   "model_id": "timm/mobilenetv3_small_100.lamb_in1k",
+   "task": "image-classification",
+   "size_mb": 10.2,
+   "ok": false,
+   "seconds": 7.2,
+   "tail": "s.py\", line 2410, in requires_backends\n    raise ImportError(\"\".join(failed))\nImportError: \nTimmWrapperConfig requires the timm library but it was not found in your environment. You can install it with pip:\n`pip install timm`. Please note that you may need to restart your runtime after installation."
+  },
+  {
+   "model_id": "timm/efficientnet_b0.ra_in1k",
+   "task": "image-classification",
+   "size_mb": 21.4,
+   "ok": false,
+   "seconds": 8.5,
+   "tail": "s.py\", line 2410, in requires_backends\n    raise ImportError(\"\".join(failed))\nImportError: \nTimmWrapperConfig requires the timm library but it was not found in your environment. You can install it with pip:\n`pip install timm`. Please note that you may need to restart your runtime after installation."
+  },
+  {
+   "model_id": "Marqo/nsfw-image-detection-384",
+   "task": "image-classification",
+   "size_mb": 22.4,
+   "ok": false,
+   "seconds": 10.3,
+   "tail": ", in requires_backends\n    raise ImportError(\"\".join(failed))\nImportError: \nTimmWrapperForImageClassification requires the timm library but it was not found in your environment. You can install it with pip:\n`pip install timm`. Please note that you may need to restart your runtime after installation."
+  },
+  {
+   "model_id": "hustvl/yolos-tiny",
+   "task": "object-detection",
+   "size_mb": 26.0,
+   "ok": true,
+   "seconds": 12.4,
+   "tail": "[]"
+  },
+  {
+   "model_id": "AnnaZhang/lwdetr_small_60e_coco",
+   "task": "object-detection",
+   "size_mb": 58.3,
+   "ok": true,
+   "seconds": 15.4,
+   "tail": "[]"
+  },
+  {
+   "model_id": "PekingU/rtdetr_r18vd",
+   "task": "object-detection",
+   "size_mb": 80.9,
+   "ok": true,
+   "seconds": 15.8,
+   "tail": "[]"
+  },
+  {
+   "model_id": "restor/tcd-segformer-mit-b0",
+   "task": "image-segmentation",
+   "size_mb": 14.9,
+   "ok": false,
+   "seconds": 9.7,
+   "tail": "ves to the following image processor classes: pil: SegformerImageProcessorPil, torchvision: SegformerImageProcessor. None of these classes could be imported. Missing optional dependencies: torchvision. Please install the missing dependencies or select a backend that is available in your environment."
+  },
+  {
+   "model_id": "nvidia/segformer-b0-finetuned-ade-512-512",
+   "task": "image-segmentation",
+   "size_mb": 15.0,
+   "ok": false,
+   "seconds": 10.6,
+   "tail": "ves to the following image processor classes: pil: SegformerImageProcessorPil, torchvision: SegformerImageProcessor. None of these classes could be imported. Missing optional dependencies: torchvision. Please install the missing dependencies or select a backend that is available in your environment."
+  },
+  {
+   "model_id": "ZhengPeng7/BiRefNet_lite-matting",
+   "task": "image-segmentation",
+   "size_mb": 89.0,
+   "ok": false,
+   "seconds": 7.1,
+   "tail": "xecuted to correctly load the model. You can inspect the repository content at https://hf.co/ZhengPeng7/BiRefNet_lite-matting .\n You can inspect the repository content at https://hf.co/ZhengPeng7/BiRefNet_lite-matting.\nPlease pass the argument `trust_remote_code=True` to allow custom code to be run."
+  },
+  {
+   "model_id": "trl-internal-testing/tiny-LlamaForCausalLM-3.2",
+   "task": "text-generation",
+   "size_mb": 2.1,
+   "ok": true,
+   "seconds": 19.9,
+   "tail": "[{'generated_text': 'Once upon a time nga Witt_MODE Charges beet[attrstandard(prompt(pl47 Primitiveammen-marของค William дуже макtableView ситуацииuien execut Entity steward/the-maraptors�spacer searcher myslí'}]"
+  },
+  {
+   "model_id": "hmellor/tiny-random-LlamaForCausalLM",
+   "task": "text-generation",
+   "size_mb": 2.1,
+   "ok": true,
+   "seconds": 11.1,
+   "tail": "[{'generated_text': 'Once upon a timevm abs firingandonamentettaumer мно cuциейзен Sports Prés специаль Rostciendo Stewartéső Komigma inputs къOne remarkable Estados abs firingouter ne mkdir'}]"
+  },
+  {
+   "model_id": "MaxJeblick/llama2-0b-unit-test",
+   "task": "text-generation",
+   "size_mb": 3.1,
+   "ok": true,
+   "seconds": 12.0,
+   "tail": "[{'generated_text': 'Once upon a timeragesGe graf Docarbe § informalphø HomSessionIdentposs recomedenGC abgerufen сельсов Unable Johannes faint exposed inglésfixed rotateнuting patronរlé'}]"
+  },
+  {
+   "model_id": "mrm8488/bert-mini2bert-mini-finetuned-cnn_daily_mail-summarization",
+   "task": "summarization",
+   "size_mb": 93.7,
+   "ok": false,
+   "seconds": 7.2,
+   "tail": "ise KeyError(\n    ...<2 lines>...\n    )\nKeyError: 'The task summarization has been removed from transformers. Use the `text-generation` pipeline with a chat model instead. See the migration guide for more details: https://github.com/huggingface/transformers/blob/main/MIGRATION_GUIDE_V5.md#pipelines'"
+  },
+  {
+   "model_id": "wordcab/t5-small-email-summarizer",
+   "task": "summarization",
+   "size_mb": 242.0,
+   "ok": false,
+   "seconds": 8.3,
+   "tail": "ise KeyError(\n    ...<2 lines>...\n    )\nKeyError: 'The task summarization has been removed from transformers. Use the `text-generation` pipeline with a chat model instead. See the migration guide for more details: https://github.com/huggingface/transformers/blob/main/MIGRATION_GUIDE_V5.md#pipelines'"
+  },
+  {
+   "model_id": "Falconsai/text_summarization",
+   "task": "summarization",
+   "size_mb": 242.0,
+   "ok": false,
+   "seconds": 6.9,
+   "tail": "ise KeyError(\n    ...<2 lines>...\n    )\nKeyError: 'The task summarization has been removed from transformers. Use the `text-generation` pipeline with a chat model instead. See the migration guide for more details: https://github.com/huggingface/transformers/blob/main/MIGRATION_GUIDE_V5.md#pipelines'"
+  },
+  {
+   "model_id": "monologg/koelectra-small-v2-distilled-korquad-384",
+   "task": "question-answering",
+   "size_mb": 54.8,
+   "ok": false,
+   "seconds": 7.7,
+   "tail": "eyError(\n    ...<2 lines>...\n    )\nKeyError: 'The task question-answering has been removed from transformers. Use the `text-generation` pipeline with a chat model instead. See the migration guide for more details: https://github.com/huggingface/transformers/blob/main/MIGRATION_GUIDE_V5.md#pipelines'"
+  },
+  {
+   "model_id": "csarron/mobilebert-uncased-squad-v2",
+   "task": "question-answering",
+   "size_mb": 98.5,
+   "ok": false,
+   "seconds": 7.3,
+   "tail": "eyError(\n    ...<2 lines>...\n    )\nKeyError: 'The task question-answering has been removed from transformers. Use the `text-generation` pipeline with a chat model instead. See the migration guide for more details: https://github.com/huggingface/transformers/blob/main/MIGRATION_GUIDE_V5.md#pipelines'"
+  },
+  {
+   "model_id": "csarron/mobilebert-uncased-squad-v1",
+   "task": "question-answering",
+   "size_mb": 98.5,
+   "ok": false,
+   "seconds": 7.4,
+   "tail": "eyError(\n    ...<2 lines>...\n    )\nKeyError: 'The task question-answering has been removed from transformers. Use the `text-generation` pipeline with a chat model instead. See the migration guide for more details: https://github.com/huggingface/transformers/blob/main/MIGRATION_GUIDE_V5.md#pipelines'"
+  }
+ ]
+}

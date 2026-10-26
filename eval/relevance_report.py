@@ -6,7 +6,8 @@ Reads `relevance_sheet.csv` (what was labelled), `_key.json` (which systems retu
 labelling page so the labelling stays blind), `labels_pass1.csv` and, if it exists, `labels_pass2.csv` (a repeat pass
 over a random subset). Writes `eval/results/relevance.md`.
 
-Agreement is **test-retest of one labeller** (the same person, a day apart), not inter-annotator agreement.
+Agreement is between two grading passes by the same kind of grader (a person a day apart, or two independent LLM passes), not
+inter-annotator agreement between humans. Who graded is stated in the report, from `eval/labels/labeller.txt`.
 """
 
 from __future__ import annotations
@@ -71,24 +72,31 @@ def retest(pass1: dict[str, int], pass2: dict[str, int]) -> dict | None:
             "big_disagreements_0_vs_2": sum(abs(x - y) == 2 for x, y in zip(a, b))}
 
 
-def render(stats: dict, agree: dict | None) -> str:
+def labeller(directory: Path = Path("eval/labels")) -> str:
+    """Who graded, from `eval/labels/labeller.txt` (written when labels are imported); a person by default."""
+    f = directory / "labeller.txt"
+    return f.read_text(encoding="utf-8").strip() if f.exists() else "one human labeller"
+
+
+def render(stats: dict, agree: dict | None, who: str = "one human labeller") -> str:
     lq = stats["_labelled_queries"]
-    L = ["# Relevance @5 (hand-labelled, blind)", "",
-         f"Queries fully labelled: **{lq['queries']} of {lq['of']}**. One labeller; grades 0/1/2 against the purpose of the request "
+    L = [f"# Relevance @5 (blind; graded by {who})", "",
+         f"Queries fully graded: **{lq['queries']} of {lq['of']}**. Grades 0/1/2 against the purpose of the request "
          "(size and license are checked automatically, not graded).", "",
          "| System | Queries | Models graded | Mean grade | Queries with a grade-2 model % | Models graded 1 or 2 % |", "|---|---|---|---|---|---|"]
     for s, m in stats.items():
         if s.startswith("_"):
             continue
         L.append(f"| {s} | {m['queries']} | {m['models']} | {m['mean_grade']} | {m['queries_with_a_2_pct']} | {m['graded_1_or_2_pct']} |")
-    L += ["", "## Test-retest agreement (same labeller, repeat pass)", ""]
+    L += ["", "## Agreement between the two grading passes", ""]
     if agree is None:
         L.append("No repeat pass yet.")
     else:
         L += [f"- items graded twice: {agree['items']}; identical grade on **{agree['same_grade_pct']}%**",
               f"- Cohen's kappa: nominal **{agree['kappa_nominal']}**, quadratic-weighted **{agree['kappa_quadratic']}**",
               f"- 0-versus-2 disagreements: {agree['big_disagreements_0_vs_2']}",
-              "", "This is self-consistency of one labeller, not inter-annotator agreement."]
+              "", f"Both passes were made by: {who}. This is agreement between two independent passes by the same kind of grader "
+              "(test-retest of one labeller, or two LLM passes), not agreement between independent humans."]
     return "\n".join(L) + "\n"
 
 
@@ -99,7 +107,7 @@ def main(argv: list[str] | None = None) -> None:
     d = Path(args.dir)
     key = json.loads((d / "_key.json").read_text(encoding="utf-8"))
     p1, p2 = load_labels(d / "labels_pass1.csv"), load_labels(d / "labels_pass2.csv")
-    text = render(per_system(p1, key), retest(p1, p2))
+    text = render(per_system(p1, key), retest(p1, p2), labeller(d))
     out = Path("eval/results/relevance.md")
     out.write_text(text, encoding="utf-8")
     print(text)

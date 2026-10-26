@@ -1,0 +1,1259 @@
+{
+ "_comment": "The 100 parses behind the frozen v2 results (extraction prompt of 2026-10-21). Pin with: python -m eval.run_eval --parsed eval/results/frozen_parses_v2.json",
+ "parsed": {
+  "q001": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hindi speech recognition laptop"
+  },
+  "q002": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Marathi ASR model"
+  },
+  "q003": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": 500,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "phone call audio"
+  },
+  "q004": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "bn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Apache or MIT licensed"
+  },
+  "q005": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Telugu transcription model"
+  },
+  "q006": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "हिंदी"
+  },
+  "q007": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": 1000,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Speech to text for Gujarati"
+  },
+  "q008": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada speech recognition trained on noisy real-world recordings"
+  },
+  "q009": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "ml"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "medium",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Malayalam ASR model, medium size, usable in a paid product"
+  },
+  "q010": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "pa"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "tiny",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Punjabi voice transcription"
+  },
+  "q011": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "good with accents"
+  },
+  "q012": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "hi",
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "multilingual speech recognition Hindi Tamil"
+  },
+  "q013": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "hi",
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hindi-English code-mixed speech recognition"
+  },
+  "q014": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "ar"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Arabic speech recognition model"
+  },
+  "q015": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "lecture speech recognition Hindi"
+  },
+  "q016": {
+   "task": "translation",
+   "langs": [
+    "hi",
+    "en"
+   ],
+   "direction": [
+    "hi",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Hindi to English translation model"
+  },
+  "q017": {
+   "task": "translation",
+   "langs": [
+    "en",
+    "hi"
+   ],
+   "direction": [
+    "en",
+    "hi"
+   ],
+   "max_size_mb": 500,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English to Hindi machine translation under 500 MB"
+  },
+  "q018": {
+   "task": "translation",
+   "langs": [
+    "hi",
+    "mr"
+   ],
+   "direction": [
+    "hi",
+    "mr"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Hindi to Marathi translation"
+  },
+  "q019": {
+   "task": "translation",
+   "langs": [
+    "mr",
+    "en"
+   ],
+   "direction": [
+    "mr",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "मराठी ते इंग्रजी भाषांतर मॉडेल"
+  },
+  "q020": {
+   "task": "translation",
+   "langs": [
+    "ta",
+    "en"
+   ],
+   "direction": [
+    "ta",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Translate Tamil to English, small model"
+  },
+  "q021": {
+   "task": "translation",
+   "langs": [
+    "bn",
+    "en"
+   ],
+   "direction": [
+    "bn",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Apache-2.0 license"
+  },
+  "q022": {
+   "task": "translation",
+   "langs": [
+    "en",
+    "te"
+   ],
+   "direction": [
+    "en",
+    "te"
+   ],
+   "max_size_mb": null,
+   "size_word": "lightweight",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "English to Telugu translation, lightweight, commercial"
+  },
+  "q023": {
+   "task": "translation",
+   "langs": [
+    "ur",
+    "en"
+   ],
+   "direction": [
+    "ur",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "machine translation model"
+  },
+  "q024": {
+   "task": "translation",
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Multilingual translation model covering Indian languages"
+  },
+  "q025": {
+   "task": "translation",
+   "langs": [
+    "en",
+    "gu"
+   ],
+   "direction": [
+    "en",
+    "gu"
+   ],
+   "max_size_mb": 1000,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English to Gujarati translation"
+  },
+  "q026": {
+   "task": "translation",
+   "langs": [
+    "kn",
+    "en"
+   ],
+   "direction": [
+    "kn",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Kannada to English translation model"
+  },
+  "q027": {
+   "task": "translation",
+   "langs": [
+    "en",
+    "fr"
+   ],
+   "direction": [
+    "en",
+    "fr"
+   ],
+   "max_size_mb": null,
+   "size_word": "tiny",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English to French translation, tiny"
+  },
+  "q028": {
+   "task": "translation",
+   "langs": [
+    "de",
+    "en"
+   ],
+   "direction": [
+    "de",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "commercial friendly license"
+  },
+  "q029": {
+   "task": "translation",
+   "langs": [
+    "ml",
+    "en"
+   ],
+   "direction": [
+    "ml",
+    "en"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "news articles"
+  },
+  "q030": {
+   "task": "translation",
+   "langs": [
+    "en",
+    "pa"
+   ],
+   "direction": [
+    "en",
+    "pa"
+   ],
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English to Punjabi translation"
+  },
+  "q031": {
+   "task": "text-classification",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "sentiment model for Hindi"
+  },
+  "q032": {
+   "task": "text-classification",
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": 300,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Marathi sentiment analysis model"
+  },
+  "q033": {
+   "task": "text-classification",
+   "langs": [
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "noisy Tamil social media text"
+  },
+  "q034": {
+   "task": "text-classification",
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Telugu news topic classification"
+  },
+  "q035": {
+   "task": "text-classification",
+   "langs": [
+    "bn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Bengali hate speech detection model"
+  },
+  "q036": {
+   "task": "text-classification",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "tiny",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English SMS spam detection"
+  },
+  "q037": {
+   "task": "text-classification",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hindi tweets emotion classification"
+  },
+  "q038": {
+   "task": "text-classification",
+   "langs": [
+    "ur"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "medium",
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "permissive license"
+  },
+  "q039": {
+   "task": "text-classification",
+   "langs": [
+    "hi",
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hinglish sentiment analysis"
+  },
+  "q040": {
+   "task": "text-classification",
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Gujarati text classifier"
+  },
+  "q041": {
+   "task": "text-classification",
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada sentiment analysis model"
+  },
+  "q042": {
+   "task": "text-classification",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "lightweight",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Toxic comment classifier for English, lightweight, commercial use"
+  },
+  "q043": {
+   "task": "text-classification",
+   "langs": [
+    "ml"
+   ],
+   "direction": null,
+   "max_size_mb": 500,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Malayalam news category classifier"
+  },
+  "q044": {
+   "task": "text-classification",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Zero-shot text classification Hindi"
+  },
+  "q045": {
+   "task": null,
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Language identification model for Indian languages"
+  },
+  "q046": {
+   "task": "token-classification",
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": 500,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "works well on noisy social-media text"
+  },
+  "q047": {
+   "task": "token-classification",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "हिंदी में नाम पहचानने वाला"
+  },
+  "q048": {
+   "task": "token-classification",
+   "langs": [
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Tamil NER model"
+  },
+  "q049": {
+   "task": "token-classification",
+   "langs": [
+    "bn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Bengali POS tagger"
+  },
+  "q050": {
+   "task": "token-classification",
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "permissive license"
+  },
+  "q051": {
+   "task": "token-classification",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "legal documents"
+  },
+  "q052": {
+   "task": "token-classification",
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Gujarati NER, commercial use"
+  },
+  "q053": {
+   "task": "token-classification",
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": 1000,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada token classification model"
+  },
+  "q054": {
+   "task": "token-classification",
+   "langs": [
+    "ml"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Malayalam named entity recognition model"
+  },
+  "q055": {
+   "task": "token-classification",
+   "langs": [
+    "ur"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "lightweight",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Urdu NER"
+  },
+  "q056": {
+   "task": "token-classification",
+   "langs": [
+    "pa"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Punjabi NER model"
+  },
+  "q057": {
+   "task": "token-classification",
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Multilingual NER covering Indian languages"
+  },
+  "q058": {
+   "task": "token-classification",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "POS tagging model"
+  },
+  "q059": {
+   "task": "token-classification",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Medical entity extraction"
+  },
+  "q060": {
+   "task": "token-classification",
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "names of people and places in Marathi news text"
+  },
+  "q061": {
+   "task": "sentence-similarity",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Hindi sentence embedding model"
+  },
+  "q062": {
+   "task": "sentence-similarity",
+   "langs": [
+    "mr",
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Multilingual sentence embeddings that work for Marathi and English"
+  },
+  "q063": {
+   "task": "sentence-similarity",
+   "langs": [
+    "bn"
+   ],
+   "direction": null,
+   "max_size_mb": 500,
+   "size_word": "small",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Bengali embedding model"
+  },
+  "q064": {
+   "task": "sentence-similarity",
+   "langs": [
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Tamil sentence similarity model"
+  },
+  "q065": {
+   "task": "sentence-similarity",
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Paraphrase detection for Telugu"
+  },
+  "q066": {
+   "task": "sentence-similarity",
+   "langs": [
+    "ur"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Sentence transformers for Urdu semantic search, permissive license"
+  },
+  "q067": {
+   "task": "sentence-similarity",
+   "langs": [
+    "hi",
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Cross-lingual sentence embeddings for Hindi-English retrieval"
+  },
+  "q068": {
+   "task": "sentence-similarity",
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "lightweight",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Gujarati embeddings"
+  },
+  "q069": {
+   "task": "sentence-similarity",
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "medium",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada semantic similarity model"
+  },
+  "q070": {
+   "task": "sentence-similarity",
+   "langs": [
+    "ml"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "commercial license"
+  },
+  "q071": {
+   "task": "sentence-similarity",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "tiny",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "English sentence similarity model tiny mobile search feature"
+  },
+  "q072": {
+   "task": "sentence-similarity",
+   "langs": [
+    "pa"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Punjabi sentence embeddings"
+  },
+  "q073": {
+   "task": "sentence-similarity",
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Embeddings for clustering Hindi short texts like tweets"
+  },
+  "q074": {
+   "task": "sentence-similarity",
+   "langs": [
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Semantic search embeddings for legal text in English"
+  },
+  "q075": {
+   "task": "sentence-similarity",
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "multilingual embedding model"
+  },
+  "q076": {
+   "task": null,
+   "langs": [
+    "hi"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hindi model"
+  },
+  "q077": {
+   "task": null,
+   "langs": [
+    "ta"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Something for Tamil"
+  },
+  "q078": {
+   "task": null,
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Marathi model"
+  },
+  "q079": {
+   "task": null,
+   "langs": [
+    "bn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Bengali language model"
+  },
+  "q080": {
+   "task": null,
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Indian languages"
+  },
+  "q081": {
+   "task": null,
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "lightweight",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Lightweight model please"
+  },
+  "q082": {
+   "task": null,
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "college project Telugu model"
+  },
+  "q083": {
+   "task": null,
+   "langs": [
+    "ur"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Urdu model"
+  },
+  "q084": {
+   "task": null,
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Gujarati model"
+  },
+  "q085": {
+   "task": null,
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada"
+  },
+  "q086": {
+   "task": null,
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Need a model that I can sell commercially"
+  },
+  "q087": {
+   "task": null,
+   "langs": [
+    "ml"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": "small",
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Malayalam"
+  },
+  "q088": {
+   "task": null,
+   "langs": [
+    "pa"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": true,
+   "soft_query": "Punjabi model"
+  },
+  "q089": {
+   "task": null,
+   "langs": [
+    "hi",
+    "en"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Hindi English mixed understanding"
+  },
+  "q090": {
+   "task": null,
+   "langs": [],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Help me find a model"
+  },
+  "q091": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "mr"
+   ],
+   "direction": null,
+   "max_size_mb": 10,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Marathi speech recognition"
+  },
+  "q092": {
+   "task": "token-classification",
+   "langs": [
+    "te"
+   ],
+   "direction": null,
+   "max_size_mb": 5,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "NER model"
+  },
+  "q093": {
+   "task": "translation",
+   "langs": [
+    "hi",
+    "mr"
+   ],
+   "direction": [
+    "hi",
+    "mr"
+   ],
+   "max_size_mb": 20,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Apache-2.0 license"
+  },
+  "q094": {
+   "task": "sentence-similarity",
+   "langs": [
+    "ur"
+   ],
+   "direction": null,
+   "max_size_mb": 2,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Urdu sentence embedding model"
+  },
+  "q095": {
+   "task": "text-classification",
+   "langs": [
+    "gu"
+   ],
+   "direction": null,
+   "max_size_mb": 3,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Gujarati sentiment model"
+  },
+  "q096": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "pa"
+   ],
+   "direction": null,
+   "max_size_mb": 15,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": null,
+   "soft_query": "Punjabi speech recognition"
+  },
+  "q097": {
+   "task": "token-classification",
+   "langs": [
+    "kn"
+   ],
+   "direction": null,
+   "max_size_mb": 1,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Kannada NER under 1 MB"
+  },
+  "q098": {
+   "task": "translation",
+   "langs": [
+    "bn",
+    "en"
+   ],
+   "direction": [
+    "bn",
+    "en"
+   ],
+   "max_size_mb": 10,
+   "size_word": null,
+   "commercial": true,
+   "modifiable": true,
+   "soft_query": "Bengali to English translation"
+  },
+  "q099": {
+   "task": "automatic-speech-recognition",
+   "langs": [
+    "sat"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Santali speech recognition model"
+  },
+  "q100": {
+   "task": "token-classification",
+   "langs": [
+    "brx"
+   ],
+   "direction": null,
+   "max_size_mb": null,
+   "size_word": null,
+   "commercial": null,
+   "modifiable": null,
+   "soft_query": "Bodo named entity recognition model"
+  }
+ }
+}

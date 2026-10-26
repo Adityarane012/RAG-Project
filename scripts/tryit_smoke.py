@@ -23,13 +23,21 @@ from pathlib import Path
 from src import ingest
 from src.guide import try_it_snippet
 
-TASKS = ("automatic-speech-recognition", "translation", "text-classification", "token-classification", "sentence-similarity")
+TASKS = ("automatic-speech-recognition", "translation", "text-classification", "token-classification", "sentence-similarity",
+         "image-classification", "object-detection", "image-segmentation", "text-generation", "summarization", "question-answering")
+POPULAR = 1000        # for tasks with no evaluation outcomes: small models that real people download
 
 
 def write_wav(path: Path, seconds: float = 1.0, rate: int = 16000) -> None:
     with wave.open(str(path), "w") as w:
         w.setnchannels(1), w.setsampwidth(2), w.setframerate(rate)
         w.writeframes(b"".join(struct.pack("<h", int(3000 * math.sin(2 * math.pi * 220 * i / rate))) for i in range(int(seconds * rate))))
+
+
+def write_image(path: Path) -> None:
+    from PIL import Image
+
+    Image.effect_noise((224, 224), 40).convert("RGB").save(path)
 
 
 def has_safetensors(model_id: str) -> bool:
@@ -53,6 +61,12 @@ def pick(per_task: int) -> list[dict]:
             if r and r["task"] in TASKS and r["size_status"] == "known" and r["size_mb"] <= 250 and has_safetensors(r["model_id"]):
                 if r not in by_task[r["task"]]:
                     by_task[r["task"]].append(r)
+    # tasks the evaluation never recommended from: use small, downloaded, safetensors models from the snapshot
+    for t in TASKS:
+        if not by_task[t]:
+            pool = [r for r in recs.values() if r["task"] == t and r["size_status"] == "known" and r["size_mb"] <= 250
+                    and (r.get("downloads") or 0) >= POPULAR and has_safetensors(r["model_id"])]
+            by_task[t] = sorted(pool, key=lambda r: -(r.get("downloads") or 0))[:20]
     return [r for t in TASKS for r in sorted(by_task[t], key=lambda r: r["size_mb"])[:per_task]]
 
 
@@ -60,6 +74,7 @@ def run(rec: dict, workdir: Path, timeout: int) -> dict:
     code = try_it_snippet(rec["model_id"], rec["task"])
     d = Path(tempfile.mkdtemp(dir=workdir))
     write_wav(d / "audio.wav")
+    write_image(d / "image.jpg")
     t = time.time()
     try:
         p = subprocess.run([sys.executable, "-I", "-c", code], cwd=d, capture_output=True, text=True, timeout=timeout,
@@ -76,16 +91,19 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--per-task", type=int, default=4)
     ap.add_argument("--timeout", type=int, default=240)
     ap.add_argument("--workdir", default="/tmp/tryit")
+    ap.add_argument("--tasks", default="", help="comma-separated subset of tasks")
+    ap.add_argument("--out", default="eval/results/tryit_smoke.json")
     args = ap.parse_args(argv)
     work = Path(args.workdir)
     work.mkdir(parents=True, exist_ok=True)
     results = []
-    for rec in pick(args.per_task):
+    only = {t for t in args.tasks.split(",") if t}
+    for rec in (r for r in pick(args.per_task) if not only or r["task"] in only):
         r = run(rec, work, args.timeout)
         print(("OK  " if r["ok"] else "FAIL"), r["task"], r["model_id"], r["seconds"], "s", "" if r["ok"] else r["tail"][-160:].replace("\n", " "))
         results.append(r)
     out = {"models": len(results), "passed": sum(r["ok"] for r in results), "results": results}
-    Path("eval/results/tryit_smoke.json").write_text(json.dumps(out, indent=1, ensure_ascii=False), encoding="utf-8")
+    Path(args.out).write_text(json.dumps(out, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"{out['passed']}/{out['models']} snippets ran")
 
 

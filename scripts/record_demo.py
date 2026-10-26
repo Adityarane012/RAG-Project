@@ -48,10 +48,14 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--plan", default="demo/plan.json")
     ap.add_argument("--dir", default="demo/cache")
+    ap.add_argument("--only", default="", help="comma-separated 1-based step numbers to record (others keep their recordings)")
     args = ap.parse_args()
     from src.pipeline import build_pipeline
 
     plan = json.loads(Path(args.plan).read_text(encoding="utf-8"))
+    if args.only:
+        keep = {int(n) for n in args.only.split(",") if n.strip()}
+        plan = {**plan, "steps": [st for i, st in enumerate(plan["steps"], 1) if i in keep]}
     report = run_plan(plan, {"ours": build_pipeline("ours"), "naive": build_pipeline("naive", explain=False)}, Path(args.dir))
     bad = [r for r in report if "warning" in r]
     print(f"recorded {sum(len(r['recorded']) for r in report)} states into {args.dir}; {len(bad)} step(s) need attention")

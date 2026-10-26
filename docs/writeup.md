@@ -3,7 +3,7 @@
 
 **Date:** October 2026  
 **Repository:** [Adityarane012/RAG-Project](https://github.com/Adityarane012/RAG-Project)  
-**Corpus Snapshot:** 9,764 models · 29,665 indexed chunks · Snapshot date: `2026-10-21`  
+**Corpus Snapshot:** 15,991 models over 11 tasks · 48,179 indexed chunks · Snapshot date: `2026-10-25` (the evaluated five-task corpus: 9,764 models · 29,665 chunks · `2026-10-21`)  
 **Production Index:** Pinecone hosted index (`hf-model-finder`, `prod` namespace, 1,024-dim `multilingual-e5-large`)
 
 ---
@@ -47,7 +47,7 @@ graph TD
 
 ## 3. Data Pipeline & Corpus Statistics
 
-- **Corpus Scope**: 9,764 unique models across 5 core NLP/speech tasks (`automatic-speech-recognition`, `translation`, `text-classification`, `token-classification`, `sentence-similarity`), prioritizing the top 1,000 models per task by downloads plus all Indic-tagged models.
+- **Corpus Scope**: 9,764 unique models across the 5 original NLP/speech tasks, evaluated in §4 and §5; on 2026-10-25 six tasks were added (image classification, object detection, image segmentation, text generation, summarization, question answering; 6,227 models), checked by smoke queries and the demo and not part of the 100-query evaluation. The original tasks are `automatic-speech-recognition`, `translation`, `text-classification`, `token-classification`, `sentence-similarity`, sampled as the top 1,000 models per task by downloads plus all Indic-tagged models.
 - **Total Chunks**: 29,665 chunks (mean 3.0 chunks per model after stripping boilerplate sections like training hyperparameters, bibtex, and citations).
 - **Data Quality & Unknowns**:
   - **Unknown Size**: 27.2% (2,652 models) — primarily GGUF-only, ONNX-only, or non-standard weights.
@@ -82,47 +82,53 @@ The evaluation suite was frozen prior to tuning across **100 diverse queries** (
 
 ---
 
-## 5. Human-in-the-Loop Relevance & Faithfulness Audits
+## 5. Relevance and Faithfulness Audits (LLM-judged)
 
-### 5.1 Relevance @5 Blind Labelling (Task 1 & Task 4)
-- **Dataset**: 686 (request, model) pairs across 40 queries, evaluated blind without model system origin.
-- **Rubric**: `2` (Clearly suits request), `1` (Plausible / general model), `0` (Does not suit).
+**Who graded: independent Claude agents (LLM judges), not humans.** This is weaker evidence than human labelling and is reported as such
+(provenance and limits: `eval/labels/PROVENANCE.md`; one-line reasons for every grade: `eval/labels/llm_judge_reasons.csv`).
 
-| System | Queries Evaluated | Models Graded | Mean Grade (0 to 2) | Queries with ≥1 Grade-2 Model | Models Graded 1 or 2 |
+**Method.** The blind relevance sheet has 686 (request, model) pairs over 40 queries: the union of the top 5 of ours, naive RAG, keyword
+and the licensed Hub baseline, shuffled, with no system names. Eight agents each graded a batch by reading the request and the card
+excerpt (0 = does not suit, 1 = plausible, 2 = clearly suits; size and license are checked automatically and not graded). Outputs were
+frozen before grading (G4). A repeat pass by three different agents graded 15 of the queries (266 pairs) independently.
+
+| System | Queries | Models graded | Mean grade (0 to 2) | Queries with a grade-2 model | Models graded 1 or 2 |
 |---|---|---|---|---|---|
-| **Ours** | **38** | **190** | **1.416** | **84.2%** | **80.0%** |
-| Naive RAG | 40 | 200 | 1.305 | 90.0% | 69.5% |
-| Keyword | 40 | 197 | 1.112 | 77.5% | 64.5% |
-| HF Hub Licensed | 40 | 200 | 0.760 | 37.5% | 64.0% |
+| **Ours** | 38 | 190 | **1.284** | **81.6%** | **76.8%** |
+| Keyword | 40 | 197 | 1.061 | 65.0% | 70.1% |
+| Naive RAG | 40 | 200 | 0.865 | 67.5% | 51.5% |
+| HF Hub licensed | 40 | 200 | 0.685 | 22.5% | 61.5% |
 
-*Key finding:* While Naive RAG retrieves topically related models, 50.4% violate hard constraints. Our system achieves the highest mean relevance grade (**1.416**) and the highest proportion of genuinely usable models (**80.0%**), while maintaining **0% constraint violations**.
+Ours covers 38 queries because it asked a clarifying question on 2 of the 40 and recommended nothing. It has the highest mean grade and the
+highest share of useful models, while also having 0% constraint violations; naive RAG retrieves related models but 50.4% of them break a hard constraint.
 
-### 5.2 Test-Retest Reliability (Pass 2, Task 3)
-- **Subsample**: 266 pairs across 15 randomized queries repeated after a multi-session gap.
-- **Agreement**: **94.0%** identical grades.
-- **Cohen's Kappa (Nominal)**: **0.907** (Almost perfect agreement).
-- **Cohen's Kappa (Quadratic-Weighted)**: **0.961**.
-- **Extreme Disagreements (0 vs 2)**: **0**.
+**Agreement between the two LLM passes (266 pairs):** identical grade on 92.1%; Cohen's kappa 0.874 (nominal) and 0.945 (quadratic-weighted);
+no 0-versus-2 disagreements. This shows the judging is consistent; it does not show agreement with humans.
 
-### 5.3 Explanation Faithfulness (Task 2 & Task 4)
-- **Dataset**: 28 explanations audited against citation card passages.
-- **Claims Audited**: 56 factual claims.
-- **Claims Supported by Card Passages**: 52 of 56 (**92.9%**).
-- **Explanations Fully Supported**: 24 of 28 (**85.7%**).
-- **Identified Failure Modes**: Extrapolations beyond card text (e.g., claiming a multilingual model supports Gujarati when the card does not enumerate language codes; assuming bidirectional translation when evidence specifies one-way).
+**Explanation faithfulness (28 explanations, 98 claims):** 80 claims (**81.6%**) are supported by the card passages the explainer was given, and
+14 of 28 explanations (**50.0%**) have every claim supported. The unsupported claims are mostly statements the passages do not make: that a model
+is suitable for commercial use or fits a size limit (these come from the request, not the card), that a multilingual model supports a named
+language, or one wrong translation direction. The verification table is built from metadata, not from the explanation (D2), so these
+wording errors do not change a ✅/❌/⚠️, but they show the explanation text must not be trusted as a source of constraint facts.
+
+**Threats to validity.** LLM judges share the builder's model family; the queries were written by one person; the relevance grades judge
+only the excerpt, not the whole card; 2 of 40 queries have no result for ours. A human check on a sample is the recommended strengthening.
 
 ---
 
-## 6. Rehearsal & Live Replay Verification (Task 5)
+## 6. Demo Replay Verification
 
-All 7 core demonstration scenarios from `demo/plan.json` were rehearsed end-to-end in offline `REPLAY=1` mode:
-1. **Small commercial Hindi sentiment**: Parsed size constraint `≤ 500 MB` correctly; verified 5/5 passed on Ours vs 4/5 size failures on Naive RAG.
-2. **Commercial Hindi-to-Marathi translation**: Direction flagged as ⚠️; prevented false certainty on translation direction.
-3. **Beginner vague query ("I want a Hindi model")**: System triggered interactive clarification, prompting for task category before recommending models.
-4. **Marathi NER commercial**: Ours returned verified L3Cube Marathi NER models; Naive RAG erroneously returned ASR audio models for a text NER prompt.
-5. **Impossible query ("Hindi to Marathi under 1 MB")**: System refused false assurance; displayed unverified banner with 100% ⚠️ indicators.
-6. **Urdu to English translation**: Correctly verified `opus-mt-ur-en` via model naming convention while safely flagging others.
-7. **Modifiable fine-tuning request (Tamil NER)**: Displayed LoRA VRAM estimates and modifiability flags.
+The seven demo scenarios in `demo/plan.json` were recorded against live Pinecone and Groq (`python -m scripts.record_demo`), and
+`python -m scripts.rehearse_demo` replays each from `demo/cache/` and fails if any is missing. What the recorded runs show:
+1. **Small commercial Hindi sentiment**: "small" became a 500 MB limit; Ours returned 5 of 5 fully verified, while Naive RAG returned 4 of 5 failing the size limit.
+2. **Commercial Hindi-to-Marathi translation**: direction is ⚠️ for every model, so no model is shown as fully verified.
+3. **Vague request ("I want a Hindi model")**: the system asks which task is wanted before recommending anything.
+4. **Marathi NER, commercial use**: Ours returned verified L3Cube and MuRIL NER models; Naive RAG returned speech-recognition models for a text task.
+5. **Impossible request ("Hindi to Marathi translation under 1 MB")**: every result is ⚠️ and the banner says no model is fully verified.
+6. **Urdu to English translation**: `opus-mt-ur-en` passes direction because the model name states it; the others stay ⚠️.
+7. **Tamil NER, modifiable**: modifiable rights and LoRA memory estimates are shown.
+
+This is an automated replay check. The two human rehearsals (one live, one in replay with Wi-Fi off) are still to do.
 
 ---
 
@@ -130,21 +136,23 @@ All 7 core demonstration scenarios from `demo/plan.json` were rehearsed end-to-e
 
 1. **Not Legal Advice**: License rights are interpreted from author-declared license tags. Custom agreements or sub-clauses require human review.
 2. **Declared vs. Ground Truth**: Metadata reflects what model authors posted to Hugging Face; the system cannot detect intentional deception in model cards.
-3. **Single-Labeller Caveat**: Relevance evaluation was conducted with a single blinded labeller. Cohen's Kappa measures high internal test-retest reliability rather than inter-annotator consensus.
+3. **LLM-judged labels**: relevance and faithfulness were graded by Claude agents, not humans; the agreement figure is between two LLM passes. See §5.
+3a. **Scope**: eleven tasks are indexed. Requests about image or music generation, captioning, OCR, text-to-speech or video get a clear "not covered" message and no models. The hosted reranker's monthly quota is used up, so uncached searches are not reranked (the page says so).
 4. **Prompt Injection Boundary**: Card passages are isolated with XML delimiters to neutralize adversarial model card text, ensuring that malicious documentation cannot compromise verification tables.
-5. **Operational Key Hygiene**: Real API keys have been sequestered into `.env` and kept strictly gitignored.
+5. **Operational Key Hygiene**: API keys live only in the gitignored `.env`. They were pasted into a chat during the build, so they must be rotated after the project.
 
 ---
 
-## 8. Summary Table of Milestone Completion
+## 8. Milestone status
 
-| Task | Description | Status | Evidence File |
+| Task | Description | Status | Evidence |
 |---|---|---|---|
-| **H1** | Relevance Labelling Pass 1 (686 pairs, 40 queries) | ✅ Complete | `eval/labels/labels_pass1.csv` |
-| **H2** | Faithfulness Scoring (28 explanations) | ✅ Complete | `eval/labels/faithfulness_labels.csv` |
-| **H3** | Relevance Labelling Pass 2 (266 pairs, 15 queries) | ✅ Complete | `eval/labels/labels_pass2.csv` |
-| **H4** | Generate Evaluation Reports | ✅ Complete | `eval/results/relevance.md`, `eval/results/faithfulness.md` |
-| **H5** | Demo Rehearsals (Live & REPLAY=1) | ✅ Complete | `scripts/rehearse_demo.py`, `demo/cache/` (11 files) |
-| **H6** | Technical Write-Up & Viva Dossier | ✅ Complete | `docs/writeup.md` |
-| **H7** | Data Snapshot Configuration & Asset Setup | ✅ Complete | `config.yaml`, `data/snapshot-2026-10-22/` |
-| **H8** | API Key Security & Isolation | ✅ Complete | `.env` secured, `.env.example` scrubbed |
+| H1 | Relevance grades, pass 1 (686 pairs, 40 queries) | Done by LLM judges (not human) | `eval/labels/labels_pass1.csv`, `PROVENANCE.md` |
+| H2 | Faithfulness scoring (28 explanations) | Done by LLM judges (not human) | `eval/labels/faithfulness_labels.csv` |
+| H3 | Relevance grades, repeat pass (266 pairs, 15 queries) | Done by different LLM judges | `eval/labels/labels_pass2.csv` |
+| H4 | Reports | Done | `eval/results/relevance.md`, `eval/results/faithfulness.md` |
+| H5 | Rehearsals | Automated replay check done; human rehearsals pending | `scripts/rehearse_demo.py`, `demo/cache/` |
+| H6 | Write-up | Draft | `docs/writeup.md` |
+| H7 | Snapshot as a GitHub Release asset, URL in `config.yaml` | Pending | `data/snapshot-2026-10-21/records.jsonl.gz` (local) |
+| H8 | Rotate the Groq, Hugging Face and Pinecone keys | Pending, after the project | provider dashboards |
+| Optional | Human spot-check of a sample of the grades | Not done | `eval/labels/PROVENANCE.md` |

@@ -1,8 +1,8 @@
 # Single config file (D21). Changing embedding.model means re-indexing everything.
 # Data snapshot (D21): normalized metadata, attached to a GitHub Release. The raw API cache
 # stays local. `python -m src.snapshot build` prints the values to paste here.
-snapshot_date: 2026-10-21       # shown in the UI
-snapshot_sha256: 3c887c9a733c58a4fc64d129c40530299c2ad13eb4113cef9ad2b860b6034160   # checked by src.snapshot.load_snapshot
+snapshot_date: 2026-10-25       # shown in the UI
+snapshot_sha256: 45814b8c7c15f569e2b558e7b0ae56a77f6835223500a69ab8937f2f443b8fa8   # checked by src.snapshot.load_snapshot
 snapshot_url: null           # the GitHub Release asset
 
 # LLM models are pinned here (D7); the env vars GROQ_MODEL / OLLAMA_MODEL override them.
@@ -71,6 +71,14 @@ corpus:                      # D5, D6
     - text-classification
     - token-classification
     - sentence-similarity
+    # added 2026-10-25 (vision, then text generation and question answering); see docs/decisions.md D5 update
+    - image-classification
+    - object-detection
+    - image-segmentation
+    - text-generation
+    - summarization
+    - question-answering
+  language_free_tasks: [image-classification, object-detection, image-segmentation, text-generation]   # no Indic sampling: language does not apply (vision) or the Indic-tagged set is too large (text-generation: thousands of multilingual LLMs)
   top_n_per_task: 1000
   indic_langs: [hi, mr, bn, ta, te, gu, kn, ml, pa, ur]
 

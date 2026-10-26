@@ -18,10 +18,16 @@ def test_reranker_replaces_scores_and_sorts_best_first():
         return [0.1, 0.9, 0.5]
 
     out = LocalReranker(scorer=scorer)("my query", [match("a", 0.99, "x"), match("b", 0.2, "y"), match("c", 0.5, "z")])
-    assert [m["id"] for m in out] == ["b::0", "c::0", "a::0"]
+    # chunks are scored best-by-vector-score first: a (0.99), c (0.5), b (0.2) -> 0.1, 0.9, 0.5
+    assert [m["id"] for m in out] == ["c::0", "b::0", "a::0"]
     assert [m["score"] for m in out] == [0.9, 0.5, 0.1]            # the contract: scores are REPLACED
     assert out[2]["retrieval_score"] == 0.99                       # original kept for debugging
     assert seen["pairs"][0] == ("my query", "x")
+
+
+def test_local_reranker_scores_only_max_docs_and_keeps_the_rest_below():
+    out = LocalReranker(scorer=lambda pairs: [0.5] * len(pairs), max_docs=2)("q", [match("a", 0.9), match("b", 0.8), match("c", 0.7)])
+    assert [m["id"] for m in out] == ["a::0", "b::0", "c::0"] and out[2]["score"] < out[1]["score"]
 
 
 def test_reranker_handles_empty_and_does_not_mutate_input():

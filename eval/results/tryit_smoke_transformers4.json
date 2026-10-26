@@ -1,0 +1,262 @@
+{
+ "models": 32,
+ "passed": 20,
+ "results": [
+  {
+   "model_id": "aitytech/Whisper-Tiny-MLX-FP16",
+   "task": "automatic-speech-recognition",
+   "size_mb": 74.4,
+   "ok": false,
+   "seconds": 12.8,
+   "tail": "module.py\", line 2643, in load_state_dict\n    raise RuntimeError(\n    ...<3 lines>...\n    )\nRuntimeError: Error(s) in loading state_dict for Conv1d:\n\tsize mismatch for weight: copying a param with shape torch.Size([384, 3, 80]) from checkpoint, the shape in current model is torch.Size([384, 80, 3])."
+  },
+  {
+   "model_id": "Open4bits/whisper-tiny-f16",
+   "task": "automatic-speech-recognition",
+   "size_mb": 75.5,
+   "ok": false,
+   "seconds": 10.6,
+   "tail": "py\", line 1210, in _set_model_specific_special_tokens\n    self.SPECIAL_TOKENS_ATTRIBUTES = self.SPECIAL_TOKENS_ATTRIBUTES + list(special_tokens.keys())\n                                                                           ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'list' object has no attribute 'keys'"
+  },
+  {
+   "model_id": "aitytech/Whisper-Base-MLX-FP16",
+   "task": "automatic-speech-recognition",
+   "size_mb": 143.7,
+   "ok": false,
+   "seconds": 9.6,
+   "tail": "orch/nn/modules/module.py\", line 2643, in load_state_dict\n    raise RuntimeError(\n    ...<3 lines>...\n    )\nRuntimeError: Error(s) in loading state_dict for Conv1d:\n\tsize mismatch for bias: copying a param with shape torch.Size([512]) from checkpoint, the shape in current model is torch.Size([384])."
+  },
+  {
+   "model_id": "DireDreadlord/Vakya-Mini-Extended-100M",
+   "task": "translation",
+   "size_mb": 215.9,
+   "ok": false,
+   "seconds": 12.1,
+   "tail": "ges/transformers/models/auto/tokenization_auto.py\", line 1153, in from_pretrained\n    raise ValueError(\n        f\"Tokenizer class {tokenizer_class_candidate} does not exist or is not currently imported.\"\n    )\nValueError: Tokenizer class TokenizersBackend does not exist or is not currently imported."
+  },
+  {
+   "model_id": "DireDreadlord/Vakya-Mini-100M",
+   "task": "translation",
+   "size_mb": 215.9,
+   "ok": false,
+   "seconds": 13.6,
+   "tail": "ges/transformers/models/auto/tokenization_auto.py\", line 1153, in from_pretrained\n    raise ValueError(\n        f\"Tokenizer class {tokenizer_class_candidate} does not exist or is not currently imported.\"\n    )\nValueError: Tokenizer class TokenizersBackend does not exist or is not currently imported."
+  },
+  {
+   "model_id": "sifat-febo/banglish-ontor",
+   "task": "text-classification",
+   "size_mb": 0.6,
+   "ok": false,
+   "seconds": 7.6,
+   "tail": "ges/transformers/models/auto/tokenization_auto.py\", line 1153, in from_pretrained\n    raise ValueError(\n        f\"Tokenizer class {tokenizer_class_candidate} does not exist or is not currently imported.\"\n    )\nValueError: Tokenizer class TokenizersBackend does not exist or is not currently imported."
+  },
+  {
+   "model_id": "Nebulixlabs/Quantum-Classifier-Calibrated",
+   "task": "text-classification",
+   "size_mb": 2.0,
+   "ok": false,
+   "seconds": 6.5,
+   "tail": "`. If this does not work, and the checkpoint is very new, then there may not be a release version that supports this model yet. In this case, you can get the most up-to-date code by installing Transformers from source with the command `pip install git+https://github.com/huggingface/transformers.git`"
+  },
+  {
+   "model_id": "ajajali09/hindi-conversation-interruption-intent-classifier-TinyBERT-L-2-v2",
+   "task": "text-classification",
+   "size_mb": 17.5,
+   "ok": true,
+   "seconds": 9.7,
+   "tail": "[{'label': 'affirmation', 'score': 0.9238423705101013}]"
+  },
+  {
+   "model_id": "hiteshwadhwani/pii-model-indic-v1",
+   "task": "token-classification",
+   "size_mb": 131.6,
+   "ok": true,
+   "seconds": 14.6,
+   "tail": "[]"
+  },
+  {
+   "model_id": "OpenMed/OpenMed-PII-Hindi-ClinicalE5-Small-33M-v1",
+   "task": "token-classification",
+   "size_mb": 133.0,
+   "ok": true,
+   "seconds": 12.1,
+   "tail": "[]"
+  },
+  {
+   "model_id": "OpenMed/OpenMed-NER-ProteinDetect-BioPatient-108M",
+   "task": "token-classification",
+   "size_mb": 215.5,
+   "ok": true,
+   "seconds": 12.8,
+   "tail": "[]"
+  },
+  {
+   "model_id": "tasal9/Multilingual-ZamAI-Embeddings",
+   "task": "sentence-similarity",
+   "size_mb": 0.0,
+   "ok": false,
+   "seconds": 9.2,
+   "tail": "hon3.13/site-packages/transformers/modeling_utils.py\", line 4925, in from_pretrained\n    with safe_open(checkpoint_files[0], framework=\"pt\") as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsafetensors._safetensors_rust.SafetensorError: Error while deserializing header: header too large"
+  },
+  {
+   "model_id": "sifat-febo/banglish-embed-tiny",
+   "task": "sentence-similarity",
+   "size_mb": 11.4,
+   "ok": true,
+   "seconds": 12.2,
+   "tail": "tensor([[0.5713]])"
+  },
+  {
+   "model_id": "thoddnn/all-MiniLM-L6-v2-4bit",
+   "task": "sentence-similarity",
+   "size_mb": 12.8,
+   "ok": false,
+   "seconds": 9.4,
+   "tail": "s/module.py\", line 2643, in load_state_dict\n    raise RuntimeError(\n    ...<3 lines>...\n    )\nRuntimeError: Error(s) in loading state_dict for Embedding:\n\tsize mismatch for weight: copying a param with shape torch.Size([512, 48]) from checkpoint, the shape in current model is torch.Size([512, 384])."
+  },
+  {
+   "model_id": "timm/mobilenetv3_small_100.lamb_in1k",
+   "task": "image-classification",
+   "size_mb": 10.2,
+   "ok": true,
+   "seconds": 9.5,
+   "tail": "[{'label': 'doormat, welcome mat', 'score': 0.0374310128390789}, {'label': 'tennis ball', 'score': 0.022421695291996002}, {'label': 'golf ball', 'score': 0.016202230006456375}, {'label': 'soccer ball', 'score': 0.012176510877907276}, {'label': 'manhole cover', 'score': 0.011311043985188007}]"
+  },
+  {
+   "model_id": "timm/efficientnet_b0.ra_in1k",
+   "task": "image-classification",
+   "size_mb": 21.4,
+   "ok": true,
+   "seconds": 10.7,
+   "tail": " turtle, Dermochelys coriacea', 'score': 0.04530371353030205}, {'label': 'tripod', 'score': 0.040229182690382004}, {'label': 'tennis ball', 'score': 0.03317594155669212}, {'label': 'tricycle, trike, velocipede', 'score': 0.030821628868579865}, {'label': 'dung beetle', 'score': 0.029108311980962753}]"
+  },
+  {
+   "model_id": "Marqo/nsfw-image-detection-384",
+   "task": "image-classification",
+   "size_mb": 22.4,
+   "ok": true,
+   "seconds": 9.7,
+   "tail": "[{'label': 'SFW', 'score': 0.9321026802062988}, {'label': 'NSFW', 'score': 0.06789737939834595}]"
+  },
+  {
+   "model_id": "hustvl/yolos-tiny",
+   "task": "object-detection",
+   "size_mb": 26.0,
+   "ok": true,
+   "seconds": 8.9,
+   "tail": "[]"
+  },
+  {
+   "model_id": "AnnaZhang/lwdetr_small_60e_coco",
+   "task": "object-detection",
+   "size_mb": 58.3,
+   "ok": false,
+   "seconds": 7.4,
+   "tail": "`. If this does not work, and the checkpoint is very new, then there may not be a release version that supports this model yet. In this case, you can get the most up-to-date code by installing Transformers from source with the command `pip install git+https://github.com/huggingface/transformers.git`"
+  },
+  {
+   "model_id": "PekingU/rtdetr_r18vd",
+   "task": "object-detection",
+   "size_mb": 80.9,
+   "ok": true,
+   "seconds": 11.2,
+   "tail": "[]"
+  },
+  {
+   "model_id": "restor/tcd-segformer-mit-b0",
+   "task": "image-segmentation",
+   "size_mb": 14.9,
+   "ok": true,
+   "seconds": 8.8,
+   "tail": "[{'score': None, 'label': '__background__', 'mask': <PIL.Image.Image image mode=L size=224x224 at 0x7F5F99C3BCE0>}]"
+  },
+  {
+   "model_id": "nvidia/segformer-b0-finetuned-ade-512-512",
+   "task": "image-segmentation",
+   "size_mb": 15.0,
+   "ok": true,
+   "seconds": 9.0,
+   "tail": "[{'score': None, 'label': 'tree', 'mask': <PIL.Image.Image image mode=L size=224x224 at 0x7F4EA1B34D10>}, {'score': None, 'label': 'earth', 'mask': <PIL.Image.Image image mode=L size=224x224 at 0x7F4EA1B84D70>}]"
+  },
+  {
+   "model_id": "ZhengPeng7/BiRefNet_lite-matting",
+   "task": "image-segmentation",
+   "size_mb": 89.0,
+   "ok": false,
+   "seconds": 6.9,
+   "tail": "xecuted to correctly load the model. You can inspect the repository content at https://hf.co/ZhengPeng7/BiRefNet_lite-matting .\n You can inspect the repository content at https://hf.co/ZhengPeng7/BiRefNet_lite-matting.\nPlease pass the argument `trust_remote_code=True` to allow custom code to be run."
+  },
+  {
+   "model_id": "trl-internal-testing/tiny-LlamaForCausalLM-3.2",
+   "task": "text-generation",
+   "size_mb": 2.1,
+   "ok": true,
+   "seconds": 10.9,
+   "tail": "[{'generated_text': \"Once upon a time.AddListenerivative aqueลา,{,col'=_asm CONFTK-marCrLfTK MAIL MULTWHERE Stephanie entfer.mjresolved Hyper Swift cài schools resurgence Sweden SwedenMeg dür regress\"}]"
+  },
+  {
+   "model_id": "hmellor/tiny-random-LlamaForCausalLM",
+   "task": "text-generation",
+   "size_mb": 2.1,
+   "ok": true,
+   "seconds": 8.9,
+   "tail": "[{'generated_text': 'Once upon a time bran cort MCöd relationUri化 estaboem scenes logsخ Wes otraografi Jahrhundert Frederick spread tmp rép [{disunda incexpect Rav座 Saltjobлена'}]"
+  },
+  {
+   "model_id": "MaxJeblick/llama2-0b-unit-test",
+   "task": "text-generation",
+   "size_mb": 3.1,
+   "ok": true,
+   "seconds": 9.4,
+   "tail": "[{'generated_text': 'Once upon a timeassoci cum Ser Labornelle however SerivedменаtablesÊ careMAIN takingʁ eqiebenWil malInterval NAMEtables kaIZ術anaELDänge{|ги'}]"
+  },
+  {
+   "model_id": "mrm8488/bert-mini2bert-mini-finetuned-cnn_daily_mail-summarization",
+   "task": "summarization",
+   "size_mb": 93.7,
+   "ok": true,
+   "seconds": 11.3,
+   "tail": "[{'summary_text': 'justin bieber \\' s text message to summarizes the text. he says it \\' s time to send the text to the world. the text is the first text to be sent to the middle of the text, bieber says. bieber : \" i \\' ll be in the text? \"'}]"
+  },
+  {
+   "model_id": "wordcab/t5-small-email-summarizer",
+   "task": "summarization",
+   "size_mb": 242.0,
+   "ok": false,
+   "seconds": 13.7,
+   "tail": "scratchpad/venv4/lib/python3.13/site-packages/transformers/tokenization_utils_fast.py\", line 108, in __init__\n    raise ValueError(\n    ...<2 lines>...\n    )\nValueError: Cannot instantiate this tokenizer from a slow version. If it's based on sentencepiece, make sure you have sentencepiece installed."
+  },
+  {
+   "model_id": "Falconsai/text_summarization",
+   "task": "summarization",
+   "size_mb": 242.0,
+   "ok": true,
+   "seconds": 15.2,
+   "tail": "[{'summary_text': 'Long text to summarize the results of a long text to be published in a short text to a full text to the full text of the text.'}]"
+  },
+  {
+   "model_id": "monologg/koelectra-small-v2-distilled-korquad-384",
+   "task": "question-answering",
+   "size_mb": 54.8,
+   "ok": true,
+   "seconds": 11.6,
+   "tail": "{'score': 0.6151511811185628, 'start': 0, 'end': 29, 'answer': 'Text that contains the answer'}"
+  },
+  {
+   "model_id": "csarron/mobilebert-uncased-squad-v2",
+   "task": "question-answering",
+   "size_mb": 98.5,
+   "ok": true,
+   "seconds": 13.6,
+   "tail": "{'score': 3.9593509427504614e-05, 'start': 0, 'end': 30, 'answer': 'Text that contains the answer.'}"
+  },
+  {
+   "model_id": "csarron/mobilebert-uncased-squad-v1",
+   "task": "question-answering",
+   "size_mb": 98.5,
+   "ok": true,
+   "seconds": 13.8,
+   "tail": "{'score': 0.1477145105600357, 'start': 0, 'end': 29, 'answer': 'Text that contains the answer'}"
+  }
+ ]
+}

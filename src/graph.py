@@ -25,7 +25,7 @@ from langgraph.graph import END, START, StateGraph
 from src.adapt import model_report
 from src.config import CFG
 from src.llm import clean_constraints
-from src.guide import clarifying_question, describe_intent, relaxation_offer, try_it_snippet
+from src.guide import clarifying_question, describe_intent, out_of_scope_message, relaxation_offer, try_it_snippet
 from src.retrieve import fetch_chunks, group_by_model
 from src.verify import FAIL, PASS, notes, overall, rank_key, verify
 
@@ -52,7 +52,9 @@ class State(TypedDict, total=False):
     fully_verified: bool      # False => the answer holds only models with ⚠️; the UI shows a banner
     explanations: list
     explain_error: str | None
-    outcome: str              # answer | clarify | relax | abstain
+    outcome: str              # answer | clarify | relax | abstain | out_of_scope
+    message: str | None       # why, for out_of_scope
+    rerank_skipped: bool      # True when the reranker's quota was exhausted and results keep vector order
 
 
 @dataclass
@@ -72,6 +74,8 @@ def viable(result: dict) -> bool:
 
 
 def route_after_extract(state: State) -> str:
+    if state.get("outcome") == "out_of_scope":
+        return "out_of_scope"
     if clarifying_question(state["constraints"]) and state.get("clarifications_asked", 0) < MAX_CLARIFY:
         return "clarify"
     return "retrieve"
@@ -107,6 +111,9 @@ def build_graph(deps: Deps, variant: str = "ours"):
     pool_size = CFG["retrieval"]["top_models"] if plain else CFG["retrieval"]["verify_pool"]
 
     def extract(state: State) -> State:
+        scope_message = out_of_scope_message(state["query"])
+        if scope_message:        # image / vision / OCR requests: say so, and do not spend an LLM call or show wrong models
+            return {"constraints": clean_constraints({}, state["query"]), "intent": "", "outcome": "out_of_scope", "message": scope_message}
         # User edits go through the same validator as the LLM's output: an override is untrusted input too
         # (a bad task or size would otherwise make every model fail silently). Key presence counts, so None clears.
         constraints = clean_constraints({**deps.extract(state["query"]), **(state.get("overrides") or {})}, state["query"])
@@ -126,18 +133,17 @@ def build_graph(deps: Deps, variant: str = "ours"):
                                         {} if variant == "naive" else state["constraints"], top_n=pool_size)}
 
     def rerank(state: State) -> State:
-        matches = state["matches"]
+        matches, skipped = state["matches"], False
         if variant != "keyword":
             try:
                 matches = deps.rerank(state["query"], matches)
             except Exception as e:
                 from src.rerank import RerankQuotaExceeded
 
-                if isinstance(e, RerankQuotaExceeded):
-                    pass
-                else:
+                if not isinstance(e, RerankQuotaExceeded):
                     raise
-        return {"candidates": group_by_model(matches, pool_size)}
+                skipped = True        # the hosted reranker's monthly quota is used up: keep vector order, and say so
+        return {"candidates": group_by_model(matches, pool_size), "rerank_skipped": skipped}
 
     def verify_node(state: State) -> State:
         c = state["constraints"]
@@ -186,8 +192,9 @@ def build_graph(deps: Deps, variant: str = "ours"):
                      ("abstain", abstain), ("enrich", enrich), ("explain", explain)):
         g.add_node(name, fn)
     g.add_edge(START, "extract")
-    g.add_conditional_edges("extract", (lambda st: "retrieve") if plain else route_after_extract,
-                            {"clarify": "clarify", "retrieve": "retrieve"})
+    g.add_conditional_edges("extract", ((lambda st: "out_of_scope" if st.get("outcome") == "out_of_scope" else "retrieve") if plain
+                                        else route_after_extract),
+                            {"clarify": "clarify", "retrieve": "retrieve", "out_of_scope": END})
     g.add_edge("clarify", END)
     g.add_edge("retrieve", "rerank")
     g.add_edge("rerank", "verify")

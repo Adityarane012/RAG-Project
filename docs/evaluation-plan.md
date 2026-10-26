@@ -22,7 +22,7 @@ Implements D11 (metrics) and D19 (baselines). Automatic metrics are in
 
 | Slice | Count | Author | Notes |
 |---|---|---|---|
-| Normal | ~75 | teammate **not** building the pipeline | spread over the 5 tasks and ≥6 Indic languages; mix of size, rights, language, direction constraints |
+| Normal | ~75 | teammate **not** building the pipeline | spread over the original 5 tasks (the six tasks added on 2026-10-25 are not in the 100-query set; see data-notes) and ≥6 Indic languages; mix of size, rights, language, direction constraints |
 | Impossible | ~10 | same | **verifiably** impossible: every model in the snapshot gets a known ❌ (e.g. Marathi ASR under 10 MB, commercial and modifiable). Check each with `eval.metrics.verifiably_impossible(records, constraints)`; if a model is only ⚠️ the query measures missing data, so rewrite it |
 | Vague (beginner) | ~15 | same | missing task ("I want a Hindi model"), no constraints, jargon-free phrasing |
 | Classmates | ~20 | classmates who have never seen the system | any kind; reduces author bias |
@@ -83,7 +83,7 @@ prompt tuning beyond what ours also received.
 
 ## 5. Manual labelling
 
-**Relevance @5, single-person protocol (current).** There is one labeller, the project owner, on **40 queries** (not 50). The unit labelled is the *union* of each query's top-5 across ours, naive, keyword and the licensed Hub baseline: 686 pairs, about 4 hours. The sheet is exported by `python -m eval.run_eval --label 40` (stratified by task, reproducible), blind (no system names, shuffled), with the system key in a separate file that the labeller does not open. Label with `streamlit run eval/label_app.py`. Grade the *purpose* of the request only (hard constraints are scored automatically):
+**Relevance @5, protocol as run (2026-10-25).** Grades were made by **independent Claude agents (LLM judges), not humans** (see `eval/labels/PROVENANCE.md`), on **40 queries** (not 50); the text below describes the human protocol, which a person can still run on a sample to validate these grades. The unit labelled is the *union* of each query's top-5 across ours, naive, keyword and the licensed Hub baseline: 686 pairs, about 4 hours. The sheet is exported by `python -m eval.run_eval --label 40` (stratified by task, reproducible), blind (no system names, shuffled), with the system key in a separate file that the labeller does not open. Label with `streamlit run eval/label_app.py`. Grade the *purpose* of the request only (hard constraints are scored automatically):
 
 | Grade | Meaning |
 |---|---|
@@ -153,3 +153,16 @@ for faithfulness, over two days or on Ollama. (3) Shard long runs across teammat
 - Relevance labels are subjective; mitigate with two labellers and an agreement figure.
 - Extraction errors silently drop constraints and make violation rates look better; the
   silent-drop rate from the extraction test (testing-strategy §6) bounds this.
+
+## 9. Reproducing the frozen v2 results (after the 11-task extension)
+
+The labelled evaluation was run on the five-task corpus. The index now also holds six more tasks, which changes the unfiltered baselines
+(naive RAG, BM25 statistics) but not ours. To reproduce v2 exactly:
+
+```bash
+CORPUS_TASKS=five python -m src.index --namespace eval5 --store local       # five-task index from the embedding cache, no new embedding
+CORPUS_TASKS=five python -m eval.run_eval --namespace eval5 --parsed eval/results/frozen_parses_v2.json --tag v2-repro
+```
+
+Last run (2026-10-25): identical top-5 lists on 100 of 100 queries for ours, naive and keyword (`eval/results/raw-v2-repro.json`). The
+`--parsed` file pins the 100 parses behind v2, so later prompt changes cannot move the results.

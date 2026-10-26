@@ -15,6 +15,12 @@ TASK_LABELS = {
     "text-classification": "classify text, e.g. detect sentiment",
     "token-classification": "find names, places and other items in text (NER)",
     "sentence-similarity": "measure how similar two sentences are",
+    "image-classification": "sort images into categories (image classification)",
+    "object-detection": "find and locate objects in images (object detection)",
+    "image-segmentation": "outline objects or regions in images (image segmentation)",
+    "text-generation": "generate text (a language model)",
+    "summarization": "summarize long text",
+    "question-answering": "answer questions from a passage (question answering)",
 }
 # Short labels for the clickable options of the clarifying question.
 TASK_OPTIONS = {
@@ -23,6 +29,12 @@ TASK_OPTIONS = {
     "automatic-speech-recognition": "Transcribe speech",
     "translation": "Translate text",
     "sentence-similarity": "Compare sentence similarity",
+    "image-classification": "Classify images",
+    "object-detection": "Detect objects in images",
+    "image-segmentation": "Segment images",
+    "text-generation": "Generate text",
+    "summarization": "Summarize text",
+    "question-answering": "Answer questions from a passage",
 }
 LANG_NAMES = {
     "hi": "Hindi", "mr": "Marathi", "bn": "Bengali", "ta": "Tamil", "te": "Telugu",
@@ -39,6 +51,27 @@ LANG_NAMES = {
 LANG_BY_NAME = {name.lower(): code for code, name in LANG_NAMES.items()}
 LANG_BY_NAME.update({"bangla": "bn", "panjabi": "pa", "oriya": "or", "हिंदी": "hi", "हिन्दी": "hi", "मराठी": "mr",
                      "meitei": "mni", "বাংলা": "bn", "தமிழ்": "ta", "తెలుగు": "te"})
+
+# Tasks and modalities the index does not cover (D5). Without this, "image classifier" was once read as text-classification and
+# the user got text models marked as passing the task check. Image classification, object detection and image segmentation ARE
+# covered now (2026-10-25); generation, captioning, OCR, speech synthesis, video and the like are not.
+_OUT_OF_SCOPE = re.compile(
+    r"\b(?:ocr|face recognition|pose estimation|depth estimation|text[- ]to[- ]image|image[- ]to[- ]text|image captioning|"
+    r"(?:image|video|music|audio) generation|generate (?:images?|videos?|music)|diffusion|text[- ]to[- ]speech|tts|speech synthesis|"
+    r"voice cloning|video (?:classification|generation|understanding|detection))\b", re.I)
+SCOPE_SUMMARY = ("speech recognition, translation, text classification (e.g. sentiment), named-entity recognition, sentence "
+                 "similarity, image classification, object detection, image segmentation, text generation, summarization "
+                 "and question answering")
+
+
+def out_of_scope_message(query: str) -> str | None:
+    """A plain-words refusal when the request is about something we do not index, else None."""
+    if _OUT_OF_SCOPE.search(query or ""):
+        return (f"This tool only searches models for {SCOPE_SUMMARY}. Image or music generation, captioning, OCR, text-to-speech "
+                "and video models are not covered, so we show nothing rather than a model for a different task. "
+                "Try the Hugging Face model search for those.")
+    return None
+
 
 # D13: 4-5 example queries on the start screen, balanced across English and Indic.
 EXAMPLE_QUERIES = [
@@ -74,6 +107,12 @@ TASK_GUIDES = {
     "text-classification": "https://huggingface.co/docs/transformers/tasks/sequence_classification",
     "token-classification": "https://huggingface.co/docs/transformers/tasks/token_classification",
     "sentence-similarity": "https://www.sbert.net/docs/sentence_transformer/training_overview.html",
+    "image-classification": "https://huggingface.co/docs/transformers/tasks/image_classification",
+    "object-detection": "https://huggingface.co/docs/transformers/tasks/object_detection",
+    "image-segmentation": "https://huggingface.co/docs/transformers/tasks/semantic_segmentation",
+    "text-generation": "https://huggingface.co/docs/transformers/tasks/language_modeling",
+    "summarization": "https://huggingface.co/docs/transformers/tasks/summarization",
+    "question-answering": "https://huggingface.co/docs/transformers/tasks/question_answering",
 }
 
 
@@ -162,6 +201,12 @@ def try_it_snippet(model_id: str, task: str) -> str:
         "translation": 'pipe("Text to translate")',
         "text-classification": 'pipe("Text to classify")',
         "token-classification": 'pipe("Text to scan for names")',
+        "image-classification": 'pipe("image.jpg")',
+        "object-detection": 'pipe("image.jpg")',
+        "image-segmentation": 'pipe("image.jpg")',
+        "text-generation": 'pipe("Once upon a time", max_new_tokens=30)',
+        "summarization": 'pipe("Long text to summarize")',
+        "question-answering": 'pipe(question="Who wrote it?", context="Text that contains the answer.")',
     }
     if task not in template:
         raise ValueError(f"No snippet template for task: {task!r}")
