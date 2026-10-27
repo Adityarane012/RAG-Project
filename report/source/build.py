@@ -11,12 +11,15 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 HERE = Path(__file__).parent
+SHORT = os.environ.get("EDITION") == "short"      # the 15-20 page edition
 REPO = HERE.parent.parent if (HERE.parent.parent / "src").exists() else Path("/home/user/RAG-Project")
-SRC = HERE / "src"
+SRC = HERE / ("src_short" if SHORT else "src")
 OUT = HERE.parent if HERE.name == "source" else HERE / "out"
 FONT = "Times New Roman"
 MONO = "Courier New"
-TEXT_W = 15.5  # cm: A4 21 - 3.0 (left, binding) - 2.5 (right)
+TEXT_W = 16.3 if SHORT else 15.5  # cm: A4 21 minus margins
+BODY = 11 if SHORT else 12
+LINE = 1.15 if SHORT else 1.5
 SHORT_TITLE = "HF Model Finder: Constraint-Verified RAG for Hugging Face Models"
 LOGO = HERE / "assets" / "logo.jpeg"
 
@@ -286,8 +289,8 @@ class Builder:
         st.element.rPr.rFonts.set(qn("w:eastAsia"), FONT)
         sec = d.sections[0]
         sec.page_width, sec.page_height = Cm(21.0), Cm(29.7)
-        sec.left_margin, sec.right_margin = Cm(3.0), Cm(2.5)
-        sec.top_margin, sec.bottom_margin = Cm(2.5), Cm(2.3)
+        sec.left_margin, sec.right_margin = (Cm(2.5), Cm(2.2)) if SHORT else (Cm(3.0), Cm(2.5))
+        sec.top_margin, sec.bottom_margin = (Cm(2.2), Cm(2.0)) if SHORT else (Cm(2.5), Cm(2.3))
         sec.header_distance, sec.footer_distance = Cm(1.2), Cm(1.1)
         cp = d.core_properties
         cp.title = "HF Model Finder: Constraint-Verified RAG for Hugging Face Models"
@@ -393,6 +396,19 @@ class Builder:
             if b["t"] == "para":
                 p = self.doc.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.JUSTIFY, line=1.5, after=6); add_inline(p, b["text"], self.ctx, 12)
 
+    def abstract_short(self):
+        self.centered("ABSTRACT", 14, True, after=6)
+        for b in read_blocks(SRC / "abstract.md"):
+            if b["t"] == "para":
+                p = self.doc.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.JUSTIFY, line=1.15, after=5); add_inline(p, b["text"], self.ctx, 11)
+        self.centered("Note: the software was developed with the assistance of an AI coding assistant (Claude Code); see Section 3.4. Relevance and faithfulness grades were produced by language-model judges, not humans.", 9, italic=True, after=4)
+
+    def contents_short(self):
+        self.centered("CONTENTS", 14, True, after=4, before=8)
+        for (lvl, label, title) in self.all_headings:
+            if lvl == 1:
+                self.toc_line(lvl, label, title, self.pages.get("h:" + (label or title), ""))
+
     def page_break(self):
         p = self.doc.add_paragraph(); para_fmt(p, line=1.0, after=0)
         p.add_run().add_break(WD_BREAK.PAGE)
@@ -412,7 +428,7 @@ class Builder:
     def toc_line(self, lvl, label, title, page):
         p = self.doc.add_paragraph()
         indent = {0: 0.0, 1: 0.0, 2: 0.8, 3: 1.6}[lvl]
-        para_fmt(p, WD_ALIGN_PARAGRAPH.LEFT, line=1.15, before=(5 if lvl <= 1 else 0), after=1, left=indent)
+        para_fmt(p, WD_ALIGN_PARAGRAPH.LEFT, line=(1.0 if SHORT else 1.15), before=((3 if SHORT else 5) if lvl <= 1 else 0), after=(0 if SHORT else 1), left=indent)
         p.paragraph_format.tab_stops.add_tab_stop(Cm(TEXT_W), WD_TAB_ALIGNMENT.RIGHT, WD_TAB_LEADER.DOTS)
         txt = (label + "  " if label else "") + title
         r = p.add_run(txt); set_font(r, 12 if lvl <= 1 else 11.5, bold=(lvl <= 1))
@@ -466,9 +482,11 @@ class Builder:
                 self.chap += 1; self.chap_label = str(self.chap); self.sec = 0
                 label = f"Chapter {self.chap}"; title = text; full = f"Chapter {self.chap}  {text}"
             self.sec = 0
-            p = d.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.CENTER if not label else WD_ALIGN_PARAGRAPH.LEFT, line=1.15, before=0, after=14, keep_next=True)
-            p.paragraph_format.page_break_before = True
-            if label:
+            p = d.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.LEFT if (SHORT or label) else WD_ALIGN_PARAGRAPH.CENTER, line=1.15, before=(14 if SHORT else 0), after=(6 if SHORT else 14), keep_next=True)
+            p.paragraph_format.page_break_before = not SHORT
+            if SHORT:
+                r = p.add_run(full); set_font(r, 15, True)
+            elif label:
                 r = p.add_run(label); set_font(r, 14, True); r.add_break(); r = p.add_run(title); set_font(r, 18, True)
             else:
                 r = p.add_run(full); set_font(r, 18, True)
@@ -479,12 +497,12 @@ class Builder:
         if level == 2:
             self.sec += 1; self.sub = 0
             lab = f"{self.chap_label}.{self.sec}" if self.chap_label else ""
-            size, before = 14, 12
+            size, before = (12.5, 8) if SHORT else (14, 12)
         else:
             self.sub += 1
             lab = f"{self.chap_label}.{self.sec}.{self.sub}" if self.chap_label else ""
-            size, before = 12, 8
-        p = d.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.LEFT, line=1.15, before=before, after=6, keep_next=True)
+            size, before = (11, 6) if SHORT else (12, 8)
+        p = d.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.LEFT, line=1.15, before=before, after=(3 if SHORT else 6), keep_next=True)
         r = p.add_run((lab + "  " if lab else "") + text); set_font(r, size, True)
         if level == 2:
             self.toc.append((2, lab, text)); self.all_headings_seen.append((2, lab, text, lab))
@@ -492,8 +510,8 @@ class Builder:
             self.all_headings_seen.append((3, lab, text, lab))
 
     def paragraph(self, text):
-        p = self.doc.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.JUSTIFY, line=1.5, after=6)
-        add_inline(p, text, self.ctx, 12)
+        p = self.doc.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.JUSTIFY, line=LINE, after=(5 if SHORT else 6))
+        add_inline(p, text, self.ctx, BODY)
 
     def bullets(self, items):
         n = 0
@@ -503,10 +521,10 @@ class Builder:
                 n += 1; mark, body = f"{m.group(1)}.", m.group(2)
             else:
                 mark, body = "•", re.sub(r"^[-•]\s+", "", it)
-            p = self.doc.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.JUSTIFY, line=1.5, after=3, hang=(1.2, 0.7))
-            p.paragraph_format.tab_stops.add_tab_stop(Cm(1.2))
-            r = p.add_run(mark + "\t"); set_font(r, 12)
-            add_inline(p, body, self.ctx, 12)
+            p = self.doc.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.JUSTIFY, line=LINE, after=3, hang=(1.0 if SHORT else 1.2, 0.6 if SHORT else 0.7))
+            p.paragraph_format.tab_stops.add_tab_stop(Cm(1.0 if SHORT else 1.2))
+            r = p.add_run(mark + "\t"); set_font(r, BODY)
+            add_inline(p, body, self.ctx, BODY)
 
     def next_label(self, kind):
         self.counters[kind] += 1
@@ -562,7 +580,7 @@ class Builder:
         for c in rows[1].strip().strip("|").split("|"):
             c = c.strip(); aligns.append("c" if c.startswith(":") and c.endswith(":") else "r" if c.endswith(":") else "l")
         data = [[c.strip() for c in r.strip().strip("|").split("|")] for r in rows[2:]]
-        size = float(kv.get("size", 10))
+        size = float(kv.get("size", 9 if SHORT else 10))
         ncol = len(header)
         if "cols" in kv:
             rel = [float(x) for x in kv["cols"].split(",")]
@@ -587,7 +605,7 @@ class Builder:
         for ri, rdata in enumerate(data):
             cells = t.add_row().cells
             for j, v in enumerate(rdata):
-                pp = cells[j].paragraphs[0]; para_fmt(pp, AL[aligns[j]], line=1.0, after=0, keep_next=(ri < len(data) - 1 and len(data) <= 8))
+                pp = cells[j].paragraphs[0]; para_fmt(pp, AL[aligns[j]], line=1.0, after=0, keep_next=(ri < len(data) - 1 and len(data) <= 12))
                 add_inline(pp, v, self.ctx, size)
             row_props(t.rows[-1])
         set_col_widths(t, widths)
@@ -615,6 +633,8 @@ class Builder:
             q = self.doc.add_paragraph(); para_fmt(q, WD_ALIGN_PARAGRAPH.LEFT, line=1.0, after=0, hang=(0.75, 0.55), widow=False)
             shade_par(q, "f3f3f3")
             q.paragraph_format.keep_together = True
+            if len(code) <= 40 and i < len(code) - 1:
+                q.paragraph_format.keep_with_next = True      # a short listing stays on one page
             txt = ln.replace("\t", "    ")
             r = q.add_run(txt if txt else " "); set_font(r, size, mono=True)
         q = self.doc.add_paragraph(); para_fmt(q, line=1.0, after=8)
@@ -632,10 +652,10 @@ class Builder:
     def references(self):
         self.heading(1, "References", plain=True)
         for i, key in enumerate(self.ctx.cites, 1):
-            p = self.doc.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.LEFT, line=1.15, after=5, hang=(1.0, 1.0))
+            p = self.doc.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.LEFT, line=(1.0 if SHORT else 1.15), after=(2 if SHORT else 5), hang=(1.0, 1.0))
             p.paragraph_format.tab_stops.add_tab_stop(Cm(1.0))
-            r = p.add_run(f"[{i}]\t"); set_font(r, 11)
-            add_inline(p, REFS[key], self.ctx, 11)
+            r = p.add_run(f"[{i}]\t"); set_font(r, 9 if SHORT else 11)
+            add_inline(p, REFS[key], self.ctx, 9 if SHORT else 11)
         uncited = [k for k in REFS if k not in self.ctx.cites]
         if uncited:
             print("WARNING: references defined but not cited:", uncited)
@@ -692,13 +712,16 @@ class Builder:
 
     def build(self, out_docx):
         chapters = [("ch1.md", False), ("ch2.md", False), ("ch3.md", False), ("ch4.md", False), ("ch5.md", False), ("ch6.md", False)]
-        apps = [("appA.md", True), ("appB.md", True), ("appC.md", True), ("appD.md", True)]
+        apps = [("appA.md", True), ("appB.md", True)] if SHORT else [("appA.md", True), ("appB.md", True), ("appC.md", True), ("appD.md", True)]
         self.prepass(chapters + [("refs_placeholder", False)] if False else chapters + apps)
         # headings list for the TOC comes from a dry run of body rendering order
         self._first_done = False
         self.all_headings_seen = []; self.lot_extra = []; self.lot_all = []
         # --- front matter
-        self.cover(); self.certificate(); self.acknowledgement(); self.abstract()
+        if SHORT:
+            self.cover(); self.new_section("lowerRoman", 1); self.abstract_short()
+        else:
+            self.cover(); self.certificate(); self.acknowledgement(); self.abstract()
         # We need headings and entries for the front-matter lists before rendering the body; collect them in a
         # throw-away builder run (same code path, so numbering matches exactly).
         dry = getattr(self, "_dry", None)
@@ -706,10 +729,13 @@ class Builder:
             d = Builder(self.pages); d._dry = True; d.dry_collect(chapters, apps)
             self.all_headings = [(l, lab, t) for (l, lab, t, _) in d.all_headings_seen if l <= 2]
             self.lof_entries, self.lot_entries = d.lof, d.lot_all
-        self.toc_page()
-        self.list_page("lof", "LIST OF FIGURES", "Name of the figure", self.lof_entries, "Fig")
-        self.list_page("lot", "LIST OF TABLES", "Name of the table / listing", self.lot_entries, "Table")
-        self.abbreviations()
+        if SHORT:
+            self.contents_short()
+        else:
+            self.toc_page()
+            self.list_page("lof", "LIST OF FIGURES", "Name of the figure", self.lof_entries, "Fig")
+            self.list_page("lot", "LIST OF TABLES", "Name of the table / listing", self.lot_entries, "Table")
+            self.abbreviations()
         # --- body
         self.new_section("decimal", 1)
         self.lof, self.lot, self.lot_extra, self.lot_all = [], [], [], []
@@ -800,7 +826,7 @@ def collect_pages(b, pdf):
 
 def main():
     OUT.mkdir(exist_ok=True)
-    name = "HF_Model_Finder_Capstone_Report"
+    name = "HF_Model_Finder_Report_Short" if SHORT else "HF_Model_Finder_Capstone_Report"
     docx_path = OUT / f"{name}.docx"
     b = Builder({}); b.build(docx_path)
     pdf = to_pdf(docx_path)
