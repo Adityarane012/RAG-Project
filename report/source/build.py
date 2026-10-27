@@ -11,9 +11,11 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 HERE = Path(__file__).parent
-SHORT = os.environ.get("EDITION") == "short"      # the 15-20 page edition
+EDITION = os.environ.get("EDITION", "")
+SIMPLE = EDITION == "simple"                       # plain-language edition with the team details
+SHORT = EDITION in ("short", "simple")             # the condensed editions
 REPO = HERE.parent.parent if (HERE.parent.parent / "src").exists() else Path("/home/user/RAG-Project")
-SRC = HERE / ("src_short" if SHORT else "src")
+SRC = HERE / ("src_simple" if SIMPLE else "src_short" if SHORT else "src")
 OUT = HERE.parent if HERE.name == "source" else HERE / "out"
 FONT = "Times New Roman"
 MONO = "Courier New"
@@ -336,7 +338,32 @@ class Builder:
         p = self.doc.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.CENTER, line=1.0, after=after)
         p.add_run().add_picture(str(LOGO), width=Cm(width))
 
+    def cover_simple(self):
+        self.new_section(header=False, footer=False)
+        c = self.centered
+        c("HF Model Finder: Constraint Verified Retrieval-Augmented Generation for Finding Hugging Face Models", 20, True, after=18, before=10, line=1.2)
+        c("Report submitted in partial fulfilment", 13, after=2)
+        c("of", 13, after=2)
+        c("B.Tech", 13, bold=True, after=2)
+        c("in", 13, after=2)
+        c("Computer Engineering", 13, bold=True, after=8)
+        c("by", 13, after=4)
+        c("**Harsh Bhandarkar** (B014), **Armaan Chopra** (B028),", 13, after=1)
+        c("**Jay Gandhi** (B124), **Aditya Rane** (B129),", 13, after=1)
+        c("**Yash Parab** (B179)", 13, after=12)
+        c("Under the supervision of", 13, after=4)
+        c("Dr. Archana Nanade", 14, bold=True, after=2)
+        c("(Professor, Computer Engineering dept., MPSTME)", 12, after=22)
+        c("SVKM's NMIMS University", 16, True, after=0)
+        c("(Deemed-to-be University)", 12, after=8)
+        self.logo(3.6, after=8)
+        c("MUKESH PATEL SCHOOL OF TECHNOLOGY MANAGEMENT & ENGINEERING (MPSTME)", 13, True, after=2)
+        c("Vile Parle (W), Mumbai-56", 12, True, after=16)
+        c("(2026-27)", 13, True, after=0)
+
     def cover(self):
+        if SIMPLE:
+            return self.cover_simple()
         self.new_section(header=False, footer=False)
         c = self.centered
         c("HF Model Finder: Constraint-Verified Retrieval-Augmented Generation for Finding Hugging Face Models", 20, True, after=18, before=10, line=1.2)
@@ -401,7 +428,7 @@ class Builder:
         for b in read_blocks(SRC / "abstract.md"):
             if b["t"] == "para":
                 p = self.doc.add_paragraph(); para_fmt(p, WD_ALIGN_PARAGRAPH.JUSTIFY, line=1.15, after=5); add_inline(p, b["text"], self.ctx, 11)
-        self.centered("Note: the software was developed with the assistance of an AI coding assistant (Claude Code); see Section 3.4. Relevance and faithfulness grades were produced by language-model judges, not humans.", 9, italic=True, after=4)
+        self.centered("Note: the software was developed with the assistance of an AI coding assistant (Claude Code); see Section 3.8. Relevance and faithfulness grades were produced by AI judges, not humans.", 9, italic=True, after=4)
 
     def contents_short(self):
         self.centered("CONTENTS", 14, True, after=4, before=8)
@@ -712,7 +739,7 @@ class Builder:
 
     def build(self, out_docx):
         chapters = [("ch1.md", False), ("ch2.md", False), ("ch3.md", False), ("ch4.md", False), ("ch5.md", False), ("ch6.md", False)]
-        apps = [("appA.md", True), ("appB.md", True)] if SHORT else [("appA.md", True), ("appB.md", True), ("appC.md", True), ("appD.md", True)]
+        apps = [("appA.md", True)] if SIMPLE else [("appA.md", True), ("appB.md", True)] if SHORT else [("appA.md", True), ("appB.md", True), ("appC.md", True), ("appD.md", True)]
         self.prepass(chapters + [("refs_placeholder", False)] if False else chapters + apps)
         # headings list for the TOC comes from a dry run of body rendering order
         self._first_done = False
@@ -826,7 +853,7 @@ def collect_pages(b, pdf):
 
 def main():
     OUT.mkdir(exist_ok=True)
-    name = "HF_Model_Finder_Report_Short" if SHORT else "HF_Model_Finder_Capstone_Report"
+    name = "HF_Model_Finder_Report_Simple" if SIMPLE else "HF_Model_Finder_Report_Short" if SHORT else "HF_Model_Finder_Capstone_Report"
     docx_path = OUT / f"{name}.docx"
     b = Builder({}); b.build(docx_path)
     pdf = to_pdf(docx_path)
