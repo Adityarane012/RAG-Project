@@ -1,0 +1,7 @@
+!theme plain
+skinparam dpi 220
+skinparam shadowing false
+skinparam defaultFontName "Liberation Sans"
+skinparam defaultFontSize 12
+skinparam roundCorner 8
+skinparam ArrowColor #444444

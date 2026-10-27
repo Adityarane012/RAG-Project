@@ -1,0 +1,26 @@
+@startuml
+!include style.iuml
+skinparam sequenceMessageAlign center
+actor User
+participant "Web page" as UI
+participant "Query pipeline" as G
+participant "Language model" as L
+database "Pinecone index" as P
+participant "Verifier" as V
+
+User -> UI : types a request
+UI -> G : run(request)
+G -> L : extract the rules
+L --> G : rules (JSON)
+G -> G : validate rules
+G -> P : filtered search (user's own words)
+P --> G : matching chunks
+G -> G : group by model, re-rank
+G -> V : check the first 100 models
+V --> G : pass / fail / unknown per rule
+G -> G : sort, keep 5
+G -> L : explain these 5 (card text as data)
+L --> G : short explanations
+G --> UI : table, banner, explanations
+UI --> User : shows the result
+@enduml

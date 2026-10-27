@@ -1,0 +1,31 @@
+@startuml
+!include style.iuml
+start
+:Read the user's request;
+if (Asks for something we do not cover?) then (yes)
+  :Refuse with a message;
+  stop
+endif
+:Language model writes the rules (JSON);
+:Validate the rules and add any\nobvious ones the model missed;
+if (Task or language missing?) then (yes)
+  :Ask a follow-up question;
+  stop
+endif
+:Search the index with the user's words\n(filter keeps models with unknown data);
+:Re-rank the results;
+:Verify the first 100 models in code;
+:Sort and keep the best 5;
+if (Any model that does not fail?) then (no)
+  if (A rule can be relaxed?) then (yes)
+    :Offer to relax one rule;
+  else (no)
+    :Say nothing matches;
+  endif
+  stop
+endif
+:Add rights notes, code snippet,\nmemory estimate;
+:Language model writes a short explanation;
+:Show the table (banner if none is\nfully checked) and the explanation;
+stop
+@enduml

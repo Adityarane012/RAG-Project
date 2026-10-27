@@ -1,0 +1,25 @@
+@startuml
+!include style.iuml
+start
+:Model data and the rules the user asked for;
+repeat
+  :Take the next requested rule\n(task, language, size, commercial, modify);
+  if (Does the data say anything about it?) then (no)
+    :result = UNKNOWN;
+  else (yes)
+    if (Does the model meet the rule?) then (yes)
+      :result = PASS;
+    else (no)
+      :result = FAIL;
+    endif
+  endif
+repeat while (More rules?) is (yes) not (no)
+if (Any result is FAIL?) then (yes)
+  :Overall = FAIL\n(never suggested);
+elseif (Any result is UNKNOWN?) then (yes)
+  :Overall = UNKNOWN\n(shown with a warning);
+else (no)
+  :Overall = PASS\n(fully checked);
+endif
+stop
+@enduml

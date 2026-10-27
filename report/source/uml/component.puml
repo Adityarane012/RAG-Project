@@ -1,0 +1,30 @@
+@startuml
+!include style.iuml
+!pragma layout smetana
+skinparam componentStyle uml2
+
+package "Offline: prepare the data (once)" {
+  [Hugging Face Hub API] as hub
+  [Ingest and clean] as ingest
+  [Chunk and embed] as embed
+  database "Snapshot\n(15,991 models)" as snap
+}
+package "Online: answer a question" {
+  [Streamlit web page] as ui
+  [Query pipeline\n(LangGraph)] as graph
+  [Verifier\n(plain code)] as ver
+}
+database "Pinecone index\n(48,179 chunks)" as idx
+cloud "Language model\n(Groq)" as llm
+
+hub --> ingest : model data
+ingest --> snap : size, rights,\nlanguages
+ingest --> embed : card text
+embed --> idx : vectors +\nmetadata
+ui --> graph : request
+graph --> llm : read request /\nwrite explanation
+graph --> idx : filtered search
+graph --> ver : candidates
+ver --> snap : facts for each\nmodel
+graph --> ui : table + explanation
+@enduml

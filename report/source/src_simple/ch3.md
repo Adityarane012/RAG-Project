@@ -16,13 +16,13 @@ The main requirements and how each was checked.
 | R8 | keep model-card text from changing any verdict | Poisoned-card test |
 :::
 
-## Block diagram
+## Component diagram
 
-@fig:block shows the two halves of the system. The **offline** half runs once: it downloads model information from Hugging Face, cleans it, and stores it in a searchable index. The **online** half runs for every question: it reads the request, searches the index, checks the rules in code, and shows the best five models with a short explanation. The two halves meet only at the index.
+@fig:block is a UML component diagram of the system. The **offline** part runs once: it downloads model information from Hugging Face, cleans it, keeps the facts in a snapshot, and stores the page text as vectors in the Pinecone index. The **online** part runs for every question: the web page sends the request to the query pipeline, which uses the language model, searches the index, and asks the verifier to check the rules using the snapshot. The two parts meet only at the data stores.
 
-::: fig block w=11.5
-fig_block.png
-Block diagram. Left: preparing the data once. Right: answering a question. Orange boxes use a language model.
+::: fig block w=13
+uml_component.png
+UML component diagram of HF Model Finder: the offline data preparation and the online question answering.
 :::
 
 ## Hardware and software
@@ -42,16 +42,16 @@ Model pages are cut into chunks of at most 450 tokens (roughly 300 words; at mos
 
 ## Answering a question
 
-@fig:graph shows the steps. (1) **Extract:** requests for things we do not cover (image generation, OCR, speech synthesis) are refused. Otherwise the language model writes the rules as JSON, code validates them, and a small rule-based backstop adds anything obvious the model missed, such as "under 500 MB". (2) **Clarify:** if the task is missing we ask, with clickable choices. (3) **Search:** we search with the user's own words, and the filter keeps models whose data is unknown. (4) **Re-rank:** a second model orders the results. (5) **Verify:** code checks the first 100 models and keeps the best 5. (6) **Explain:** the language model writes a short explanation from the model card text, plus the page adds a code snippet and fine-tuning advice. We check 100 but show 5 because search by meaning cannot see size or licence; this raised fully checked answers from 72.3% to 83.3%.
+@fig:graph shows the order of messages for one question, and Appendix A (@fig:a_pipeline) shows the same steps as an activity diagram. (1) **Extract:** requests for things we do not cover (image generation, OCR, speech synthesis) are refused. Otherwise the language model writes the rules as JSON, code validates them, and a small rule-based backstop adds anything obvious the model missed, such as "under 500 MB". (2) **Clarify:** if the task is missing we ask, with clickable choices. (3) **Search:** we search with the user's own words, and the filter keeps models whose data is unknown. (4) **Re-rank:** a second model orders the results. (5) **Verify:** code checks the first 100 models and keeps the best 5. (6) **Explain:** the language model writes a short explanation from the model card text, plus the page adds a code snippet and fine-tuning advice. We check 100 but show 5 because search by meaning cannot see size or licence; this raised fully checked answers from 72.3% to 83.3%.
 
-::: fig graph w=12
-fig_graph.png
-The question pipeline. Clarify and relax stop a run; the page then calls it again with the user's answer.
+::: fig graph w=13.5
+uml_sequence.png
+UML sequence diagram of one question.
 :::
 
 ## The checking rule
 
-@alg:verify is the only place where pass, fail or unknown is decided. A rule can fail only when the data is known and breaks the request, so a shown model can never break a rule the user gave, whatever the search or the language model does.
+@alg:verify (and the activity diagram in Appendix A, @fig:a_verify) is the only place where pass, fail or unknown is decided. A rule can fail only when the data is known and breaks the request, so a shown model can never break a rule the user gave, whatever the search or the language model does.
 
 ::: algo verify cap="How one model is checked"
 task:       UNKNOWN if no task in data; PASS if equal; else FAIL

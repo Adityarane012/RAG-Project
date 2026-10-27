@@ -1,6 +1,6 @@
 # Reports
 
-- `HF_Model_Finder_Report_Simple.docx` / `.pdf` (12 pages): plain-language version with the team details on the cover and 12 references.
+- `HF_Model_Finder_Report_Simple.docx` / `.pdf` (13 pages): plain-language version with the team details on the cover, 12 references and UML diagrams (PlantUML sources in `source/uml`; the other editions still contain the older drawn diagrams).
 - `HF_Model_Finder_Report_Short.docx` / `.pdf` (18 pages): the condensed report to submit. Cover, abstract, contents, six chapters,
   45 IEEE references and two appendices.
 - `HF_Model_Finder_Capstone_Report.docx` / `.pdf` (104 pages): the full edition, following the capstone template in detail.

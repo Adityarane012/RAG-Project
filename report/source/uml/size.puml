@@ -1,0 +1,18 @@
+@startuml
+!include style.iuml
+start
+if (Top-level .safetensors files?) then (yes)
+  :Use these files;
+elseif (Top-level .bin files?) then (yes)
+  :Use these files;
+else (none)
+  :Size = UNKNOWN;
+  stop
+endif
+if (Any chosen file has no recorded size?) then (yes)
+  :Size = UNKNOWN;
+else (no)
+  :Size = total bytes / 1,000,000 (MB);
+endif
+stop
+@enduml
