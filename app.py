@@ -73,6 +73,9 @@ def _fresh(query: str | None = None) -> None:
     st.rerun()
 
 
+VIEWS = ["Search", "Examples", "Check a model"]
+
+
 def _use_query(query: str) -> None:
     """Button callback: callbacks run before the script reruns, so the text box's own key can be set here
     (setting it inline from a later tab raises StreamlitAPIException)."""
@@ -81,6 +84,7 @@ def _use_query(query: str) -> None:
     for k in ("state", "naive_state"):
         st.session_state.pop(k, None)
     st.session_state["action"] = "fresh"
+    st.session_state["view"] = "Search"          # show the result where it will appear
 
 
 def render_table(result: dict) -> None:
@@ -310,11 +314,11 @@ EXAMPLE_CATEGORIES = {
 
 def render_examples_tab() -> None:
     st.markdown("### 💡 Browse Example Queries by Task & Capability")
-    st.caption("Click **'Use query ↗️'** next to any example to populate the search bar and run constraint verification immediately in the **Search** tab.")
+    st.caption("Click **'Use query ↗️'** next to any example to fill the search bar and run the verified search; you are taken to the **Search** view.")
 
     selected = st.session_state.get("query", "")
     if selected:
-        st.info(f"Currently loaded: **{selected}** — *switch to the **Search** tab to see verified results.*")
+        st.info(f"Currently loaded: **{selected}**")
 
     for cat_name, queries in EXAMPLE_CATEGORIES.items():
         st.markdown(f"#### {cat_name}")
@@ -334,14 +338,20 @@ def main() -> None:
     if mode_from_env() == "replay":
         st.caption("Replay mode: showing recorded runs, no live services.")
 
-    search_tab, examples_tab, check_tab = st.tabs(["Search", "Examples", "Check a model"])
+    # A radio, not st.tabs: tabs cannot be switched from code, so "Use query" on the Examples view would run the
+    # search into a tab the user is not looking at. Widgets of a view that is not drawn lose their state, so the
+    # text box and checkbox values are re-assigned first to carry them across views.
+    for k in ("query", "compare"):
+        if k in st.session_state:
+            st.session_state[k] = st.session_state[k]
+    view = st.radio("View", VIEWS, key="view", horizontal=True, label_visibility="collapsed")
 
-    with search_tab:
+    if view == "Search":
         st.write("Try an example:")
         for example in EXAMPLE_QUERIES:
             if st.button(example, key=f"ex-{example}"):
                 _fresh(example)
-        st.caption("💡 Looking for more tasks and categories? Browse 25+ diverse queries in the **Examples** tab above.")
+        st.caption("💡 Looking for more tasks and categories? Browse 25+ diverse queries in the **Examples** view above.")
         query = st.text_input("Describe the model you need", key="query")
         compare = st.checkbox("Compare with naive RAG", key="compare",
                               help="Runs the same request with no filters and no verification, to show what the checks change.")
@@ -389,10 +399,10 @@ def main() -> None:
                 st.divider()
                 render_intent_editor(state.get("constraints") or {})
 
-    with examples_tab:
+    elif view == "Examples":
         render_examples_tab()
 
-    with check_tab:
+    else:
         render_check_tab()
 
     with st.expander("Glossary"):

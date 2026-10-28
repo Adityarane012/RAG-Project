@@ -12,7 +12,7 @@ def test_app_renders_and_explains_when_there_is_no_index_instead_of_crashing(tmp
     at = AppTest.from_file(APP, default_timeout=30).run()
     assert not at.exception
     assert any("not legal" in c.value for c in at.caption)
-    assert len(at.tabs) == 3
+    assert at.radio(key="view").options == ["Search", "Examples", "Check a model"]
     at.text_input(key="query").set_value("Marathi NER").run()
     next(b for b in at.button if b.label == "Search").click().run()
     assert not at.exception
@@ -169,6 +169,7 @@ def test_check_a_model_tab_judges_a_real_model_against_requirements(monkeypatch)
 
     monkeypatch.setenv("RAW_DIR", str(Path(__file__).resolve().parent / "fixtures" / "hub"))
     at = AppTest.from_file(APP, default_timeout=60).run()
+    at.radio(key="view").set_value("Check a model").run()
     at.text_input(key="check_id").set_value("facebook/nllb-200-distilled-600M").run()
     at.checkbox(key="check-comm").check().run()
     assert not at.exception
@@ -177,6 +178,20 @@ def test_check_a_model_tab_judges_a_real_model_against_requirements(monkeypatch)
     assert any("Commercial use" in str(t.to_dict()) and "no" in str(t.to_dict()) for t in tables)
     at.text_input(key="check_id").set_value("nobody/nothing").run()
     assert any("not in our snapshot" in w.value for w in at.warning)
+
+
+def test_use_query_on_examples_view_fills_the_box_and_shows_the_result_on_the_search_view(monkeypatch):
+    monkeypatch.setenv("REPLAY", "1")                              # recorded demo run, no live services
+    at = AppTest.from_file(APP, default_timeout=60).run()
+    at.radio(key="view").set_value("Examples").run()
+    next(b for b in at.button if b.key == "cat-ex-Tamil NER model I can fine-tune").click().run()
+    assert not at.exception
+    assert at.radio(key="view").value == "Search"
+    assert at.text_input(key="query").value == "Tamil NER model I can fine-tune"
+    assert "state" in at.session_state and len(at.table) > 0
+    at.radio(key="view").set_value("Examples").run()               # the query survives a trip to another view
+    at.radio(key="view").set_value("Search").run()
+    assert at.text_input(key="query").value == "Tamil NER model I can fine-tune" and len(at.table) > 0
 
 
 def test_glossary_and_legend_are_present():
