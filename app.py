@@ -73,6 +73,16 @@ def _fresh(query: str | None = None) -> None:
     st.rerun()
 
 
+def _use_query(query: str) -> None:
+    """Button callback: callbacks run before the script reruns, so the text box's own key can be set here
+    (setting it inline from a later tab raises StreamlitAPIException)."""
+    st.session_state["query"] = query
+    st.session_state["overrides"] = {}
+    for k in ("state", "naive_state"):
+        st.session_state.pop(k, None)
+    st.session_state["action"] = "fresh"
+
+
 def render_table(result: dict) -> None:
     rows = {ROW_LABELS[k]: ICON_DISPLAY.get(v, v) for k, v in result["table"].items()}
     st.table(rows)
@@ -311,9 +321,7 @@ def render_examples_tab() -> None:
         for q, desc in queries:
             c1, c2 = st.columns([3, 1])
             c1.markdown(f"**{q}**  \n*{desc}*")
-            if c2.button("Use query ↗️", key=f"cat-ex-{q}"):
-                _fresh(q)
-                st.rerun()
+            c2.button("Use query ↗️", key=f"cat-ex-{q}", on_click=_use_query, args=(q,))
         st.divider()
 
 
